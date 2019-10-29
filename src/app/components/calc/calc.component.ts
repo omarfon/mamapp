@@ -14,6 +14,7 @@ export class CalcComponent implements OnInit {
   @Input ('nombre')  nombre; 
   public fechaMax;
   public fechaMin;
+  public deshabilitado = false;
 
   constructor(public router: Router, public popoverCtrl: PopoverController) { }
 
@@ -30,6 +31,10 @@ export class CalcComponent implements OnInit {
     this.router.navigate(['tabs']);
     
     console.log( 'fechaManual', fechaManual.value);
+  }
+  infoLista(event){
+    console.log(event);
+    this.deshabilitado = true;
   }
 
 }
