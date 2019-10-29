@@ -1,0 +1,250 @@
+ion-content {
+    --background: #eeeeee!important;
+    height: 100vh;
+}
+.list-md {
+    background: #F9FBFB!important;
+}
+.item-md {
+    background: transparent!important;
+}
+.swiper-slide {
+    width: 60px!important;
+    height: auto;
+}
+.dentroExpandable {
+    height: 90px;
+    p {
+        margin-top: -15px,
+    }
+}
+.swiper-container {
+    height: 55px!important;
+    width: 95%;
+    // margin-left: 2.5%;
+}
+.centerItemsDays {
+    margin-top:25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    p {
+        color: #4A4A4A;
+    }
+}
+.numeroDia{
+    margin-top:0px;
+}
+.doctor {
+    font-weight: 200;
+    color: #10A7C1;
+    font-size: 1.3em;
+    text-align: right;
+    margin-right: 15px;
+    line-height: 1.2em;
+    margin-top: 10px;
+    margin-bottom:0px;
+    text-transform: capitalize;
+}
+.especialidad {
+    text-align: right;
+    color: #a7a9ab;
+    margin-right: 15px;
+    font-size: 1.3em;
+    font-weight: lighter;
+    margin-top: 0!important;
+    margin-bottom:0px;
+    text-transform: capitalize;
+}
+.centro {
+    text-align: right;
+    margin-right: 15px;
+    color: #a7a9ab;
+    font-weight: 400;
+    margin-top:-5px;
+}
+.diasLibres {
+    // margin-bottom: 0!important;
+    text-align: center;
+    h6 {
+        font-size: 1.1em;
+        color: #a7a9ab;
+        text-align: center;
+        // margin-right: 10px;
+    }
+}
+.imageSlider {
+    width: 150px;
+    margin-left: calc( 50% - 75px);
+    margin-top: 1em;
+    border-radius: 50%;
+}
+.cardSlider {
+    text-align: center;
+    width: 250px;
+}
+.tituloSlider {
+    color: #00B6A3;
+    font-size: 1.4em;
+    text-align: center;
+    line-height: 1.2em;
+    width: 80%;
+    margin: 8%;
+}
+a {
+    background: #66CBEC;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    margin-left: 12px;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    font-size: .8em;
+}
+.imageDoctor img {
+    border-radius: 15px;
+    margin-top: 1em;
+    margin-left: 1em;
+    // box-shadow: 0px 2px 3px #A7A9AC;
+}
+.containerDays {
+    width: 90%;
+    height:90px;
+    margin-left: 5%;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.item-label-stacked .select-md,
+.item-label-floating .select-md,
+.item-input-has-focus .label-md[floating],
+.input-has-focus .label-md[floating],
+.item-input-has-value .label-md[floating],
+.input-has-value .label-md[floating] {
+    color: #66CBEC;
+}
+.horas {
+  font-size: 1em;
+  text-align: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+    p {
+      background: #fff;
+      border-radius: 5px;
+      padding: .2em .6em;
+      color: #10A7C1;
+      border: 1px solid #10A7C1;
+      font-weight: 400;
+      margin-left:10px;
+    }
+}
+.icono {
+    margin-top: 15px;
+    color: #a7a9ab;
+}
+.textoCitas {
+    color: #007198;
+    margin-top: 50px;
+    text-align: center;
+}
+.gris {
+    background: red;
+}
+span .mat-expansion-indicator {
+    color: #007198!important;
+    display: none!important;
+}
+a:hover {
+    background: #a7a9ab!important;
+    opacity: .9!important;
+}
+.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+    border-bottom-color: #dedede!important;
+    box-shadow: none!important;
+}
+.center{
+  text-align: center;
+  color:#66CBEC;
+  margin-bottom:30px;
+  font-weight:400;
+}
+.normal{
+  width: 100%!important;
+  .swiper-slide{
+    width:100%!important;
+  }
+  .swiper-container{
+    height:90px!important;
+  }
+}
+.slide-zoom .ng-star-inserted{
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.borrar{
+  display: none!important;
+}
+.subtitulo{
+  text-align: center;
+  color:#a7a9ab;
+  margin-top: -5px;
+  font-size:.9em;
+}
+.turno{
+  color:#a7a9ab;
+}
+.sinHorarioDisponible{
+  font-size:1.2em;
+  text-align: center;
+}
+.cardDoctor{
+    margin-top:2px!important;
+    margin-bottom:5px;
+    --background:#fff!important;
+    border-top-right-radius: 30px;
+}
+.cardDoctorheight{
+    margin-bottom:5px;
+    --background:#fff!important;
+    border-top-right-radius: 30px;
+    height: 180px;
+}
+mat-expansion-panel-header{
+    height: 80px!important;
+}
+mat-expansion-panel{
+    box-shadow: none!important;
+}
+.diasDoctor{
+    margin-top:2px;
+    margin-left:3px;
+}
+.contenedorHoras{
+    height: 50px;
+}
+.mat-expansion-indicator{
+    display: none;
+    color: transparent!important
+}
+.mat-expansion-indicator::after{
+    display: none!important;
+    color: transparent!important;
+}
+
+mat-expansion-panel-header{
+    width: 100%!important;
+    padding:0;
+}
+
+//skeleton
+ion-skeleton-text{
+    margin-bottom:10px;
+}
+

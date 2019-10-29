@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar  color="secondary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>evolucion</ion-title>
+    <ion-buttons slot="end">
+            <ion-button color="light"
+                          [routerLink]="'/chat'">
+                <ion-icon slot="end" name="chatbubbles"></ion-icon>
+              </ion-button> 
+          </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngFor="let evo of evolution" class="animated fadeInDown">
+        <ion-card class="sinControl" *ngIf="evo.control == false ; else conControl" (click)="goToDetailWeek(evo)">
+            <ion-row>
+                <ion-col size="8" class="centrarHorizontal">
+                    <p class="frase" *ngIf="!evo.evobebe.resumen">{{evo.descripcion}}</p>
+                    <p class="frase" *ngIf="evo.evobebe.resumen">{{evo.evobebe.resumen}}</p>
+                    <p class="semanaControl" *ngIf="evo.control == true">Recuerda que en esta semana tiene control</p>
+                </ion-col>
+                <ion-col size="4">
+                    <!-- <button ion-button clear *ngIf="evo.control == true">
+                        <ion-icon item-end name="more" class="claro" (click)="presentPopover(evo)"></ion-icon>
+                    </button> -->
+                    <div class="centrar">
+                        <h3 class="semana"  [ngStyle]="{'color':evo.control == true ? '#fff' : '#A7A9AC'}">{{ evo.semana }}</h3>
+                        <p class="semanaNombre" [ngStyle]="{'color':evo.control == true ? '#fff' : '#A7A9AC'}">Semanas</p>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+        <ng-template #conControl>
+            <ion-card class="conControl" (click)="goToDetailWeek(evo)">
+                <ion-row>
+                    <ion-col size="8">
+                        <ion-row>
+                            <ion-col size="5" class="containerControles">
+                                <h4 class="nControlReco">{{evo.numeroControl}}</h4>
+                                <p class="control">
+                                    control
+                                </p>
+                            </ion-col>
+                            <ion-col size="7"></ion-col>
+                            <ion-col size="12">
+                                <p class="textoControles">
+                                    Recuerda que esta en esta semana deberías tener tu {{evo.controlReco}} control prenatal
+                                </p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col size="4" class="contenedorSemanas">
+                        <h3 class="semanaNoControl" (click)="goToDetailWeek(evo)">{{ evo.semana }}</h3>
+                        <p class="semanaNombreNoControl">Semanas</p>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </ng-template>
+    </div>
+
+</ion-content>

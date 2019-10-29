@@ -1,0 +1,12 @@
+.expand-wrapper {
+    height: 200px;
+    transition: 0.3s linear;
+}
+.collapsed {
+    height: 0 !important;
+    //    position: absolute;
+    //    top:20px;
+}
+.blue {
+    background: red;
+}

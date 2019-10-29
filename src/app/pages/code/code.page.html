@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>code</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <p class="codigoValida">hemos enviado al correo el código de validación , ingresalo y listo....</p>
+    <ion-row>
+      <div col-2></div>
+      <div col-8>
+       <!--   <form [formGroup]="formCode" (ngSubmit)="saveData(formCode.value)" novalidate>
+        <ion-row>
+            <ion-col class="rectanguloInput">
+              <ion-input type="tel"
+                           minlength="1"
+                           maxlength="1"
+                          [(ngModel)]="primero"
+                          formControlName="primero"
+                           ></ion-input>
+             </ion-col>
+            <ion-col class="rectanguloInput">
+               <ion-input type="tel"
+                         minlength="1"
+                         maxlength="1"
+                           [(ngModel)]="segundo"
+                           formControlName="segundo"
+                           ></ion-input>
+             </ion-col>
+            <ion-col class="rectanguloInput">
+              <ion-input type="tel"
+                         minlength="1"
+                         maxlength="1"
+                         tercero="tercero"
+                         formControlName="tercero"
+                         ngModel></ion-input>
+             </ion-col>
+             <ion-col class="rectanguloInput">
+                 <ion-input type="tel"
+                         minlength="1"
+                         maxlength="1"
+                            tercero="cuarto"
+                            formControlName="cuarto"
+                            ngModel></ion-input>
+                </ion-col> -->
+               <!-- </ion-row> -->
+               <div class="center">
+                 <button ion-button
+                          type="submit">
+                    registrarme
+                 </button>
+               </div>
+      
+      </div>
+      <div col-2></div>
+    </ion-row>
+   
+   
+    <div class="center">
+      <p class="newCode">Si no recibiste o caduco tu codigo puedes solicitar uno nuevo.</p>
+      <button ion-button
+             class="codigoreen"
+             clear
+             (click)="sendCode()">reenviar códido
+    </button>
+    </div>
+</ion-content>

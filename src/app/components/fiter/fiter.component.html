@@ -1,0 +1,57 @@
+<ion-content>
+  <ion-list >
+      <ion-item   
+      outline  
+      (click)="goToHomePastilla()">
+      pastillas
+        <ion-button slot="end" fill="clear">
+         <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-button>
+    </ion-item>
+    
+    <ion-item
+      (click)="goToHomeComparativa()">
+        Comparativas
+        <ion-button slot="end" fill="clear">
+            <ion-icon name="arrow-dropright"></ion-icon>
+           </ion-button>
+</ion-item>
+
+<ion-item
+  outline
+  (click)="goToHomeDesarrollo()">
+Desarrollo Bebe
+<ion-button slot="end" fill="clear">
+    <ion-icon name="arrow-dropright"></ion-icon>
+   </ion-button>
+</ion-item>
+
+<ion-item
+  outline
+  (click)="goToHomeCambios()">
+Cambios en mi cuerpo
+<ion-button slot="end" fill="clear">
+    <ion-icon name="arrow-dropright"></ion-icon>
+   </ion-button>
+</ion-item>
+
+<ion-item
+  outline
+  (click)="goToHomeNutricion()">
+  Tips nutricion
+  <ion-button slot="end" fill="clear">
+      <ion-icon name="arrow-dropright"></ion-icon>
+     </ion-button>
+</ion-item>
+
+
+<ion-item
+  outline
+  (click)="getAll()">
+  Todas las notas
+  <ion-button slot="end" fill="clear">
+      <ion-icon name="arrow-dropright"></ion-icon>
+     </ion-button>
+</ion-item>
+  </ion-list>
+</ion-content>

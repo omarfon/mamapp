@@ -1,0 +1,50 @@
+<ion-content>
+  <p class="codigoValida">hemos enviado al correo el código de validación , ingresalo y listo....</p>
+<p *ngIf="message" class="errorMessage">{{message}}</p>
+  <ion-row>
+    <div col-2></div>
+    <div col-8>
+       <form  novalidate>
+      <ion-row class="contenedorInputs">
+          <ion-col class="rectanguloInput">
+            <ion-input type="tel"
+                         minlength="1"
+                         maxlength="1"
+                        #primero
+                         ></ion-input>
+           </ion-col>
+          <ion-col class="rectanguloInput">
+             <ion-input  type="tel"
+                         minlength="1"
+                         maxlength="1"
+                         #segundo
+                         ></ion-input>
+           </ion-col>
+          <ion-col class="rectanguloInput">
+            <ion-input type="tel"
+                       minlength="1"
+                       maxlength="1"
+                       #tercero
+                       ></ion-input>
+           </ion-col>
+           <ion-col class="rectanguloInput">
+               <ion-input type="tel"
+                       minlength="1"
+                       maxlength="1"
+                          #cuarto
+                          ></ion-input>
+              </ion-col> 
+              </ion-row>
+             <div class="center">
+               <ion-button
+                        (click)="saveData(primero.value, segundo.value, tercero.value, cuarto.value)"
+                        size="block"
+                        color="rosado">
+                  Completar Registro
+               </ion-button>
+             </div>
+     </form>
+    </div>
+    <div col-2></div>
+  </ion-row>
+</ion-content>

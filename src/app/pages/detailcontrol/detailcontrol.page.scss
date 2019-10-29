@@ -1,0 +1,142 @@
+ion-content{
+    background:#F5F5F5!important;
+  }
+    ul{
+        width:100%;
+    }
+    li{
+        list-style-type: none;
+    }
+    .izquierda{
+
+        font-weight: 600;
+        font-size: 1.2em;
+    }
+    .derecha{
+        color:grey;
+        text-align: center;
+        margin-right: 20px;
+    }
+    .tituloControl{
+        color:#9483C8;
+        text-align: center;
+        margin-bottom:2em;
+    }
+    .imagen img{
+      width:25px!important;
+      height: auto!important;
+    }
+    ion-col{
+      display: flex!important;
+      justify-content: center;
+      align-items: center;
+      margin-top:15px!important;
+      height: 40px;
+      // border-bottom: 1px solid #f5f5f5;
+    }
+    .titulo{
+      text-align: center;
+      color:#9483C8;
+      margin-top:1em;
+    }
+    .descripcion{
+      text-align: center!important;
+      color:#444D4D;
+      font-size:.9em;
+    }
+    .valor{
+      text-align: right!important;
+      span{
+        font-size:.8em;
+        color:#444D4D;
+        margin-left:5px;
+        text-transform: lowercase;
+      }
+    }
+    h4{
+      font-size:1em!important;
+    }
+    ion-col {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .parametro{
+      // float: left!important;
+      color:#9483C8;
+      font-weight: 400;
+    }
+    ion-card{
+      height:100vh;
+      height: auto;
+      border-radius: 5px!important;
+    }
+    // aqui comienzan los estilos para la toma de la medicina
+    .cuadrados{
+      height: 80px;
+      background:#F5F5F5;
+      width:95%;
+      margin-left:5%;
+      color:#444D4D;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction:column;
+        p{
+          // margin-top:-5px;
+          font-size:.8em;
+        }
+        .cantidad{
+          color:#9483C8;
+          font-size:1.8em;
+          margin-top:10px;
+        }
+      }
+      .nombrePastilla{
+      color:#9483C8;
+      font-size:1.1em;
+      font-weight: 400;
+      margin-top:10px;
+      text-align: right;
+    }
+    .cantidadDeDias{
+      color:#444D4D;
+      margin-top: 40px;
+    }
+    .inicio{
+      color:#444D4D;
+      margin-top: 10px;
+    }
+    .tituloDeLasTomas{
+      color:#9483C8;
+      font-size:1.2em!important;
+      font-weight:600;
+      text-align: center;
+    }
+    img{
+       width:50px!important;
+       height: auto;
+    }
+    .cardRecomendaciones{
+      background: #F1F6F6;
+    }
+    .tituloRecomendaciones{
+      text-align:center;
+      font-size:1.2em;
+      color: #9483C8;
+    }
+    .textoRecomendaciones{
+      font-size:.9em;
+      color:#A7A9AC;
+    }
+    .noRecipes{
+      color:#9483C8;
+      font-size:1.2em;
+      width: 70%;
+      margin-left:15%;
+      margin-top: 10vh;
+      margin-bottom:10vh;
+    }
+    .subituloCambio{
+      color:#A7A9AC;
+    }

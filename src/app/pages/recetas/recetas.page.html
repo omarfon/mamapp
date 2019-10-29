@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="rosado">
+      <ion-buttons slot="start">
+          <ion-menu-button ></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+    </ion-buttons> 
+    <ion-title>recetas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let recipe of recipes" (click)="goToDetailRecipe(recipe)" class="recetaCard">
+        <ion-row>
+          <ion-col size="4">
+            <div class="iconoReceta">
+              <p class="dia">{{recipe.prescripciones[0].inicio_prescripcion | date:'dd'}}</p>
+              <p class="mes">{{recipe.prescripciones[0].inicio_prescripcion | date:'MMMM'}}</p>
+            </div>
+          </ion-col>
+          <ion-col size="8">
+            <p class="especialidad"> Especialidad:</p>
+            <p class="resultado">{{recipe.prescripciones[0].servicio}}</p>
+            <p class="especialidad">Doctor:</p>
+            <p class="resultado">{{recipe.prescripciones[0].apellidop_personal}}
+              {{recipe.prescripciones[0].apellidom_personal}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+</ion-content>

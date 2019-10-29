@@ -1,0 +1,98 @@
+ion-content{
+    --background: url(../../../assets/imgs/fondoLogin.png) 0 0/100% 100% no-repeat;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size:cover;
+    text-align: center;
+    /* --background: #FFA18B; */
+  }
+  .tituloLogin{
+      // margin-top: 30vh!important;
+      width: 80%;
+      margin-left:10%;
+      text-align: center;
+      padding-top:15px!important;
+      color:#9F5AE5;
+      font-size:1.2em;
+  }
+
+  ion-content{
+      position:fixed!important;
+  }
+  button{
+      height: 50px!important;
+  }
+  .contenedorBotones{
+    margin-top: 16vh;
+    padding-top: 10px;
+    text-align: center;
+    // background: #fff;
+    width: 90%;
+    margin-left:5%;
+    // border-radius: 10px;
+    .buttonIngresar{
+      position:relative;
+      // margin-bottom:20px!important;
+      background:#9F5AE5;
+      font-size:1em;
+      font-weight: 400;
+      color:#ffffff;
+      margin-top:10px;
+      height:50px;
+      // width:80%;
+      // margin-left:10%;
+      // border-radius: 10px;
+    }
+  }
+  .contraseñaolvidada{
+    color:#7044ff;
+    font-size:1em;
+    margin-top: 10px;
+    font-weight: 800;
+ /*    text-transform: capitalize; */
+  }
+  // .contenedorBoton{
+  //   margin-bottom:20px;
+  // }
+  // .contenedorBotonIngresar{
+  //   padding-bottom:10px!important;
+  // }
+  .contenedorImagen img{
+    width: 60%;
+    margin-top:5vh;
+  }
+  .item-md{
+    background:rgba(255,255,255,0.8)!important;
+    color:#fff;
+    margin-bottom:5px;
+  }
+  .label-md{
+    color:#FFA18B!important;
+    font-size:.9em;
+  }
+  .text-input-md{
+    color:#FFA18B!important;
+    font-size:1.1em;
+  }
+  .botonRegister{
+    --background: #FFA18B;
+    color:#fff;
+    margin-top:15px!important;
+    border-radius:5px;
+  }
+  .list-md{
+    background: transparent!important;
+  }
+  ion-item{
+    --background: rgba(255, 255, 255, 0.5);
+    margin-bottom:10px;
+    ion-label{
+      color:#9F5AE5;
+      font-size:1.2em;
+    } 
+    .label-floating{
+      color:#7044ff
+    }
+  }
+

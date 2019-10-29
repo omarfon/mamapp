@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="rosado">
+      <ion-buttons slot="start">
+          <ion-menu-button ></ion-menu-button>
+      </ion-buttons>
+    <ion-title>chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- <p class="proximamente"> Proximamente....</p> -->
+    <div *ngIf="conversacion">
+        <ion-row *ngFor="let mensaje of conversacion.messages">
+          <ion-col size="8"  *ngIf="currentUser === mensaje.user" class="message other-message">
+            <b>{{mensaje.user}}</b> <br>
+            <span>{{mensaje.content}}</span>
+            <div class="time" text-right>
+              {{mensaje.date.toDate() | date:'short'}}
+            </div> 
+          </ion-col>  
+
+          <ion-col offset="4" size="8"   *ngIf="mensaje.user !== currentUser " class="message my-message">
+            <b>{{mensaje.user}}</b> <br>
+            <span>{{mensaje.content}}</span>
+            <div class="time" text-right>
+              {{mensaje.date.toDate() | date:'short'}}
+            </div> 
+          </ion-col>  
+        </ion-row >
+        
+        <!-- <ion-row *ngFor="let mensaje of conversacion.messages" >
+          </ion-row >  -->
+
+      </div>
+      <!-- <button (click)="requestPermission()">
+        Enable notifications!
+      </button>
+
+
+      <button (click)="deleteToken()">
+        Delete my token plz
+      </button>
+
+      <ion-button (click)="listen()">
+        Get notified!
+      </ion-button> -->
+
+
+
+</ion-content>
+
+<ion-footer padding>
+  <ion-item>
+    <ion-textarea [(ngModel)]="msg" autosize class="message-input" value="ingresa tu mensaje">
+    </ion-textarea>
+    <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessage()">
+        <!-- <ion-button expand="block" fill="clear" color="primary" class="msg-btn" > -->
+      <ion-icon name="send" ></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>

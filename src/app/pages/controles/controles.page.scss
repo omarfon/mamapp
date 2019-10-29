@@ -1,0 +1,62 @@
+ion-content{
+    --background:#f7f7f7;
+  }
+  .especialidad{
+      margin-right: 20px;
+      color:#BABCC2;
+      font-weight: 600;
+      font-size:1.1em;
+      margin-left:10px;
+    }
+    .resultado{
+      color:#BABCC2;
+      font-weight: 200;
+      font-size:1em;
+      margin-top:-5px;
+      margin-left:10px;
+    }
+    .iconoReceta{
+      text-align: center;
+      border-right: .2px solid #BABCC2;
+     //  height: 90%;
+      h4{
+        color:grey;
+        text-align: center;
+        margin-top:10px;
+      }
+      ion-icon{
+        color:#66CBEC;
+        font-size:3em;
+      }
+    }
+    .dia{
+      font-size:3.5em;
+      font-weight: 600;
+      color:#66CBEC;
+      margin-top:30px;
+      margin-bottom:25px;
+    }
+    .mes{
+      color:#66CBEC;
+      margin-top: -30px;
+      font-size:1.1em;
+    }
+    .tituloControles{
+      color:#000;
+      text-align: center;
+      text-transform: uppercase;
+      font-size:1.3em;
+    }
+    ion-card{
+      border-top-right-radius: 50px;
+      --background:#fff;
+    }
+    .textoMensaje{
+      text-align: center;
+      width:80%;
+      margin-left:10%;
+      margin-top:50px;
+      color:#66CBEC;
+      font-size:1.2em;
+    }
+  

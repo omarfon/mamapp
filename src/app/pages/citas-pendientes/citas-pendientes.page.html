@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="rosado">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>citasPendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let date of dates">
+    <ion-card class="tarjetaResumen" (click)="goToDetailDate(date)">
+      <ion-row>
+        <ion-col col-4>
+          <ion-avatar>
+            <img src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{date.professional.id}}.png" alt="">
+          </ion-avatar>
+        </ion-col>
+        <ion-col col-8>
+          <h3>{{date.professional.fullName}}</h3>
+          <p class="especialidad">{{date.service.basicService.description}}</p>
+          <p class="sede">{{date.medicalCenter.centro.name}}</p>
+          <hr>
+          <p class="diaCita">{{date.appointmentDateTime | date:'longDate':'':'es'}}</p>
+          <p class="hourCita">{{date.appointmentDateTime | date:'h:mm a'}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+  <p class="sincitasPendientes" *ngIf="dates.length < 1">No tienes citas pendientes</p>
+</ion-content>

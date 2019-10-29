@@ -1,0 +1,63 @@
+<ion-content padding id="fondo">
+  <div class="contenedorImagen">
+    <img src="assets/imgs/logoCuidaBlanco.png" alt="">
+  </div>
+  <div class="contenedorBotones">
+      <!-- <p class="tituloLogin">Ingresa tu dni y contraseña para poder iniciar sesión</p> -->
+      <span>{{ msgError | json }}</span>
+
+          <ion-list>
+              <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input type="email"
+                              #email></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label position="floating">Contraseña</ion-label>
+                  <ion-input type="password"
+                             #password></ion-input>
+              </ion-item>
+              <div class="contenedorBotonIngresar">
+                <ion-button
+                        size="full"
+                        class="buttonIngresar"
+                        submit
+                        color="tertiary"
+                        (click)="doSignIn(email.value , password.value)">
+              Ingresar
+            </ion-button>
+              </div>
+          </ion-list>
+        </div>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-button
+                            (click)="goToRecovery()"
+                            fill="clear"
+                            class="contraseñaolvidada">
+                          Olvidé la contraseña
+                    </ion-button>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-button
+                            block
+                            (click)="goToRegister()"
+                            small
+                            class="botonRegister">
+                          Registrarme
+                    </ion-button>
+                </ion-col>
+
+                <ion-col col-12>
+                    <ion-button
+                            color="secondary"
+                            block
+                            (click)="goTohome()"
+                            small
+                            class="botonRegister">
+                            Ingresar como Invitado
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+</ion-content>

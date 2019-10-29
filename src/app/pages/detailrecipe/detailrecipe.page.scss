@@ -1,0 +1,133 @@
+.cuadrados{
+    height: 60px;
+    background:#F5F5F5;
+    width:90%;
+    margin-left:5%;
+    color:#444D4D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+      p{
+        // margin-top:-5px;
+        font-size:.8em;
+        color:#BABCC2;
+        margin-bottom:5px;
+      }
+      .cantidad{
+        color:#444D4D;
+        font-size:1.8em;
+        margin-top:0;
+
+      }
+    }
+    .nombrePastilla{
+    color:#007198;
+    font-size:.9em;
+    font-weight: 400;
+    margin-top:10px;
+    margin-bottom:5px;
+    text-align: right;
+    margin-right:10px;
+    }
+  .cantidadDeDias, .inicio{
+    color:#444D4D;
+  }
+  .tituloDeLasTomas{
+    color:#00B6A3;
+    font-size:1.1em!important;
+    font-weight:400;
+    text-align: center;
+    margin-bottom:0;
+    margin-top:0;
+  }
+  img{
+     width:50px!important;
+     height: auto;
+     margin-top:10px;
+  }
+  .down{
+    margin-bottom: 10px;
+    // border-bottom: .5px solid #DFDFDF;
+  }
+  .contenedorDatos{
+    height: 120px;
+    margin-bottom:2em;
+  }
+  .especialidad{
+    margin-right: 20px;
+    color:#BABCC2;
+    font-weight: 600;
+    font-size:1.1em;
+    margin-left:10px;
+  }
+  .resultado{
+    color:#BABCC2;
+    font-weight: 200;
+    font-size:1em;
+    margin-top:-5px;
+    margin-left:10px;
+  }
+  .iconoReceta{
+    text-align: center;
+    border-right: .2px solid #444D4D;
+    height: 100px;
+    h4{
+      color:grey;
+      text-align: center;
+      margin-top:10px;
+    }
+    ion-icon{
+      color:#007198;
+      font-size:3em;
+    }
+  }
+  .dia{
+    margin-top:20px;
+    font-size:3.5em;
+    font-weight: 600;
+    color:#BABCC2;
+  }
+  .mes{
+    color:#BABCC2;
+    margin-top: -60px;
+    font-size:1.1em;
+  }
+  .cantidadDeDias{
+    margin-top:20px;
+    font-size:3.5em;
+    font-weight: 600;
+    color:#BABCC2;
+    margin-top:0;
+    margin-bottom:0;
+  }
+  .textoAlternativo{
+      color:#BABCC2;
+      font-size:1em;
+      margin-top:0;
+      margin-bottom:0;
+      text-align: right;
+      margin-right: 10px;
+  }
+  .containerIconAndDays{
+      // border:1px solid #444D4D;
+      text-align: center;
+  }
+  .dias{
+    margin-top:-15px;
+    color:#BABCC2;
+  }
+  .inicio{
+    color:#444D4D;
+    text-align: right;
+    margin-top:10px;
+    margin-right: 10px;
+  }
+  ion-card-header{
+    padding:0 16px!important;
+    box-sizing: border-box!important;
+  }
+  .containerDatosPastilla{
+    box-sizing: border-box;
+    overflow:auto;
+  }

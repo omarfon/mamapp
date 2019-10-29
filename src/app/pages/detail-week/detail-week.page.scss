@@ -1,0 +1,119 @@
+.contentText {
+    text-align: justify;
+    width: 90%;
+    margin-left: 5%;
+    color: #808080;
+  }
+  .tituloEvoBebe {
+    margin-left: 5%;
+    color: #57c789;
+    font-weight: 600;
+  }
+  mat-expansion-panel {
+    margin-bottom: 15px !important;
+  }
+  mat-expansion-panel-header {
+    height: 100px !important;
+    margin-bottom: 1em !important;
+    background: #57c789 !important;
+    mat-panel-title {
+      color: #fff !important;
+      font-size: 1.3em;
+    }
+  }
+  .bebeCard {
+    background: #9483c8 !important;
+    background-image: url
+      (
+        "https://eresmama.com/wp-content/uploads/2016/09/black-friday-productos-bebes-2016.jpg"
+      ) !important;
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  mat-expansion-panel-header {
+    margin-bottom: 0 !important;
+  }
+  // stilos card evolucion bebe
+  ion-avatar {
+    margin-left: 10px;
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  .contenedorTitulo {
+    text-align: left;
+  }
+  .tituloBebe {
+    color: #a4a3a3;
+    font-size: 1.4em;
+    font-weight: 600;
+    text-align: left;
+  }
+  .tituloMama {
+    color: #a4a3a3;
+    font-size: 1.4em;
+    font-weight: 600;
+    text-align: left;
+  }
+  .contenidoEvoBebe {
+    color: #808080;
+  }
+  ul {
+    padding-left: 20px !important;
+    li {
+      margin-bottom: 0.3em;
+    }
+  }
+  .containerImagenEvo {
+    display: flex;
+    justify-content: center;
+  }
+  .imagenComparativa {
+    width: 220px;
+    height: 140px;
+    text-align: center;
+  }
+  .contenidoCambiosMama {
+    color: #808080;
+    text-align: justify;
+  }
+  .tituloEvoBebe {
+    color: #a4a3a3;
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 1.2em;
+    margin-bottom: 1em;
+  }
+  .textoEvoBebe {
+    color: #808080;
+    text-align: justify;
+  }
+  .textoCompara {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 1em;
+      margin-left: 20px;
+      color: #808080;
+    }
+  }
+  .tituloNutricion {
+    color: #a4a3a3;
+    font-size: 1.4em;
+    line-height: 1.1em;
+    text-align: left;
+    font-weight: 600;
+  }
+  .datosBebe {
+    margin-top: 20px;
+    ion-avatar img {
+      width: 40px !important;
+      height: 40px;
+    }
+  }
+  

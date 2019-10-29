@@ -1,0 +1,78 @@
+#content {
+    position: relative;
+    margin-top: 15%;
+    background-color: white;
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.4);
+    padding-top: 2%;
+}
+#profile-info {
+    position: absolute;
+    top: -85px;
+    width: 100%;
+    z-index: 2;
+    height: auto;
+    text-align: center;
+}
+#profile-description {
+    font-size: 15px;
+    color: #888;
+}
+#profile-image {
+    display: block;
+    border-radius: 20px;
+    width: 128px;
+    height: 128px;
+    margin: 30px auto 0;
+    text-align: center;
+}
+.nombreDoctor {
+    color: #FFA28C;
+    font-weight: 400;
+    width: 90%;
+    margin-left: 5%;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+ion-label {
+    color: #4A4A4A;
+    font-size: .9em;
+    font-weight: 300;
+}
+.blue {
+    color: #062F51;
+    text-align: left;
+    font-size: .9em;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.fa{
+  color:#062F51;
+}
+ion-navbar ion-icon{
+  color:#fff;
+}
+ion-icon {
+    color: #A7A9AB;
+    font-size: .7em;
+}
+.toolbar-md-primary .bar-button-default-md {
+    color: #fff!important;
+}
+.toolbar-title,
+.toolbar-title-md {
+    font-size: 1.3em!important;
+    // text-align: center;
+    font-weight: 400;
+}
+.item-inner {
+    margin-left: 5px!important;
+}
+.heightNoventa {
+    margin-right: 0!important;
+}
+.segment-md-secondary{
+ color:#fff!important;
+}
+ion-segment-button .segment-activated{
+ color:#fff!important;
+}

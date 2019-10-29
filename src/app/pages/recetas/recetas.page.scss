@@ -1,0 +1,42 @@
+.especialidad{
+    margin-right: 20px;
+    color:#BABCC2;
+    font-weight: 600;
+    font-size:1.1em;
+    margin-left:10px;
+  }
+  .resultado{
+    color:#BABCC2;
+    font-weight: 200;
+    font-size:1em;
+    margin-top:-5px;
+    margin-left:10px;
+  }
+  .iconoReceta{
+    text-align: center;
+    border-right: .2px solid #00B6A3;
+   //  height: 90%;
+    h4{
+      color:grey;
+      text-align: center;
+      margin-top:10px;
+    }
+    ion-icon{
+      color:#FFA28C;
+      font-size:3em;
+    }
+  }
+  .dia{
+      margin-top:15px;
+    font-size:3.5em;
+    font-weight: 600;
+    color:#BABCC2;
+  }
+  .mes{
+    color:#BABCC2;
+    margin-top: -45px;
+    font-size:1.1em;
+  }
+  .recetaCard{
+      border-top-right-radius: 30px;
+  }

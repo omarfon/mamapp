@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+    </ion-buttons> 
+    <ion-title *ngIf="evolution"> detalle semana {{evolution[0].semana}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="evolution">
+        <!-- aqui el contenido de bebe -->
+          <div  class="datosBebe">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img class="iconBebe" src="assets/imgs/icons/evobaby.png" alt="">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="10"
+                        class="contenedorTitulo">
+                <p class="tituloBebe">¿Como esta mi bebe?</p>
+              </ion-col>
+            </ion-row>
+              <div *ngIf="evolution[1].texto">
+                <ion-row >
+                  <ion-col size="7" class="textoCompara">
+                    <p>
+                      {{evolution[1].texto}}
+                    </p>
+                  </ion-col>
+                  <ion-col size="5" >
+                      <img src="{{evolution[1].imagenUrl}}" alt="">
+                  </ion-col>
+                  <ion-col size="12">
+                    <div *ngIf="evolution[3]" padding>
+                        <p class="contenidoCambiosMama">{{evolution[3].texto}}</p>
+                      </div>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+  
+  
+          <!-- aqui el contenido de mama -->
+          <div>
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <img src="assets/imgs/icons/evomama.png" alt="">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="10"
+                        class="contenedorTitulo">
+                <p class="tituloMama">¿Que me pasa esta semana?</p>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="evolution[4]" padding>
+              <p class="contenidoCambiosMama">{{evolution[4].texto}}</p>
+            </div>
+          </div>
+  
+  
+        <!-- aqui el contenido de nutricion -->
+          <div>
+            <ion-row *ngIf="evolution[2]">
+                <ion-col size="2">
+                  <ion-avatar>
+                    <img src="assets/imgs/icons/nutricion.png" alt="">
+                  </ion-avatar>
+                </ion-col>
+                <ion-col size="10"
+                          class="contenedorTitulo">
+                  <p class="tituloNutricion">Nutrición</p>
+                </ion-col>
+              </ion-row>
+              <div *ngIf="evolution[2].texto" padding>
+                  <p class="textoEvoBebe">
+                    {{evolution[2].texto}}
+                  </p>
+              </div>
+          </div>
+      </ion-card>
+  
+
+</ion-content>

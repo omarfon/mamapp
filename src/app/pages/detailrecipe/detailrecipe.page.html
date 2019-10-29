@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar color="rosado">
+    <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>detalle receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="contenedorDatos">
+        <ion-grid>
+          <ion-row>
+              <ion-col size="4">
+                <div class="iconoReceta">
+                  <p class="dia">{{date.inicio_prescripcion | date:'dd'}}</p>
+                  <p class="mes">{{date.inicio_prescripcion | date:'MMMM'}}</p>
+                </div>
+              </ion-col>
+              <ion-col size="8">
+                <p class="especialidad">Especialidad:</p>
+                <p class="resultado">{{date.servicio}}</p>
+                <p class="especialidad">Doctor:</p>
+                <p class="resultado">{{date.apellidop_personal}} {{date.apellidom_personal}}</p>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+      </div>
+    
+        <div *ngIf="recetas">
+            <div *ngFor="let recipe of recetas">
+              <ion-card>
+                <ion-card-header text-wrap>
+                    <ion-row>
+                        <ion-col size="3"
+                              class="containerIconAndDays">
+                            <img src="assets/imgs/recipes/{{recipe.formasfar_pk}}.png" alt="">
+                            <p class="cantidadDeDias">{{recipe.dias_duracion_prescripcion}}</p>
+                            <p class="dias">días</p>
+                        </ion-col>
+                        <ion-col size="9"
+                                 class="containerDatosPastilla">
+                            <h3 class="nombrePastilla"
+                               *ngIf="recipe.nombre_generico">
+                               {{recipe.nombre_generico}}
+                        </h3>
+                            <p class="textoAlternativo"
+                            *ngIf="recipe.marca_comercial">
+                            o puedes encontrarlo como:
+                            </p>
+                            <p class="nombrePastilla"
+                              *ngIf="recipe.marca_comercial">
+                              {{recipe.marca_comercial}}
+                            </p>
+                              <p class="inicio">Inicio: {{recipe.inicio_prescripcion | date: "dd MMMM yyyy"}}</p>
+                        </ion-col>
+                      </ion-row>
+                </ion-card-header>
+                
+                <ion-card-content>
+                    <div *ngIf="recetas && recipe.cada_x_horas == 8"
+                    class="down">
+                <h4 class="tituloDeLasTomas"> tomas de 3 veces por día</h4>
+                <ion-row padding>
+                  <ion-col class="cuadrados">
+                    <p> 6-9 am</p>
+                    <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                    </ion-col>
+                  <ion-col class="cuadrados">
+                    <p> 2-4 pm</p>
+                    <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                  </ion-col>
+                  <ion-col class="cuadrados">
+                    <p>10-12 m</p>
+                    <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                  </ion-col>
+                </ion-row>
+            </div>
+    
+            <div *ngIf="recetas && recipe.cada_x_horas == 12 || recetas && recipe.cada_x_horas == 13"
+                  class="down">
+              <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
+              <ion-row padding>
+                <ion-col class="cuadrados">
+                  <p> 6-9 am</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p>6-9 pm</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+              </ion-row>
+            </div>
+    
+            <div *ngIf="recetas && recipe.cada_x_horas == 6"
+            class="down">
+                <p class="tituloDeLasTomas"> tomas de 4 veces por día</p>
+                <ion-row padding>
+                  <ion-col class="cuadrados">
+                    <p> 6-8 am</p>
+                    <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                  </ion-col>
+                  <ion-col class="cuadrados">
+                      <p> 12-2 pm</p>
+                      <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                    </ion-col>
+                    <ion-col class="cuadrados">
+                        <p> 6-8 pm</p>
+                        <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                      </ion-col>
+                  <ion-col class="cuadrados">
+                    <p>12-2 m</p>
+                    <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                  </ion-col>
+                </ion-row>
+              </div>
+    
+              <div *ngIf="recetas && recipe.cada_x_horas == 24"
+              class="down">
+                  <p class="tituloDeLasTomas"> toma de 1 vez por día</p>
+                  <ion-row padding>
+                    <ion-col class="cuadrados">
+                      <p> 6-8 am</p>
+                      <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                    </ion-col>
+    
+                  </ion-row>
+                </div>
+                </ion-card-content>
+              </ion-card>
+          </div>
+        </div>
+
+</ion-content>

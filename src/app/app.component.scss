@@ -1,0 +1,39 @@
+ion-content{
+    --background:#FFA28C!important;
+    --color:#fff;
+}
+.cabecera{
+    height: 200px;
+    text-align: center;
+}
+.circulo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: #fff;
+    margin-top:20px;
+    margin-left: calc( 50% - 50px);
+}
+.nombre{
+color:#000;
+}
+.correo{
+    color:#000;
+    margin-top:-10px;
+}
+.list-md, .item{
+    background:transparent!important;
+}
+ion-item{
+    --background: transparent!important;
+    color:#fff;
+    ion-icon{
+        color:#fff!important;
+        margin-left:20px;
+        font-size:1.6em;
+    }
+}
+        .nombre{
+            color:#fff;
+            font-size:1.2em;
+        }
