@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform, MenuController } from '@ionic/angular';
+import { Platform, MenuController, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { AuthoService } from './service/autho.service';
+
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,9 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public routes: Router,
-    private menu: MenuController
+    private menu: MenuController,
+    public nav: NavController,
+    public autho: AuthoService
   ) {
     this.sideMenu();
     this.initializeApp();
@@ -71,8 +75,8 @@ export class AppComponent {
   }
 
   closeSession(){
-      /* localStorage.clear(); */
-      localStorage.removeItem('role');
+      localStorage.clear();
+      /* localStorage.removeItem('role');
       localStorage.removeItem('authorization');
       localStorage.removeItem('id');
       localStorage.removeItem('photoUrl');
@@ -82,8 +86,12 @@ export class AppComponent {
       localStorage.removeItem('usuario');
       localStorage.removeItem('patientName');
       localStorage.removeItem('token');
-      localStorage.removeItem('uid');
-    this.routes.navigate(['/login']);
+      localStorage.removeItem('uid'); */
+      this.autho.getKey().subscribe( (data:any) =>{
+        localStorage.setItem('authorization', data.authorization );
+        localStorage.setItem('role', data.role);
+      }) 
+    this.routes.navigate(['login']);
     this.menu.close('start');
     console.log('cerrar sesión');
   }

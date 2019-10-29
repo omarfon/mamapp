@@ -39,22 +39,23 @@ export class LoginPage implements OnInit {
                public popover: PopoverController,
                public chatSrv: ChatService) {
 
-                const authorization = localStorage.getItem('authorization');
+            /*     const authorization = localStorage.getItem('authorization');
                 
                   this.autho.getKey().subscribe( (data:any) =>{
                     localStorage.setItem('authorization', data.authorization );
                     localStorage.setItem('role', data.role);
-                  })
+                  }) */
                 
                 }
 
   ngOnInit() {
     const authorization = localStorage.getItem('authorization');
-    
+    if(!authorization){
       this.autho.getKey().subscribe( (data:any) =>{
         localStorage.setItem('authorization', data.authorization );
         localStorage.setItem('role', data.role);
       })
+    }
     
   }
 

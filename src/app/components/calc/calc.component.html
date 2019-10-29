@@ -3,19 +3,19 @@
   <p>En este momento no tienes en tu historia clínica una fecha de concepción, ingresa una manualmente, por favor...</p>
 
   <ion-list lines="none" padding>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Ingresa un nombre</ion-label>
         <ion-input type="text" #nombre></ion-input>
-      </ion-item>
+      </ion-item> -->
     
     <ion-item >
       <ion-label position="floating">Fecha de concepción</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" min="2019-01-01" pickerFormat="DD MM YYYY"  #fechaManual></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual></ion-datetime>
     </ion-item>
   </ion-list>
 
-  <ion-button  size="block" color="rosado" (click)="saveDate(nombre , fechaManual)">
-    ingresa los datos
+  <ion-button  size="block" color="rosado" (click)="saveDate(fechaManual)">
+    Aceptar
   </ion-button>
 
 
