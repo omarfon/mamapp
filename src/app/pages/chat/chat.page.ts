@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { ChatService } from '../../service/chat.service';
 import { IonContent, AlertController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -21,12 +21,14 @@ interface Message {
 })
 export class ChatPage implements OnInit {
 
+  @Output('badge') badge: any = [];
   public msg;
   public chat;
   public conversacion;
   public uid;
   currentUser = 'Claudia';
   public token;
+  public _badge: any = [];
   /* public messaging = firebase.messaging(); */
   @ViewChild(IonContent, {static: false}) content: IonContent;
 
@@ -40,6 +42,7 @@ export class ChatPage implements OnInit {
               }
 
   async ngOnInit() {
+    this.badge = 0;
    if(localStorage.getItem('token') ){
       this.chatSrv.registerDb();
       this.obtenerConversacion(); 
@@ -132,6 +135,8 @@ export class ChatPage implements OnInit {
     .subscribe((message) => { 
       this.mensajeRecibido();
       console.log(message); 
+      /* this.badge = this._badge.push([message]);
+      console.log('lo que hay en el badge',this.badge, this.badge.length); */
     });
   }
 

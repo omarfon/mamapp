@@ -84,6 +84,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem('role', this.data.role);
         localStorage.setItem('photoUrl', this.data.photoUrl);
         localStorage.setItem('patientName', this.data.patientName);
+        localStorage.setItem('name', this.data.name);
         localStorage.setItem('token', this.data.firebaseToken);
         /* localStorage.setItem('uid', this.data.userId); */
         localStorage.setItem('name', this.data.name);
