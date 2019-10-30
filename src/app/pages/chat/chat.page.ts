@@ -29,7 +29,6 @@ export class ChatPage implements OnInit {
   currentUser = 'Claudia';
   public token;
   public _badge: any = [];
-  /* public messaging = firebase.messaging(); */
   @ViewChild(IonContent, {static: false}) content: IonContent;
 
   constructor(public chatSrv: ChatService, 
