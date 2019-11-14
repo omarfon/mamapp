@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <h4 class="center">Ginecologos disponibles</h4>
+    <h4 class="center">Ginecólogos disponibles</h4>
     <p class="subtitulo"></p>
   <ion-card *ngFor="let doctor of doctorsF " class="cardDoctor">
     <div [ngStyle]="{'display': doctor.hasAvailable ? 'block' : 'none'}">

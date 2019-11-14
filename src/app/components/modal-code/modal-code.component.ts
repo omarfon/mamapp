@@ -63,7 +63,10 @@ export class ModalCodeComponent implements OnInit {
     let code = uno + dos + tres + cuatro;
     console.log(code);
     this.datos.code = code;
-    this.datos.gender = "MUJER";
+    this.datos.gender = {
+      id:1,
+      gender:"MUJER"
+    };
     console.log('this.datos: ',this.datos);
     this.datos.id = this.result.id;
     console.log('data armada:', this.datos);
@@ -82,7 +85,7 @@ export class ModalCodeComponent implements OnInit {
               await alert.present();
         }else{
           const loading = await this.loadingCtrl.create({
-              message:"eniando código..."
+              message:"enviando código..."
           });
           await loading.present();
         this.createOk = data;

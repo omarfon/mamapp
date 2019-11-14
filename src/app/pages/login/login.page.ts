@@ -1,5 +1,5 @@
 import { PopoverController } from '@ionic/angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthoService } from '../../service/autho.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
@@ -29,6 +29,8 @@ export class LoginPage implements OnInit {
   private key;
   public datos;
   public message: "";
+  /* @ViewChild('email', {static:true}) Loemail;
+  @ViewChild('password', {static:true}) Lopassword; */
 
   constructor( public autho: AuthoService,
                public userSrv: UserService,
@@ -49,8 +51,10 @@ export class LoginPage implements OnInit {
                 }
 
   ngOnInit() {
+    /* this.Loemail.nativeElement.value = "";
+    this.Lopassword.nativeElement.value = ""; */
     const authorization = localStorage.getItem('authorization');
-    if(!authorization){
+    if(!authorization){ 
       this.autho.getKey().subscribe( (data:any) =>{
         localStorage.setItem('authorization', data.authorization );
         localStorage.setItem('role', data.role);
@@ -191,7 +195,8 @@ export class LoginPage implements OnInit {
       componentProps:{
         nombre:nombre
       },
-      backdropDismiss: true
+      backdropDismiss: true,
+      cssClass: 'popoverStyle'
     })
     await popover.present();
     /* this.router.navigate(['tabs']); */

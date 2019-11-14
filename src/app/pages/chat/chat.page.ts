@@ -30,6 +30,7 @@ export class ChatPage implements OnInit {
   public token;
   public _badge: any = [];
   @ViewChild(IonContent, {static: false}) content: IonContent;
+  mensajes: any;
 
   constructor(public chatSrv: ChatService, 
               public alert: AlertController,
@@ -119,15 +120,6 @@ export class ChatPage implements OnInit {
         )
   }
 
-
-  /* deleteToken() {
-    this.afm.getToken
-      .pipe(mergeMap(token => this.afm.deleteToken(token)))
-      .subscribe(
-        (token) => { console.log('Deleted!'); },
-      );
-  } */
-
   listen() {
     console.log('escuchando');
     this.afm.messages
@@ -139,31 +131,14 @@ export class ChatPage implements OnInit {
     });
   }
 
-
-  
-  /* async mensajePendiente(){
-    const alert = await this.alert.create({
-      header: 'trabajando en esta funcionalidad',
-      subHeader:"podrás hablar con tu coach, en unos dias, te avisaremos ni bien este listo...",
-      backdropDismiss:false,
-      buttons:[
-        {
-          text:'entiendo',
-          handler:()=>{
-            this.router.navigate(['tabs']);
-          }
-        }
-      ]
-    })
-    await alert.present();
-  } */
-
   obtenerConversacion(){
     console.log(this.conversacion);
     const uid = localStorage.getItem('uid');
-    this.chatSrv.getChatRoom(uid).subscribe( room =>{
+    this.chatSrv.getChatRoom(uid).subscribe((room:any) =>{
       this.conversacion = room;
-      console.log('this.conversacion:',this.conversacion);
+      this.mensajes = room;
+      console.log('mensajes', this.mensajes);
+      console.log('this.conversacion:',room, this.conversacion);
     })
     setTimeout(()=>{
       this.content.scrollToBottom(300);
@@ -192,6 +167,11 @@ export class ChatPage implements OnInit {
     setTimeout(()=>{
       this.content.scrollToBottom(300);
     },500)
+  }
+
+  loadData(event){
+    console.log('Cargando siguientes....');
+   event.target.complete();
   }
 
 }

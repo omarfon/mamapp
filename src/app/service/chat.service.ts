@@ -22,15 +22,16 @@ export class ChatService {
   uid: string;
   id: string;
   email: string;
+  public mensajes;
 
   constructor(public db: AngularFirestore,
     public ad: AngularFireAuth) { }
 
     getChatRoom(uid){
         console.log(uid);
-        return this.db.collection('chatsRooms').doc(uid).valueChanges()
+        return this.db.collection('chatsRooms').doc(uid).valueChanges();
      }
-   
+
    sendMessageToFirebase(message: Message, uid: string){
      console.log(message, uid);
      this.db.collection('chatsRooms').doc(uid).update({

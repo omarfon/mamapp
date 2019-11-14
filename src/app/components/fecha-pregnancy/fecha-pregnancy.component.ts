@@ -16,7 +16,7 @@ export class FechaPregnancyComponent implements OnInit {
 
   ngOnInit() {
     /* console.log('nombre',this.nombre); */
-    this.fechaMin = moment().subtract(7, 'months').format('YYYY-MM-DD');
+    this.fechaMin = moment().subtract(9, 'months').format('YYYY-MM-DD');
     this.fechaMax = moment().format('YYYY-MM-DD');
     console.log(this.fechaMax);
   }

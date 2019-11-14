@@ -158,14 +158,17 @@ export class CitasPage implements OnInit {
         service: doctor.service,
         cmp: doctor.cmp
       } 
-
     }
+    const user = localStorage.getItem('role')
     const datosObj = JSON.stringify(datos);
     /* console.log('data armada', datosObj); */
+    if(user === 'public'){
+      this.routes.navigate(['/register', datosObj])
+    }else{
       this.routes.navigate(['financer', datosObj]);
-  
-
+    }
     } 
+
 
   }
   

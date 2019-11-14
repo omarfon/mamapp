@@ -15,7 +15,7 @@
                 <div>
                     <ion-row class="centrar">
                         <ion-col size="4">
-                           <!--  <img id="profile-image" src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{doctor.id}}.png" > --> 
+                           <img id="profile-image" src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{doctor.id}}.png" >
                         </ion-col>
                         <ion-col size="8">
                             <h3 class="nombreDoctor" text-center>
@@ -71,8 +71,6 @@
                                           block
                                           (click)="next()"
                                           >
-                                          <!--[disabled] = "!desactivadoBotonLocal" 
-                                              [class.button-disabled]="true" -->
                                          <ion-row>
                                              <ion-col size="12" class="botonEfectivo">
                                                  <img class="iconosImagenes" src="assets/imgs/cobro/efectivo.png" alt="">
@@ -90,8 +88,6 @@
                                   class="botonAccept" 
                                   block (click)="payCulqi()" 
                                   >
-                                 <!-- [class.button-disabled]="true" 
-                                   [disabled] = "desactivadoBoton == true" -->
                             <ion-row>
                                     <ion-col size="12" class="botonTarjeta">
                                         <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">
@@ -106,9 +102,6 @@
                                     class="botonAccept" 
                                     block 
                                     >
-                                    <!--  [class.button-disabled]="true" 
-                                        (click)="retry()" 
-                                  [disabled] = "!desactivadoBoton == true" -->
                             <ion-row>
                                     <ion-col size="12" class="botonTarjeta">
                                         <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">

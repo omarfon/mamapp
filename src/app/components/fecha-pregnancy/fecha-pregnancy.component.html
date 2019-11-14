@@ -1,7 +1,7 @@
 
-<ion-content >
-  <h2>Entrar como Invitado</h2>
-  <p> Para continuar como invitado debes ingresar tu nombre y una fecha probable de concepción</p>
+<ion-content padding>
+  <h4>Ingresar como invitado</h4>
+  <p class="textoModalInvitado"> Para continuar, debes ingresar tu nombre y una fecha probable de concepción</p>
 
   <ion-list lines="none" padding>
       <ion-item>
@@ -11,12 +11,12 @@
     
     <ion-item >
       <ion-label position="floating">Fecha de concepción</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual (ionChange)="infoLista($event)"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual (ionChange)="infoLista()"></ion-datetime>
     </ion-item>
   </ion-list>
 
   <ion-button  size="block" color="rosado" (click)="saveDate(nombre , fechaManual)">
-    ingresa la fecha
+    Ingresar
   </ion-button>
 
 

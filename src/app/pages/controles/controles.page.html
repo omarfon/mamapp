@@ -35,8 +35,9 @@
     </ion-row>
   </ion-card>
 
-  <p class="textoMensaje" *ngIf="message == true">Aqui aparecerán tus controles, al parecer aún no tienes alguno</p> 
-
+  <p class="textoMensaje" *ngIf="message == true && user == 'user' && status == 'validado'" >Aún no tienes controles disponibles para mostrar”</p> 
+  <p class="textoMensaje" *ngIf="message == true && user == 'user' && status == 'novalidado'" >Para mostrar tus controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión</p> 
+  <p class="textoMensaje" *ngIf="message == true && user == 'nouser'">Inicia sesión para ver tus controles</p> 
   <ion-fab
           vertical="bottom"
           horizontal="end"

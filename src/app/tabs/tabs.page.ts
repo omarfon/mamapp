@@ -8,7 +8,7 @@ import { AngularFireMessaging } from '@angular/fire/messaging';
 })
 export class TabsPage {
 
-  public badge;
+  public badge = 0;
   public mensajeRecibido;
   public _badge: any = [];
 
@@ -16,6 +16,8 @@ export class TabsPage {
 
   ngOnInit(){
     this.listen();
+    this.badge = 0;
+    console.log('this._badge:', this._badge);
   }
 
 
@@ -25,12 +27,12 @@ export class TabsPage {
         .subscribe((message) => { 
           console.log(message); 
           this.badge = this._badge.push([message]);
-          console.log('lo que hay en el badge',this.badge, this.badge.length);
+          console.log('lo que hay en el badge',this.badge);
         });
       }
     
     badgeToCero(){
-      this._badge = 0;
+      this._badge = [];
       this.badge = 0;
     }
 

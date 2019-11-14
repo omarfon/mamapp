@@ -59,6 +59,8 @@ export class ResumenPage implements OnInit {
               public culqiPrv: CulqiService) {}
 
   ngOnInit() {
+    const data = this.routes.snapshot.paramMap.get('datosObj');
+    this.dataArmada = JSON.parse(data);
     
       this.pago = 'enLocal';
       window['culqi']= this.culqi.bind(this);
@@ -68,9 +70,7 @@ export class ResumenPage implements OnInit {
     /* window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; */
       window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z';
 
-      const data = this.routes.snapshot.paramMap.get('datosObj');
-      this.dataArmada = JSON.parse(data);
-      /* console.log('dataArmada en resumen:', this.dataArmada); */
+      console.log('dataArmada en resumen:', this.dataArmada);
       this.hora = this.dataArmada.hora;
       this.doctor = this.dataArmada.doctor;
       this.price = this.dataArmada.plan.precio[0].total;

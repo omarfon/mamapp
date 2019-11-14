@@ -6,6 +6,7 @@ import { AlertController, LoadingController, PopoverController} from '@ionic/ang
 /* import { DataFinancerService } from '../../resolver/data-financer.service'; */
 import { InfonopagoComponent } from 'src/app/components/infonopago/infonopago.component';
 import { popoverController } from '@ionic/core';
+import { RegisterPage } from '../register/register.page';
 
 
 
@@ -36,14 +37,19 @@ export class FinancerPage implements OnInit {
   constructor(public routes : Router,
               public route: ActivatedRoute,
               public appointmentSrv: AppointmentService,
-              public financerSrv: FinancerService,
+              public financerSrv:
+               FinancerService,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
- /*              public financerdatSrv: DataFinancerService, */
+               /* public financerdatSrv: DataFinancerService,  */
               public appointmentProvider: AppointmentService,
               public popover: PopoverController) { }
 
   ngOnInit() {
+  /*   const usuario = localStorage.getItem('role')
+    if(usuario == 'public'){
+        this.routes.navigate(['register']);
+    } */
     const data = this.route.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
     this.hora = this.dataArmada.hora;
@@ -82,13 +88,14 @@ export class FinancerPage implements OnInit {
   }
 
   goToPay(){
-    /* console.log('me envia a pagos'); */
+    console.log(this.dataArmada);
     const datos = {
-       available : this.dataArmada.proposedate,
-       hora : this.hora,
-       doctor : this.doctor,
-       plan : this.plan,
+      available : this.dataArmada.proposedate,
+      hora : this.hora,
+      doctor : this.doctor,
+      plan : this.plan,
     }
+    console.log('me envia a pagos', datos);
     const datosObj = JSON.stringify(datos);
     console.log('data armada', datosObj);
     this.routes.navigate(['resumen', datosObj])

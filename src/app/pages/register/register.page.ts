@@ -1,12 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { CrudService } from "../../service/crud.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { DataService } from "../../service/data.service";
-import { AlertController, PopoverController } from "@ionic/angular";
+import { AlertController, PopoverController, NavParams } from "@ionic/angular";
 import { popoverController } from '@ionic/core';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
+
 
 @Component({
   selector: "app-register",
@@ -46,18 +47,25 @@ export class RegisterPage implements OnInit {
     name: ""
   };
   public _documenType;
+  @Input ('dataArmada') dataArmada;
 
   constructor(
     private fb: FormBuilder,
     public crudSrv: CrudService,
     public routes: Router,
+    public route: ActivatedRoute,
     public dataSvr: DataService,
     public alertCtrl: AlertController,
     public popoverCtrl: PopoverController
   ) {}
 
   ngOnInit() {
+
+    const data = this.route.snapshot.paramMap.get('datosObj');
+    this.dataArmada = JSON.parse(data);
+
     this.actual = moment().format("YYYY-MM-DD");
+
 
     this.dataSvr.getGenders().subscribe(datagenders => {
       this.genders = datagenders;
@@ -86,7 +94,6 @@ export class RegisterPage implements OnInit {
   }
 
   validacion(){
-      
     const valid = this.registerForm.value;
     if(valid.password == valid.password_confirmation && valid.aprobed == true){
       return true;
