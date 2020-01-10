@@ -11,7 +11,7 @@
     
     <ion-item >
       <ion-label position="floating">Fecha de concepción</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual (ionChange)="infoLista()"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY"  min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, set, oct, nov, dic" #fechaManual (ionChange)="infoLista(nombre.value)"></ion-datetime>
     </ion-item>
   </ion-list>
 

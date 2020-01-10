@@ -59,8 +59,8 @@ export class HomePage implements OnInit {
                }
 
     async ngOnInit() {
-
-      this.name = localStorage.getItem('name')
+        this.name = localStorage.getItem('name');
+      
 
       this.estado.actualMomento().subscribe((data:any) =>{
         this.actualMomento = data;
@@ -70,8 +70,9 @@ export class HomePage implements OnInit {
       
 
     let cargaPublic = localStorage.getItem('role');
+    let start = localStorage.getItem('startPregnancy');
     /* const start = localStorage.getItem('startPregnancy') */
-    if (cargaPublic == 'user') {
+    if (cargaPublic == 'user' && !start) {
       this.datosPvr.getStartPregnacy().subscribe( data => {
         this.params = data;
       })

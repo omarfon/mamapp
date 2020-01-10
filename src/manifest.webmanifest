@@ -1,10 +1,11 @@
 {
-  "name": "app",
-  "short_name": "app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "mamapp",
+  "short_name": "mamapp",
+  "theme_color": "#f3b194",
+  "background_color": "#fff",
   "display": "standalone",
   "scope": "/",
+  "lang":"es-ES",
   "start_url": "/",
   "icons": [
     {

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AuthoService } from './service/autho.service';
+import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
 
 @Component({
@@ -91,9 +92,9 @@ export class AppComponent {
         localStorage.setItem('authorization', data.authorization );
         localStorage.setItem('role', data.role);
       }) 
-    this.routes.navigate(['login']);
-    this.menu.close('start');
-    console.log('cerrar sesión');
+      this.routes.navigate(['/login']);
+      this.menu.close('start');
+      console.log('cerrar sesión');
   }
 
   goToDetailDatos(){

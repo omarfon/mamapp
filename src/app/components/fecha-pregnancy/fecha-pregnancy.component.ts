@@ -11,7 +11,8 @@ import * as moment from 'moment';
 export class FechaPregnancyComponent implements OnInit {
   fechaMin: string;
   fechaMax: string;
-
+  public deshabilitado = false;
+  
   constructor(public router: Router, public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class FechaPregnancyComponent implements OnInit {
   }
 
   saveDate(nombre, fechaManual){
-    localStorage.setItem('patientName', nombre.value);
+    /* localStorage.setItem('name', nombre.value); */
     localStorage.setItem('startPregnancy', fechaManual.value);
     this.popoverCtrl.dismiss()
     this.router.navigate(['tabs']);
@@ -39,8 +40,13 @@ export class FechaPregnancyComponent implements OnInit {
 
   } */
 
-  infoLista(){
-    
+  infoLista(event, nombre){
+    console.log(event);
+    if(!nombre && event){
+      this.deshabilitado = false;
+    }else{
+      this.deshabilitado = true;
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -32,6 +32,10 @@ import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 
 //formularios
 
+//Locale
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [AppComponent],
@@ -53,6 +57,7 @@ import { ReactiveFormsModule , FormsModule} from '@angular/forms';
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: LOCALE_ID, useValue: "es"},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

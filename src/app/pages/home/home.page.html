@@ -9,9 +9,9 @@
                   clear>
                 {{name}}
       </ion-button>
-        <!-- <ion-button icon-only (click)="openFilters($event)">
-            <ion-icon name="wine"></ion-icon>
-        </ion-button> -->
+        <ion-button icon-only (click)="openFilters($event)">
+            <ion-icon name="switch"></ion-icon>
+        </ion-button>
       <!--<ion-button color="secondary"
                   [routerLink]="'/chat'"
                   color="light">
@@ -30,7 +30,7 @@
                           <div class="marginTop10">
                           <ion-row *ngIf="totaldias">
                             <ion-col size="12">
-                              <p class="textoNombre"> {{nombre}} hoy tienes:</p>
+                              <p class="textoNombre"> {{name}} {{nombre}} hoy tienes:</p>
                             </ion-col>
 
                               <ion-col size="1">
@@ -265,7 +265,7 @@
                              <ion-col size="8">
                                <p class="tituloCambiosMama">{{nota.titulo}}</p>
                                <!-- <p class="tituloCambiosMama">Cambios Mamá</p> -->
-                               <p class="textocambiosemanamama">cambios en la semana {{nota.semana}}</p>
+                               <!-- <p class="textocambiosemanamama">cambios en la semana {{nota.semana}}</p> -->
                              </ion-col>
                              <ion-col>
                                 <p class="numeroSemanaCambiosMama">{{nota.semana}}</p>

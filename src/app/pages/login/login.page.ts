@@ -111,9 +111,15 @@ export class LoginPage implements OnInit {
          if(this.startPregnancy){
            localStorage.setItem('startPregnancy', this.startPregnancy);
            this.router.navigateByUrl('/tabs');
+         }else{
+           this.router.navigateByUrl('/tabs');
          }
          // console.log('lo que me trae el login:', localStorage)
          this.events.publish('change:foto');
+       },err =>{
+        const nombre = localStorage.getItem('nombre');
+        this.goToCalc(nombre)
+        return
        });
       }
       },async error => {
