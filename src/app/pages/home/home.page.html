@@ -22,6 +22,7 @@
 </ion-header>
 
 <ion-content>
+  <!-- inicio del calendario  -->
         <ion-row>
                 <!-- card para las semanas de embarazo -->
                 <ion-col size="6" (click)="goToEvolution()">
@@ -100,8 +101,16 @@
                                       </ng-template> -->
                   </ion-card>
             </ion-col>
-          </ion-row >
-    
+        </ion-row >
+  <!-- fin del calendario -->
+        <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide>
+              <h1>Slide 1</h1>
+            </ion-slide>
+            <ion-slide>
+              <h1>Slide 1</h1>
+            </ion-slide>
+        </ion-slides>
           <div *ngFor="let nota of notas">
             <div *ngIf="nota.semana < cantidad + 1" >
              <!--  <div> -->
@@ -123,7 +132,7 @@
                         </ion-col>
                         <ion-col size="12">
                           <p class="contenidoPastilla">
-                            Tu bebé pesa esta semana alrededor de {{nota.peso}} y mide {{nota.talla}}
+                            <span class="textoPastillaSpan">{{name}} </span> Tu bebé pesa esta semana alrededor de {{nota.peso}} y mide {{nota.talla}}
                           </p>
                         </ion-col>
                       </ion-row>
@@ -133,7 +142,7 @@
     
                     <!-- cuerpo para la comparativa bebe -->
                     <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
-                      <ion-card class="comparativaBebe" id="comparativaBebe">
+                      <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
                           <div padding>
                             <ion-row>
                               <ion-col size="12"
@@ -143,22 +152,25 @@
                                     <img src="assets/imgs/icons/iconComparativa.png" alt="">
                                   </ion-col>
                                   <ion-col size="8">
-                                    <p class="tituloComparativa"> Mi bebé es como...</p>
+                                    <p class="tituloComparativa"> <span>{{name}}</span> tu bebé es como...</p>
                                   </ion-col>
                                   <ion-col size="2">
                                     <p class="numeroSemanaComparativa">{{nota.semana}}</p>
+                                  </ion-col>
+                                  <ion-col size="12" class="m-t-0 m-b-0 containerImgComparativa">
+                                    <img src="{{nota.imagenUrl}}" alt="">
                                   </ion-col>
                                 </ion-row>
                               </ion-col>
     
                               <ion-col size="12">
                                   <ion-row>
-                                    <ion-col size="9">
+                                    <ion-col size="12">
                                         <p class="textoComparativa">{{nota.texto}}</p>
                                     </ion-col>
-                                    <ion-col size="3" class="containerImageComparativa">
+                                    <!-- <ion-col size="3" class="containerImageComparativa">
                                       <img src="{{nota.imagenUrl}}">
-                                    </ion-col>
+                                    </ion-col> -->
                                   </ion-row>
                               </ion-col>
     
@@ -171,7 +183,8 @@
                       <ion-card class="nutricionTips" id="nutricionTips">
                        <div padding>
                          <ion-row>
-                           <ion-col size="12">
+                           <ion-col size="12" class="containerimagenNutrition m-b-0">
+                             <img src="{{nota.imagenUrl}}" alt="">
                              <ion-row>
                                <ion-col size="2"
                                          class="containerNutricionIcon">
@@ -210,9 +223,11 @@
                     <ion-card class="evoBebe" id="evoBebe" >
                       <div padding>
                         <ion-row>
+                          <div size="12" class="containerImagenEvo m-b-0 m-t-0">
+                            <img class="imagenBebe" src="{{nota.imagenUrl}}" alt=""> 
+                          </div>
                           <ion-col size="2">
                               <div>
-                                  <!-- <img class="imagenBebe" src="{{nota.url_imagen}}" alt=""> -->
                                   <img  class="iconoEvoBebe" src="assets/imgs/icons/evobebe.png" alt="">
                                 </div>
                           </ion-col>
@@ -258,6 +273,9 @@
                        <ion-row>
                          <ion-col size="12">
                            <ion-row>
+                             <ion-col size="12" class="noMargin">
+                              <img src="{{nota.imagenUrl}}" alt="">
+                            </ion-col>  
                              <ion-col size="2"
                                       class="containerCambiosMamaIcon">
                               <img src="assets/imgs/icons/cambiosmama.png" alt="">
@@ -272,8 +290,8 @@
                              </ion-col>
                            </ion-row>
                          </ion-col>
-                         <ion-col size="12">
-                           <p class="contenidoCambiosMama">{{nota.resumen}}</p>
+                         <ion-col size="12" class="m-b-0">
+                           <p class="contenidoCambiosMama m-t-0">{{nota.resumen}}</p>
                           </ion-col>
                           <!-- <ion-col col-12>
                               <button ion-button
@@ -286,12 +304,17 @@
                          <mat-accordion class="accordionCambiosMama">
                             <mat-expansion-panel >
                               <mat-expansion-panel-header>
-                                  <mat-panel-title>
-                                  </mat-panel-title>
+                                 <!--  <mat-panel-title>
+                                    ver mas
+                                  </mat-panel-title> -->
                               </mat-expansion-panel-header>
                               <p class="textoCompletoNutricion">
                                 {{nota.texto}}
                               </p>
+                              <h3 *ngIf="nota.consejos" class="consejos">Consejos</h3>
+                              <p>{{nota.consejos}}</p>
+                              <h3 *ngIf="nota.alertas" class="alerta">Signos de alerta</h3>
+                              <p class="alerta">{{nota.alertas}}</p>
                             </mat-expansion-panel>
                           </mat-accordion>
                        </ion-row>
@@ -337,6 +360,8 @@
                       </div>
                     </ion-card>
                     -->
+
+                 
                   </div>
               </div>
     

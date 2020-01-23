@@ -12,6 +12,8 @@ import { FechaPregnancyComponent } from '../../components/fecha-pregnancy/fecha-
 import { ComponentsModule } from '../../components/components.module';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { ExpandableComponent } from 'src/app/components/expandable/expandable.component';
+import { BabyComponent } from 'src/app/components/baby/baby.component';
+
 
 
 const routes: Routes = [
@@ -25,7 +27,8 @@ const routes: Routes = [
   entryComponents:[
     FechaPregnancyComponent,
     FiterComponent,
-    ExpandableComponent
+    ExpandableComponent,
+    BabyComponent
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ import { FechaPregnancyComponent } from 'src/app/components/fecha-pregnancy/fech
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
+import { BabyComponent } from 'src/app/components/baby/baby.component';
 
 
 @Component({
@@ -131,14 +132,14 @@ export class HomePage implements OnInit {
         if (!this.notasFiltro) {
           this.notasServ.getNotes().subscribe(data => {
             this.notas = data;
-            /* console.log('todas las notas:', this.notas); */
+            console.log('todas las notas:', this.notas); 
           });
         } else {
           let elfilter = this.notasFiltro;
           this.notasServ.getNotesFilter(elfilter).subscribe(data => {
             /* console.log('lo que me llega del filtro:', data); */
             this.notas = data
-            // console.log(this.notas);
+            console.log(this.notas);
           });
           this.notasFiltro = this.notas;
         };
@@ -169,5 +170,14 @@ export class HomePage implements OnInit {
     });
     await popover.present();
   }
+
+  async openModalDetailBaby(nota){
+      console.log('abrir modal con 3d bebe',nota);
+      const modal = await this.modalCtrl.create({
+        component:BabyComponent,
+        componentProps:nota
+      });
+      return await modal.present();
+  } 
 
 }

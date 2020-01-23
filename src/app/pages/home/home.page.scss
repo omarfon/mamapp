@@ -1,5 +1,5 @@
 ion-content {
-    background: #F5F5F5 !important;
+    --background: rgb(235, 235, 235) !important;
   }
 
   .cuadrado {
@@ -167,7 +167,7 @@ ion-content {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     border-radius:0;
-    border-left: 10px solid #019FE0;
+    /* border-left: 10px solid #019FE0; */
     border-top-right-radius: 25px;
 
     // margin-left:12px;
@@ -213,12 +213,12 @@ ion-content {
   // estilos evo bebe
   .evoBebe {
     // margin-top:10px;
-    border-left: 10px solid #66CBEC;
+   /*  border-left: 10px solid #66CBEC; */
     // margin-left:16px!important;
     // margin-right:16px;
     border-radius:0;
     background: #fff;
-    border-top-right-radius: 25px;
+/*     border-top-right-radius: 25px; */
 
     .iconoEvoBebe {
       width: 40px;
@@ -262,7 +262,7 @@ ion-content {
   .comparativaBebe {
     background: #fff;
     // margin-top:10px;
-    border-left: 10px solid #00BCD3;
+ /*    border-left: 10px solid #00BCD3; */
     border-radius:0;
     border-top-right-radius: 25px;
 
@@ -279,12 +279,16 @@ ion-content {
       margin-top:5px;
     /*   line-height: 1em; */
       text-align: left;
+      span{
+        text-transform: capitalize;
+        font-size:1.3;
+        font-weight: 400;
+      }
     }
 
     .textoComparativa {
       color: #9B9B9B;
       margin-top: 10px;
-      font-size: .9em;
     }
   }
 
@@ -317,7 +321,7 @@ ion-content {
   .cambiosMama {
     background: #fff;
     margin-top: 10px;
-    border-left: 10px solid #FFA28C;
+/*     border-left: 10px solid #FFA28C; */
     border-radius:0;
     border-top-right-radius: 25px;
     // margin-left:16px;
@@ -336,7 +340,10 @@ ion-content {
     .contenidoCambiosMama {
       color: #9B9B9B;
       margin-top: 10px;
-      font-size: .9em;
+      font-size: 1em;
+      line-height: 1.3;
+      width:90%;
+      margin-left:5%;
 
     }
 
@@ -365,9 +372,9 @@ ion-content {
   .nutricionTips {
     background: #fff;
     margin-top: 10px;
-    border-left: 10px solid #7A57D1;
+    /* border-left: 10px solid #7A57D1;
+    border-top-right-radius: 25px; */
     border-radius:0;
-    border-top-right-radius: 25px;
     // margin-left:16px;
     // margin-right:16px;
     .containerNutricionIcon img {
@@ -552,9 +559,9 @@ ion-content {
 
   .textoCompletoNutricion {
     color: #9B9B9B;
-    font-size: .9em;
+    font-size: 1em;
     text-align: justify;
-    width: 97%;
+    /* width: 97%; */
   }
 
   // estilos de el card llegada bebe
@@ -628,4 +635,52 @@ ion-content {
     text-align: right;
     margin-right: 22px;
     color: #7A57D1 !important;
+  }
+  .noMargin{
+    margin:0!important;
+    padding:0!important;
+    img{
+      margin-bottom:15px;
+    }
+  }
+  div.mat-expansion-panel-body{
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .m-b-0{
+    margin-bottom:0!important;
+  }
+  .m-t-0{
+    margin-top:0!important;
+  }
+  .m-t-10{
+    margin-top:10px!important;
+  }
+  .m-b-10{
+    margin-bottom:10px!important;
+  }
+  .consejos{
+    color:#019FE0;
+  }
+  .alerta{
+    color:#FF634C;
+  }
+  .containerimagenNutrition{
+    img{
+      margin-bottom:15px;
+    }
+  }
+  .containerImgComparativa{
+    margin-top:10px!important;
+    margin-bottom:10px!important;
+  }
+  .textoPastillaSpan{
+    text-transform: capitalize;
+    font-size:1.1em;
+    font-weight: 600;
+  }
+  .containerImagenEvo{
+    margin-bottom:10px!important;
+    margin-top:15px!important;
   }

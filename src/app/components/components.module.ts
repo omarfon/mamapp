@@ -7,6 +7,8 @@ import { FiterComponent } from './fiter/fiter.component';
 import { InfonopagoComponent } from './infonopago/infonopago.component';
 import { CalcComponent } from './calc/calc.component';
 import { ExpandableComponent } from './expandable/expandable.component';
+import { BabyComponent } from './baby/baby.component';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { ExpandableComponent } from './expandable/expandable.component';
                 FiterComponent,
                 InfonopagoComponent,
                 CalcComponent,
-                ExpandableComponent
+                ExpandableComponent,
+                BabyComponent
                  ],
   imports: [
     FormsModule,
@@ -28,7 +31,8 @@ import { ExpandableComponent } from './expandable/expandable.component';
     FiterComponent,
     InfonopagoComponent,
     CalcComponent,
-    ExpandableComponent
+    ExpandableComponent,
+    BabyComponent
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA

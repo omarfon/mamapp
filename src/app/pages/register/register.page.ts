@@ -7,6 +7,7 @@ import { DataService } from "../../service/data.service";
 import { AlertController, PopoverController, NavParams } from "@ionic/angular";
 import { popoverController } from '@ionic/core';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
+import { ConsultaDatosService } from 'src/app/service/consulta-datos.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class RegisterPage implements OnInit {
 
   cambio: boolean = false;
   aprobed: boolean = false;
+  
 
   public gender = {
     id: 0,
@@ -56,10 +58,13 @@ export class RegisterPage implements OnInit {
     public route: ActivatedRoute,
     public dataSvr: DataService,
     public alertCtrl: AlertController,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public _consultaDatos: ConsultaDatosService
   ) {}
 
   ngOnInit() {
+
+    this.letDni();
 
     const data = this.route.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
@@ -100,6 +105,34 @@ export class RegisterPage implements OnInit {
     }else{
       return false;
     }
+  }
+
+  async letDni(){
+    const alert = await this.alertCtrl.create({
+      header: "Ingresa tu Nº de DNI",
+      subHeader:"con el podremos llenar algunos datos",
+      inputs: [
+        {
+          name: 'dni',
+          type: 'number',
+          placeholder: 'Nº de dni'
+        }
+      ],
+      buttons:[
+        {
+          text:"Consultar",
+          handler: data =>{
+            let dni = data.dni;
+            /* console.log(`consultar dni ${dni}`); */
+            this._consultaDatos.getDatos(dni).subscribe(data =>{
+                let datos = data;
+                console.log(datos);
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   cambiogenero($event){
