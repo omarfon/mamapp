@@ -8,6 +8,7 @@ import { AlertController, PopoverController, NavParams } from "@ionic/angular";
 import { popoverController } from '@ionic/core';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
 import { ConsultaDatosService } from 'src/app/service/consulta-datos.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -36,6 +37,17 @@ export class RegisterPage implements OnInit {
 
   cambio: boolean = false;
   aprobed: boolean = false;
+  public datosPersonales:any;
+  public nombreTemplate = " Nombres :";
+  public apellidoPTemplate = "Apellido Paterno :";
+  public apellidoMTemplate = "Apellido Materno:";
+  public emailTemplate = "Email:";
+  public fechaTemplate = "Fecha de nacimiento:";
+  public telefonoTemplate = "Telefono :";
+  public tipoDocTemplate = "DNI";
+  public ndocTemplate = "Nº de documento";
+  
+  
   
 
   public gender = {
@@ -50,6 +62,8 @@ export class RegisterPage implements OnInit {
   };
   public _documenType;
   @Input ('dataArmada') dataArmada;
+  
+  
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +73,8 @@ export class RegisterPage implements OnInit {
     public dataSvr: DataService,
     public alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
-    public _consultaDatos: ConsultaDatosService
+    public _consultaDatos: ConsultaDatosService,
+    public http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -108,6 +123,7 @@ export class RegisterPage implements OnInit {
   }
 
   async letDni(){
+   
     const alert = await this.alertCtrl.create({
       header: "Ingresa tu Nº de DNI",
       subHeader:"con el podremos llenar algunos datos",
@@ -124,10 +140,19 @@ export class RegisterPage implements OnInit {
           handler: data =>{
             let dni = data.dni;
             /* console.log(`consultar dni ${dni}`); */
-            this._consultaDatos.getDatos(dni).subscribe(data =>{
-                let datos = data;
-                console.log(datos);
-            });
+            this.http.get("assets/data.json").subscribe((data:any) =>{
+              console.log('datos personales',data);
+              this.datosPersonales = data;
+              console.log(this.datosPersonales);
+              this.nombreTemplate = this.datosPersonales.nombre;
+              this.apellidoPTemplate = this.datosPersonales.apellidoP;
+              this.apellidoMTemplate = this.datosPersonales.apellidoP;
+              this.emailTemplate = this.datosPersonales.email;
+              this.fechaTemplate = this.datosPersonales.fechanac;
+              this.telefonoTemplate = this.datosPersonales.telefono;
+              this.tipoDocTemplate = this.datosPersonales.tipodoc;
+              this.ndocTemplate = this.datosPersonales.ndoc;
+            })
           }
         }
       ]

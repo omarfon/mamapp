@@ -247,6 +247,9 @@ ion-content {
       padding-left: 0;
       margin-right: 0;
       margin-top: 0;
+      img{
+        width:100%!important;
+      }
     }
 
     button {
@@ -683,4 +686,57 @@ ion-content {
   .containerImagenEvo{
     margin-bottom:10px!important;
     margin-top:15px!important;
+  }
+  .cardInfoAviva{
+    width:100%;
+    background-color: #fff;
+    border-top-right-radius: 65px;
+  }
+  .contenedorImagenContenidoAviva{
+    img{
+      width:100%;
+    }
+  }
+  .containarImgTrans {
+    /* width:80%;
+    margin-top:10px;
+    margin-left:10%; */
+    position: absolute;
+    top:15px;
+    left:15px;
+    img{
+      width:90px;
+    }
+  }
+  .tituloContenidoAviva{
+    text-align: left;
+    color:#279558;
+    width:90%;
+  }
+  .containerIconTrans{
+    img{
+      width:35px;
+      margin-left:15px;
+      margin-top:10px;
+    }
+  }
+  .textoDetalleTrans{
+    text-align: left;
+    margin-bottom:10px;
+    width:90%;
+    margin-left:5%;
+  }
+  .textoDetalleTrans::after{
+    content: " ...";
+  }
+  .verMas{
+    color:#279558;
+    text-align: right;
+    margin-right:20px;
+  }
+  .temaTrans{
+    color:#9B9B9B;
+    font-size:.8em;
+    text-align: left;
+    margin-top:-10px;
   }

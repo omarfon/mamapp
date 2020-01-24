@@ -46,6 +46,7 @@ export class HomePage implements OnInit {
   public dataUser: []; 
   public actualMomento;
   public name;
+  public dataTrans;
   
 
   constructor( public router : Router,
@@ -118,7 +119,7 @@ export class HomePage implements OnInit {
         /* console.log('cuanto', cuanto); */
   
         /*   aqui les sumamos las 40 semanas a la fecha inicial para poder tener el ultimo dia de parto */
-        const posible = start.add(40, 'w');
+        const posible = start.add(41, 'w');
         this.posible = posible;
         const posibleDays = posible.diff(this.today, 'd');
         /* console.log('posibleDays:', posibleDays); */
@@ -133,6 +134,11 @@ export class HomePage implements OnInit {
           this.notasServ.getNotes().subscribe(data => {
             this.notas = data;
             console.log('todas las notas:', this.notas); 
+
+            this.notasServ.getNotesTrans().subscribe(data =>{
+              this.dataTrans = data;
+              console.log('dataTrans', this.dataTrans);
+            });
           });
         } else {
           let elfilter = this.notasFiltro;
@@ -140,6 +146,7 @@ export class HomePage implements OnInit {
             /* console.log('lo que me llega del filtro:', data); */
             this.notas = data
             console.log(this.notas);
+          
           });
           this.notasFiltro = this.notas;
         };
@@ -179,5 +186,9 @@ export class HomePage implements OnInit {
       });
       return await modal.present();
   } 
+
+  openModalTrans(cardTrans){
+    console.log('abriendo detalle modal trans', cardTrans);
+  }
 
 }
