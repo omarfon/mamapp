@@ -86,7 +86,6 @@ export class RegisterPage implements OnInit {
 
     this.actual = moment().format("YYYY-MM-DD");
 
-
     this.dataSvr.getGenders().subscribe(datagenders => {
       this.genders = datagenders;
       /* console.log("this.genders:", this.genders); */
@@ -122,8 +121,11 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  ionViewWillEnter(){
+    this.letDni();
+  }
+
   async letDni(){
-   
     const alert = await this.alertCtrl.create({
       header: "Ingresa tu Nº de DNI",
       subHeader:"con el podremos llenar algunos datos",
@@ -136,6 +138,12 @@ export class RegisterPage implements OnInit {
       ],
       buttons:[
         {
+          text:"Volver",
+          handler:() =>{
+            this.routes.navigate(['/login']);
+          }
+        },
+        {
           text:"Consultar",
           handler: data =>{
             let dni = data.dni;
@@ -146,7 +154,7 @@ export class RegisterPage implements OnInit {
               console.log(this.datosPersonales);
               this.nombreTemplate = this.datosPersonales.nombre;
               this.apellidoPTemplate = this.datosPersonales.apellidoP;
-              this.apellidoMTemplate = this.datosPersonales.apellidoP;
+              this.apellidoMTemplate = this.datosPersonales.apellidoM;
               this.emailTemplate = this.datosPersonales.email;
               this.fechaTemplate = this.datosPersonales.fechanac;
               this.telefonoTemplate = this.datosPersonales.telefono;
@@ -155,7 +163,8 @@ export class RegisterPage implements OnInit {
             })
           }
         }
-      ]
+      ],
+      backdropDismiss:false
     });
     await alert.present();
   }
