@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { environment, API_NOTAS } from '../../environments/environment';
 
 
@@ -14,11 +14,9 @@ export class NotasService {
   private apiUrlFilter = `${this.SERVER}`;
   private apiUrlSemana = `${this.SERVER}notas-por-semana?semana=`;
   private apiUrlContentAviva = `${this.SERVER}/xtrans`
-
-
-
-  /* private apinota */
-
+  categoriasSincronas: any;
+  categoriasAtemp: any;
+  categoriasTotales: Observable<any>;
 
 
   constructor(public http: HttpClient) { }
@@ -53,6 +51,7 @@ export class NotasService {
     return this.http.post(this.apiUrl , params).pipe(
       map((resp:any)=>{
         return resp
+        /* this.categoriasSincronas = resp; */
       })
     )
   }
@@ -75,9 +74,17 @@ export class NotasService {
     return this.http.post(this.apiUrlContentAviva , params).pipe(
       map((resp:any)=>{
         return resp
+       /* this.categoriasAtemp = resp;  */
       })
     )
   }
+
+ /*  getNotasTotales(){
+    return this.categoriasTotales = combineLatest(
+      (this.categoriasSincronas, this.categoriasAtemp)
+      );
+     
+  } */
   
   getNotesFilter(elfiltro){
     console.log('el filtro en home:', elfiltro);

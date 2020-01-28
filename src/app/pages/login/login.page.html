@@ -7,6 +7,7 @@
       <span>{{ msgError | json }}</span>
 
           <ion-list>
+            <p class="parrafoRegitro">Si estas registrada ya en el app de booking, puedes utilizar el mismo correo y contraseña</p>
               <ion-item>
                   <ion-label position="floating">Email</ion-label>
                   <ion-input type="email"
@@ -31,15 +32,8 @@
           </ion-list>
         </div>
             <ion-row>
-                <ion-col col-12>
-                    <ion-button
-                            (click)="goToRecovery()"
-                            fill="clear"
-                            class="contraseñaolvidada">
-                          Olvidé la contraseña
-                    </ion-button>
-                </ion-col>
-                <ion-col col-12>
+                
+                <ion-col size="6">
                     <ion-button
                             block
                             (click)="goToRegister()"
@@ -48,8 +42,24 @@
                           Registrarme
                     </ion-button>
                 </ion-col>
-
-                <ion-col col-12>
+                <ion-col size="6">
+                  <ion-button
+                          block
+                          (click)="goToRegister()"
+                          small
+                          class="botonFacebook">
+                          facebook
+                  </ion-button>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button
+                        (click)="goToRecovery()"
+                        fill="clear"
+                        class="contraseñaolvidada">
+                      Olvidé la contraseña
+                </ion-button>
+            </ion-col>
+                <!-- <ion-col size="12">
                     <ion-button
                             color="secondary"
                             block
@@ -58,6 +68,6 @@
                             class="botonRegister">
                             Ingresar como Invitado
                     </ion-button>
-                </ion-col>
+                </ion-col> -->
             </ion-row>
 </ion-content>

@@ -78,7 +78,7 @@ ion-content{
   .botonRegister{
     --background: #FFA18B;
     color:#fff;
-    margin-top:15px!important;
+    /* margin-top:15px!important; */
     border-radius:5px;
   }
   .list-md{
@@ -95,4 +95,14 @@ ion-content{
       color:#7044ff
     }
   }
-
+  .parrafoRegitro{
+    color:#fff;
+    margin-bottom:15px;
+    font-weight: 500;
+    padding:.3em;
+    font-size:1.1em;
+    /* background:rgba(255,255,255,0.7); */
+  }
+.botonFacebook{
+  background:#3303cf;
+}

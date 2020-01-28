@@ -9,6 +9,7 @@ import { popoverController } from '@ionic/core';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
 import { ConsultaDatosService } from 'src/app/service/consulta-datos.service';
 import { HttpClient } from '@angular/common/http';
+import { DniService } from 'src/app/service/dni.service';
 
 
 @Component({
@@ -74,12 +75,13 @@ export class RegisterPage implements OnInit {
     public alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
     public _consultaDatos: ConsultaDatosService,
-    public http: HttpClient
+    public http: HttpClient,
+    public dniSer: DniService
   ) {}
 
   ngOnInit() {
 
-    this.letDni();
+    /* this.letDni(); */
 
     const data = this.route.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
@@ -147,19 +149,19 @@ export class RegisterPage implements OnInit {
           text:"Consultar",
           handler: data =>{
             let dni = data.dni;
-            /* console.log(`consultar dni ${dni}`); */
-            this.http.get("assets/data.json").subscribe((data:any) =>{
+            console.log(`consultar dni ${dni}`);
+              this.dniSer.getDataDni(dni).subscribe( (data:any) =>{
               console.log('datos personales',data);
               this.datosPersonales = data;
               console.log(this.datosPersonales);
               this.nombreTemplate = this.datosPersonales.nombre;
-              this.apellidoPTemplate = this.datosPersonales.apellidoP;
-              this.apellidoMTemplate = this.datosPersonales.apellidoM;
+              this.apellidoPTemplate = this.datosPersonales.apellidoPaterno;
+              this.apellidoMTemplate = this.datosPersonales.apellidoMaterno;
               this.emailTemplate = this.datosPersonales.email;
               this.fechaTemplate = this.datosPersonales.fechanac;
               this.telefonoTemplate = this.datosPersonales.telefono;
               this.tipoDocTemplate = this.datosPersonales.tipodoc;
-              this.ndocTemplate = this.datosPersonales.ndoc;
+              this.ndocTemplate = this.datosPersonales.numdoc;
             })
           }
         }

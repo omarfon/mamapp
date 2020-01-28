@@ -62,6 +62,8 @@ export class HomePage implements OnInit {
 
     async ngOnInit() {
         this.name = localStorage.getItem('name');
+
+         
       
 
       this.estado.actualMomento().subscribe((data:any) =>{

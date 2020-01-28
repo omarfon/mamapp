@@ -1,5 +1,4 @@
 { 
-        
             "nombre":"Omar Miguel",
             "apellidoP":"Fonseca",
             "apellidoM":"García",
@@ -7,6 +6,5 @@
             "fechanac":"12/01/1979",
             "telefono":"936007921",
             "tipodoc":"1",
-            "ndoc":"40283800"
-        
+            "ndoc":"40283800"   
 }
