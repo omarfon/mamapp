@@ -6,7 +6,8 @@
     <ion-title>Home</ion-title>
     <ion-buttons slot="secondary">
       <ion-button slot="end"
-                  clear>
+                  clear
+                  >
                 {{name}}
       </ion-button>
         <ion-button icon-only (click)="openFilters($event)">
@@ -103,7 +104,7 @@
             </ion-col>
         </ion-row >
   <!-- fin del calendario -->
-        <ion-slides [options]="slideOpts">
+<!--         <ion-slides [options]="slideOpts">
             <ion-slide *ngFor="let cardTrans of dataTrans">
               <ion-card class="cardInfoAviva">
                 <ion-row>
@@ -133,7 +134,7 @@
                 </ion-row> 
               </ion-card>
             </ion-slide>
-        </ion-slides>
+        </ion-slides> -->
           <div *ngFor="let nota of notas">
             <div *ngIf="nota.semana < cantidad + 1" >
              <!--  <div> -->

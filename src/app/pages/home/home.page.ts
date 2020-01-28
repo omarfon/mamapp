@@ -9,6 +9,7 @@ import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -47,24 +48,27 @@ export class HomePage implements OnInit {
   public actualMomento;
   public name;
   public dataTrans;
+  public slideOpts = {
+    slidesPerView: 1.3
+ 
+    }
   
-
+  
   constructor( public router : Router,
-              public notasServ: NotasService,
-              public datosPvr: DatosControlService,
-              public popover: PopoverController,
-              public estado: EstadoService,
-              public alert: AlertController,
-              public modalCtrl: ModalController,
-              public chat: ChatService) {
-
+    public notasServ: NotasService,
+    public datosPvr: DatosControlService,
+    public popover: PopoverController,
+    public estado: EstadoService,
+    public alert: AlertController,
+    public modalCtrl: ModalController,
+    public chat: ChatService) {
+      
+      
                }
 
     async ngOnInit() {
         this.name = localStorage.getItem('name');
 
-         
-      
 
       this.estado.actualMomento().subscribe((data:any) =>{
         this.actualMomento = data;
@@ -141,6 +145,7 @@ export class HomePage implements OnInit {
               this.dataTrans = data;
               console.log('dataTrans', this.dataTrans);
             });
+           
           });
         } else {
           let elfilter = this.notasFiltro;
@@ -152,6 +157,7 @@ export class HomePage implements OnInit {
           });
           this.notasFiltro = this.notas;
         };
+        
   }
 
 
@@ -193,4 +199,14 @@ export class HomePage implements OnInit {
     console.log('abriendo detalle modal trans', cardTrans);
   }
 
+/*   mergeNotes(){
+    let arreglo = this.dataTrans;
+    let arreglo2 = this.notas;
+        if(_.isEmpty(arreglo)){
+          console.log('el arreglo esta vacio');
+        } 
+        this.notas = _.concat(arreglo2, arreglo);
+        console.log('diferencia',this.notas);
+    } */
+  
 }
