@@ -152,22 +152,39 @@ export class RegisterPage implements OnInit {
             console.log(`consultar dni ${dni}`);
               this.dniSer.getDataDni(dni).subscribe( (data:any) =>{
               console.log('datos personales',data);
-              this.datosPersonales = data;
-              console.log(this.datosPersonales);
-              this.nombreTemplate = this.datosPersonales.nombre;
-              this.apellidoPTemplate = this.datosPersonales.apellidoPaterno;
-              this.apellidoMTemplate = this.datosPersonales.apellidoMaterno;
-              this.emailTemplate = this.datosPersonales.email;
-              this.fechaTemplate = this.datosPersonales.fechanac;
-              this.telefonoTemplate = this.datosPersonales.telefono;
-              this.tipoDocTemplate = this.datosPersonales.tipodoc;
-              this.ndocTemplate = this.datosPersonales.numdoc;
-            })
+                if(data.length === 0){
+                  console.log('no hay data');
+                  this.noData();
+                }else{
+                  this.datosPersonales = data;
+                  console.log(this.datosPersonales);
+                  this.nombreTemplate = this.datosPersonales.nombre;
+                  this.apellidoPTemplate = this.datosPersonales.apellidoPaterno;
+                  this.apellidoMTemplate = this.datosPersonales.apellidoMaterno;
+                  this.emailTemplate = this.datosPersonales.email;
+                  this.fechaTemplate = this.datosPersonales.fechanac;
+                  this.telefonoTemplate = this.datosPersonales.telefono;
+                  this.tipoDocTemplate = this.datosPersonales.tipodoc;
+                  this.ndocTemplate = this.datosPersonales.numdoc;
+                }
+              }
+            )
           }
         }
       ],
       backdropDismiss:false
     });
+    await alert.present();
+  }
+
+  async noData(){
+    const alert = await this.alertCtrl.create({
+      header:"Si datos registrados",
+      subHeader:"Por favor llena tus datos manualmente, recuerda completar todos los campos",
+      buttons:[{
+        text:"entiendo"
+      }]
+    })
     await alert.present();
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { Observable, combineLatest } from 'rxjs';
-import { environment, API_NOTAS } from '../../environments/environment';
+import { API_NOTAS } from '../../environments/environment';
 
 
 @Injectable({

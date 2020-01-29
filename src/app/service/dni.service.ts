@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { API_ENDPOINT } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DniService {
+
+  private SERVER = API_ENDPOINT;
   
-  public apiUrl ="https://dappapache02.eastus.cloudapp.azure.com/middleware2-copy/api/v2/mama/mamas-preinscritas?numdoc=";
+  public apiUrl =`${this.SERVER}mama/mamas-preinscritas?numdoc=`;
 
   constructor(public http: HttpClient) { }
 
