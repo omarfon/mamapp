@@ -51,6 +51,7 @@ export class LoginPage implements OnInit {
                 }
 
   ngOnInit() {
+
     /* this.Loemail.nativeElement.value = "";
     this.Lopassword.nativeElement.value = ""; */
     const authorization = localStorage.getItem('authorization');

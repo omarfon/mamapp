@@ -95,6 +95,7 @@ export class RecoverycodePage implements OnInit {
             await alert.present();
             /* this.navCtrl.setRoot(LoginPage); */
             /* this.routes.navigate(['login']); */
+            localStorage.clear();
             this.nav.navigateRoot(['login']);
         }
       });
