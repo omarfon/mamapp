@@ -91,13 +91,13 @@
         <ion-col size="12">
           <ion-item no-lines>
             <ion-input  type="tel" formControlName="documentNumber" name="documentNumber" [(ngModel)]="ndocTemplate"></ion-input > 
-           <!--  <ion-input *ngIf="_documenType && _documenType.id == 3" placeholder="Nº de Carne" type="tel"   formControlName="documentNumber" name="documentNumber"
+            <ion-input *ngIf="_documenType && _documenType.id == 3" placeholder="Nº de Carne" type="tel"   formControlName="documentNumber" name="documentNumber"
             minlength=12 maxlength=12 stacked></ion-input>
             <ion-input *ngIf="_documenType && _documenType.id == '1'" placeholder="Nº de Dni" type="number" formControlName="documentNumber" name="documentNumber"
               minlength=8 maxlength=8  stacked></ion-input>
             <ion-input *ngIf="_documenType &&_documenType.id == 2" placeholder="Nº de Pasaporte" type="number" formControlName="documentNumber" name="documentNumber"
-              minlength=12 maxlength=12 stacked></ion-input> -->
-            <!-- <p color="danger" ion-text *ngIf="registerForm.get('dni').hasError('required')">DNI requerido</p> -->
+              minlength=12 maxlength=12 stacked></ion-input>
+           <!--  <p color="danger" ion-text *ngIf="registerForm.get('dni').hasError('required')">DNI requerido</p> -->
           </ion-item>
           <div *ngIf="registerForm.get('documentNumber').errors && registerForm.get('documentNumber').dirty || registerForm.get('documentNumber').touched" no-lines>
               <p  *ngIf="registerForm.get('documentNumber').hasError('required')" class="error">Tipo de documento requerido</p>

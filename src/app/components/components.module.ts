@@ -8,6 +8,10 @@ import { InfonopagoComponent } from './infonopago/infonopago.component';
 import { CalcComponent } from './calc/calc.component';
 import { ExpandableComponent } from './expandable/expandable.component';
 import { BabyComponent } from './baby/baby.component';
+import { DetalleControlComponent } from './detalle-control/detalle-control.component';
+import { RegisterfacebookComponent } from './registerfacebook/registerfacebook.component';
+import { FacebookRegisterPage } from '../pages/facebook-register/facebook-register.page';
+
 
 
 
@@ -18,7 +22,10 @@ import { BabyComponent } from './baby/baby.component';
                 InfonopagoComponent,
                 CalcComponent,
                 ExpandableComponent,
-                BabyComponent
+                BabyComponent,
+                DetalleControlComponent,
+                RegisterfacebookComponent,
+                FacebookRegisterPage
                  ],
   imports: [
     FormsModule,
@@ -32,7 +39,10 @@ import { BabyComponent } from './baby/baby.component';
     InfonopagoComponent,
     CalcComponent,
     ExpandableComponent,
-    BabyComponent
+    BabyComponent,
+    DetalleControlComponent,
+    RegisterfacebookComponent,
+    FacebookRegisterPage
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA

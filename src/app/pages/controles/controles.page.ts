@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { DatosControlService } from '../../service/datos-control.service';
 import { Router } from '@angular/router';
+import { AlertController, PopoverController } from '@ionic/angular';
+import { DetalleControlComponent } from 'src/app/components/detalle-control/detalle-control.component';
+
 
 @Component({
   selector: 'app-controles',
@@ -16,11 +19,40 @@ export class ControlesPage implements OnInit {
   public user : string; 
   public usuario: string;
   public status;
+  public sigIn;
 
   constructor(public datosControl: DatosControlService,
-              public routes:  Router) { }
+              public routes:  Router,
+              public alertCtrl: AlertController,
+              public popover: PopoverController) { }
 
-  ngOnInit() {
+  async ionViewDidEnter(){
+    this.sigIn = localStorage.getItem('sigIn');
+    if(this.sigIn !== 'completo'){
+      let alert = await this.alertCtrl.create({
+        header:"Para visualizar tus citas",
+        subHeader:"solo tienes que estar registrado y podrás ver lo que sucedio en la cita, también las recomendaciones de tu doctor",
+        buttons:[
+          {
+            text:"Registrarme",
+            handler: ()=>{
+              console.log('enviarme al registro');
+              this.routes.navigate(['/register']);
+            }
+          },
+          {
+            text:"Seguir sin Registrarme",
+            handler:()=>{
+              console.log('ir a registro');
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
+
+   async ngOnInit() {
     const status = localStorage.getItem('status');
     if(status === 'unverified'){
       this.status = 'novalidado';
@@ -67,4 +99,12 @@ export class ControlesPage implements OnInit {
         console.log('mandar a la pagina citas', c);
   }
 
+  async openModal(ev:any){
+      const popover = await this.popover.create({
+          component: DetalleControlComponent,
+          event:ev,
+          translucent:true
+      });
+      return await popover.present();
+  }
 }

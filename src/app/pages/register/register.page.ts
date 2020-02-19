@@ -12,12 +12,14 @@ import { HttpClient } from '@angular/common/http';
 import { DniService } from 'src/app/service/dni.service';
 
 
-@Component({
+@Component({  
   selector: "app-register",
   templateUrl: "./register.page.html",
   styleUrls: ["./register.page.scss"]
 })
 export class RegisterPage implements OnInit {
+
+  @Input ('data')  data; 
   public msg: string;
   public registerForm: FormGroup;
 
@@ -38,15 +40,15 @@ export class RegisterPage implements OnInit {
 
   cambio: boolean = false;
   aprobed: boolean = false;
-  public datosPersonales:any;
-  public nombreTemplate = " Nombres :";
+  /* public datosPersonales:any;
+  public nombreTemplate = "Nombres :";
   public apellidoPTemplate = "Apellido Paterno :";
-  public apellidoMTemplate = "Apellido Materno:";
-  public emailTemplate = "Email:";
-  public fechaTemplate = "Fecha de nacimiento:";
+  public apellidoMTemplate = "Apellido Materno :";
+  public emailTemplate = "Email :";
+  public fechaTemplate = "Fecha de nacimiento :";
   public telefonoTemplate = "Telefono :";
-  public tipoDocTemplate = "DNI";
-  public ndocTemplate = "Nº de documento";
+  public tipoDocTemplate = "DNI :";
+  public ndocTemplate = "Nº de documento :"; */
   
   
   
@@ -63,6 +65,7 @@ export class RegisterPage implements OnInit {
   };
   public _documenType;
   @Input ('dataArmada') dataArmada;
+  public dataFacebook;
   
   
 
@@ -79,9 +82,15 @@ export class RegisterPage implements OnInit {
     public dniSer: DniService
   ) {}
 
+  ionViewDidEnter(){
+    /* this.chargeDatosFacebook(); */
+  }
+
   ngOnInit() {
 
-    /* this.letDni(); */
+    this.data = this.route.snapshot.paramMap.get('data');
+    const dataFacebook = JSON.parse(this.data);
+    console.log('dataFacebook',dataFacebook);
 
     const data = this.route.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
@@ -112,6 +121,8 @@ export class RegisterPage implements OnInit {
       password_confirmation: ['',  [ Validators.required, Validators.minLength(8)]],
       aprobed: ['', [ Validators.required]]
     });
+
+
   }
 
   validacion(){
@@ -123,11 +134,25 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  ionViewWillEnter(){
-    this.letDni();
-  }
+ /*  chargeDatosFacebook(){
+    const idFacebook = localStorage.getItem('idFacebook')
+    if(this.dataFacebook){
+      console.log('datos personales',this.datosPersonales);
+      this.nombreTemplate = this.dataFacebook.first_name;
+      this.apellidoPTemplate = this.dataFacebook.last_name;
+      this.apellidoMTemplate = this.dataFacebook.apellidoMaterno;
+      this.emailTemplate = this.dataFacebook.email;
+      this.fechaTemplate = this.dataFacebook.birthday;
+      this.telefonoTemplate = this.dataFacebook.telefono;
+      this.tipoDocTemplate = this.dataFacebook.tipodoc;
+      this.ndocTemplate = this.dataFacebook.numdoc;
+      console.log('this.nombreTemplate:',this.nombreTemplate);
+    }else{
+   
+    }
+  } */
 
-  async letDni(){
+  /* async letDni(){
     const alert = await this.alertCtrl.create({
       header: "Ingresa tu Nº de DNI",
       subHeader:"con el podremos llenar algunos datos",
@@ -175,14 +200,14 @@ export class RegisterPage implements OnInit {
       backdropDismiss:false
     });
     await alert.present();
-  }
+  } */
 
   async noData(){
     const alert = await this.alertCtrl.create({
-      header:"Si datos registrados",
+      header:"Sin datos registrados",
       subHeader:"Por favor llena tus datos manualmente, recuerda completar todos los campos",
       buttons:[{
-        text:"entiendo"
+        text:"entiendo",
       }]
     })
     await alert.present();
@@ -217,14 +242,15 @@ export class RegisterPage implements OnInit {
 
   async openPopover(){
     const data = this.registerForm.value;
-    /* console.log('data en el modal:', data); */
+    console.log('data en el modal:', data);
     const email = data.email
     this.crudSrv.validateEmail(email).subscribe(async (res) =>{
-      /* console.log(res); */
+      console.log('data correcta:', res); 
         const popover = await this.popoverCtrl.create({
           component: ModalCodeComponent,
           componentProps: {
-            data : data
+            data : data,
+            res: res
           }
         });
         await popover.present();
@@ -234,9 +260,11 @@ export class RegisterPage implements OnInit {
         subHeader: "Posiblemente el correo ya ha sido registrado",
         buttons:[
           {
-            text: 'Reintentar',
-            role:'Cancel'
-          }
+            text: 'Intentar en login',
+              handler:() =>{
+                this.routes.navigate(['/login']);
+              }
+            }
         ]
        });
        /* console.log(err); */

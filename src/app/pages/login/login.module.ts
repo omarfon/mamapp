@@ -9,6 +9,9 @@ import { LoginPage } from './login.page';
 import { ComponentsModule } from '../../components/components.module';
 import { FechaPregnancyComponent } from '../../components/fecha-pregnancy/fecha-pregnancy.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
+import { RegisterfacebookComponent } from 'src/app/components/registerfacebook/registerfacebook.component';
+import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
+
 
 
 const routes: Routes = [
@@ -21,7 +24,9 @@ const routes: Routes = [
 @NgModule({
   entryComponents:[
     FechaPregnancyComponent,
-    CalcComponent
+    CalcComponent,
+    RegisterfacebookComponent,
+    FacebookRegisterPage
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  exports:[FechaPregnancyComponent, CalcComponent],
+  exports:[FechaPregnancyComponent, CalcComponent, RegisterfacebookComponent],
   declarations: [LoginPage]
 })
 export class LoginPageModule {}

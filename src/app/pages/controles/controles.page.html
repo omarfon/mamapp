@@ -17,6 +17,22 @@
 <ion-content>
   <p class="tituloControles">Lista de controles</p>
 
+  <div *ngIf="sigIn !== 'completo' || status === 'novalidado' || status === 'novalidado'" class="containerSinControles" style="background:url(assets/imgs/sinControles.svg);" >
+      <ion-row>
+        <ion-col size="3" class="containerDatosControl">
+          <p class="numeroDeSemana">2</p>
+          <p class="semanaText">Control</p>
+        </ion-col>
+        <ion-col size="9">
+          <p class="datosControl">14 semanas</p>
+          <p class="datosControl">altura uterina: 20cm.</p>
+          <p class="datosControl">Presión arterial: 120/90</p>
+          <p class="datosControl">temperatura: 36º</p> 
+          <p class="verMas" (click)="openModal($event)">ver más detalles</p>
+        </ion-col>
+      </ion-row>
+  </div>
+
   <ion-card *ngFor="let encuentro of encuentros; let i = index"
             (click)="goToDetail(encuentro)">
     <ion-row>
@@ -35,9 +51,9 @@
     </ion-row>
   </ion-card>
 
-  <p class="textoMensaje" *ngIf="message == true && user == 'user' && status == 'validado'" >Aún no tienes controles disponibles para mostrar”</p> 
-  <p class="textoMensaje" *ngIf="message == true && user == 'user' && status == 'novalidado'" >Para mostrar tus controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión</p> 
-  <p class="textoMensaje" *ngIf="message == true && user == 'nouser'">Inicia sesión para ver tus controles</p> 
+  <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'validado'" >Aún no tienes controles disponibles para mostrar”</p> 
+  <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'novalidado'" >Para mostrar tus controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión</p> 
+  <p class="textoMensaje" *ngIf="message === true && user === 'nouser'">Inicia sesión para ver tus controles</p> 
   <ion-fab
           vertical="bottom"
           horizontal="end"

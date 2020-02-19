@@ -12,13 +12,13 @@ export class NologinGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const loged = localStorage.getItem('role');
-      if(loged !== 'public'){
+      const loged = localStorage.getItem('name');
+      if(loged){
         this.router.navigate(['/tabs']);
         return false
       }else{
         return true
-      }
+      } 
   }
   
 }

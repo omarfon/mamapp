@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NavController, AlertController, LoadingController, Events } from '@ionic/angular';
+import { NavController, AlertController, LoadingController, Events, ModalController, PopoverController } from '@ionic/angular';
 import { CrudService } from '../../service/crud.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ModalCodeComponent implements OnInit {
 
   @Input ('data') data;
+  @Input ('res') res;
   _gender: any;
   _documenType: any;
   resolve: any;
@@ -40,70 +41,76 @@ export class ModalCodeComponent implements OnInit {
               public form: FormBuilder,
               public loadingCtrl: LoadingController,
               public events: Events,
-              public routes: Router) { }
+              public routes: Router,
+              public modalCtrl: ModalController,
+              public popover: PopoverController) { }
     
    ngOnInit() {
      const email = this.data.email;
-     this.crudSrv.validateEmail(email).subscribe(async (data) =>{
+     /* this.crudSrv.validateEmail(email).subscribe(async (data) =>{
           this.result = data;
     
 
-    console.log('this.data', this.data);
-    this.datos = this.data;
-     })
+        }) */
+        this.datos = this.data;
+        this.res = this.res;
+        console.log('this.data', this.data);
+        console.log('this.res', this.res);
 }
 
-  saveData(primero, segundo, tercero, cuarto){
+  saveData(primero){
    
     console.log(primero);
-    let uno = primero;
-    let dos = segundo;
+    let code = primero;
+    /* let dos = segundo;
     let tres = tercero;
     let cuatro = cuarto;
-    let code = uno + dos + tres + cuatro;
+    let code = uno + dos + tres + cuatro; */
     console.log(code);
     this.datos.code = code;
     this.datos.gender = {
-      id:1,
-      gender:"MUJER"
+      id:3,
+      name:"MUJER"
     };
     console.log('this.datos: ',this.datos);
-    this.datos.id = this.result.id;
+    this.datos.id = this.res.id;
     console.log('data armada:', this.datos);
     this.crudSrv.createNewUser(this.datos).subscribe(async (data:any) =>{
       this.createOk = data;
       console.log('la vuelta de this.createOK:', this.createOk);
-        if( this.createOk.ok == false ){
-              const alert = await this.alertCtrl.create({
-                header:'Error en el envio del código',
-                message:`${this.createOk.error.message}`,
-                buttons:[{
-                  text:'Intentar de nuevo',
-                  role: 'cancel'
-                }]
-              });
-              await alert.present();
-        }else{
+        
           const loading = await this.loadingCtrl.create({
               message:"enviando código..."
-          });
+          }); 
           await loading.present();
-        this.createOk = data;
+        /* this.createOk = data; */
            console.log('datos que vienen del logueo: por registro:', this.createOk);
              localStorage.setItem('idTokenUser', this.createOk.patientId);
-             localStorage.setItem('emailUser', this.createOk.userEmail);
-             localStorage.setItem('authorization', this.createOk.authorization);
+             localStorage.setItem('emailUser', this.createOk.email);
+             //aqui debería venirme el authorization para poder cargarlo y hacer login de una sola vez!!!
+             /* localStorage.setItem('authorization', this.createOk.authorization); */
              localStorage.setItem('role', this.createOk.role);
-             localStorage.setItem('patientName', this.createOk.patientName);
+             localStorage.setItem('patientName', this.createOk.name);
 
              this.events.publish('user:logged', 'logged');
              this.routes.navigate(['/login']);
+             this.loadingCtrl.dismiss();
              console.log("pasó!!!");
         // console.log('pasó logeado', this.createOk);
-        loading.dismiss()
-        }
-    }, err=>{
+        /* await loading.dismiss(); */
+        this.popover.dismiss();
+        
+      }, async err=>{
       this.message = "El código no es valido";
+      const alert = await this.alertCtrl.create({
+        header:'Error en el envio del código',
+        message:`${this.createOk.error.message}`,
+        buttons:[{
+          text:'Intentar de nuevo',
+          role: 'cancel'
+        }]
+      });
+      await alert.present();
     });
   }
 

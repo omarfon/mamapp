@@ -23,10 +23,10 @@ export class FechaPregnancyComponent implements OnInit {
   }
 
   saveDate(nombre, fechaManual){
-    /* localStorage.setItem('name', nombre.value); */
+    localStorage.setItem('name', nombre.value);
     localStorage.setItem('startPregnancy', fechaManual.value);
     this.popoverCtrl.dismiss()
-    this.router.navigate(['tabs']);
+    this.router.navigate(['/tabs']);
     
     console.log( fechaManual, fechaManual.value);
   }

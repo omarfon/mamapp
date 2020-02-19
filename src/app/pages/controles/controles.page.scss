@@ -59,4 +59,43 @@ ion-content{
       color:#66CBEC;
       font-size:1.2em;
     }
-  
+    .containerSinControles{
+      width: 90%;
+      margin-left: 5%;
+      height: 180px;
+      border-radius: 10px;
+    }
+    .containerDatosControl{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .numeroDeSemana{
+      color:#f7f7f7;
+      font-size:4em;
+      font-weight: 600;
+      /* margin-left:30px; */
+      margin-top:20px!important;
+      margin-bottom:0!important;
+    }
+    .semanaText{
+      color:#fff;
+      margin-top:0!important;
+      /* margin-left:35px; */
+    }
+    .datosControl{
+      text-align: right;
+      color:#fff;
+      margin-right:20px;
+      margin-bottom:0!important;
+      margin-top:10px!important;
+      font-weight: 500;
+    }
+    .verMas{
+      color:#142fac;
+      text-align: right;
+      margin-right:20px;
+      font-size:.8em;
+      margin-top:25px;
+    }

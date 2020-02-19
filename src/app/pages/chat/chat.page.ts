@@ -31,6 +31,7 @@ export class ChatPage implements OnInit {
   public _badge: any = [];
   @ViewChild(IonContent, {static: false}) content: IonContent;
   mensajes: any;
+  public dissabled:boolean = false;
 
   constructor(public chatSrv: ChatService, 
               public alert: AlertController,
@@ -40,6 +41,32 @@ export class ChatPage implements OnInit {
               public notiSrv: NotificationsService) {
 
               }
+
+  async ionViewDidEnter() {
+    const sigIn = localStorage.getItem('sigIn');
+    if (sigIn !== 'completo') {
+      let alert = await this.alert.create({
+        header: "Para poder Chatear con una Coach",
+        subHeader: "solo tienes que estar registrado y ella te acompañará en este proceso y apoyará con mucho conocimiento",
+        buttons: [
+          {
+            text: "Registrarme",
+            handler: () => {
+              console.log('enviarme al registro');
+              this.router.navigate(['/register']);
+            }
+          },
+          {
+            text: "Seguir sin Registrarme",
+            handler: () => {
+              console.log('ir a registro');
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
 
   async ngOnInit() {
     this.badge = 0;
@@ -52,8 +79,6 @@ export class ChatPage implements OnInit {
 
     this.requestPermission();
       this.listen();
-    
-  
   }
 
   

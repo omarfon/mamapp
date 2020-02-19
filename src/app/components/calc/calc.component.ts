@@ -26,6 +26,7 @@ export class CalcComponent implements OnInit {
   }
 
   saveDate(fechaManual){
+    localStorage.setItem('name', this.nombre);
     localStorage.setItem('startPregnancy', fechaManual.value);
     this.popoverCtrl.dismiss()
     this.router.navigate(['tabs']);

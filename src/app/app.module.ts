@@ -35,7 +35,10 @@ import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 //Locale
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+
 registerLocaleData(localeEs, 'es');
+
+
 
 @NgModule({
   declarations: [AppComponent],

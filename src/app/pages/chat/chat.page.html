@@ -60,7 +60,7 @@
   <ion-item>
     <ion-textarea [(ngModel)]="msg" autosize class="message-input" value="ingresa tu mensaje">
     </ion-textarea>
-    <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessage()">
+    <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessage()" dissabled = dissabled>
         <!-- <ion-button expand="block" fill="clear" color="primary" class="msg-btn" > -->
       <ion-icon name="send" ></ion-icon>
     </ion-button>

@@ -8,36 +8,36 @@
       <ion-row class="contenedorInputs">
           <ion-col class="rectanguloInput">
             <ion-input type="tel"
-                         minlength="1"
-                         maxlength="1"
+                         minlength="4"
+                         maxlength="4"
                         #primero
                          ></ion-input>
            </ion-col>
-          <ion-col class="rectanguloInput">
+          <!-- <ion-col class="rectanguloInput">
              <ion-input  type="tel"
                          minlength="1"
                          maxlength="1"
                          #segundo
                          ></ion-input>
-           </ion-col>
-          <ion-col class="rectanguloInput">
+           </ion-col> -->
+         <!--  <ion-col class="rectanguloInput">
             <ion-input type="tel"
                        minlength="1"
                        maxlength="1"
                        #tercero
                        ></ion-input>
-           </ion-col>
-           <ion-col class="rectanguloInput">
+           </ion-col> -->
+          <!--  <ion-col class="rectanguloInput">
                <ion-input type="tel"
                        minlength="1"
                        maxlength="1"
                           #cuarto
                           ></ion-input>
-              </ion-col> 
+              </ion-col>  -->
               </ion-row>
              <div class="center">
                <ion-button
-                        (click)="saveData(primero.value, segundo.value, tercero.value, cuarto.value)"
+                        (click)="saveData(primero.value)"
                         size="block"
                         color="rosado">
                   Completar Registro

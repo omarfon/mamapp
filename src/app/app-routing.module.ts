@@ -28,11 +28,13 @@ const routes: Routes = [
   { path: 'modal-no-service', loadChildren: './pages/modal-no-service/modal-no-service.module#ModalNoServicePageModule' },
   { path: 'recetas', loadChildren: './pages/recetas/recetas.module#RecetasPageModule' },
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'register/:data', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'register/:datosObj', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'recoverycode/:dataObj', loadChildren: './pages/recoverycode/recoverycode.module#RecoverycodePageModule' },
   { path: 'resumen', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'resumen/:datosObj', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
-  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' }
+  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' },
+  { path: 'facebook-register', loadChildren: './pages/facebook-register/facebook-register.module#FacebookRegisterPageModule' }
 ];
 @NgModule({
   imports: [

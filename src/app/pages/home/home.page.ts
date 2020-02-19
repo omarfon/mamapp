@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NotasService } from '../../service/notas.service';
 import * as moment from 'moment';
 import { DatosControlService } from '../../service/datos-control.service';
-import { PopoverController, AlertController, ModalController } from '@ionic/angular';
+import { PopoverController, AlertController, ModalController, LoadingController } from '@ionic/angular';
 import { FechaPregnancyComponent } from 'src/app/components/fecha-pregnancy/fecha-pregnancy.component';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
@@ -61,7 +61,8 @@ export class HomePage implements OnInit {
     public estado: EstadoService,
     public alert: AlertController,
     public modalCtrl: ModalController,
-    public chat: ChatService) {
+    public chat: ChatService,
+    public loadinCtrl: LoadingController) {
       
       
                }
@@ -106,7 +107,12 @@ export class HomePage implements OnInit {
     }
   }
 
-  calculoFecha(){
+  async calculoFecha(){
+      let loading = await this.loadinCtrl.create({
+        message:"cargando categorías....",
+        duration:4000
+      });
+      await loading.present();
       /* console.log('parametros:', this.params); */
         this.fecha = moment(localStorage.getItem('startPregnancy')).clone();
         this.today = moment();
@@ -141,10 +147,10 @@ export class HomePage implements OnInit {
             this.notas = data;
             console.log('todas las notas:', this.notas); 
 
-            this.notasServ.getNotesTrans().subscribe(data =>{
+            /* this.notasServ.getNotesTrans().subscribe(data =>{
               this.dataTrans = data;
               console.log('dataTrans', this.dataTrans);
-            });
+            }); */
            
           });
         } else {
