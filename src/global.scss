@@ -24,3 +24,13 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+/*Modal*/
+.wideModal .modal-wrapper{
+    width: 90%!important;
+    --background:#B6BFBF;
+   /*  margin-left:2.5%; */
+    --height: 57%;
+    --border-radius:10px;
+}

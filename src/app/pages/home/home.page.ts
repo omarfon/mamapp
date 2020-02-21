@@ -10,6 +10,7 @@ import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
 import * as _ from 'lodash';
+import { CalcComponent } from 'src/app/components/calc/calc.component';
 
 
 @Component({
@@ -84,6 +85,11 @@ export class HomePage implements OnInit {
     if (cargaPublic == 'user' && !start) {
       this.datosPvr.getStartPregnacy().subscribe( data => {
         this.params = data;
+      },async err =>{
+       /*  let popover = await this.popover.create({
+            component:CalcComponent
+        });
+        await popover.present(); */
       })
         this.calculoFecha();
     }else {
@@ -100,7 +106,7 @@ export class HomePage implements OnInit {
     if(this.actualMomento && this.actualMomento.status !== 'active'){
       const alert = await this.alert.create({
         header:"Tenemos Inconvenientes",
-        subHeader:"En estos momentos tenemos algunos inconvenientes con la aplicaciòn, mil disculpas..., prueba en unos minutos mas, por favor!!...",
+        subHeader:"En estos momentos tenemos algunos inconvenientes con la aplicaciòn, mil disculpas..., prueba en unos minutos más, por favor!!...",
         backdropDismiss: false
     });
     await alert.present();
@@ -114,8 +120,16 @@ export class HomePage implements OnInit {
       });
       await loading.present();
       /* console.log('parametros:', this.params); */
+      const initPregnancy = localStorage.getItem('startPregnancy')
+      if(initPregnancy){
         this.fecha = moment(localStorage.getItem('startPregnancy')).clone();
         this.today = moment();
+      }else{
+        //si no encuentra una fecha , estoy pasandole una fecha al azahar para que tenga contenido,
+        //la idea es poder seguin con la siguiente acción para poner manualmente mis datos,
+        this.fecha = moment().diff(20, 'w');
+      }
+        /* this.fecha = moment(localStorage.getItem('startPregnancy')).clone(); */
   
         // aqui calcula la cantidad de semanas transcurridas
         const totalDays = this.today.diff(this.fecha, 'days');

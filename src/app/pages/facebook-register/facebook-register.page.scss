@@ -1,4 +1,134 @@
 .wideModal .modal-wrapper{
-            width: 80%;
+            width: 80%!important;
             margin-left:10%;
 }
+.registroDeUsuarioTitulo{
+    color:#ffffff;
+    text-align: center;
+    width:80%;
+    margin-left:10%;
+    font-size:1.1em;
+    font-weight: 200;
+    padding-top:30px;
+  }
+  --ion-content{
+    --max-width: 80%!important;
+
+    --background:#F7FAFC!important;
+  }
+  ion-item {
+    background: transparent!important;
+  }
+  ion-input{
+    background:#fff;
+    height: 50px;
+    /*     border-radius:10px;*/
+    border-bottom:none!important; 
+  }
+  .contenedorTextoInicial{
+    background: #FFA28C;
+    height: 100px;
+    margin-top:-16px!important;
+    color:#fff;
+    /* border-bottom-left-radius: 15px; */
+    border-bottom-right-radius: 55px;
+  }
+  ion-label{
+    font-size:.8em;
+  }
+  .formulario{
+    margin-top:-10px!important;
+  }
+  .alto50{
+    height: 50px;
+    margin-top:15px;
+  }
+  .bajas{
+    text-transform: lowercase;
+    font-size:.9em;
+    font-weight:400;
+    color:#fff;
+    margin-top:-5px;
+  }
+  .izquierda{
+    text-align: left!important;
+  }
+  .derecha{
+    text-align: right!important;
+  }
+  input::placeholder{
+      font-size:.8em;
+      color:rgba(235, 34, 144,0.5)!important;
+  }
+  ion-select{
+        width: 100%!important;
+        min-width:100%;
+        background:#fff;
+        font-size:.8em;
+        color:rgba(235, 34, 144,0.5)!important;
+        height:50px;
+  }
+  .select-text{
+    min-width:80px;
+    color:#000!important;
+    font-size:1em;
+  }
+  ion-datetime{
+    font-size:.8em;
+    placeholder{
+      color:#B6BFBF!important;
+      }
+    }
+    .error{
+      font-size:.7em;
+      color:#fff;
+      background:red;
+      margin-top: 2px;
+      margin-left:20px;
+      width: 90%;
+    }
+    .error:before{
+      content:'*';
+      margin-right: 5px;
+    }
+    .terminosyCondiciones{
+      color:#287195;
+    }
+    .outpadding{
+      width:92%;
+      margin-left:5%;
+      height: 50px;
+      background:#fff!important;
+      font-size:1.3em;
+      text-align: left;
+    }
+    .datetime-md .datetime-placeholder{
+      margin-left: -15px;
+      font-size: .9em;  
+      color:rgba(235, 34, 144,0.5);
+    }
+    .select-text {
+      color:rgb(157, 163, 163)!important;
+    }
+    .item-datetime{
+      width:100%;
+      margin-left:0!important;
+    }
+    .datetime-text{
+       padding-left:0!important;
+    }
+    ion-datetime, ion-select{
+      padding-left:0!important;
+    }
+    ion-select{
+      color:#000!important;
+      font-size:1em;
+        .select-placeholder{
+          color:rgba(235, 34, 144,0.5)!important;
+        }
+    }
+    h4{
+        text-align: center;
+        margin-top:20px;
+        color:#287195;
+    }

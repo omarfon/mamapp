@@ -171,26 +171,21 @@ ionViewDidEnter(){
           this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
             console.log('data devuelta de middleware',data);
             localStorage.setItem('name', data.name);
-            /* this.goToCalc(dataMiddle.nombre); */
-            const modal = await this.modalCtrl.create({
-              component:FacebookRegisterPage,
-              animated:true,
- /*              showBackdrop:true, */
-              backdropDismiss:true,
-              cssClass: "wideModal",
-              componentProps:{
-                datos: datos
-              },
-              
-            });
-            await modal.present(); 
+            this.goToCalc(dataMiddle.nombre);
           },async err=>{
-            if(err.status === '404'){
-                const modal = await this.modalCtrl.create({
-                  component:FacebookRegisterPage,
-                  componentProps:datos
-                });
-                await modal.present();
+            if(err.status === 404){
+              const modal = await this.modalCtrl.create({
+                component:FacebookRegisterPage,
+                animated:true,
+   /*              showBackdrop:true, */
+                backdropDismiss:true,
+                cssClass: "wideModal",
+                componentProps:{
+                  datos: datos
+                },
+                
+              });
+              await modal.present(); 
             }else{
 
             }

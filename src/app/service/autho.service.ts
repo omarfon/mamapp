@@ -17,7 +17,7 @@ export class AuthoService {
   private SERVER = API_ENDPOINT;
   apiUrl = `${this.SERVER}users/public-authorization`;
   apiUrlFacebook = `${this.SERVER}auth/facebook-validate?app=mama&access_token=`;
-  apiRegisterFacebook = `${this.SERVER}users/facebook-register`;
+  apiRegisterFacebook = `${this.SERVER}users/facebook-register?app=mama`;
 
   constructor(private http:HttpClient,
               public afAuth: AngularFireAuth) { }
@@ -48,8 +48,15 @@ export class AuthoService {
     /* return dataMiddle; */
   }
 
-  registerWithFacebook(){
-    
+  registerWithFacebook(data){
+    let params = data;
+    const authorization = localStorage.getItem('authorization');
+    let headers = new HttpHeaders({'Authorization': authorization});
+      return this.http.post(this.apiRegisterFacebook, params, {headers}).pipe(
+        map(res =>{
+          return res
+        })
+      )
   }
 
 
