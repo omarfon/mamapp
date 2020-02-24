@@ -4,7 +4,8 @@ import { DataService } from 'src/app/service/data.service';
 import { AuthoService } from 'src/app/service/autho.service';
 import * as moment from "moment";
 import { Router } from '@angular/router';
-import { AlertController, Events, ModalController } from '@ionic/angular';
+import { AlertController, Events, ModalController, PopoverController } from '@ionic/angular';
+import { CalcComponent } from 'src/app/components/calc/calc.component';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class FacebookRegisterPage implements OnInit {
               public router: Router,
               public alertCtrl: AlertController,
               public events: Events,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public popover: PopoverController) {
 
     this.dataSvr.getGenders().subscribe(datagenders => {
       this.genders = datagenders;
@@ -130,17 +132,19 @@ export class FacebookRegisterPage implements OnInit {
      this.authoSrv.registerWithFacebook(data).subscribe((data:any) =>{
         if(data){
           localStorage.setItem('idTokenUser', data.patientId);
-               localStorage.setItem('emailUser', data.email);
+               localStorage.setItem('emailUser', data.userEmail);
                //aqui debería venirme el authorization para poder cargarlo y hacer login de una sola vez!!!
-               /* localStorage.setItem('authorization', this.createOk.authorization); */
+               localStorage.setItem('authorization', data.authorization);
                localStorage.setItem('role', data.role);
-               localStorage.setItem('patientName', data.name);
+               localStorage.setItem('name', data.name);
                this.events.publish('user:logged', 'logged');
                this.modalCtrl.dismiss({
                  'dismissed':true
                });
         }
-       this.router.navigate(['/tabs']);
+       /* this.router.navigate(['/tabs']); */
+       this.goToCalc(data.name);
+
      },async err =>{
         console.log(err)
         /* let alert = await this.alertCtrl.create({
@@ -156,5 +160,18 @@ export class FacebookRegisterPage implements OnInit {
      });
 
    }
+
+   async goToCalc(nombre){
+    const popover = await this.popover.create({
+      component: CalcComponent,
+      componentProps:{
+        nombre:nombre
+      },
+      backdropDismiss: false,
+      cssClass: 'popoverStyle'
+    })
+    await popover.present();
+    /* this.router.navigate(['tabs']); */
+  }
 
 }

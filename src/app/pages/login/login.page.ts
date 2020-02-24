@@ -171,6 +171,8 @@ ionViewDidEnter(){
           this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
             console.log('data devuelta de middleware',data);
             localStorage.setItem('name', data.name);
+            localStorage.setItem('role', data.role);
+            localStorage.setItem('sigIn', 'completo');
             this.goToCalc(dataMiddle.nombre);
           },async err=>{
             if(err.status === 404){
@@ -283,7 +285,7 @@ ionViewDidEnter(){
       componentProps:{
         nombre:nombre
       },
-      backdropDismiss: true,
+      backdropDismiss: false,
       cssClass: 'popoverStyle'
     })
     await popover.present();

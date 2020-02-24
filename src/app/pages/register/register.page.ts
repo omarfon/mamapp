@@ -63,6 +63,7 @@ export class RegisterPage implements OnInit {
     id: 0,
     name: ""
   };
+
   public _documenType;
   @Input ('dataArmada') dataArmada;
   public dataFacebook;
@@ -107,6 +108,7 @@ export class RegisterPage implements OnInit {
       /* console.log("this.documents:", this.documents); */
     });
 
+    
     this.registerForm = this.fb.group({
       name: ['',  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
