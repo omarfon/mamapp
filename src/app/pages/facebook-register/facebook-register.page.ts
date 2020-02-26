@@ -33,6 +33,7 @@ export class FacebookRegisterPage implements OnInit {
   public telefonoTemplate = "Telefono :";
   public tipoDocTemplate = "DNI :";
   public ndocTemplate = "Nº de documento :";
+  public aprobed = "";
 
   public gender = {
     id: 3,

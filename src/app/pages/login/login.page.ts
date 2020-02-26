@@ -8,8 +8,7 @@ import { DatosControlService } from '../../service/datos-control.service';
 import { TabsPage } from '../../tabs/tabs.page';
 import { FechaPregnancyComponent } from '../../components/fecha-pregnancy/fecha-pregnancy.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
-import { ChatService } from 'src/app/service/chat.service';
-import { RegisterfacebookComponent } from 'src/app/components/registerfacebook/registerfacebook.component';
+import { ChatService } from 'src/app/service/chat.service'; 
 import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
 
 
@@ -99,7 +98,6 @@ ionViewDidEnter(){
         localStorage.setItem('token', this.data.firebaseToken);
         localStorage.setItem('sigIn', 'completo');
         /* localStorage.setItem('uid', this.data.userId); */
-        localStorage.setItem('name', this.data.name);
         if(localStorage.getItem('token')){
           const token = localStorage.getItem('token');
           this.chatSrv.registerCustom(token);
@@ -125,8 +123,8 @@ ionViewDidEnter(){
          // console.log('lo que me trae el login:', localStorage)
          this.events.publish('change:foto');
        },err =>{
-        const nombre = localStorage.getItem('nombre');
-        this.goToCalc(nombre)
+        const name = localStorage.getItem('name');
+        this.goToCalc(name)
         return
        });
       }
@@ -157,6 +155,10 @@ ionViewDidEnter(){
     this.autho.FacebookAuth().then((res:any)=>{
       const datos = res;
       console.log('datos de facebok', datos);
+      const imgPerfil = datos.photoURL;
+            if(imgPerfil){
+              localStorage.setItem('imagenPerfil', imgPerfil);
+            }
       const dataMiddle = {
         id : datos.additionalUserInfo.profile.id,
         autho: datos.credential.accessToken,
@@ -279,11 +281,11 @@ ionViewDidEnter(){
     this.router.navigate(['/code']);
   }
 
-  async goToCalc(nombre){
+  async goToCalc(name){
     const popover = await this.popover.create({
       component:CalcComponent,
       componentProps:{
-        nombre:nombre
+        name:name
       },
       backdropDismiss: false,
       cssClass: 'popoverStyle'

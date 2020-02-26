@@ -11,6 +11,7 @@ import { ChatService } from 'src/app/service/chat.service';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
 import * as _ from 'lodash';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
+import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class HomePage implements OnInit {
     slidesPerView: 1.3
  
     }
+   public  imagePerfil;
   
   
   constructor( public router : Router,
@@ -70,6 +72,7 @@ export class HomePage implements OnInit {
 
     async ngOnInit() {
         this.name = localStorage.getItem('name');
+        this.imagePerfil = localStorage.getItem('imagenPerfil');
 
 
       this.estado.actualMomento().subscribe((data:any) =>{
@@ -228,5 +231,10 @@ export class HomePage implements OnInit {
         this.notas = _.concat(arreglo2, arreglo);
         console.log('diferencia',this.notas);
     } */
-  
+    async openCalc(){
+      let popover = await this.popover.create({
+        component: RecalcComponent,
+      })
+      await popover.present();
+    }
 }

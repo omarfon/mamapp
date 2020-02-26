@@ -13,6 +13,9 @@ import { ComponentsModule } from '../../components/components.module';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { ExpandableComponent } from 'src/app/components/expandable/expandable.component';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
+import { CalcComponent } from 'src/app/components/calc/calc.component';
+import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
+
 
 
 
@@ -28,7 +31,9 @@ const routes: Routes = [
     FechaPregnancyComponent,
     FiterComponent,
     ExpandableComponent,
-    BabyComponent
+    BabyComponent,
+    CalcComponent,
+    RecalcComponent
   ],
   imports: [
     CommonModule,

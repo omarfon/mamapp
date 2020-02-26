@@ -39,17 +39,7 @@ export class RegisterPage implements OnInit {
   public documents;
 
   cambio: boolean = false;
-  aprobed: boolean = false;
-  /* public datosPersonales:any;
-  public nombreTemplate = "Nombres :";
-  public apellidoPTemplate = "Apellido Paterno :";
-  public apellidoMTemplate = "Apellido Materno :";
-  public emailTemplate = "Email :";
-  public fechaTemplate = "Fecha de nacimiento :";
-  public telefonoTemplate = "Telefono :";
-  public tipoDocTemplate = "DNI :";
-  public ndocTemplate = "Nº de documento :"; */
-  
+  aprobed: boolean = false; 
   
   
 
@@ -136,73 +126,6 @@ export class RegisterPage implements OnInit {
     }
   }
 
- /*  chargeDatosFacebook(){
-    const idFacebook = localStorage.getItem('idFacebook')
-    if(this.dataFacebook){
-      console.log('datos personales',this.datosPersonales);
-      this.nombreTemplate = this.dataFacebook.first_name;
-      this.apellidoPTemplate = this.dataFacebook.last_name;
-      this.apellidoMTemplate = this.dataFacebook.apellidoMaterno;
-      this.emailTemplate = this.dataFacebook.email;
-      this.fechaTemplate = this.dataFacebook.birthday;
-      this.telefonoTemplate = this.dataFacebook.telefono;
-      this.tipoDocTemplate = this.dataFacebook.tipodoc;
-      this.ndocTemplate = this.dataFacebook.numdoc;
-      console.log('this.nombreTemplate:',this.nombreTemplate);
-    }else{
-   
-    }
-  } */
-
-  /* async letDni(){
-    const alert = await this.alertCtrl.create({
-      header: "Ingresa tu Nº de DNI",
-      subHeader:"con el podremos llenar algunos datos",
-      inputs: [
-        {
-          name: 'dni',
-          type: 'number',
-          placeholder: 'Nº de dni'
-        }
-      ],
-      buttons:[
-        {
-          text:"Volver",
-          handler:() =>{
-            this.routes.navigate(['/login']);
-          }
-        },
-        {
-          text:"Consultar",
-          handler: data =>{
-            let dni = data.dni;
-            console.log(`consultar dni ${dni}`);
-              this.dniSer.getDataDni(dni).subscribe( (data:any) =>{
-              console.log('datos personales',data);
-                if(data.length === 0){
-                  console.log('no hay data');
-                  this.noData();
-                }else{
-                  this.datosPersonales = data;
-                  console.log(this.datosPersonales);
-                  this.nombreTemplate = this.datosPersonales.nombre;
-                  this.apellidoPTemplate = this.datosPersonales.apellidoPaterno;
-                  this.apellidoMTemplate = this.datosPersonales.apellidoMaterno;
-                  this.emailTemplate = this.datosPersonales.email;
-                  this.fechaTemplate = this.datosPersonales.fechanac;
-                  this.telefonoTemplate = this.datosPersonales.telefono;
-                  this.tipoDocTemplate = this.datosPersonales.tipodoc;
-                  this.ndocTemplate = this.datosPersonales.numdoc;
-                }
-              }
-            )
-          }
-        }
-      ],
-      backdropDismiss:false
-    });
-    await alert.present();
-  } */
 
   async noData(){
     const alert = await this.alertCtrl.create({
@@ -275,6 +198,6 @@ export class RegisterPage implements OnInit {
   }
     
     goToLogin(){
-      this.routes.navigate(['login']);
+      this.routes.navigate(['/login']);
     }
 }

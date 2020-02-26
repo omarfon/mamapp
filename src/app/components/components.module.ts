@@ -9,9 +9,9 @@ import { CalcComponent } from './calc/calc.component';
 import { ExpandableComponent } from './expandable/expandable.component';
 import { BabyComponent } from './baby/baby.component';
 import { DetalleControlComponent } from './detalle-control/detalle-control.component';
-import { RegisterfacebookComponent } from './registerfacebook/registerfacebook.component';
 import { FacebookRegisterPage } from '../pages/facebook-register/facebook-register.page';
-
+import { RecalcComponent } from './recalc/recalc.component';
+import {MatDatepickerModule} from '@angular/material';
 
 
 
@@ -24,13 +24,14 @@ import { FacebookRegisterPage } from '../pages/facebook-register/facebook-regist
                 ExpandableComponent,
                 BabyComponent,
                 DetalleControlComponent,
-                RegisterfacebookComponent,
-                FacebookRegisterPage
+                FacebookRegisterPage,
+                RecalcComponent
                  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatDatepickerModule
   ],
   exports:[
     FechaPregnancyComponent,
@@ -41,8 +42,8 @@ import { FacebookRegisterPage } from '../pages/facebook-register/facebook-regist
     ExpandableComponent,
     BabyComponent,
     DetalleControlComponent,
-    RegisterfacebookComponent,
-    FacebookRegisterPage
+    FacebookRegisterPage,
+    RecalcComponent
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA

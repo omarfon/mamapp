@@ -63,6 +63,7 @@ export class AuthoService {
   AuthLogin(provider){
     provider.addScope('user_birthday');
     provider.addScope('user_gender');
+    provider.addScope('user_photos');
     return this.afAuth.auth.signInWithPopup(provider)
                 .then((result)=>{
                       console.log('Te has logeado satisfactoriamente', result);

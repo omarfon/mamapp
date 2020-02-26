@@ -1,22 +1,22 @@
-import { Component, OnInit , Input} from '@angular/core';
-import { Router } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
+import { PopoverController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-calc',
-  templateUrl: './calc.component.html',
-  styleUrls: ['./calc.component.scss'],
+  selector: 'app-recalc',
+  templateUrl: './recalc.component.html',
+  styleUrls: ['./recalc.component.scss'],
 })
-export class CalcComponent implements OnInit {
-
+export class RecalcComponent implements OnInit {
   @Input ('name')  name; 
   public fechaMax;
   public fechaMin;
   public deshabilitado = false;
 
-  constructor(public router: Router, public popoverCtrl: PopoverController) { }
+  constructor(public popoverCtrl: PopoverController,
+              public router: Router) { }
 
   ngOnInit() {
     console.log('nombre',this.name);

@@ -1,0 +1,25 @@
+<p>
+  recalc works!
+</p>
+<ion-content >
+  <h3>Cálculo de semanas de embarazo</h3>
+  <p>Puedes recalcular la fecha de última regla para cambiar la información</p>
+
+  <ion-list lines="none" padding>
+      <!-- <ion-item>
+        <ion-label position="floating">Ingresa un nombre</ion-label>
+        <ion-input type="text" #nombre></ion-input>
+      </ion-item> -->
+    
+    <ion-item >
+      <ion-label position="floating">Fecha de concepción</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual (ionChange)="infoLista($event)" ></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <ion-button  size="block" color="rosado" (click)="saveDate(fechaManual)" [disabled]="!deshabilitado">
+    Aceptar
+  </ion-button>
+
+
+</ion-content>
