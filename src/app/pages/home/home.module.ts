@@ -19,6 +19,8 @@ import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 
 
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +35,7 @@ const routes: Routes = [
     ExpandableComponent,
     BabyComponent,
     CalcComponent,
-    RecalcComponent
+    RecalcComponent,
   ],
   imports: [
     CommonModule,

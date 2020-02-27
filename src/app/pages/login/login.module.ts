@@ -9,7 +9,8 @@ import { LoginPage } from './login.page';
 import { ComponentsModule } from '../../components/components.module';
 import { FechaPregnancyComponent } from '../../components/fecha-pregnancy/fecha-pregnancy.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
-import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
+import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
+/* import { FacebookRegisterPage } from '../facebook-register/facebook-register.page'; */
 
 
 
@@ -24,7 +25,7 @@ const routes: Routes = [
   entryComponents:[
     FechaPregnancyComponent,
     CalcComponent,
-    FacebookRegisterPage
+    FaceRegisterComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,7 @@ const routes: Routes = [
     ComponentsModule,
     RouterModule.forChild(routes)
   ],
-  exports:[FechaPregnancyComponent, CalcComponent],
+  exports:[FechaPregnancyComponent, CalcComponent, FaceRegisterComponent],
   declarations: [LoginPage]
 })
 export class LoginPageModule {}

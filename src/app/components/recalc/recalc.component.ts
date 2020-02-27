@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 
@@ -16,7 +16,8 @@ export class RecalcComponent implements OnInit {
   public deshabilitado = false;
 
   constructor(public popoverCtrl: PopoverController,
-              public router: Router) { }
+              public router: Router,
+              public modalCtrl: ModalController) { }
 
   ngOnInit() {
     console.log('nombre',this.name);
@@ -25,14 +26,19 @@ export class RecalcComponent implements OnInit {
     console.log(this.fechaMax);
   }
 
+
   saveDate(fechaManual){
     if(this.name){
       localStorage.setItem('name', this.name);
     }else{
     }
     localStorage.setItem('startPregnancy', fechaManual.value);
-    this.popoverCtrl.dismiss()
-    this.router.navigate(['tabs']);
+    const recalc = fechaManual.value;
+    this.modalCtrl.dismiss()
+    this.router.navigate(['tabs',{
+      data:recalc
+    }]
+    );
     
     console.log( 'fechaManual', fechaManual.value);
   }

@@ -27,7 +27,7 @@ import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //components
-import { ComponentsModule } from './components/components.module';
+/* import { ComponentsModule } from './components/components.module'; */
 import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 
 //formularios
@@ -37,6 +37,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
 registerLocaleData(localeEs, 'es');
+
 
 
 
@@ -55,7 +56,7 @@ registerLocaleData(localeEs, 'es');
             MaterialModule,
             BrowserAnimationsModule,
             HttpClientModule,
-            ComponentsModule,
+            /* ComponentsModule, */
             ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production })],
   providers: [
     StatusBar,

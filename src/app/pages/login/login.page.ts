@@ -10,6 +10,7 @@ import { FechaPregnancyComponent } from '../../components/fecha-pregnancy/fecha-
 import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { ChatService } from 'src/app/service/chat.service'; 
 import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
+import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
 
 
 
@@ -109,8 +110,6 @@ ionViewDidEnter(){
            this.goToCalc(nombre)
            return
           }
-         this.startPregnancy = data.fecha_ultima_regla;
-         
          /* console.log('lo que devuelve el servicio startPregnancy:', this._startPregnancy); */
          /* this.startPregnancy = this._startPregnancy; */
          /* console.log('this.startPregnancy de login:', this.startPregnancy); */
@@ -118,13 +117,14 @@ ionViewDidEnter(){
            localStorage.setItem('startPregnancy', this.startPregnancy);
            this.router.navigateByUrl('/tabs');
          }else{
-           this.router.navigateByUrl('/tabs');
+           this.goToCalc(localStorage.getItem('name'));
+           /* this.router.navigateByUrl('/tabs'); */
          }
          // console.log('lo que me trae el login:', localStorage)
          this.events.publish('change:foto');
        },err =>{
         const name = localStorage.getItem('name');
-        this.goToCalc(name)
+        this.goToCalc(name);
         return
        });
       }
@@ -179,7 +179,7 @@ ionViewDidEnter(){
           },async err=>{
             if(err.status === 404){
               const modal = await this.modalCtrl.create({
-                component:FacebookRegisterPage,
+                component:FaceRegisterComponent,
                 animated:true,
    /*              showBackdrop:true, */
                 backdropDismiss:true,

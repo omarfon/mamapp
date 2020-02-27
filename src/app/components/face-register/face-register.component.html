@@ -1,0 +1,160 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>facebookRegister</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <h4>Completa tus datos, por favor</h4>
+  <form [formGroup]="registerForm" (ngSubmit)="registerMiddleware()" novalidate padding class="formulario" >
+    <ion-row>
+      <ion-col size="6">
+        <ion-item no-lines >
+          <ion-input type="text" formControlName="name" name="name" placeholder="Nombres" [(ngModel)]="nombreTemplate" ngDefaultControl ></ion-input>
+        </ion-item>
+        <div *ngIf="registerForm.get('name').errors && registerForm.get('name').dirty || registerForm.get('name').touched" no-lines>
+            <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
+        </div>
+        <!-- <div *ngIf="registerForm.get('name').errors && registerForm.get('name').touched" no-lines>
+            <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
+        </div> -->
+      </ion-col>
+  
+      <ion-col size="6">
+        <ion-item no-lines >
+          <ion-input type="text" formControlName="surname1" name="surname1" placeholder="Apellido Paterno" [(ngModel)]="apellidoPTemplate" ngDefaultControl></ion-input> 
+        </ion-item>
+        <div *ngIf="registerForm.get('surname1').errors && registerForm.get('surname1').dirty || registerForm.get('surname1').touched" no-lines>
+                <p *ngIf="registerForm.get('surname1').hasError('required')" class="error">Apellido Paterno requerido</p>
+        </div>
+      </ion-col>
+  
+      <ion-col size="6">
+        <ion-item no-lines>
+          <ion-input type="text" formControlName="surname2" name="surname1" placeholder="Apellido Materno" [(ngModel)]="apellidoMTemplate" ngDefaultControl></ion-input>
+        </ion-item>
+        <div *ngIf="registerForm.get('surname2').errors && registerForm.get('surname2').dirty || registerForm.get('surname2').touched" no-lines>
+                <p *ngIf="registerForm.get('surname2').hasError('required')" class="error">Apellido Materno  requerido</p>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+          <ion-item no-lines>
+            <ion-input type="email" formControlName="email" name="email" placeholder="Email:" [(ngModel)]="emailTemplate" ngDefaultControl></ion-input>
+          </ion-item>
+          <div *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty || registerForm.get('email').touched" no-lines>
+              <p *ngIf="registerForm.get('email').hasError('required')" class="error">Email requerido</p>
+              <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo no puede tener puntos o comas</p> 
+              <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo electronico no es valido</p> 
+          </div>
+        </ion-col>
+  
+        <ion-col size="6">
+            <ion-item class="outpadding" no-lines>
+              <!-- <ion-label floating>Fecha de nacimiento:</ion-label> -->
+              <ion-datetime displayFormat="DD/MM/YYYY" formControlName="birthdate" name="birthdate" placeholder="Fecha de nacimiento" [(ngModel)]="fechaTemplate" ngDefaultControl></ion-datetime>
+              <!-- <ion-input type="date" formControlName="birthdate" name="date_of_birth" placeholder="Fecha de nacimiento"></ion-input> -->
+            </ion-item>
+            <div *ngIf="registerForm.get('birthdate').errors && registerForm.get('birthdate').dirty || registerForm.get('birthdate').touched" no-lines>
+                  <p *ngIf="registerForm.get('birthdate').hasError('required')" class="error">Fecha de Nacimiento requerido</p>
+            </div>
+          </ion-col>
+  
+      <!-- <ion-col size="12">
+        <ion-item no-lines>
+          <ion-select formControlName="gender" name="gender" placeholder="Sexo" [(ngModel)]="gender" (ionChange)="cambiogenero($event)">
+            <ion-select-option *ngFor="let gender of genders" [value]="gender" >{{gender.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+            <div *ngIf="registerForm.get('gender').errors && registerForm.get('gender').dirty || registerForm.get('gender').touched" no-lines>
+              <p *ngIf="registerForm.get('gender').hasError('required')" class="error">Genero requerido</p>
+            </div>
+      </ion-col> -->
+  
+      <ion-col size="6">
+          <ion-item no-lines>
+            <ion-input type="tel" formControlName="phone" name="phone" placeholder="Telefono" [(ngModel)]="telefonoTemplate" ngDefaultControl></ion-input>
+          </ion-item>
+          <div *ngIf="registerForm.get('phone').errors && registerForm.get('phone').dirty || registerForm.get('phone').touched" no-lines>
+              <p *ngIf="registerForm.get('phone').hasError('required')" class="error">Teléfono requerido</p>
+              <p *ngIf="registerForm.get('phone').hasError('minLength')" class="error">Mínimo 9 caracteres</p>
+          </div>
+        </ion-col>
+    
+      <ion-col size="6">
+        <ion-item no-lines>
+          <ion-select  formControlName="documentType" name="documentType" ngDefaultControl [(ngModel)]="document" (ionChange)="cambioDocumento($event)"  placeholder="Tipo de documento" [(ngModel)]="tipoDocTemplate">
+            <ion-select-option *ngFor="let document of documents" [value]="document" >{{document.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="registerForm.get('documentType').errors && registerForm.get('documentType').dirty || registerForm.get('documentType').touched" no-lines>
+            <p  *ngIf="registerForm.get('documentType').hasError('required')" class="error">Tipo de documento requerido</p>
+        </div>
+      </ion-col>
+  
+      <ion-col size="6">
+        <ion-item no-lines>
+          <ion-input  type="tel" formControlName="documentNumber" name="documentNumber" [(ngModel)]="ndocTemplate" placeholder="Nº de Documento" ngDefaultControl></ion-input > 
+          <!-- <ion-input *ngIf="_documenType && _documenType.id == 3" placeholder="Nº de Carne" type="tel"   formControlName="documentNumber" name="documentNumber"
+          minlength=12 maxlength=12 stacked></ion-input>
+          <ion-input *ngIf="_documenType && _documenType.id == '1'" placeholder="Nº de Dni" type="number" formControlName="documentNumber" name="documentNumber"
+            minlength=8 maxlength=8  stacked></ion-input>
+          <ion-input *ngIf="_documenType &&_documenType.id == 2" placeholder="Nº de Pasaporte" type="number" formControlName="documentNumber" name="documentNumber"
+            minlength=12 maxlength=12 stacked></ion-input> -->
+         <!--  <p color="danger" ion-text *ngIf="registerForm.get('dni').hasError('required')">DNI requerido</p> -->
+        </ion-item>
+        <div *ngIf="registerForm.get('documentNumber').errors && registerForm.get('documentNumber').dirty || registerForm.get('documentNumber').touched" no-lines>
+            <p  *ngIf="registerForm.get('documentNumber').hasError('required')" class="error">Tipo de documento requerido</p>
+        </div>
+      </ion-col>
+
+
+  
+      
+   <!--  <ion-col size="12">
+      <ion-item no-lines>
+        <ion-input type="password" required name="password" formControlName="password" placeholder="Contraseña"></ion-input>
+      </ion-item >
+      <div *ngIf="registerForm.get('password').errors && registerForm.get('password').dirty || registerForm.get('password').touched" no-lines>
+          <p *ngIf="registerForm.get('password').hasError('required')" class="error">Contraseña requerida</p>
+          <p *ngIf="registerForm.get('password').hasError('minLength')" class="error">Minimo 8 caracteres</p>
+        </div> 
+    </ion-col>
+  
+  
+    <ion-col size="12">
+      <ion-item no-lines>
+        <ion-input type="password" formControlName="password_confirmation" name="password_confirmation" placeholder="repetir contraseña"></ion-input>
+        <div *ngIf="registerForm.get('password_confirmation').errors && registerForm.get('password_confirmation').dirty || registerForm.get('password_confirmation').touched">
+            <p *ngIf="registerForm.get('password_confirmation').hasError('required')" class="error">Contraseña requerida</p>
+        </div>
+      </ion-item>
+    </ion-col> -->
+   <!--  <p>{{nombreTemplate}}</p>
+    <hr>
+    <p>{{apellidoPTemplate}}</p>
+      <hr>
+    <p>{{apellidoMTemplate}}</p>
+    <hr>
+    <p>{{emailTemplate}}</p>
+    <hr>
+    <p>{{fechaTemplate}}</p>
+    <hr>
+    <p>{{telefonoTemplate}}</p>
+    <hr>
+    <p>{{ndocTemplate}}</p> -->
+  
+    <ion-col size="12">
+      <ion-item no-lines>
+        <ion-label class="terminosyCondiciones">Acepto los términos y condiciones</ion-label>
+        <ion-checkbox formControlName="aprobed" name="aprobed" [(ngModel)]="aprobed" (ionChange)="aceptaCondiciones(aprobed)" ngDefaultControl></ion-checkbox>
+      </ion-item>
+    </ion-col> 
+  
+  </ion-row>
+  
+    <!-- <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full" color="rosado" class="alto50">Registro</ion-button> -->
+    <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button>
+    <!-- <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button> -->
+  </form>
+
+</ion-content>

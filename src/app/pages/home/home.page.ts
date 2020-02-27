@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotasService } from '../../service/notas.service';
 import * as moment from 'moment';
@@ -55,7 +55,7 @@ export class HomePage implements OnInit {
  
     }
    public  imagePerfil;
-  
+   @Input ('data') data;
   
   constructor( public router : Router,
     public notasServ: NotasService,
@@ -69,8 +69,9 @@ export class HomePage implements OnInit {
       
       
                }
-
+   
     async ngOnInit() {
+      
         this.name = localStorage.getItem('name');
         this.imagePerfil = localStorage.getItem('imagenPerfil');
 
@@ -130,7 +131,7 @@ export class HomePage implements OnInit {
       }else{
         //si no encuentra una fecha , estoy pasandole una fecha al azahar para que tenga contenido,
         //la idea es poder seguin con la siguiente acción para poner manualmente mis datos,
-        this.fecha = moment().diff(20, 'w');
+        /* this.fecha = moment().diff(20, 'w'); */
       }
         /* this.fecha = moment(localStorage.getItem('startPregnancy')).clone(); */
   
@@ -232,9 +233,30 @@ export class HomePage implements OnInit {
         console.log('diferencia',this.notas);
     } */
     async openCalc(){
-      let popover = await this.popover.create({
+      /* let modal = await this.modalCtrl.create({
         component: RecalcComponent,
       })
-      await popover.present();
+      await modal.present(); */
+      let alert = await this.alert.create({
+          header:'Ingresa la nueva fecha',
+          inputs:[
+            {
+              name: 'fecha',
+              type: 'date',
+              label: 'nueva fecha',
+            }
+          ],
+          buttons:[
+            {
+              text:'Ingresar',
+              handler:(data)=>{
+                console.log(data.fecha);
+                localStorage.setItem('startPregnancy', data.fecha);
+                this.calculoFecha();
+              }
+            }
+          ]
+      });
+      await alert.present();
     }
 }
