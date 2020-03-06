@@ -3,21 +3,40 @@
 }
 ion-content{
     height: auto;
-    /* padding-bottom:10px; */
+    --border-radius:30px!important;
+    --background: #B9CCED!important;
 }
 p{
     text-align: center;
     font-size:.6em;
-    /* color:grey; */
     }
-h4{
-    width:100%;
-    text-align: center;
-    color:#FFA28C;
-    margin-top:0!important;
+.containerName{
+    width: 100%;
+    margin:0!important;
+    padding:0!important;
+    h5{
+        width:100%;
+        text-align: center;
+        color:#7A57D1;
+        padding:10px;
+        width: 100%;
+        margin-top:0!important;
+    }
+}
+.item-native{
+    background: transparent!important;
+}
+.list-md{
+    background: transparent!important;
+}
+ion-item{
+    --background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-bottom:5px;
 }
 ion-label{
-    color:grey!important;
+/*     background: #fff!important; */
+    color:#fff!important;
 }
 ion-button{
     padding-left:20px;
@@ -25,7 +44,11 @@ ion-button{
 }
 .textoModalInvitado{
     font-size:.9em;
+    color:#fff;
 }
 ion-list{
     padding:0;
+}
+.buttonPregnancy{
+    --background: #44D7B6!important;
 }

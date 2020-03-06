@@ -38,6 +38,8 @@ import localeEs from '@angular/common/locales/es';
 
 registerLocaleData(localeEs, 'es');
 
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 
 
 
@@ -56,12 +58,12 @@ registerLocaleData(localeEs, 'es');
             MaterialModule,
             BrowserAnimationsModule,
             HttpClientModule,
-            /* ComponentsModule, */
             ServiceWorkerModule.register('combined-sw.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: LOCALE_ID, useValue: "es"},
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

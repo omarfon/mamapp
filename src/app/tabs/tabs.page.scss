@@ -1,1 +1,26 @@
 
+.tab-selected{
+    ion-icon{
+        color: white !important;
+        width:40px;
+        height: 40px;
+        margin-top:-10px;
+        }
+        ion-label{
+            display: none;
+        }
+  }
+  ion-tab-bar{
+      background-color: #F7B500;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;;
+  }
+  ion-tab-button{
+      background: transparent!important;
+     /*  ion-icon{
+          color:#fff;
+      }
+      ion-label{
+          color:#fff;
+      } */
+  }

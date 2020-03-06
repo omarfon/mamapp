@@ -1,5 +1,5 @@
 <ion-content >
-  <h3>Cálculo de semanas de embarazo</h3>
+  <h5>Cálculo de semanas de embarazo</h5>
   <p>En este momento no tienes en tu historia clínica una fecha de concepción, ingresa una manualmente, por favor...</p>
 
   <ion-list lines="none" padding>
@@ -9,12 +9,12 @@
       </ion-item> -->
     
     <ion-item >
-      <ion-label position="floating">Fecha de concepción</ion-label>
+      <ion-label position="floating">Fecha de última regla</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" min="{{fechaMin}}" max="{{fechaMax}}" pickerFormat="DD MM YYYY"  #fechaManual (ionChange)="infoLista($event)" ></ion-datetime>
     </ion-item>
   </ion-list>
 
-  <ion-button  size="block" color="rosado" (click)="saveDate(fechaManual)" [disabled]="!deshabilitado">
+  <ion-button  size="block" (click)="saveDate(fechaManual)" [disabled]="!deshabilitado">
     Aceptar
   </ion-button>
 

@@ -56,6 +56,8 @@ export class HomePage implements OnInit {
     }
    public  imagePerfil;
    @Input ('data') data;
+   public numberControl = 5;
+   public dias = '3';
   
   constructor( public router : Router,
     public notasServ: NotasService,
@@ -223,20 +225,8 @@ export class HomePage implements OnInit {
     console.log('abriendo detalle modal trans', cardTrans);
   }
 
-/*   mergeNotes(){
-    let arreglo = this.dataTrans;
-    let arreglo2 = this.notas;
-        if(_.isEmpty(arreglo)){
-          console.log('el arreglo esta vacio');
-        } 
-        this.notas = _.concat(arreglo2, arreglo);
-        console.log('diferencia',this.notas);
-    } */
+
     async openCalc(){
-      /* let modal = await this.modalCtrl.create({
-        component: RecalcComponent,
-      })
-      await modal.present(); */
       let alert = await this.alert.create({
           header:'Ingresa la nueva fecha',
           inputs:[
@@ -259,4 +249,9 @@ export class HomePage implements OnInit {
       });
       await alert.present();
     }
-}
+
+    openModalAviso(){
+      console.log('abri la ventana para aviso diario');
+    }
+
+  }

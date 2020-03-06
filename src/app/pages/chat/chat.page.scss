@@ -1,6 +1,6 @@
 ion-content{
+    --background:#f4f6f6!important;
     #areaMensajes{
-        background:rgb(243, 243, 243)!important;
         min-height:85vh;
         height:auto;
     }
@@ -10,24 +10,30 @@ ion-content{
 }
 .message{
     padding: 10px;
-    border-radius: 10px;
     margin-bottom: 4px;
     white-space: pre-wrap;
 }
 
 .other-message{
-    
-    background: #FFC839;
-    color:#fff;
+    border: .2px solid #ebe9e9;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #fff;
+    color:#63707e;
 }
 
 .my-message{
-    background: #26baf5;
+    border: .2px solid #ebe9e9;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: #00bdaa;
     color:#fff;
 }
 
 .time{
-    color:#ebe9e9;
+/*     color:#ebe9e9; */
     float:right;
     font-size:small;
 }
@@ -65,5 +71,12 @@ ion-footer{
 .proximamente{
     text-align: center;
     font-size:1.4em;
+}
+.nombreCoach{
+    font-size:.6em;
+    color:#dadada;
+}
+.nombreUsuario{
+    font-size:.6em;
 }
 

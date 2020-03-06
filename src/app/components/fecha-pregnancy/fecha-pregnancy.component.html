@@ -1,6 +1,8 @@
 
 <ion-content padding>
-  <h4>Ingresar como invitado</h4>
+  <div class="containerName">
+    <h5>Ingresar como invitado</h5>
+  </div>
   <p class="textoModalInvitado"> Para continuar, debes ingresar tu nombre y una fecha probable de concepción</p>
 
   <ion-list lines="none" padding>
@@ -15,7 +17,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-button  size="block" color="rosado" (click)="saveDate(nombre , fechaManual)">
+  <ion-button  size="block" (click)="saveDate(nombre , fechaManual)" class="buttonPregnancy">
     Ingresar
   </ion-button>
 

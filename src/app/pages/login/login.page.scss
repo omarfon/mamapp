@@ -1,5 +1,5 @@
 ion-content{
-    --background: url(../../../assets/imgs/fondoLogin.png) 0 0/100% 100% no-repeat;
+    --background: url(../../../assets/imgs/slides/fondo.png) 0 0/100% 100% no-repeat;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@ ion-content{
       margin-left:10%;
       text-align: center;
       padding-top:15px!important;
-      color:#9F5AE5;
+      --color:#fff;
       font-size:1.2em;
   }
 
@@ -33,11 +33,10 @@ ion-content{
     // border-radius: 10px;
     .buttonIngresar{
       position:relative;
-      // margin-bottom:20px!important;
-      background:#9F5AE5;
+      --background:#44d7b6!important;
       font-size:1em;
       font-weight: 400;
-      color:#ffffff;
+      color:#7044ff;
       margin-top:10px;
       height:50px;
       // width:80%;
@@ -46,8 +45,8 @@ ion-content{
     }
   }
   .contraseñaolvidada{
-    color:#7044ff;
-    font-size:1em;
+    color:#fff;
+    font-size:.9em;
     margin-top: 10px;
     font-weight: 800;
  /*    text-transform: capitalize; */
@@ -87,13 +86,17 @@ ion-content{
   ion-item{
     --background: rgba(255, 255, 255, 0.5);
     margin-bottom:10px;
+    border-radius: 10px;
     ion-label{
-      color:#9F5AE5;
+      color:#fff!important;
       font-size:1.2em;
     } 
     .label-floating{
-      color:#7044ff
+      color:#7044ff;
     }
+  }
+  .native-input{
+    color:red;
   }
   .parrafoRegitro{
     color:#fff;
@@ -105,4 +108,9 @@ ion-content{
   }
 .botonFacebook{
   background:#3303cf;
+}
+.invitado{
+  --background: rgba(255,255,255,0.8)!important;
+  color:#7044ff;
+  --border-radius:25px;
 }

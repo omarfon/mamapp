@@ -1,6 +1,6 @@
 <ion-content>
   <div class="contenedorTextoInicial">
-      <h4 class="registroDeUsuarioTitulo">Completa tu registro para obtener una cuenta...así de facil..</h4>
+      <h5 class="inicioText">Completa tu registro para obtener una cuenta...así de facil..</h5>
     </div>
   
     <form [formGroup]="registerForm" (ngSubmit)="openPopover()" novalidate padding class="formulario" >
@@ -118,10 +118,11 @@
   
       <ion-col size="12">
         <ion-item no-lines>
-          <ion-input type="password" formControlName="password_confirmation" name="password_confirmation" placeholder="repetir contraseña"></ion-input>
-          <div *ngIf="registerForm.get('password_confirmation').errors && registerForm.get('password_confirmation').dirty || registerForm.get('password_confirmation').touched">
-              <p *ngIf="registerForm.get('password_confirmation').hasError('required')" class="error">Contraseña requerida</p>
-          </div>
+          <ion-input type="password" formControlName="password_confirmation" name="password_confirmation" placeholder="repetir contraseña">
+            <div *ngIf="registerForm.get('password_confirmation').errors && registerForm.get('password_confirmation').dirty || registerForm.get('password_confirmation').touched">
+                <p *ngIf="registerForm.get('password_confirmation').hasError('required')" class="error">Contraseña requerida</p>
+            </div>
+          </ion-input>
         </ion-item>
       </ion-col>
   
@@ -134,7 +135,7 @@
    
     </ion-row>
   
-      <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full" color="rosado" class="alto50">Registro</ion-button>
+      <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full"  class="alto50">Registro</ion-button>
       <!-- <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button> -->
     </form>
   

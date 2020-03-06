@@ -1,5 +1,7 @@
 {
   "name": "mamapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

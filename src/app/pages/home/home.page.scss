@@ -1,7 +1,6 @@
 ion-content {
-    --background: rgb(235, 235, 235) !important;
+    --background: #f4f6f6 !important;
   }
-
   .cuadrado {
     height: 180px;
     border-radius:0!important;
@@ -742,4 +741,74 @@ ion-content {
   }
   ion-slides{
     margin-bottom:0!important;
+  }
+
+  //clase a contenedor de fechas
+  .white{
+    background:#fff!important;
+    border-radius:15px;
+  }
+  .getMedicine{
+    background: #F7B500!important;
+    color:#fff;
+    border-radius:5px;
+    height: 60px;
+    font-size:1.4em;
+  }
+  .controlGine{
+    background: #32C5FF!important;
+    color:#fff;
+    border-radius:5px;
+    height: 60px;
+  }
+  .frasePastilla{
+    margin-top:5px;
+    margin-left:5px;
+    font-size:1.0.5em;
+    font-weight: 500;
+  }
+  .centradoIconoPastilla{
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-right: 10px;
+    ion-icon{
+      margin-bottom:15px;
+      font-size:1.4em;
+      font-weight: 600!important;
+      margin-right: 15px;
+      color:#fff;
+    }
+  }
+  .numberControl{
+    color:#0091FF;
+    font-size:3em;
+    font-weight: 600;
+    margin-top:5px!important;
+  }
+  .fraseRecalcular{
+    text-align: right;
+    vertical-align: center;
+  }
+  .containerButtonCalc{
+    vertical-align: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      ion-icon{
+        font-size:1.5em;
+        color:grey;
+        margin-right:5px;
+      }
+  }
+  .containerNumberControl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .circle{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background:#019FE0;
   }

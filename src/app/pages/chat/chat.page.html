@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="rosado">
+  <ion-toolbar color="light">
       <ion-buttons slot="start">
           <ion-menu-button ></ion-menu-button>
       </ion-buttons>
@@ -13,7 +13,7 @@
     <div *ngIf="conversacion">
         <ion-row *ngFor="let mensaje of conversacion.messages">
           <ion-col size="8"  *ngIf="currentUser === mensaje.user" class="message other-message">
-            <b>{{mensaje.user}}</b> <br>
+            <b class="nombreCoach">{{mensaje.user}}</b> <br>
             <span>{{mensaje.content}}</span>
             <div class="time" text-right>
               {{mensaje.date.toDate() | date:'short'}}
@@ -21,7 +21,7 @@
           </ion-col>  
 
           <ion-col offset="4" size="8"   *ngIf="mensaje.user !== currentUser " class="message my-message">
-            <b>{{mensaje.user}}</b> <br>
+            <b class="nombreUsuario">Tú</b> <br>
             <span>{{mensaje.content}}</span>
             <div class="time" text-right>
               {{mensaje.date.toDate() | date:'short'}}
