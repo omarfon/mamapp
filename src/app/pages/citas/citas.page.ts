@@ -5,6 +5,7 @@ import { LoadingController, NavController } from '@ionic/angular';
 import * as moment from 'moment';
 import { FinancerdatesService } from '../../service/financerdates.service';
 import { forkJoin, Observable } from 'rxjs';
+import {API_IMAGES} from '../../../environments/environment';
 
 @Component({
   selector: 'app-citas',
@@ -33,6 +34,7 @@ export class CitasPage implements OnInit {
   itemExpanded: boolean = true;
   itemExpandHeight: number = 220;
   changueColor: Boolean = false;
+  public apiEndpoint ;
 
   constructor(public routes: Router,
               public route: ActivatedRoute,
@@ -42,6 +44,7 @@ export class CitasPage implements OnInit {
               public finanSrv: FinancerdatesService) { }
 
   ngOnInit() {
+    this.apiEndpoint = API_IMAGES;
     this.c = this.route.snapshot.paramMap.get('c');
     /* console.log(this.c); */
     this.id=38;

@@ -12,6 +12,8 @@ import { DetalleControlComponent } from './detalle-control/detalle-control.compo
 import { RecalcComponent } from './recalc/recalc.component';
 import {MatDatepickerModule} from '@angular/material';
 import { FaceRegisterComponent } from './face-register/face-register.component';
+import { NextControlsComponent } from './next-controls/next-controls.component';
+
 
 
 
@@ -25,7 +27,8 @@ import { FaceRegisterComponent } from './face-register/face-register.component';
                 BabyComponent,
                 DetalleControlComponent,
                 RecalcComponent,
-                FaceRegisterComponent
+                FaceRegisterComponent,
+                NextControlsComponent
                  ],
   imports: [
     FormsModule,
@@ -43,7 +46,8 @@ import { FaceRegisterComponent } from './face-register/face-register.component';
     BabyComponent,
     DetalleControlComponent,
     RecalcComponent,
-    FaceRegisterComponent
+    FaceRegisterComponent,
+    NextControlsComponent
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA

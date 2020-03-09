@@ -172,9 +172,17 @@ ionViewDidEnter(){
           console.log('enviar datos a middleware');
           this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
             console.log('data devuelta de middleware',data);
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('role', data.role);
-            localStorage.setItem('sigIn', 'completo');
+            localStorage.setItem('usuario', data.userEmail);
+            localStorage.setItem('email', data.userEmail);
+            localStorage.setItem('authorization', data.authorization);
+        localStorage.setItem('id', data.patientId);
+        localStorage.setItem('role', data.role);
+        localStorage.setItem('photoUrl', data.photoUrl);
+        localStorage.setItem('patientName', data.patientName);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('token', data.firebaseToken);
+        localStorage.setItem('uid', data.userId);
+        localStorage.setItem('sigIn', 'completo');
             this.goToCalc(dataMiddle.nombre);
           },async err=>{
             if(err.status === 404){
@@ -230,7 +238,7 @@ ionViewDidEnter(){
 
   async goToRecovery(){
     /* this.router.navigate(['register']); */
-    const alert = await this.alertCtrl.create({
+   const alert = await this.alertCtrl.create({
       header:'Olvidaste la Contraseña?',
       subHeader: 'Ingresa tu email para recuperar la contraseña',
       inputs: [
@@ -245,7 +253,6 @@ ionViewDidEnter(){
           text: 'enviar',
           cssClass: 'primary',
           handler: data =>{
-            /* this.router.navigate(['home']); */
             let email = data.email;
             this.userSrv.sendValidation(email).subscribe(data =>{
               this.datos = data
@@ -261,6 +268,7 @@ ionViewDidEnter(){
       ]
     })
     await alert.present();
+   
   }
 
   goToRegister(){

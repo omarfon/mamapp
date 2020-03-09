@@ -153,7 +153,7 @@
   </ion-row>
   
     <!-- <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full" color="rosado" class="alto50">Registro</ion-button> -->
-    <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button>
+    <ion-button type="submit" size="full" class="alto50" [disabled]="!registerForm.valid && !validacion()">Registro</ion-button>
     <!-- <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button> -->
   </form>
 

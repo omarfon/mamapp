@@ -15,6 +15,8 @@ import { ExpandableComponent } from 'src/app/components/expandable/expandable.co
 import { BabyComponent } from 'src/app/components/baby/baby.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
+import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
+
 
 
 
@@ -36,6 +38,7 @@ const routes: Routes = [
     BabyComponent,
     CalcComponent,
     RecalcComponent,
+    NextControlsComponent
   ],
   imports: [
     CommonModule,

@@ -31,7 +31,7 @@ export class FaceRegisterComponent implements OnInit {
   public telefonoTemplate = "Telefono :";
   public tipoDocTemplate = "DNI :";
   public ndocTemplate = "Nº de documento :";
-  public aprobed = "";
+  aprobed: boolean = false; 
 
   public gender = {
     id: 3,
@@ -71,11 +71,11 @@ export class FaceRegisterComponent implements OnInit {
       name: ['',  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
       surname2: ['',  [ Validators.required ]],
+      email: ['',  [ Validators.required, Validators.email ]],
       birthdate: ['',  [ Validators.required ]],
+      phone: ['',  [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
       documentType: ['',  [ Validators.required ]],
       documentNumber: ['',  [ Validators.required]],
-      phone: ['',  [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
-      email: ['',  [ Validators.required, Validators.email ]],
       aprobed: ['', [ Validators.required]]
     });
 
@@ -98,7 +98,7 @@ export class FaceRegisterComponent implements OnInit {
 
   validacion(){
     const valid = this.registerForm.value;
-    if(valid.aprobed === true){
+    if(valid.aprobed == true){
       return true;
     }else{
       return false;
@@ -112,6 +112,7 @@ export class FaceRegisterComponent implements OnInit {
 
    aceptaCondiciones(aprobed){
     /* console.log('aprobed', aprobed); */
+    this.aprobed = true;
   }
 
    registerMiddleware(){
@@ -129,13 +130,19 @@ export class FaceRegisterComponent implements OnInit {
 
      this.authoSrv.registerWithFacebook(data).subscribe((data:any) =>{
         if(data){
+          console.log('data despues de login facebook', data);
           localStorage.setItem('idTokenUser', data.patientId);
                localStorage.setItem('emailUser', data.userEmail);
                //aqui debería venirme el authorization para poder cargarlo y hacer login de una sola vez!!!
                localStorage.setItem('authorization', data.authorization);
+               localStorage.setItem('token', data.firebaseToken);
                localStorage.setItem('role', data.role);
                localStorage.setItem('name', data.name);
+               localStorage.setItem('id', data.patientId);
                this.events.publish('user:logged', 'logged');
+               localStorage.setItem('uid', data.userId); 
+               localStorage.setItem('photoUrl', data.photoUrl);
+               localStorage.setItem('sigIn', 'completo');
                this.modalCtrl.dismiss({
                  'dismissed':true
                });

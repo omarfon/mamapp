@@ -1,6 +1,11 @@
+ion-content{
+  --border-radius:30px!important;
+  --background: #B9CCED!important;
+}
 .wideModal .modal-wrapper{
     width: 80%!important;
     margin-left:10%;
+    
 }
 .registroDeUsuarioTitulo{
 color:#ffffff;
@@ -16,11 +21,22 @@ padding-top:30px;
 
 --background:#F7FAFC!important;
 }
-ion-item {
-background: transparent!important;
+  ion-item, ion-datetime{
+    --background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-bottom:5px;
+}
+.item-native{
+  background: transparent!important;
+}
+.list-md{
+  background: transparent!important;
+}
+ion-select{
+  background: transparent!important;
 }
 ion-input{
-background:#fff;
+background:transparent;
 height: 50px;
 /*     border-radius:10px;*/
 border-bottom:none!important; 
@@ -131,4 +147,8 @@ h4{
 text-align: center;
 margin-top:20px;
 color:#287195;
+}
+ion-button{
+  --background: #44D7B6!important;
+  --border-radius:15px!important;
 }

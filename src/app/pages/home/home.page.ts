@@ -3,16 +3,17 @@ import { Router } from '@angular/router';
 import { NotasService } from '../../service/notas.service';
 import * as moment from 'moment';
 import { DatosControlService } from '../../service/datos-control.service';
-import { PopoverController, AlertController, ModalController, LoadingController } from '@ionic/angular';
-import { FechaPregnancyComponent } from 'src/app/components/fecha-pregnancy/fecha-pregnancy.component';
+import { PopoverController, AlertController, ModalController, LoadingController, Platform } from '@ionic/angular';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
 import * as _ from 'lodash';
+import { FechaPregnancyComponent } from 'src/app/components/fecha-pregnancy/fecha-pregnancy.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
-
+import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
+import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
 
 @Component({
   selector: 'app-home',
@@ -67,10 +68,74 @@ export class HomePage implements OnInit {
     public alert: AlertController,
     public modalCtrl: ModalController,
     public chat: ChatService,
-    public loadinCtrl: LoadingController) {
+    public loadinCtrl: LoadingController,
+    public localNoti: LocalNotifications,
+    public plt: Platform) {
+       this.plt.ready().then(()=>{
+         this.localNoti.on('click').subscribe(res =>{
+          console.log('click:', res);
+           let msg = res.data ? res.data.mydata : "";
+            this.showAlert(res.title, res.text, msg)
+         });
+         this.localNoti.on('trigger').subscribe(res =>{
+          console.log('trigger:', res);
+          let msg = res.data ? res.data.mydata : "";
+          this.showAlert(res.title, res.text, msg)
+         });
+       });
       
-      
-               }
+    }
+              /*  openModalAviso(ms: number){
+                console.log('abri la ventana para aviso diario');
+                this.localNoti.schedule({
+                  title: `mi ${ms} notificacion`,
+                  text: `detalle de la descripción`,
+                  trigger: {at: new Date(new Date().getTime() + ms)},
+                })
+              } */
+              scheduleNotification(){
+                this.localNoti.schedule({
+                  id: 1,
+                  title: "Atención",
+                  text: 'Notificacion de Omar',
+                  data: {mydata: 'Data Oculta'},
+                  sound:'file://sound.mp3',
+                  trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND},
+                  foreground: true,
+                  icon:'https://www.aviva.pe/assets/svg/logo.svg'
+                });
+              }
+
+              recurringNotification(){
+                this.localNoti.schedule({
+                  id: 22,
+                  title: "Recurrente",
+                  text: 'Notificacion de Omar',
+                  data: {mydata: 'Data Oculta'},
+                  trigger: { every: {hour:16, minute: 35}},
+                  /* foreground: true */
+                });
+              }
+          
+              repeatDaily(){
+                this.localNoti.schedule({
+                  id: 42,
+                  title: "Good mornig",
+                  text: 'Notificacion de Omar',
+                  data: {mydata: 'Data Oculta'},
+                  trigger: { every: ELocalNotificationTriggerUnit.MINUTE},
+                  /* foreground: true */
+                });
+              }
+          
+              showAlert(header, sub, msg){
+                  this.alert.create({
+                    header: header,
+                    subHeader:sub,
+                    message: msg,
+                    buttons: ['ok']
+                  }).then(alert => alert.present());
+              }
    
     async ngOnInit() {
       
@@ -250,8 +315,14 @@ export class HomePage implements OnInit {
       await alert.present();
     }
 
-    openModalAviso(){
-      console.log('abri la ventana para aviso diario');
+ 
+    async openModalControls(){
+      console.log('abrir modal de controles');
+      const modal = await this.modalCtrl.create({
+        component: NextControlsComponent,
+        cssClass: "wideModalControl",
+      });
+      return await modal.present();
     }
 
   }

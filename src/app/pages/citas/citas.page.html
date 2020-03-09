@@ -14,7 +14,7 @@
     <div [ngStyle]="{'display': doctor.hasAvailable ? 'block' : 'none'}">
         <ion-row>
             <ion-col size="4" class="imageDoctor">
-                 <img src="http://dappapache02.eastus.cloudapp.azure.com:4000/img/professionals/{{doctor.id}}.png" alt="">
+                 <img src="{{apiEndpoint}}{{doctor.id}}.png" alt="">
                 <!-- <img src={{doctor.image}} alt="">  -->
             </ion-col>
             <ion-col size="8" right>
