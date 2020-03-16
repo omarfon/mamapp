@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'resumen', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'resumen/:datosObj', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' },
-  { path: 'facebook-register', loadChildren: './pages/facebook-register/facebook-register.module#FacebookRegisterPageModule' }
+  { path: 'facebook-register', loadChildren: './pages/facebook-register/facebook-register.module#FacebookRegisterPageModule' },
 ];
 @NgModule({
   imports: [

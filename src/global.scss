@@ -37,8 +37,13 @@
 
 .wideModalControl .modal-wrapper{
     width: 90%!important;
-    --background:#f7f7f7;
-   /*  margin-left:2.5%; */
+    --background:#fff;
     --height: 77%;
+    --border-radius:10px;
+}
+.RecalcModalControl .modal-wrapper{
+    width: 80%!important;
+    --background:#fff;
+    --height:40%;
     --border-radius:10px;
 }

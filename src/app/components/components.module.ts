@@ -13,6 +13,9 @@ import { RecalcComponent } from './recalc/recalc.component';
 import {MatDatepickerModule} from '@angular/material';
 import { FaceRegisterComponent } from './face-register/face-register.component';
 import { NextControlsComponent } from './next-controls/next-controls.component';
+import { RecalcdateComponent } from './recalcdate/recalcdate.component';
+import { MaterialModule } from '../material.module';
+
 
 
 
@@ -28,13 +31,15 @@ import { NextControlsComponent } from './next-controls/next-controls.component';
                 DetalleControlComponent,
                 RecalcComponent,
                 FaceRegisterComponent,
-                NextControlsComponent
+                NextControlsComponent,
+                RecalcdateComponent
                  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MaterialModule
   ],
   exports:[
     FechaPregnancyComponent,
@@ -47,7 +52,8 @@ import { NextControlsComponent } from './next-controls/next-controls.component';
     DetalleControlComponent,
     RecalcComponent,
     FaceRegisterComponent,
-    NextControlsComponent
+    NextControlsComponent,
+    RecalcdateComponent
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA

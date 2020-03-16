@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NotasService } from '../../service/notas.service';
 import * as moment from 'moment';
 import { DatosControlService } from '../../service/datos-control.service';
-import { PopoverController, AlertController, ModalController, LoadingController, Platform } from '@ionic/angular';
+import { PopoverController, AlertController, ModalController, LoadingController, Platform, NavParams } from '@ionic/angular';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
@@ -14,6 +14,7 @@ import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
+import { RecalcdateComponent } from 'src/app/components/recalcdate/recalcdate.component';
 
 @Component({
   selector: 'app-home',
@@ -59,6 +60,7 @@ export class HomePage implements OnInit {
    @Input ('data') data;
    public numberControl = 5;
    public dias = '3';
+  public date; 
   
   constructor( public router : Router,
     public notasServ: NotasService,
@@ -70,7 +72,8 @@ export class HomePage implements OnInit {
     public chat: ChatService,
     public loadinCtrl: LoadingController,
     public localNoti: LocalNotifications,
-    public plt: Platform) {
+    public plt: Platform,
+    private activateRoute: ActivatedRoute) {
        this.plt.ready().then(()=>{
          this.localNoti.on('click').subscribe(res =>{
           console.log('click:', res);
@@ -83,7 +86,11 @@ export class HomePage implements OnInit {
           this.showAlert(res.title, res.text, msg)
          });
        });
-      
+       this.activateRoute.params.subscribe((date) =>{
+         console.log('params', date);
+         this.date = date;
+         console.log(this.date);
+       })
     }
               /*  openModalAviso(ms: number){
                 console.log('abri la ventana para aviso diario');
@@ -138,6 +145,7 @@ export class HomePage implements OnInit {
               }
    
     async ngOnInit() {
+
       
         this.name = localStorage.getItem('name');
         this.imagePerfil = localStorage.getItem('imagenPerfil');
@@ -292,7 +300,7 @@ export class HomePage implements OnInit {
 
 
     async openCalc(){
-      let alert = await this.alert.create({
+      /* let alert = await this.alert.create({
           header:'Ingresa la nueva fecha',
           inputs:[
             {
@@ -312,7 +320,12 @@ export class HomePage implements OnInit {
             }
           ]
       });
-      await alert.present();
+      await alert.present(); */
+      const popoverCalc = await this.modalCtrl.create({
+          component: RecalcdateComponent,
+          cssClass: "RecalcModalControl",
+      });
+      await popoverCalc.present();
     }
 
  

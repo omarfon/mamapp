@@ -16,12 +16,7 @@ import { BabyComponent } from 'src/app/components/baby/baby.component';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
-
-
-
-
-
-
+import { RecalcdateComponent } from 'src/app/components/recalcdate/recalcdate.component';
 
 const routes: Routes = [
   {
@@ -38,7 +33,8 @@ const routes: Routes = [
     BabyComponent,
     CalcComponent,
     RecalcComponent,
-    NextControlsComponent
+    NextControlsComponent,
+    RecalcdateComponent
   ],
   imports: [
     CommonModule,

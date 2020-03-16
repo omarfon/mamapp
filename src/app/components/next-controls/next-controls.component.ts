@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MaterialModule } from 'src/app/material.module';
+
 
 @Component({
   selector: 'app-next-controls',

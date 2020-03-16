@@ -1,4 +1,4 @@
-import { PopoverController, LoadingController, ModalController } from '@ionic/angular';
+import { PopoverController, LoadingController, ModalController, Platform } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthoService } from '../../service/autho.service';
 import { UserService } from 'src/app/service/user.service';
@@ -11,7 +11,7 @@ import { CalcComponent } from 'src/app/components/calc/calc.component';
 import { ChatService } from 'src/app/service/chat.service'; 
 import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
 import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
 
 @Component({
@@ -32,6 +32,7 @@ export class LoginPage implements OnInit {
   private key;
   public datos;
   public message: "";
+  user:any = {};
   /* @ViewChild('email', {static:true}) Loemail;
   @ViewChild('password', {static:true}) Lopassword; */
 
@@ -44,7 +45,9 @@ export class LoginPage implements OnInit {
                public popover: PopoverController,
                public chatSrv: ChatService,
                public loadinCtrl: LoadingController,
-               public modalCtrl: ModalController) {}
+               public modalCtrl: ModalController,
+               public fb: Facebook,
+               public plt: Platform) {}
 
                
 ionViewDidEnter(){
@@ -56,18 +59,21 @@ ionViewDidEnter(){
     })
   }
 }
-  ngOnInit() {
+  ngOnInit() {}
 
-    /* this.Loemail.nativeElement.value = "";
-    this.Lopassword.nativeElement.value = ""; */
-   /*  const authorization = localStorage.getItem('authorization');
-    if(!authorization){ 
-      this.autho.getKey().subscribe( (data:any) =>{
-        localStorage.setItem('authorization', data.authorization );
-        localStorage.setItem('role', data.role);
-      })
-    } */
-    
+  loginFb(){
+    this.fb.login(['public_profile', 'email'])
+            .then((res: FacebookLoginResponse) => {
+              if(res){
+                  this.user.img = 'https//graph.facebook.com/'+ res.authResponse.userID +'picture?type=square';
+                  JSON.stringify(res);
+                  alert(JSON.stringify(res));
+              }else{
+                alert(res);
+              }
+              console.log('logged into facebook', res)
+            })
+        .catch(e => console.log('Error logging into Facebook', e));
   }
 
   doSignIn(email, password){
@@ -148,10 +154,11 @@ ionViewDidEnter(){
 
   }
   async goToRegisterFacebook(){
-    /* const loading = await this.loadinCtrl.create({
-      message:"procesando petición"
-    }) */
-    /* await loading.present(); */
+    this.plt.ready().then(()=>{
+
+    })
+    
+    
     this.autho.FacebookAuth().then((res:any)=>{
       const datos = res;
       console.log('datos de facebok', datos);
@@ -175,14 +182,14 @@ ionViewDidEnter(){
             localStorage.setItem('usuario', data.userEmail);
             localStorage.setItem('email', data.userEmail);
             localStorage.setItem('authorization', data.authorization);
-        localStorage.setItem('id', data.patientId);
-        localStorage.setItem('role', data.role);
-        localStorage.setItem('photoUrl', data.photoUrl);
-        localStorage.setItem('patientName', data.patientName);
-        localStorage.setItem('name', data.name);
-        localStorage.setItem('token', data.firebaseToken);
-        localStorage.setItem('uid', data.userId);
-        localStorage.setItem('sigIn', 'completo');
+            localStorage.setItem('id', data.patientId);
+            localStorage.setItem('role', data.role);
+            localStorage.setItem('photoUrl', data.photoUrl);
+            localStorage.setItem('patientName', data.patientName);
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('token', data.firebaseToken);
+            localStorage.setItem('uid', data.userId);
+            localStorage.setItem('sigIn', 'completo');
             this.goToCalc(dataMiddle.nombre);
           },async err=>{
             if(err.status === 404){

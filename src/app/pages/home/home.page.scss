@@ -28,9 +28,17 @@ ion-content {
     color: #fff;
     font-weight: 200;
   }
-
+  #containerDias{
+    margin-top:-20px!important;
+  }
+  #containerRecalc{
+    margin-top:-10px!important;
+    color:#66CBEC;
+    display: flex;
+    justify-items: center;
+  }
   .nDias {
-    margin-top: 25px;
+    margin-top: 5px;
     margin-bottom:0;
     font-size: 40px;
     color: #fff;
@@ -129,9 +137,6 @@ ion-content {
       width: 90%;
       margin: 10px;
       margin-left: 25px;
-      // margin-left:5%;
-      // margin-top:15px;
-
     }
   }
 
@@ -211,21 +216,11 @@ ion-content {
 
   // estilos evo bebe
   .evoBebe {
-    // margin-top:10px;
-   /*  border-left: 10px solid #66CBEC; */
-    // margin-left:16px!important;
-    // margin-right:16px;
     border-radius:0;
     background: #fff;
-/*     border-top-right-radius: 25px; */
 
     .iconoEvoBebe {
       width: 40px;
-      z-index: 1000;
-      // position:absolute;
-      // margin-top:-200px;
-      // margin-left:16px;
-      // margin-top:16px;
     }
 
     .tituloEvoBebe {
@@ -511,7 +506,7 @@ ion-content {
 
   .textoNombre {
     color: #fff;
-    margin-top: -40px !important;
+    margin-top: -50px !important;
     margin-left: 10%;
     text-align: left;
     width: 80%;
@@ -759,7 +754,7 @@ ion-content {
     background: #32C5FF!important;
     color:#fff;
     border-radius:5px;
-    height: 60px;
+    height: 95px;
   }
   .frasePastilla{
     margin-top:5px;
@@ -786,18 +781,40 @@ ion-content {
     font-weight: 600;
     margin-top:5px!important;
   }
+  .fraseControl{
+    margin-top:10px;
+    font-size:1.2em;
+    text-align: left;
+  }
   .fraseRecalcular{
     text-align: right;
-    vertical-align: center;
+    p{
+      margin-right:5px;
+      }
+    /* vertical-align: center; */
+  }
+  .diasControl{
+    margin-top:-20px!important;
+    text-align: right;
+    margin-right:10px;
+    font-size:1.4em;
+    font-weight: 400;
+    color:#019FE0;
+  }
+  .verboNumberControl{
+    color:#66CBEC;
+    font-size:1.1em;
+    font-weight: 400;
   }
   .containerButtonCalc{
     vertical-align: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    color:#66CBEC;
       ion-icon{
         font-size:1.5em;
-        color:grey;
+        color:#66CBEC;
         margin-right:5px;
       }
   }

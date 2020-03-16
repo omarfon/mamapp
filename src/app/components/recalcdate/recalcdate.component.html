@@ -1,0 +1,16 @@
+<h3>Recalcular tus semanas de embarzo</h3>
+<p class="parrafoRecalculo">Ingresa una nueva fecha de última regla y podrás recalcular las semanas de embarazo, lo puedes hacer las veces que quieras</p>
+<mat-form-field>
+  <ion-row>
+    <ion-col size="10">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="diaElegido" placeholder="fecha de ultima regla">
+    </ion-col>
+    <ion-col size="2">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </ion-col>
+  </ion-row> 
+</mat-form-field>
+<ion-button  (click)="goToRecalc(diaElegido)">
+  Recalcular 
+</ion-button>

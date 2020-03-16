@@ -39,8 +39,7 @@ import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs, 'es');
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-
-
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 
 @NgModule({
@@ -62,6 +61,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
     { provide: LOCALE_ID, useValue: "es"},
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
