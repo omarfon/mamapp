@@ -159,10 +159,12 @@ ionViewDidEnter(){
     );
 
   }
+  
   async goToRegisterFacebook(){
     if(this.plt.is('android')){
       this.loginFb();
-    }else{
+    } 
+    if(this.plt.is('mobileweb')){
       this.autho.FacebookAuth().then((res:any)=>{
         this.datosFaceAuth = res;
         console.log('datos de facebok', this.datosFaceAuth);

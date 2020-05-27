@@ -103,12 +103,13 @@ export class ControlesPage implements OnInit {
     this.routes.navigate(['/citas',data])
   }
   createDateTele(){
-        const datos = {
+        /* const datos = {
           fechaIni : this.fechaIni,
           escogido : 845337
         }
         const data = JSON.stringify(datos);
-    this.routes.navigate(['/citas',data])
+    this.routes.navigate(['/citas',data]) */
+    this.notTeleconsult();
   }
 
   async openModal(ev:any){
@@ -118,5 +119,20 @@ export class ControlesPage implements OnInit {
           translucent:true
       });
       return await popover.present();
+  }
+
+  async notTeleconsult(){
+    const alert = await this.alertCtrl.create({
+      header:"Proximamente Teleconsulta",
+      subHeader:"Dentro de muy poco podrás tener teleconsultas, desde esta app....",
+      buttons:[
+        {
+          text:'entiendo',
+          handler:()=>{
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

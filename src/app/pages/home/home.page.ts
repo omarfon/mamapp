@@ -332,11 +332,27 @@ export class HomePage implements OnInit {
  
     async openModalControls(){
       console.log('abrir modal de controles');
-      const modal = await this.modalCtrl.create({
+     /*  const modal = await this.modalCtrl.create({
         component: NextControlsComponent,
         cssClass: "wideModalControl",
       });
-      return await modal.present();
+      return await modal.present(); */
+      this.alertZoom();
+    }
+
+    async alertZoom(){
+      const alert = await this.alert.create({
+        header:"Proximamente",
+        subHeader:"dentro de poco sabrrás exactamente cuando te tocan tus proximos controles y que pasará en cada uno",
+        buttons:[
+          {
+            text:'entiendo',
+            handler:()=>{
+            }
+          }
+        ]
+      });
+      await alert.present();
     }
 
   }

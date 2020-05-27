@@ -34,9 +34,9 @@
                               <p class="textoNombre"> {{name}} {{nombre}} hoy tienes:</p>
                             </ion-col>
     
-                              <ion-col size="1" id="containerDias">
-                              </ion-col>
-                                <ion-col size="7" id="containerDias">
+                              <!-- <ion-col size="1" id="containerDias">
+                              </ion-col> -->
+                                <ion-col size="8" id="containerDias">
                                     <p class="nSemanas">{{ totaldias |slice:0:2 }}</p>
                                     <p class="pSemanas">Semanas</p>
                                 </ion-col>
@@ -109,22 +109,15 @@
                       <ion-col size="12" (click)="openModalControls()">
                         <ion-card class="controlGine">
                           <ion-row>
-                            <ion-col size="4" class="containerNumberControl">
+                           <!--  <ion-col size="4" class="containerNumberControl">
                               <p class="numberControl">{{numberControl}}</p>
                               <p class="verboNumberControl">to</p>
-                            </ion-col>
-                            <ion-col size="8">
-                              <p class="fraseControl">Control ginecológico en:</p>
-                              <p class="diasControl">{{dias}} días.</p>
-                            </ion-col>
-                            <!-- <ion-col size="2">
-                              <ion-button>
-                                <ion-icon name=""></ion-icon>
-                              </ion-button>
                             </ion-col> -->
-                           <!--  <ion-col size="12">
-                              <p>{{dias}} días.</p>
-                            </ion-col> -->
+                            <ion-col size="1"></ion-col>
+                            <ion-col size="10">
+                              <p class="fraseControl">Tu próximo control es en:</p>
+                              <p class="diasControl">? días.</p>
+                            </ion-col>
                           </ion-row> 
                         </ion-card>
                       </ion-col>
