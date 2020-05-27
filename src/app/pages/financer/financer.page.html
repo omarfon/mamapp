@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="light">
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,6 +8,16 @@
 </ion-header>
 
 <ion-content>
+    <ion-card color="warning" class="explainedTele" *ngIf="encuentro == 845337">
+      <ion-row>
+        <ion-col size="3">
+          <img class="iconoCardTele" src="assets/imgs/financer/iconoCelular.png" alt="">
+        </ion-col>
+        <ion-col size="9">
+          <p class="textoCardTele">Hasta el momento has escogido una teleconsulta, esta se realizará por una videollamada, estaremos enviandote un email con las indicaciones </p>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   <div class="containerPay">
     <h3 class="centerTitle">Como quieres pagar?</h3>
     <p class="textoIndicador">A continuación escoge una de las opciones de financiamiento, para luego ir a pago, ya casi terminamos...</p> 

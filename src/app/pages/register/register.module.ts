@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterPage } from './register.page';
 import { ComponentsModule } from '../../components/components.module';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
+import { CalcComponent } from 'src/app/components/calc/calc.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
 
 @NgModule({
   entryComponents:[
-    ModalCodeComponent
+    ModalCodeComponent,
+    CalcComponent
   ],
   imports: [
     CommonModule,

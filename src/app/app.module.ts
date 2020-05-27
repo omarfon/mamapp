@@ -40,12 +40,13 @@ registerLocaleData(localeEs, 'es');
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
-
+/* import {NgxAgoraModule} from 'ngx-agora'; */
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, 
+       /*      NgxAgoraModule.forRoot({AppID: environment.agora.appId}), */
             IonicModule.forRoot(), 
             AppRoutingModule,
             ReactiveFormsModule,

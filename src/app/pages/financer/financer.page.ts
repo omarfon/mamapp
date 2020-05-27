@@ -33,6 +33,7 @@ export class FinancerPage implements OnInit {
   desactivadoBotonLocal: boolean;
   public financer: boolean;
   public disabled: boolean = false;
+  public encuentro;
 
   constructor(public routes : Router,
               public route: ActivatedRoute,
@@ -55,6 +56,8 @@ export class FinancerPage implements OnInit {
     this.hora = this.dataArmada.hora;
     this.doctor = this.dataArmada.doctor;
     this.subida = this.dataArmada.hora.listjson;
+    this.encuentro = this.dataArmada.encuentro;
+    console.log('this.encuentro:',this.encuentro);
     /* this.available = this.dataArmada. */
    /*  console.log('dataArmada en financer:', this.dataArmada);
     console.log('dataArmada en doctor:', this.dataArmada.doctor); */

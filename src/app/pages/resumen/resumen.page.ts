@@ -29,6 +29,7 @@ export class ResumenPage implements OnInit {
   public  payCulqiCharges: boolean = true;
   public retrying:boolean = false;
   public alertError : any;
+  public appointmentId ;
   
   
 
@@ -67,8 +68,8 @@ export class ResumenPage implements OnInit {
       /* console.log('culqi en resumen:', window['culqi']); */
        this.culqiData = JSON.parse(localStorage.getItem('culqiData'));
        
-    /* window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; */
-      window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z';
+     window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; 
+      /* window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z'; */
 
       console.log('dataArmada en resumen:', this.dataArmada);
       this.hora = this.dataArmada.hora;
@@ -154,6 +155,23 @@ export class ResumenPage implements OnInit {
             });
             this.alertError.present();
           }
+        }, async err =>{
+          console.log(err);
+          console.log('eliminar cita', this.appointmentId);
+          console.log('data err:', data);
+          loading.dismiss();
+          const alert = await this.alertCtrl.create({
+            header:'Problema en el pago',
+            message: `${err.error.result.responseData.user_message}`,
+            buttons:[
+              {
+                text:'Reintentar'
+              },
+              {
+                text:'cancelar'
+              }
+            ]});
+          await alert.present()
         });
     }else{
       /* console.log('token error', window['Culqi'].error); */
@@ -212,6 +230,7 @@ export class ResumenPage implements OnInit {
       /* console.log(culqiObj); */
       if (culqiObj['closeEvent'] != null) {
         console.log('Formulario culqi cerrado', culqiObj['closeEvent']);
+        this.desactivateTask();
         clearInterval(i);
       }
       if (culqiObj['error'] != undefined){
@@ -268,7 +287,8 @@ export class ResumenPage implements OnInit {
       this.appointmentProvider.createAppointment(this.subida, provisionId)
         .subscribe((data: any) => {
           this.currentAppointment = data;
-          /* console.log('currentAppointment:', this.currentAppointment); */
+          console.log('currentAppointment:', this.currentAppointment); 
+          this.appointmentId = this.currentAppointment.appointmentId;
           this.openCulqi();
         }, err => {
             if (this.currentAppointment !== null) {
@@ -279,7 +299,7 @@ export class ResumenPage implements OnInit {
             if (!err) {
               return
             }
-            const code = err.error.data.errorCode;
+            const code = err.error.responseData.errorCode;
             let alert;
             switch (code) {
               case 15006:
@@ -322,77 +342,7 @@ export class ResumenPage implements OnInit {
           });
     } 
 
-  /* retry(){
-    const settings = {
-      title : this.plan.plan_desc,
-      description:this.plan.precio[0].prest_item_desc,
-      currency: "PEN",
-      amount: this.price * 100
-    };
-
-    window['Culqi'].options({
-      style:{
-        logo: 'https://api.aviva.pe/logo_aviva.png'
-      }
-    });
-
-  window['Culqi'].settings(settings);
-
-  console.log("open CUlqi", settings);
-  const metadata = {
-    patientId:this.currentAppointment.patient.id,
-    appointmentId:this.currentAppointment.appointmentId,
-    planId:this.plan.plan_pk,
-    precioSinIGV:this.plan.precio[0].prest_precio_val,
-    precioConIGV:this.plan.precio[0].total
-  }
-  window['Culqi'].open();
-  console.log('metadata:', metadata);
-  console.log('culqi del componente', this);
-  if(window['Culqi'].token){
-    const getSettings = window['Culqi'].getSettings;
-    const metadata = {
-      patientId:this.currentAppointment.patient.id,
-      appointmentId:this.currentAppointment.appointmentId,
-      planId:this.plan.plan_pk,
-      precioSinIGV:this.plan.precio[0].prest_precio_val,
-      precioConIGV:this.plan.precio[0].total
-    }
-    const data = {
-      amount : getSettings.amount,
-      currency_code : getSettings.currency,
-      email : window['Culqi'].token.email,
-      source_id : window['Culqi'].token.id,
-      metadata
-    }
-    console.log('data:', data);
-      this.culqiPvr.charges(data).subscribe( vuelta =>{
-        this.culqiReturn = vuelta;
-      });
-  }else{
-    console.log('data', this.culqiReturn);
-    let alert = this.alertCtrl.create({
-        title:'error en tarjeta',
-        subTitle: 'problema en el cargo en su tarjeta',
-        buttons : [
-          {
-            text:'reintentar',
-            handler:()=>{
-              this.desactivadoBoton = true;
-              this.retrying = true;
-            }
-          },
-          {
-            text:'pagar en local',
-            handler: ()=>{
-              this.navCtrl.push(MyDatesPage);
-            }
-          }
-        ]
-    })
-    alert.present();
-  }
-} */
+  
 
   next() {
     let provisionId = this.hora.params.provisionId;
@@ -521,5 +471,12 @@ export class ResumenPage implements OnInit {
   goBack(){
     /* this.navCtrl.pop(); */
   }  
+
+   desactivateTask(){
+   
+             this.appointmentProvider.destroyAppointment(this.appointmentId).subscribe( async data => {
+               console.log('eliminando cita', data);
+             });
+         }
 
 }

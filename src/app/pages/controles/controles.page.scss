@@ -101,3 +101,12 @@ ion-content{
       font-size:.8em;
       margin-top:25px;
     }
+    .bottom{
+      position: absolute;
+      bottom:10px;
+      width: 100%;
+    }
+    ion-label{
+      font-size:.9em!important;
+      text-transform: lowercase;
+    }

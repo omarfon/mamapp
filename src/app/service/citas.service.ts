@@ -47,6 +47,21 @@ export class CitasService {
     )
   }
 
+  getDoctorsPerIdFilter(id, provision){
+    const authorization = localStorage.getItem('authorization');
+    let headers = new HttpHeaders({"Authorization": authorization});
+    const center_id = 1;
+
+    return this.http.get(this.apiUrl + `ebooking/fmt-centers/${center_id}/basicservices/${id}/provision/${provision}/professionals` ,  {headers}).pipe(
+                    map((resp:any)=>{
+                    this.doctores = resp.centers[0].services[0].professionals;
+                    return this.doctores;
+                    })/* .catch(e =>{
+                      return Observable.of(e)
+                    }) */
+    )
+  }
+
   /*  getAvailablesPerDay(serviceId ,fromDate, toDate){
     const authorization = localStorage.getItem('authorization');
     let headers = new HttpHeaders({
@@ -60,12 +75,12 @@ export class CitasService {
                     });
   } */
 
-  getAvailablesPerDoctor(id, serviceId, fromDate, toDate) : Observable<any>{
+  getAvailablesPerDoctor(id, escogido, serviceId, fromDate, toDate, ) : Observable<any>{
     const authorization = localStorage.getItem('authorization');
     let headers = new HttpHeaders({"Authorization": authorization});
 
     const center_id = 1;
-    return this.http.get(this.apiUrl + `ebooking/fmt-centers/${center_id}/services/${serviceId}/professionals/${id}/availables?from_date=${fromDate}&to_date=${toDate}`,  {headers}).pipe(
+    return this.http.get(this.apiUrl + `ebooking/fmt-centers/${center_id}/basicservices/${serviceId}/professionals/${id}/provision/${escogido}/availables?from_date=${fromDate}&to_date=${toDate}`,  {headers}).pipe(
                       map((resp:any)=>{
                       /* console.log('resp:', resp); */
                         return resp.centers[0].services[0].professionals[0].availables;

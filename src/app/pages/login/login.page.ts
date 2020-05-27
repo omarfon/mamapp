@@ -13,7 +13,6 @@ import { FacebookRegisterPage } from '../facebook-register/facebook-register.pag
 import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -33,6 +32,8 @@ export class LoginPage implements OnInit {
   public datos;
   public message: "";
   user:any = {};
+  userData = null;
+  datosFaceAuth: any;
   /* @ViewChild('email', {static:true}) Loemail;
   @ViewChild('password', {static:true}) Lopassword; */
 
@@ -59,17 +60,22 @@ ionViewDidEnter(){
     })
   }
 }
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   loginFb(){
     this.fb.login(['public_profile', 'email'])
             .then((res: FacebookLoginResponse) => {
               if(res){
-                  this.user.img = 'https//graph.facebook.com/'+ res.authResponse.userID +'picture?type=square';
-                  JSON.stringify(res);
-                  alert(JSON.stringify(res));
+                  /* this.user.img = 'https//graph.facebook.com/'+ res.authResponse.userID +'picture?type=square'; */
+                  this.fb.api('me?fields=id,email,first_name,picture.width(720).height(720).as(picture_large))', []).then(profile =>{
+                    this.datosFaceAuth = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large'['data']['url']], username: profile['name']};
+                  })
+                  /* JSON.stringify(res);
+                  alert(JSON.stringify(res)); */
+                  this.openModalFaceUnconpleash();
               }else{
-                alert(res);
+                alert(this.datosFaceAuth);
               }
               console.log('logged into facebook', res)
             })
@@ -154,93 +160,97 @@ ionViewDidEnter(){
 
   }
   async goToRegisterFacebook(){
-    this.plt.ready().then(()=>{
-
-    })
-    
-    
-    this.autho.FacebookAuth().then((res:any)=>{
-      const datos = res;
-      console.log('datos de facebok', datos);
-      const imgPerfil = datos.photoURL;
-            if(imgPerfil){
-              localStorage.setItem('imagenPerfil', imgPerfil);
-            }
-      const dataMiddle = {
-        id : datos.additionalUserInfo.profile.id,
-        autho: datos.credential.accessToken,
-        email: datos.additionalUserInfo.profile.email,
-        nombre: datos.additionalUserInfo.profile.first_name,
-        lastname: datos.additionalUserInfo.profile.last_name,
-        token: datos.credential.accessToken
-      }
-      console.log('dataMiddle', dataMiddle);
-      if(datos){
-          console.log('enviar datos a middleware');
-          this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
-            console.log('data devuelta de middleware',data);
-            localStorage.setItem('usuario', data.userEmail);
-            localStorage.setItem('email', data.userEmail);
-            localStorage.setItem('authorization', data.authorization);
-            localStorage.setItem('id', data.patientId);
-            localStorage.setItem('role', data.role);
-            localStorage.setItem('photoUrl', data.photoUrl);
-            localStorage.setItem('patientName', data.patientName);
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('token', data.firebaseToken);
-            localStorage.setItem('uid', data.userId);
-            localStorage.setItem('sigIn', 'completo');
-            this.goToCalc(dataMiddle.nombre);
-          },async err=>{
-            if(err.status === 404){
-              const modal = await this.modalCtrl.create({
-                component:FaceRegisterComponent,
-                animated:true,
-   /*              showBackdrop:true, */
-                backdropDismiss:true,
-                cssClass: "wideModal",
-                componentProps:{
-                  datos: datos
-                },
-                
-              });
-              await modal.present(); 
-            }else{
-
-            }
-            console.log('error de login', err);
-          })
-          /* loading.dismiss(); */
-
-      }/* else{
-          console.log('pedir de nuevo a facebook');
-      } */
-      /* const parseo = datos.additionalUserInfo.profile;
-      console.log('los datos de facebook en login', parseo);
-      if(parseo){
-        const data = JSON.stringify(parseo);
-        localStorage.setItem('idFacebook', parseo.id);
-        this.router.navigate(['/register', data]);
-      } */
-    },async err=>{
-        console.log(err);
-        const alert = await this.alertCtrl.create({
-          header:"Problema con Facebook",
-          subHeader:"Al parecer no puedes logearte con facebook intenta ingresando los datos manualmente",
-          buttons:[
-            {
-              text:"Reintentar"
-            },
-            {
-              text:"Registrarme",
-              handler:()=>{
-                this.router.navigate(['/register']);
+    if(this.plt.is('android')){
+      this.loginFb();
+    }else{
+      this.autho.FacebookAuth().then((res:any)=>{
+        this.datosFaceAuth = res;
+        console.log('datos de facebok', this.datosFaceAuth);
+        const imgPerfil = this.datosFaceAuth.photoURL;
+              if(imgPerfil){
+                localStorage.setItem('imagenPerfil', imgPerfil);
               }
-            }
-          ]
-        });
-        await alert.present();
-    })
+        const dataMiddle = {
+          id : this.datosFaceAuth.additionalUserInfo.profile.id,
+          autho: this.datosFaceAuth.credential.accessToken,
+          email: this.datosFaceAuth.additionalUserInfo.profile.email,
+          nombre: this.datosFaceAuth.additionalUserInfo.profile.first_name,
+          lastname: this.datosFaceAuth.additionalUserInfo.profile.last_name,
+          token: this.datosFaceAuth.credential.accessToken
+        }
+        console.log('dataMiddle', dataMiddle);
+        if(this.datosFaceAuth){
+            console.log('enviar datos a middleware');
+            this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
+              console.log('data devuelta de middleware',data);
+              localStorage.setItem('usuario', data.userEmail);
+              localStorage.setItem('email', data.userEmail);
+              localStorage.setItem('authorization', data.authorization);
+              localStorage.setItem('id', data.patientId);
+              localStorage.setItem('role', data.role);
+              localStorage.setItem('photoUrl', data.photoUrl);
+              localStorage.setItem('patientName', data.patientName);
+              localStorage.setItem('name', data.name);
+              localStorage.setItem('token', data.firebaseToken);
+              localStorage.setItem('uid', data.userId);
+              localStorage.setItem('sigIn', 'completo');
+              this.goToCalc(dataMiddle.nombre);
+            },async err=>{
+              if(err.status === 404){
+                this.openModalFaceUnconpleash();
+              }else{
+  
+              }
+              console.log('error de login', err);
+            })
+            /* loading.dismiss(); */
+  
+        }/* else{
+            console.log('pedir de nuevo a facebook');
+        } */
+        /* const parseo = datos.additionalUserInfo.profile;
+        console.log('los datos de facebook en login', parseo);
+        if(parseo){
+          const data = JSON.stringify(parseo);
+          localStorage.setItem('idFacebook', parseo.id);
+          this.router.navigate(['/register', data]);
+        } */
+      },async err=>{
+          console.log(err);
+          const alert = await this.alertCtrl.create({
+            header:"Problema con Facebook",
+            subHeader:"Al parecer no puedes logearte con facebook intenta ingresando los datos manualmente",
+            buttons:[
+              {
+                text:"Reintentar"
+              },
+              {
+                text:"Registrarme",
+                handler:()=>{
+                  this.router.navigate(['/register']);
+                }
+              }
+            ]
+          });
+          await alert.present();
+      })
+    }
+    
+    
+  }
+  async openModalFaceUnconpleash(){
+    const modal = await this.modalCtrl.create({
+      component:FaceRegisterComponent,
+      animated:true,
+/*              showBackdrop:true, */
+      backdropDismiss:true,
+      cssClass: "wideModal",
+      componentProps:{
+        datos: this.datosFaceAuth
+      },
+      
+    });
+    await modal.present(); 
   }
 
   async goToRecovery(){

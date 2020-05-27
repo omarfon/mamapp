@@ -143,10 +143,9 @@ export class HomePage implements OnInit {
                     buttons: ['ok']
                   }).then(alert => alert.present());
               }
-   
-    async ngOnInit() {
 
-      
+    async ngOnInit() {
+      this.calculoFecha();
         this.name = localStorage.getItem('name');
         this.imagePerfil = localStorage.getItem('imagenPerfil');
 
@@ -287,11 +286,13 @@ export class HomePage implements OnInit {
 
   async openModalDetailBaby(nota){
       console.log('abrir modal con 3d bebe',nota);
-      const modal = await this.modalCtrl.create({
+      const popover = await this.popover.create({
         component:BabyComponent,
-        componentProps:nota
+        cssClass: 'modal-baby',
+        componentProps:nota,
+        translucent: true
       });
-      return await modal.present();
+      return await popover.present();
   } 
 
   openModalTrans(cardTrans){

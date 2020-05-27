@@ -4,12 +4,15 @@ import * as moment from "moment";
 import { CrudService } from "../../service/crud.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DataService } from "../../service/data.service";
-import { AlertController, PopoverController, NavParams } from "@ionic/angular";
+import { AlertController, PopoverController, NavParams, LoadingController, Events } from "@ionic/angular";
 import { popoverController } from '@ionic/core';
 import { ModalCodeComponent } from '../../components/modal-code/modal-code.component';
 import { ConsultaDatosService } from 'src/app/service/consulta-datos.service';
 import { HttpClient } from '@angular/common/http';
 import { DniService } from 'src/app/service/dni.service';
+import { ChatService } from 'src/app/service/chat.service';
+import { DatosControlService } from 'src/app/service/datos-control.service';
+import { CalcComponent } from 'src/app/components/calc/calc.component';
 
 
 @Component({  
@@ -57,20 +60,30 @@ export class RegisterPage implements OnInit {
   public _documenType;
   @Input ('dataArmada') dataArmada;
   public dataFacebook;
+  createOk: any;
+  message: string;
+  datos: any;
+  startPregnancy: string;
   
   
 
   constructor(
     private fb: FormBuilder,
     public crudSrv: CrudService,
-    public routes: Router,
+    public router: Router,
     public route: ActivatedRoute,
     public dataSvr: DataService,
     public alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
     public _consultaDatos: ConsultaDatosService,
     public http: HttpClient,
-    public dniSer: DniService
+    public dniSer: DniService,
+    public loadinCtrl: LoadingController,
+    public events: Events,
+    public chatSrv: ChatService,
+    public datosSrv: DatosControlService,
+    public popover: PopoverController
+
   ) {}
 
   ionViewDidEnter(){
@@ -166,10 +179,20 @@ export class RegisterPage implements OnInit {
   }
 
   async openPopover(){
-    const data = this.registerForm.value;
-    console.log('data en el modal:', data);
-    const email = data.email
-    this.crudSrv.validateEmail(email).subscribe(async (res) =>{
+    this.data = this.registerForm.value;
+    this.data.birthdate = moment(this.registerForm.value.birthday).format('YYYY-MM-DD');
+    this.data.code = 1234;
+    this.data.id = 'sendmamapp';
+    console.log('data en el modal:', this.data);
+    const email = this.data.email
+    /* this.crudSrv.validateEmail(email).subscribe(async (res) =>{
+      this.data = res;
+      console.log('data retornada de validateEmail:',this.data);
+    }); */
+    this.saveData();
+      this.goToCalc(name);
+     /* this.router.navigate(['/tabs']); */
+    /* 
       console.log('data correcta:', res); 
         const popover = await this.popoverCtrl.create({
           component: ModalCodeComponent,
@@ -192,12 +215,102 @@ export class RegisterPage implements OnInit {
             }
         ]
        });
-       /* console.log(err); */
        await alert.present();
-   })
+   }) */
+   
+  }
+
+  saveData(){
+    this.data.code = 1234;
+    this.data.id = "sendmamapp" ;
+    this.data.gender = {
+      id:3,
+      name:"MUJER"
+    };
+    this.data.birthdate = moment(this.data.birthdate).format('YYYY-MM-DD');
+    console.log('this.data: ',this.data.birthdate);
+    console.log('this.data: ',this.data);
+    console.log('data armada:', this.data);
+    this.crudSrv.createNewUser(this.data).subscribe(async (data:any) =>{
+      this.createOk = data;
+      console.log('la vuelta de this.createOK:', this.createOk);
+        
+        /* this.createOk = data; */
+           console.log('datos que vienen del logueo: por registro:', this.createOk);
+             localStorage.setItem('idTokenUser', this.createOk.patientId);
+             localStorage.setItem('emailUser', this.createOk.userEmail);
+             localStorage.setItem('authorization', this.createOk.authorization); 
+             localStorage.setItem('role', this.createOk.role);
+             localStorage.setItem('photoUrl', this.createOk.photoUrl);
+             localStorage.setItem('name', this.createOk.name);
+             localStorage.setItem('patientName', this.createOk.patientName);
+             localStorage.setItem('token', this.createOk.firebaseToken);
+             this.events.publish('user:logged', 'logged');
+             localStorage.setItem('token', data.firebaseToken);
+            localStorage.setItem('uid', data.userId);
+            localStorage.setItem('sigIn', 'completo');
+             this.router.navigate(['/login']);
+             console.log("pasó!!!");
+             console.log('pasó logeado', this.createOk);
+             if(localStorage.getItem('token')){
+              const token = localStorage.getItem('token');
+              this.chatSrv.registerCustom(token);
+            }
+              /* this.goToCalc(name); */
+              /* this.router.navigate(['/tabs']); */
+
+         /*    this.datosSrv.getStartPregnacy().subscribe((data:any) =>{
+              if(!data){
+                const nombre = localStorage.getItem('nombre');
+               this.goToCalc(nombre)
+               return
+              }
+             console.log('lo que devuelve el servicio startPregnancy:', data, this.startPregnancy);
+             if(this.startPregnancy){
+               localStorage.setItem('startPregnancy',this.startPregnancy); 
+               this.router.navigate(['/tabs']);
+             }else{
+              const name = localStorage.getItem('name');
+               this.goToCalc(name);
+               this.router.navigateByUrl('/tabs');
+             }
+             this.events.publish('change:foto');
+           },err =>{
+            const name = localStorage.getItem('name');
+            this.goToCalc(name);
+            return
+           }); */
+            
+        /* await loading.dismiss(); */
+        
+      }, async err=>{
+        console.log('err',err);
+      const alert = await this.alertCtrl.create({
+        header:'Error en el envio del código',
+        message:`${err.error.message}`,
+        buttons:[{
+          text:'Intentar de nuevo',
+          role: 'cancel'
+        }]
+      });
+      await alert.present();
+    });
   }
     
     goToLogin(){
-      this.routes.navigate(['/login']);
+      this.router.navigate(['/login']);
+    }
+
+    async goToCalc(name){
+      const popover = await this.popover.create({
+        component:CalcComponent,
+        componentProps:{
+          name:name
+        },
+        backdropDismiss: false,
+        cssClass: 'popoverStyle'
+      })
+      await popover.present();
+      /* this.router.navigate(['tabs']); */
     }
 }

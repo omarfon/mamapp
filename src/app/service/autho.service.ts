@@ -37,15 +37,12 @@ export class AuthoService {
   loginWithFacebook(token){
     const authorization = localStorage.getItem('authorization');
     /* let headers = new HttpHeaders({'Authorization': authorization}); */
-
 /*     let params = {data: dataMiddle, app:"mama"} */
-
     return this.http.get(`${this.apiUrlFacebook}${token}` ).pipe(
                     map(data =>{
                       return data
                     })
     ) 
-    /* return dataMiddle; */
   }
 
   registerWithFacebook(data){

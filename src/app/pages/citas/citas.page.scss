@@ -37,9 +37,12 @@ ion-content {
 .numeroDia{
     margin-top:0px;
 }
+.mat-expansion-indicator::after{
+    color:transparent!important;
+}
 .doctor {
     font-weight: 200;
-    color: #10A7C1;
+    color: #37404C;
     font-size: 1.3em;
     text-align: right;
     margin-right: 15px;
@@ -169,7 +172,7 @@ a:hover {
 }
 .center{
   text-align: center;
-  color:#66CBEC;
+  color:#4A4A4A;
   margin-bottom:30px;
   font-weight:400;
 }

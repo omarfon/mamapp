@@ -43,10 +43,12 @@ export class ControlesPage implements OnInit {
           {
             text:"Seguir sin Registrarme",
             handler:()=>{
-              console.log('ir a registro');
+              this.routes.navigate(['/tabs']);
+              console.log('ir a home');
             }
           }
-        ]
+        ],
+        backdropDismiss: false
       });
       await alert.present();
     }
@@ -75,6 +77,7 @@ export class ControlesPage implements OnInit {
               this.message = true;
               }else{
                 this.encuentros = data.encuentros;
+                console.log('this.encuentros:',this.encuentros);
               }
             }, err =>{
               this.message = true;
@@ -91,12 +94,21 @@ export class ControlesPage implements OnInit {
   }
 
   createDate(){
-    /* this.navCtrl.push(CitasPage, {c: this.fechaIni }) */
-    let c = {
-      fechaIni : this.fechaIni
-    }
-    this.routes.navigate(['citas', c])
-        console.log('mandar a la pagina citas', c);
+     const datos = {
+       fechaIni : this.fechaIni,
+       escogido : 44
+     }
+     const data = JSON.stringify(datos);
+    /* console.log('mandar a la pagina citas', c); */
+    this.routes.navigate(['/citas',data])
+  }
+  createDateTele(){
+        const datos = {
+          fechaIni : this.fechaIni,
+          escogido : 845337
+        }
+        const data = JSON.stringify(datos);
+    this.routes.navigate(['/citas',data])
   }
 
   async openModal(ev:any){

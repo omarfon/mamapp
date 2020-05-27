@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-recalcdate',
@@ -12,20 +13,19 @@ export class RecalcdateComponent implements OnInit {
   public diaElegido;
 
   constructor(public router: Router,
-              public modalCtrl: ModalController) { }
+              public modalCtrl: ModalController,
+              public nav: NavController) { }
 
   ngOnInit() {}
 
   goToRecalc(matInput){
     let date = moment(matInput).format('YYYY-MM-DD');
-/*     console.log(date);
-    console.log('dia elegido', this.diaElegido);
+    console.log(date);
+    localStorage.setItem('startPregnancy', date);
+    /*console.log('dia elegido', this.diaElegido);
     console.log('resultado de input', matInput); */
     if(date){
-      this.router.navigate(['/home',{
-        date:date
-      }
-    ]);
+      this.router.navigate(['/tabs/tab1']);
   }
   this.modalCtrl.dismiss({
     'dismissed': true

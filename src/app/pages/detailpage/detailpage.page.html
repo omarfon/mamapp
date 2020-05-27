@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="rosado">
+  <ion-toolbar color="light">
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
       </ion-buttons>
@@ -40,16 +40,16 @@
         </ion-item>
     </ion-list>
         
-            <ion-row>
+            <ion-row padding>
                 <ion-col >
-                    <ion-button color="primary" 
+                    <ion-button color="warning" 
                                 (click)='desactivateTask(date)'
                                 expand="full">ELIMINAR</ion-button>
                 </ion-col>
                 <ion-col >
                     <ion-button  
                                 (click)="dismiss()" 
-                                color="rosado"
+                                color="primary"
                                 expand="full">VOLVER</ion-button>
                 </ion-col>
             </ion-row>

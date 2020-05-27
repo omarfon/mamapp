@@ -39,7 +39,6 @@ export class ChatPage implements OnInit {
               public toast: ToastController,
               public afm: AngularFireMessaging,
               public notiSrv: NotificationsService) {
-
               }
 
   async ionViewDidEnter() {
@@ -59,10 +58,11 @@ export class ChatPage implements OnInit {
           {
             text: "Seguir sin Registrarme",
             handler: () => {
-              console.log('ir a registro');
+              this.router.navigate(['/tabs']);
+              console.log('volver al home');
             }
           }
-        ]
+        ], backdropDismiss:false
       });
       await alert.present();
     }

@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="sigIn !== 'completo' || status === 'novalidado' || status === 'novalidado'" class="containerSinControles" style="background:url(assets/imgs/sinControles.svg);" >
+<!--   <div *ngIf="sigIn !== 'completo' || status === 'novalidado' || status === 'novalidado'" class="containerSinControles" style="background:url(assets/imgs/sinControles.svg);" >
       <ion-row>
         <ion-col size="3" class="containerDatosControl">
           <p class="numeroDeSemana">2</p>
@@ -29,7 +29,7 @@
           <p class="verMas" (click)="openModal($event)">ver más detalles</p>
         </ion-col>
       </ion-row>
-  </div>
+  </div> -->
 
   <ion-card *ngFor="let encuentro of encuentros; let i = index"
             (click)="goToDetail(encuentro)">
@@ -52,7 +52,7 @@
   <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'validado'" >Aún no tienes controles disponibles para mostrar”</p> 
   <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'novalidado'" >Para mostrar tus controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión</p> 
   <p class="textoMensaje" *ngIf="message === true && user === 'nouser'">Inicia sesión para ver tus controles</p> 
-  <ion-fab
+<!--   <ion-fab
           vertical="bottom"
           horizontal="end"
           slot="fixed"
@@ -60,8 +60,29 @@
           (click)="createDate()">
           <ion-fab-button color="secondary">
             <ion-icon name="add"></ion-icon>
-           <!--  Reservar cita -->
+           
           </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
+  <ion-row class="bottom">
+    <ion-col size="6">
+      <ion-button (click)="createDateTele()"
+      shape="round"
+      expand="block"
+      color="secondary">
+      <ion-icon name="phone-portrait"></ion-icon>
+      <ion-label>Reserva teleconsulta</ion-label> 
+</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button (click)="createDate()"
+              shape="round"
+              expand="block"
+              color="warning">
+              <ion-label>Reserva Consulta</ion-label>
+</ion-button>    
+    </ion-col>
+  </ion-row>
+
+  
 
 </ion-content>

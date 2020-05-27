@@ -1,12 +1,42 @@
-<ion-content>
-  <div  class="containerImagen">
-    <iframe
-    id="embedded-human"
-    frameBorder="0"
-    width="450"
-    height="400"
-    allowFullScreen="true"
-    src="https://human.biodigital.com/viewer/?be=2d8K&ui-info=false&ui-search=false&ui-reset=true&ui-fullscreen=true&ui-nav=false&ui-tools=false&ui-help=false&ui-chapter-list=false&ui-label-list=true&ui-anatomy-descriptions=false&disable-scroll=false&camera=-19.845,-20.513,-7.011,2.253,-21.3,1.873,-0.152,0.986,-0.061&uaid=4uyY2">
-  </iframe>
+<ion-content id="container3d">
+  <div>
+    <ion-row>
+      <ion-col size="11"></ion-col>
+      <ion-col size="1"
+                (click)="close()">
+        <ion-icon name="close"
+                  color="secondary"></ion-icon>
+      </ion-col>
+    </ion-row>
   </div>
+  <h3>Tu bebé esta de este tamaño</h3>
+  
+  <div *ngIf="semanas == 1 || 2 || 3 || 4">
+    <iframe id="embedded-human" frameBorder="0" width="400" height="600" allowFullScreen="true"
+      src="https://human.biodigital.com/viewer/?be=2d8F&ui-info=true&ui-search=true&ui-reset=true&ui-fullscreen=true&ui-nav=true&ui-tools=false&ui-help=false&ui-chapter-list=true&ui-label-list=true&ui-anatomy-descriptions=false&ui-tutorial=false&initial.hand=true&disable-scroll=false&uaid=5fkGF">
+    </iframe>
+  </div>
+
+  <div *ngIf="semanas == 5 || 6 || 7 || 8">
+    <iframe id="embedded-human" frameBorder="0" width="400" height="550" allowFullScreen="true"
+      src="https://human.biodigital.com/viewer/?be=2d8I&ui-info=true&ui-search=false&ui-reset=true&ui-fullscreen=true&ui-nav=true&ui-tools=false&ui-help=false&ui-chapter-list=true&ui-label-list=false&ui-anatomy-descriptions=true&ui-tutorial=false&disable-scroll.alert=true&uaid=5fnQx">
+    </iframe>
+    </div>
+
+  <div *ngIf="semanas == 9 || 10 || 11 || 12">
+    <iframe id="embedded-human" frameBorder="0" width="400" height="550" allowFullScreen="true"
+      src="https://human.biodigital.com/viewer/?be=2d8E&ui-info=true&ui-search=false&ui-reset=true&ui-fullscreen=true&ui-nav=true&ui-tools=false&ui-help=false&ui-chapter-list=true&ui-label-list=false&ui-anatomy-descriptions=true&ui-tutorial=false&disable-scroll.alert=true&uaid=5fnW9">
+    </iframe>
+  </div>
+  <div *ngIf="semanas == 13 || 14 || 15 || 16">
+    <iframe id="embedded-human" frameBorder="0" width="400" height="550" allowFullScreen="true"
+      src="https://human.biodigital.com/viewer/?be=2d8E&ui-info=true&ui-search=false&ui-reset=true&ui-fullscreen=true&ui-nav=true&ui-tools=false&ui-help=false&ui-chapter-list=true&ui-label-list=false&ui-anatomy-descriptions=true&ui-tutorial=false&disable-scroll.alert=true&uaid=5fnW9">
+    </iframe>
+  </div>
+  <div *ngIf="semanas == 17 || 18 || 19 || 20">
+    <iframe id="embedded-human" frameBorder="0" width="400" height="550" allowFullScreen="true"
+      src="https://human.biodigital.com/viewer/?be=2d8E&ui-info=true&ui-search=false&ui-reset=true&ui-fullscreen=true&ui-nav=true&ui-tools=false&ui-help=false&ui-chapter-list=true&ui-label-list=false&ui-anatomy-descriptions=true&ui-tutorial=false&disable-scroll.alert=true&uaid=5fnW9">
+    </iframe>
+  </div>
+
 </ion-content>
