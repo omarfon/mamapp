@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { AuthoService } from 'src/app/service/autho.service';
-import * as moment from "moment";
+import moment from "moment";
 import { Router } from '@angular/router';
 import { AlertController, Events, ModalController, PopoverController } from '@ionic/angular';
 import { CalcComponent } from 'src/app/components/calc/calc.component';

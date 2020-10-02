@@ -5,6 +5,7 @@
     box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.4);
     padding-top: 2%;
 }
+
 #profile-info {
     position: absolute;
     top: -85px;
@@ -13,33 +14,38 @@
     height: auto;
     text-align: center;
 }
+
 #profile-description {
     font-size: 15px;
     color: #888;
 }
+
 #profile-image {
     display: block;
     border-radius: 20px;
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     margin: 30px auto 0;
     text-align: center;
 }
+
 .nombreDoctor {
-    margin-top:40px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: #888;
     font-weight: 600;
     width: 80%;
     margin-left: 10%;
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-transform: capitalize;
 }
+
 ion-label {
     color: #4A4A4A;
     font-size: .9em;
     font-weight: 500;
 }
+
 .blue {
     color: #888;
     text-align: left;
@@ -47,37 +53,60 @@ ion-label {
     font-weight: 400;
     text-transform: capitalize;
 }
-.fa{
-  color:#062F51;
+
+.fa {
+    color: #062F51;
 }
-ion-navbar ion-icon{
-  color:#fff;
+
+ion-navbar ion-icon {
+    color: #fff;
 }
+
 ion-icon {
     color: #A7A9AB;
     font-size: .7em;
 }
+
 .toolbar-md-primary .bar-button-default-md {
-    color: #fff!important;
+    color: #fff !important;
 }
+
 .toolbar-title,
 .toolbar-title-md {
-    font-size: 1.3em!important;
+    font-size: 1.3em !important;
     // text-align: center;
     font-weight: 400;
 }
+
 .item-inner {
-    margin-left: 5px!important;
+    margin-left: 5px !important;
 }
+
 .heightNoventa {
-    margin-right: 0!important;
+    margin-right: 0 !important;
 }
-.segment-md-secondary{
- color:#fff!important;
+
+.segment-md-secondary {
+    color: #fff !important;
 }
-ion-segment-button .segment-activated{
- color:#fff!important;
+
+ion-segment-button .segment-activated {
+    color: #fff !important;
 }
-ion-button{
+
+ion-button {
     height: 45px;
+}
+
+.teleconsultaText {
+    color: #0f9170;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+    font-weight: 400;
+    font-size: .9em;
+}
+
+.iconSize {
+    font-size: 30px;
 }

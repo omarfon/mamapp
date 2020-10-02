@@ -27,30 +27,38 @@
 
 
 /*Modal*/
-.wideModal .modal-wrapper{
-    width: 90%!important;
-    --background:#B6BFBF;
-   /*  margin-left:2.5%; */
+.wideModal .modal-wrapper {
+    width: 90% !important;
+    --background: #B6BFBF;
+    /*  margin-left:2.5%; */
+    margin-bottom: -100px;
     --height: 57%;
-    --border-radius:10px;
+    --border-radius: 10px;
 }
 
-.wideModalControl .modal-wrapper{
-    width: 90%!important;
-    --background:#fff;
+.wideModalControl .modal-wrapper {
+    width: 90% !important;
+    --background: #fff;
     --height: 77%;
-    --border-radius:10px;
+    --border-radius: 10px;
 }
-.RecalcModalControl .modal-wrapper{
-    width: 80%!important;
-    --background:#fff;
-    --height:40%;
-    --border-radius:10px;
+
+.RecalcModalControl .modal-wrapper {
+    width: 80% !important;
+    --background: #fff;
+    --height: 40%;
+    --border-radius: 10px;
 }
-.mat-expansion-indicator::after{
-    color:transparent!important;
+
+.mat-expansion-indicator::after {
+    color: transparent !important;
 }
-.modal-baby .popover-content{
-    width:95%;
-    height:80vh;
+
+.modal-baby .popover-content {
+    width: 95%;
+    height: 80vh;
+}
+
+.mat-expansion-panel-body {
+    padding: 5px 5px !important;
 }

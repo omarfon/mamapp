@@ -8,9 +8,9 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'start', pathMatch: 'full'
-    
+
   },
-  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' , canActivate:[NologinGuard]},
+  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule', canActivate: [NologinGuard] },
   { path: 'chat', loadChildren: './pages/chat/chat.module#ChatPageModule' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'citas/:data', loadChildren: './pages/citas/citas.module#CitasPageModule' },
@@ -23,11 +23,11 @@ const routes: Routes = [
   { path: 'detailrecipe/:datosObj', loadChildren: './pages/detailrecipe/detailrecipe.module#DetailrecipePageModule' },
   { path: 'evolucion', loadChildren: './pages/evolucion/evolucion.module#EvolucionPageModule' },
   { path: 'financer/:datosObj', loadChildren: './pages/financer/financer.module#FinancerPageModule' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate:[AuthGuard]},
+  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [AuthGuard] },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'modal-no-service', loadChildren: './pages/modal-no-service/modal-no-service.module#ModalNoServicePageModule' },
   { path: 'recetas', loadChildren: './pages/recetas/recetas.module#RecetasPageModule' },
-  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule'},
+  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'register/:data', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'register/:datosObj', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'recoverycode/:dataObj', loadChildren: './pages/recoverycode/recoverycode.module#RecoverycodePageModule' },
@@ -35,6 +35,11 @@ const routes: Routes = [
   { path: 'resumen/:datosObj', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' },
   { path: 'facebook-register', loadChildren: './pages/facebook-register/facebook-register.module#FacebookRegisterPageModule' },
+  { path: 'video', loadChildren: './pages/video/video.module#VideoPageModule' },
+  { path: 'video/:data', loadChildren: './pages/video/video.module#VideoPageModule' },
+  { path: 'waiting', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
+  { path: 'waiting/:data', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
+  { path: 'waiting', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
 ];
 @NgModule({
   imports: [
@@ -42,4 +47,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

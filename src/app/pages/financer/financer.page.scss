@@ -1,341 +1,430 @@
-ion-content{
-    --background: #eeeeee!important;
+ion-content {
+  --background: #eeeeee !important;
+}
+
+.visa {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mastercard {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.parrafoFinanciador {
+  color: #062F51;
+  text-align: center;
+  margin-bottom: 2em;
+  font-size: 1.1em;
+  font-weight: 300;
+  padding-top: 1em;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.seguroList {
+  width: 90% !important;
+  margin-left: 5% !important;
+}
+
+.evaluate {
+  /*  background-color: #fff!important; */
+  width: 90%;
+  margin-left: 5%;
+  border: none !important;
+  border-bottom: .5px solid #D8D8D8 !important;
+  height: auto;
+
+  p {
+    color: #00B6A3;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-top: 8px;
+    text-transform: capitalize;
   }
-  .visa {
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .mastercard {
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .parrafoFinanciador {
-    color: #062F51;
-    text-align: center;
-    margin-bottom: 2em;
-    font-size: 1.1em;
-    font-weight: 300;
-    padding-top: 1em;
-    width: 90%;
-    margin-left: 5%;
-  }
-  .seguroList {
-    width: 90%!important;
-    margin-left: 5%!important;
-  }
-  .evaluate {
-   /*  background-color: #fff!important; */
-    width: 90%;
-    margin-left: 5%;
-    border: none!important;
-    border-bottom: .5px solid #D8D8D8 !important;
-    height: auto;
-    p {
-        color: #00B6A3;
-        font-size: 1.2em;
-        font-weight: 400;
-        margin-top: 8px;
-        text-transform: capitalize;
-    }
-  }
-  .item-md,
-  .item-ios {
-    color: #9B9B9B;
-    font-size: .9em;
-    background: none;
-    // border-bottom: 1px solid #979797;
-  }
-  .button.segment-activated {
-    border-bottom: 1px solid #979797;
-  }
-  .item-md-light,
-  .item-divider-md-light,
-  .item-ios-light,
-  .item-divider-ios-light {
-    background-color: #fff;
-  }
-  .paymenyquestion {
-    margin-top: 3em;
-  }
-  .tiny {
-    font-size: .9em;
-  }
-  .cajagris {
-    background-color: #9B9B9B;
-  }
-  .pagoEfectivo {
-    color: #9B9B9B;
-    font-size: 1em;
-    font-style: italic;
-    margin-bottom: 5em;
-    text-align: center;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 1em;
-  }
-  .tituloMetodos {
-    color: #062F51;
-    margin-top: 2em;
-    font-weight: 300;
-  }
-  /* .container-gris {
+}
+
+.item-md,
+.item-ios {
+  color: #9B9B9B;
+  font-size: .9em;
+  background: none;
+  // border-bottom: 1px solid #979797;
+}
+
+.button.segment-activated {
+  border-bottom: 1px solid #979797;
+}
+
+.item-md-light,
+.item-divider-md-light,
+.item-ios-light,
+.item-divider-ios-light {
+  background-color: #fff;
+}
+
+.paymenyquestion {
+  margin-top: 3em;
+}
+
+.tiny {
+  font-size: .9em;
+}
+
+.cajagris {
+  background-color: #9B9B9B;
+}
+
+.pagoEfectivo {
+  color: #9B9B9B;
+  font-size: 1em;
+  font-style: italic;
+  margin-bottom: 5em;
+  text-align: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1em;
+}
+
+.tituloMetodos {
+  color: #062F51;
+  margin-top: 2em;
+  font-weight: 300;
+}
+
+/* .container-gris {
     background-color: #F3F6F6;
     height: auto;
     padding-bottom: 1.5em;
   } */
-  .precio {
-    margin-right: 20px;
-    color: #062F51;
-    margin-bottom: 3em;
-    font-size: 1.1em;
-    font-weight: 500;
-  }
-  .textoPrecio {
-    text-align:right!important; 
-  }
-  .containerPrecio {
-    margin-top:-10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .moneda{
-    font-size:1.4em;
-    font-weight: 600;
-  }
-  .list-ios>.item-block:last-child {
-    border-bottom: none;
-  }
-  .item-md.item-block .item-inner {
-    margin-bottom: 5px;
-  }
-  .item-md {
-    margin-bottom: 5px;
-  }
-  .list-md .item-block .item-inner,
-  .item-md.item-block .item-inner {
-    border-bottom: none;
-  }
-  .botonAccept {
-    height: 50px!important;
-  }
-  .segment-md .segment-button {
-    border-bottom: none;
-  }
-  .segment-md .segment-button.activated,
-  .segment-md .segment-button.segment-activated {
-    color: #00B6A3;
-    border-bottom: 1px solid #00B6A3;
-  }
-  .nombreDoctor{
-    color:#00B6A3;
-    font-size:1.3em;
-    text-align: right!important;
-    margin-right:10px;
-  }
-  .blue{
-    color:#979797;
-    font-weight: 600;
-    text-align: right;
-    margin-right: 40px!important;
-  }
-  
-  ion-label{
-    margin-top:5px!important;
-    margin-bottom:5px!important;
-  }
-  img{
-    width:100px;
-    margin-left: calc( 50% - 50px);
-  }
-  .resumen{
-    padding-bottom:1em;
-    background-color: #fff;
-  }
-  .centrar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom:5px;
-    .izquierda{
-        color:#062F51;
-        margin-left:40px;
-    }
-  }
-  .containerTextoPago{
-    background: #007198;
-    h3{
-        color:#fff !important;
-        font-weight:400;
-        padding: 10px 0;
-        margin-top:0;
-        font-size:1.1em;
-        text-align: center;
-        }
-  }
-  .cuadrado{
+.precio {
+  margin-right: 20px;
+  color: #062F51;
+  margin-bottom: 3em;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.textoPrecio {
+  text-align: right !important;
+}
+
+.containerPrecio {
+  margin-top: -10px;
   display: flex;
   justify-content: center;
   align-items: center;
-    button{
-      height: 50px;
-      width:90%;
-      border-top-right-radius:20px;
-    }
+}
+
+.moneda {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.list-ios>.item-block:last-child {
+  border-bottom: none;
+}
+
+.item-md.item-block .item-inner {
+  margin-bottom: 5px;
+}
+
+.item-md {
+  margin-bottom: 5px;
+}
+
+.list-md .item-block .item-inner,
+.item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+.botonAccept {
+  height: 50px !important;
+}
+
+.segment-md .segment-button {
+  border-bottom: none;
+}
+
+.segment-md .segment-button.activated,
+.segment-md .segment-button.segment-activated {
+  color: #00B6A3;
+  border-bottom: 1px solid #00B6A3;
+}
+
+.nombreDoctor {
+  color: #00B6A3;
+  font-size: 1.3em;
+  text-align: right !important;
+  margin-right: 10px;
+}
+
+.blue {
+  color: #979797;
+  font-weight: 600;
+  text-align: right;
+  margin-right: 40px !important;
+}
+
+ion-label {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  font-size: .8em !important;
+  color: #062F51 !important;
+}
+
+img {
+  width: 100px;
+  margin-left: calc(50% - 50px);
+}
+
+.list-md {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.resumen {
+  padding-bottom: 1em;
+  background-color: #fff;
+}
+
+.centrar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  .izquierda {
+    color: #062F51;
+    margin-left: 40px;
   }
-  .me, .fam{
+}
+
+span {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #062F51
+}
+
+.containerTextoPago {
+  background: #007198;
+
+  h3 {
+    color: #fff !important;
+    font-weight: 400;
+    padding: 10px 0;
+    margin-top: 0;
+    font-size: 1.1em;
+    text-align: center;
+  }
+}
+
+.cuadrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    height: 50px;
+    width: 90%;
+    border-top-right-radius: 20px;
+  }
+}
+
+.me,
+.fam {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80px;
   height: 80px;
   border: solid 4px #00B6A3;
-  color:#007198;
-  text-align:center;
-  font-size:1.2em;
-  }
-  .medio{
-  margin-top:5vh;
-  }
-  .buttonAddFamily{
-  margin-top:20px;
+  color: #007198;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.medio {
+  margin-top: 5vh;
+}
+
+.buttonAddFamily {
+  margin-top: 20px;
   height: 50px;
-  }
-  .botonPagar{
-  width:90%;
+}
+
+.botonPagar {
+  width: 90%;
   margin-left: 5%;
   height: 50px;
-  }
-  .nombrePariente{
-  color:#00B6A3;
-  font-size:1.3em;
-  margin-top:5px;
+}
+
+.nombrePariente {
+  color: #00B6A3;
+  font-size: 1.3em;
+  margin-top: 5px;
   text-align: right;
-  margin-right:10px;
-  }
-  .parentesco{
-  color:#4A4A4A;
+  margin-right: 10px;
+}
+
+.parentesco {
+  color: #4A4A4A;
   text-align: right;
-  margin-right:10px;
-  }
-  .edad{
+  margin-right: 10px;
+}
+
+.edad {
   text-align: right;
-  margin-right:10px;
-  }
-  .center{
+  margin-right: 10px;
+}
+
+.center {
   text-align: center;
-  margin-top:30px;
-  }
-  .down20{
-  margin-top:30px;
-  }
-  ion-avatar img{
-  width:50px;
-  }
-  .cardEscogidoImg img{
-  width: 40px!important;
-  margin-left:20px;
-  }
-  .containerNombre{
+  margin-top: 30px;
+}
+
+.down20 {
+  margin-top: 30px;
+}
+
+ion-avatar img {
+  width: 50px;
+}
+
+.cardEscogidoImg img {
+  width: 40px !important;
+  margin-left: 20px;
+}
+
+.containerNombre {
   display: flex;
   justify-content: center;
   align-items: center;
-  }
-  .verde{
-    background-color : #00B6A3!important;
-  }
-  .tarjetaDepes{
+}
+
+.verde {
+  background-color: #00B6A3 !important;
+}
+
+.tarjetaDepes {
   height: 60px;
   background: #007198;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom:-5px;
+  margin-bottom: -5px;
   border-top-right-radius: 15px;
-  h3{
-    color:#fff;
-    text-align:center;
-    font-size:1.1em;
-   }
-  }
-  .contenedorPagadores{
-    /* background: rgba(255, 255, 255, 0.9); */
-    width: 90%;                                                                                      
-    margin-left: 5%;
-    margin-bottom:20px;
-    border-top-right-radius: 30px;
-  }
-  .centerTitle{
+
+  h3 {
+    color: #fff;
     text-align: center;
-    color:#007198;
-    margin-top:50px;
+    font-size: 1.1em;
   }
-  .nombrePago{
-    color:#007198;
-    font-size:1em;
-    font-weight: 400;
-  }
-  .paquetes{
-    height: 90px;
-  }
-  ion-slides{
-    height: auto!important;
-  }
-  .azul{
-    color: #007198;
-    font-size:1.3em;
-    font-weight: 600; 
-    
-   }
-   .containerPay{
-       background: #eeeeee;
-   }
-  .tituloPlanes{
-      text-align: center;
-      background:#00B6A3;
-      color:#fff;
-      font-size:1em!important;
-      padding-top:.3em;
-      padding-bottom:.3em;
-  }
-  .noprice{
-      color:#062F51;
-      text-align: center;
-      width: 80%;
-      margin-left: 10%;
-      font-size: 1.6em;
-      font-weight: 400;
-  }
-  .list-md{
-    background: transparent!important;
-  }
-  ion-card{
-    margin-left:0;
-    margin-right: 0;
-  }
-  .textoIndicador{
-    color:#062F51;
-    text-align: center;
-    width:80%;
-    margin-left:10%;
-  }
-  .cardSkeletonFinancer{
-    --background:#fff;
-    margin-bottom:10px;
-    width:90%;
-    margin-left:5%;
-    height:100px;
-  }
-  .explainedTele{
-    width:90%;
-    margin-left:5%;
-  }
-  .iconoCardTele{
-    width:60%;
-    margin-left:20%;
-    margin-top:20px;
-  }
-  .textoCardTele{
-    font-size:1.1em;
-  }
+}
+
+.contenedorPagadores {
+  /* background: rgba(255, 255, 255, 0.9); */
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 20px;
+  border-top-right-radius: 30px;
+}
+
+.centerTitle {
+  text-align: center;
+  color: #007198;
+  margin-top: 10px;
+}
+
+.nombrePago {
+  color: #007198;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.paquetes {
+  height: 90px;
+}
+
+ion-slides {
+  height: auto !important;
+}
+
+.azul {
+  color: #007198;
+  font-size: 1.3em;
+  font-weight: 600;
+
+}
+
+.containerPay {
+  background: #eeeeee;
+}
+
+.tituloPlanes {
+  border-top-right-radius: 20px;
+  text-align: center;
+  background: #062F51;
+  color: #fff;
+  font-size: 1em !important;
+  padding-top: .3em;
+  padding-bottom: .3em;
+  margin-bottom: -10px;
+}
+
+h4 {
+  margin-top: 0 !important;
+}
+
+.noprice {
+  color: #062F51;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.6em;
+  font-weight: 400;
+}
+
+.list-md {
+  background: transparent !important;
+}
+
+ion-card {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.textoIndicador {
+  color: #062F51;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-size: .9em;
+}
+
+.cardSkeletonFinancer {
+  --background: #fff;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 5%;
+  height: 100px;
+}
+
+.explainedTele {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.iconoCardTele {
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 20px;
+}
+
+.textoCardTele {
+  font-size: 1.1em;
+}

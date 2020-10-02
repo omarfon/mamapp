@@ -1,119 +1,140 @@
 <ion-header>
   <ion-toolbar color="light">
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Financiador</ion-title>
+    <ion-title size="small">Financiador</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card color="warning" class="explainedTele" *ngIf="encuentro == 845337">
-      <ion-row>
-        <ion-col size="3">
-          <img class="iconoCardTele" src="assets/imgs/financer/iconoCelular.png" alt="">
-        </ion-col>
-        <ion-col size="9">
-          <p class="textoCardTele">Hasta el momento has escogido una teleconsulta, esta se realizará por una videollamada, estaremos enviandote un email con las indicaciones </p>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+  <!--  <ion-card color="warning" class="explainedTele" *ngIf="encuentro == 845337">
+    <ion-row>
+      <ion-col size="3">
+        <img class="iconoCardTele" src="assets/imgs/financer/iconoCelular.png" alt="">
+      </ion-col>
+      <ion-col size="9">
+        <p class="textoCardTele">Hasta el momento has escogido una teleconsulta, esta se realizará por una videollamada,
+          estaremos enviandote un email con las indicaciones </p>
+      </ion-col>
+    </ion-row>
+  </ion-card> -->
   <div class="containerPay">
     <h3 class="centerTitle">Como quieres pagar?</h3>
-    <p class="textoIndicador">A continuación escoge una de las opciones de financiamiento, para luego ir a pago, ya casi terminamos...</p> 
-      
-          <div class="contenedorPagadores" *ngIf= "planes">
-            <ion-list no-lines>
-              <ion-radio-group>
+    <p class="textoIndicador">A continuación escoge una de las opciones de financiamiento, para luego ir a pago, ya casi
+      terminamos...</p>
 
-                <div *ngFor="let plan of planes">
-                  <ion-card *ngIf="plan.es_paquete_propio == 0 && plan.es_plan_propio == 0 ">
-                    <ion-item >
-                       <!--  <ion-checkbox  (click)="acceptFinancer(plan)"></ion-checkbox> -->
-                        <ion-radio slot="start" (click)="acceptFinancer(plan)"></ion-radio>
-                        <ion-label>{{plan.plan_desc}}</ion-label>
-                        <span item-right>
-                          <p>S/. {{plan.precio[0].total}}</p>
-                        </span>
-                    </ion-item>
-                  </ion-card>  
-                 
-                  <ion-card *ngIf="plan.es_paquete_propio == 0 && plan.es_plan_propio == 1 ">
-                    <ion-item >
-                       <!--  <ion-checkbox  (click)="acceptFinancer(plan)"></ion-checkbox> -->
-                        <ion-radio slot="start" (click)="acceptFinancer(plan)"></ion-radio>
-                        <ion-label>{{plan.plan_desc}}</ion-label>
-                        <span item-right>
-                          <p>S/. {{plan.precio[0].total}}</p>
-                        </span>
-                    </ion-item>
-                  </ion-card> 
+    <div class="contenedorPagadores" *ngIf="planes">
+      <ion-list>
+        <ion-radio-group>
+          <div *ngFor="let plan of planes">
+            <ion-card *ngIf="plan.es_paquete_propio === 0 && plan.es_plan_propio === 0 ">
+              <ion-item>
 
-                      <ion-list  *ngIf="plan.es_paquete_propio == 1 && plan.es_plan_propio == 0" no-lines>
-                        <h4 class="tituloPlanes">{{plan.plan_desc}}</h4>
-                        <ion-card *ngFor="let beneficio of plan.beneficios">
-                          <ion-item class="bloques" no-lines>
-                            <ion-radio [disabled]="disabled" slot="start" (click)="acceptFinancerPaquete(plan)"></ion-radio>
-                             <!--  <ion-checkbox  (click)="acceptFinancerPaquete(plan)"></ion-checkbox> -->
-                                <ion-label>{{beneficio.beneficio_paquete}}</ion-label>
-                                <span item-right>
-                                  <p>{{beneficio.cantidad_veces}} / {{beneficio.cantidad_max}}</p>
-                                </span>
-                            </ion-item>
-                            <ion-row *ngIf="plan.cuotas[0].countCuotas > 0">
-                              <ion-col size="10">
-                                <p > este beneficio no se puede usar </p>
-                              </ion-col>
-                              <ion-col size="2">
-                                <ion-icon name="information-circle" (click)="openModalInfo()"></ion-icon>
-                              </ion-col>
-                            </ion-row>
-                        </ion-card>  
-                   <!--        <hr> -->
-                        </ion-list>
-                      
-                </div>
+                <ion-label *ngIf="plan.siteds === 0">{{plan.plan_desc}}</ion-label>
+                <ion-label *ngIf="plan.siteds === 1">{{plan.Financiador}}</ion-label>
+                <ion-radio slot="start" (click)="acceptFinancer(plan)"></ion-radio>
+                <span item-right>
+                  <p *ngIf="plan.siteds === 0">S/. {{plan.precio[0].total}}</p>
+                </span>
+              </ion-item>
+            </ion-card>
 
-              </ion-radio-group>
-            </ion-list>  
+            <ion-card *ngIf="plan.es_paquete_propio === 0 && plan.es_plan_propio === 1 ">
+              <ion-item>
+                <ion-radio slot="start" (click)="acceptFinancer(plan)"></ion-radio>
+                <ion-label *ngIf="plan.siteds === 0">{{plan.plan_desc}}</ion-label>
+                <ion-label *ngIf="plan.siteds === 1">{{plan.Financiador}}</ion-label>
+                <span item-right>
+                  <p *ngIf="plan.siteds === 1">S/. {{plan.precio[0].total}}</p>
+                </span>
+              </ion-item>
+            </ion-card>
           </div>
-                      <div *ngIf="!planes">
-                        <ion-list>
-                            <ion-card class="cardSkeletonFinancer">
-                                <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
-                                <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
-                            </ion-card>
-                            <ion-card class="cardSkeletonFinancer">
-                                <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
-                                <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
-                            </ion-card>
-                            <ion-card class="cardSkeletonFinancer">
-                                <ion-skeleton-text animated style="width: 750%; height: 20px;"></ion-skeleton-text>
-                                <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
-                            </ion-card>
-                        </ion-list>  
-                      </div>
- </div>
-  <ion-button 
-          *ngIf="financer == true"
-          color="secondary"
-          block
-          center
-          class="botonPagar"
-          (click)="goToPay()"
-          [disabled]="!desabilitado == true">
-      Ir a Pago
-</ion-button>
+          <div *ngFor="let plan of planes">
+            <ion-list *ngIf="plan.es_paquete_propio == 1 && plan.es_plan_propio == 0 && plan.beneficios < 1" no-lines>
+              <h4 *ngIf="plan.es_paquete_propio == 1 && plan.es_plan_propio == 0" class="tituloPlanes">
+                {{plan.plan_desc}}</h4>
+              <ion-card>
+                <ion-item class="bloques" no-lines>
+                  <ion-radio [disabled]="disabled" slot="start" (click)="acceptFinancer(plan)"></ion-radio>
+                  <ion-label>{{plan.plan_desc}}</ion-label>
+                  <span item-right>
+                    <p>S/. {{plan.precio[0].total}}</p>
+                  </span>
+                </ion-item>
+                <ion-row *ngIf=" plan.cuotas[0].countCuotas> 0">
+                  <ion-col size="10">
+                    <p> este beneficio no se puede usar </p>
+                  </ion-col>
+                  <ion-col size="2">
+                    <ion-icon name="information-circle" (click)="openModalInfo()"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-list>
 
-   <ion-button *ngIf="paquete == true" 
-  color="secondary"
-  block
-  center
-  class="botonPagar"
-  (click)="next()"
-  [disabled]="!desabilitado == true">
-  Reservar Cita
-</ion-button> 
+          </div>
+          <div *ngFor="let plan of planes">
+            <ion-list *ngIf="plan.es_paquete_propio === 1 && plan.es_plan_propio === 0  && plan.beneficios" no-lines>
+              <h4 *ngIf="plan.es_paquete_propio === 1 && plan.es_plan_propio === 0 && plan.beneficios.length > 0"
+                class="tituloPlanes">
+                {{plan.plan_desc}}</h4>
+              <ion-card *ngFor="let beneficio of plan.beneficios">
+                <ion-item class="bloques" no-lines>
+                  <ion-radio [disabled]="disabled" slot="start" (click)="acceptFinancerPaquete(plan)"></ion-radio>
+                  <ion-label>{{beneficio.beneficio_paquete}}</ion-label>
+                  <span item-right *ngIf="beneficio.beneficio_paquete">
+                    <p>{{beneficio.cantidad_veces}} / {{beneficio.cantidad_max}}</p>
+                  </span>
+                  <span item-right>
+                    <p *ngIf="plan.siteds === 1">S/. {{plan.precio[0].total}}</p>
+                  </span>
+                </ion-item>
+                <ion-row *ngIf="plan.cuotas[0].countCuotas > 0">
+                  <ion-col size="10">
+                    <p> este beneficio no se puede usar </p>
+                  </ion-col>
+                  <ion-col size="2">
+                    <ion-icon name="information-circle" (click)="openModalInfo()"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-list>
+
+          </div>
+
+        </ion-radio-group>
+      </ion-list>
+    </div>
+    <div *ngIf="!planes">
+      <ion-list>
+        <ion-card class="cardSkeletonFinancer">
+          <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+        </ion-card>
+        <ion-card class="cardSkeletonFinancer">
+          <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+        </ion-card>
+        <ion-card class="cardSkeletonFinancer">
+          <ion-skeleton-text animated style="width: 750%; height: 20px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%; height: 20px;"></ion-skeleton-text>
+        </ion-card>
+      </ion-list>
+    </div>
+  </div>
+  <ion-button *ngIf="financer === true" color="secondary" block center class="botonPagar" (click)="goToPay()"
+    [disabled]="!desabilitado === true">
+    Ir a Pago
+  </ion-button>
+
+  <ion-button *ngIf="paquete === true" color="secondary" block center class="botonPagar" (click)="next()"
+    [disabled]="!desabilitado === true">
+    Reservar Cita
+  </ion-button>
+
+
 
 
 </ion-content>

@@ -1,112 +1,135 @@
-ion-content{
-    --background:#f7f7f7;
+ion-content {
+  --background: #f7f7f7;
+}
+
+.especialidad {
+  margin-right: 20px;
+  color: #59bae7;
+  font-weight: 600;
+  font-size: .9em;
+}
+
+.resultado {
+  color: #a7a7a8;
+  font-weight: 200;
+  font-size: .9em;
+  margin-top: -5px;
+}
+
+.iconoReceta {
+  text-align: center;
+  border-right: .2px solid #BABCC2;
+
+  //  height: 90%;
+  h4 {
+    color: grey;
+    text-align: center;
+    margin-top: 10px;
   }
-  .especialidad{
-      margin-right: 20px;
-      color:#BABCC2;
-      font-weight: 600;
-      font-size:1.1em;
-      margin-left:10px;
-    }
-    .resultado{
-      color:#BABCC2;
-      font-weight: 200;
-      font-size:1em;
-      margin-top:-5px;
-      margin-left:10px;
-    }
-    .iconoReceta{
-      text-align: center;
-      border-right: .2px solid #BABCC2;
-     //  height: 90%;
-      h4{
-        color:grey;
-        text-align: center;
-        margin-top:10px;
-      }
-      ion-icon{
-        color:#66CBEC;
-        font-size:3em;
-      }
-    }
-    .dia{
-      font-size:3.5em;
-      font-weight: 600;
-      color:#66CBEC;
-      margin-top:30px;
-      margin-bottom:25px;
-    }
-    .mes{
-      color:#66CBEC;
-      margin-top: -30px;
-      font-size:1.1em;
-    }
-    .tituloControles{
-      color:#000;
-      text-align: center;
-      text-transform: uppercase;
-      font-size:1.3em;
-    }
-    ion-card{
-      border-top-right-radius: 50px;
-      --background:#fff;
-    }
-    .textoMensaje{
-      text-align: center;
-      width:80%;
-      margin-left:10%;
-      margin-top:50px;
-      color:#738598;
-      font-size:1.2em;
-    }
-    .containerSinControles{
-      width: 90%;
-      margin-left: 5%;
-      height: 180px;
-      border-radius: 10px;
-      margin-top:15px;
-    }
-    .containerDatosControl{
-      margin-top:20px!important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .numeroDeSemana{
-      color:#f7f7f7;
-      font-size:4em;
-      font-weight: 600;
-      /* margin-left:30px; */
-      margin-top:20px!important;
-      margin-bottom:0!important;
-    }
-    .semanaText{
-      color:#fff;
-      margin-top:0!important;
-      /* margin-left:35px; */
-    }
-    .datosControl{
-      text-align: right;
-      color:#fff;
-      margin-right:20px;
-      margin-bottom:0!important;
-      margin-top:10px!important;
-      font-weight: 500;
-    }
-    .verMas{
-      color:#142fac;
-      text-align: right;
-      margin-right:20px;
-      font-size:.8em;
-      margin-top:25px;
-    }
-    .bottom{
-      position: absolute;
-      bottom:10px;
-      width: 100%;
-    }
-    ion-label{
-      font-size:.9em!important;
-      text-transform: lowercase;
-    }
+
+  ion-icon {
+    color: #66CBEC;
+    font-size: 3em;
+  }
+}
+
+.dia {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #66CBEC;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.mes {
+  color: #66CBEC;
+  margin-top: -30px;
+  font-size: 1.1em;
+}
+
+.tituloControles {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.3em;
+}
+
+ion-card {
+  border-top-right-radius: 20px;
+  --background: #fff;
+}
+
+.textoMensaje {
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 50px;
+  color: #4f83b9;
+  font-size: 1.2em;
+}
+
+.containerSinControles {
+  width: 90%;
+  margin-left: 5%;
+  height: 180px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.containerDatosControl {
+  margin-top: 20px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.numeroDeSemana {
+  color: #f7f7f7;
+  font-size: 4em;
+  font-weight: 600;
+  /* margin-left:30px; */
+  margin-top: 20px !important;
+  margin-bottom: 0 !important;
+}
+
+.semanaText {
+  color: #fff;
+  margin-top: 0 !important;
+  /* margin-left:35px; */
+}
+
+.datosControl {
+  text-align: right;
+  color: #fff;
+  margin-right: 20px;
+  margin-bottom: 0 !important;
+  margin-top: 10px !important;
+  font-weight: 500;
+}
+
+.verMas {
+  color: #142fac;
+  text-align: right;
+  margin-right: 20px;
+  font-size: .8em;
+  margin-top: 25px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+
+  p {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    color: #738598;
+  }
+}
+
+ion-label {
+  font-size: .9em !important;
+  text-transform: uppercase;
+}

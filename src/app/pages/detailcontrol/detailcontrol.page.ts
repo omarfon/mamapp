@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from '../../service/recipes.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 /* import {siwtchMap} from 'rxjs/operators'; */
 
 @Component({
