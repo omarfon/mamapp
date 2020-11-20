@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'waiting', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
   { path: 'waiting/:data', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
   { path: 'waiting', loadChildren: './pages/waiting/waiting.module#WaitingPageModule' },
+  { path: 'citas-pediatric', loadChildren: './pages/citas-pediatric/citas-pediatric.module#CitasPediatricPageModule' },
 ];
 @NgModule({
   imports: [

@@ -5,7 +5,8 @@
         </ion-buttons>
         <ion-title>Detalle Cita</ion-title>
         <ion-buttons slot="secondary">
-            <ion-button fill="clear" (click)="getpermissions()" color="danger" class="animated bounceInLeft">
+            <ion-button *ngIf="dataArmada.provisionId === 845337" fill="clear" (click)="getpermissions()" color="danger"
+                class="animated bounceInLeft">
                 <ion-icon name="videocam" color="danger" class="iconSize"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -15,9 +16,7 @@
 <ion-content>
     <ion-list>
 
-        <img id="profile-image"
-            src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{dataArmada.professionalId}}.png"
-            (error)="errorHandler($event)">
+        <img id="profile-image" src="{{apiEndpoint}}{{dataArmada.id}}.png" (error)="errorHandler($event)" alt="">
         <h3 class="nombreDoctor" text-center>{{ dataArmada.professionalName }} {{ dataArmada.professionalLastName1 }}
             {{ dataArmada.professionalLastName2 }}</h3>
 
@@ -50,7 +49,7 @@
 
     <ion-row padding *ngIf="dataArmada.pagado === 'no'">
         <ion-col size="6">
-            <ion-button expand="full" color="warning" (click)='desactivateTask(task)'>ELIMINAR</ion-button>
+            <ion-button expand="full" color="warning" (click)='desactivateTask()'>ELIMINAR</ion-button>
         </ion-col>
         <ion-col size="6">
             <ion-button (click)="back()" color="primary" expand="full">
@@ -60,7 +59,7 @@
     </ion-row>
     <ion-row padding *ngIf="dataArmada.pagado === 'yes'">
         <ion-col size="8">
-            <ion-button (click)="openModalData()" expand="full" color="warning">CITA NO CANCELABLE</ion-button>
+            <ion-button expand="full" color="warning">CITA NO CANCELABLE</ion-button>
         </ion-col>
         <ion-col size="4">
             <ion-button (click)="back()" color="primary" expand="full">

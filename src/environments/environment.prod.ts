@@ -19,19 +19,24 @@ export const environment = {
     messagingSenderId: "123950719277",
     appId: "1:123950719277:web:331d4e07590df134be73a4",
     vapidKey: "BBwWAlKhU8eHfS-ntn7Mc4XD0HEMmQv8wmA-niDLj4eP28bi4CFjmp-gGwH3bQXAqi4OFU3lg95czzAx_akXDyo",
+  },
+  agora: {
+    appId: 'b75a830a11a84a0bbb812fc81aa60860'
   }
 };
 
 /* ENDPOINTS DESARROLLO */
-/* export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/"; 
-export const API_NOTAS = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/mama";  
-export const API_IMAGES = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/img/professionals/";  */
+export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/";
+export const API_NOTAS = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/mama";
+export const API_IMAGES = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/img/professionals/";
+export const OPENTELE = "https://dev.aviva.pe";
 
 
 /* ENDPOINTS PRODUCCION */
-export const API_IMAGES = "https://api.aviva.pe/middleware2/img/professionals/";
+/* export const API_IMAGES = "https://api.aviva.pe/middleware2/img/professionals/";
 export const API_ENDPOINT = "https://api.aviva.pe/middleware2/api/v2/";
 export const API_NOTAS = "https://api.aviva.pe/middleware2/api/v2/mama";
+export const OPENTELE = "https://aviva.pe"; */
 
 /* export const firebase ={
   apiKey: "AIzaSyC79bO4W3NAW6tjRGe8Y-cx9bK2Nb5t760",

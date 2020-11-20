@@ -91,30 +91,30 @@
               <ion-col size="12">
                 <ion-card class="getMedicine">
                   <ion-row>
-                    <ion-col size="10"
+                    <ion-col size="9"
                       style="background-image: url('assets/imgs/slides/pastilla.png'); background-repeat: no-repeat; background-size: initial; height: 100%; margin-left:10px; margin-top:10px;">
-                      <p class="frasePastilla">Tomaste ya, tu ácido fólico?</p>
+                      <p class="frasePastilla" *ngIf="horaProgramada === false">Tomaste ya, tu ácido fólico?</p>
+                      <p class="frasePastilla" *ngIf="horaProgramada === true">Tu Alarma ya está programada</p>
                     </ion-col>
-                    <ion-col size="2" class="centradoIconoPastilla">
-                      <!-- <ion-button fill="clear" (click)="defineHourAlert()">
+                    <ion-col size="3">
+                      <ion-button fill="clear" (click)="defineHourAlert()" class="iconoPastilla">
                         <ion-icon name="add"></ion-icon>
-                      </ion-button> -->
+                      </ion-button>
                       <ion-datetime displayFormat="HH:mm"></ion-datetime>
                     </ion-col>
                   </ion-row>
                 </ion-card>
               </ion-col>
-              <ion-col size="12" (click)="openModalControls()">
+              <ion-col size="12">
                 <ion-card class="controlGine">
                   <ion-row>
-                    <!--  <ion-col size="4" class="containerNumberControl">
-                              <p class="numberControl">{{numberControl}}</p>
-                              <p class="verboNumberControl">to</p>
-                            </ion-col> -->
-                    <ion-col size="1"></ion-col>
-                    <ion-col size="10">
-                      <p class="fraseControl">Tu próximo control es en:</p>
-                      <p class="diasControl">? días.</p>
+                    <ion-col size="9">
+                      <p class="textoPendientes"> {{name}} tienes <span>{{dates}}</span> controles pendientes </p>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-button (click)="openPageCitas()" fill="clear" class="buttonSeeMore">
+                        <ion-icon slot="icon-only" name="add"></ion-icon>
+                      </ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-card>

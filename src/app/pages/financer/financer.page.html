@@ -53,36 +53,39 @@
           </div>
           <div *ngFor="let plan of planes">
             <ion-list *ngIf="plan.es_paquete_propio == 1 && plan.es_plan_propio == 0 && plan.beneficios < 1" no-lines>
-              <h4 *ngIf="plan.es_paquete_propio == 1 && plan.es_plan_propio == 0" class="tituloPlanes">
-                {{plan.plan_desc}}</h4>
+              <h4 class="tituloPlanes">
+                {{plan.plan_desc}}
+              </h4>
               <ion-card>
                 <ion-item class="bloques" no-lines>
-                  <ion-radio [disabled]="disabled" slot="start" (click)="acceptFinancer(plan)"></ion-radio>
-                  <ion-label>{{plan.plan_desc}}</ion-label>
-                  <span item-right>
+                  <ion-radio *ngIf="plan.beneficios.length > 0" slot="start" (click)="acceptFinancer(plan)"></ion-radio>
+                  <ion-label *ngIf="plan.beneficios.length > 0">{{plan.plan_desc}}</ion-label>
+                  <span item-right *ngIf="plan.beneficios.length > 0">
                     <p>S/. {{plan.precio[0].total}}</p>
                   </span>
+                  <span item-right>
+                    <p>plan sin beneficios</p>
+                  </span>
                 </ion-item>
-                <ion-row *ngIf=" plan.cuotas[0].countCuotas> 0">
-                  <ion-col size="10">
-                    <p> este beneficio no se puede usar </p>
+                <ion-row *ngIf="plan.cuotas[0].countCuotas> 0">
+                  <ion-col size="11">
+                    <p> Tienes cuotas pendientes </p>
                   </ion-col>
-                  <ion-col size="2">
-                    <ion-icon name="information-circle" (click)="openModalInfo()"></ion-icon>
+                  <ion-col size="1">
+                    <ion-icon name="information-circle"></ion-icon>
                   </ion-col>
                 </ion-row>
               </ion-card>
             </ion-list>
-
           </div>
           <div *ngFor="let plan of planes">
-            <ion-list *ngIf="plan.es_paquete_propio === 1 && plan.es_plan_propio === 0  && plan.beneficios" no-lines>
-              <h4 *ngIf="plan.es_paquete_propio === 1 && plan.es_plan_propio === 0 && plan.beneficios.length > 0"
-                class="tituloPlanes">
+            <ion-list *ngIf="plan.es_paquete_propio === 1 && plan.es_plan_propio === 0 && plan.beneficios.length == 1"
+              no-lines>
+              <h4 class="tituloPlanes">
                 {{plan.plan_desc}}</h4>
               <ion-card *ngFor="let beneficio of plan.beneficios">
                 <ion-item class="bloques" no-lines>
-                  <ion-radio [disabled]="disabled" slot="start" (click)="acceptFinancerPaquete(plan)"></ion-radio>
+                  <ion-radio slot="start" (click)="acceptFinancerPaquete(plan)"></ion-radio>
                   <ion-label>{{beneficio.beneficio_paquete}}</ion-label>
                   <span item-right *ngIf="beneficio.beneficio_paquete">
                     <p>{{beneficio.cantidad_veces}} / {{beneficio.cantidad_max}}</p>
@@ -92,16 +95,15 @@
                   </span>
                 </ion-item>
                 <ion-row *ngIf="plan.cuotas[0].countCuotas > 0">
-                  <ion-col size="10">
-                    <p> este beneficio no se puede usar </p>
+                  <ion-col size="11">
+                    <p> Acercate a admisión a regularizar tus cuotas </p>
                   </ion-col>
-                  <ion-col size="2">
+                  <ion-col size="1">
                     <ion-icon name="information-circle" (click)="openModalInfo()"></ion-icon>
                   </ion-col>
                 </ion-row>
               </ion-card>
             </ion-list>
-
           </div>
 
         </ion-radio-group>

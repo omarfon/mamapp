@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="light">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title size="small">Programa tu Cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #mycontent fullscreen>
+  <h4 *ngIf="escogido === 845337" class="center">Pediatras disponibles en <br>Teleconsulta</h4>
+  <h4 *ngIf="escogido !== 845337" class="center">Pediatras disponibles <br>Consulta Externa</h4>
+  <div *ngFor="let item of doctorsF; let itemDoctor = index">
+      <div class="box-main-content" [ngStyle]="{'display': item.isAvailable ? 'block' : 'none'}">
+          <div class="datosDoctor">
+              <ion-row>
+                  <ion-col size="4" class="imageDoctor">
+                      <img src="{{apiEndpoint}}{{item.id}}.png" (error)="errorHandler($event)" alt="">
+                  </ion-col>
+                  <ion-col size="8" right>
+                      <p class="doctor">{{ item.fullName | lowercase}}</p>
+                      <p class="especialidad">{{item.service.description | lowercase}}</p>
+                      <p class="centro">Centro: Mendiola</p>
+                  </ion-col>
+              </ion-row>
+          </div>
+          <div class="disponibles">
+              <div class="diasCitas">
+                  <p class="diasDisponibles">Próximos días disponibles</p>
+                  <ul>
+                      <ion-row>
+                          <ion-col size="2" *ngFor="let items of item.availables; let index = index">
+                              <li (click)="stateShow(itemDoctor, index, items)"
+                                  [ngClass]="{'active': boxCaID == index && itemDoctor === boxID}">
+                                  <div class="box-day" id="{{index}}">
+                                      {{items.date | date:'fullDate' :'es' | slice:0:3}}</div>
+                              </li>
+                              <span class="day">{{items.date | date:'dd':'es'}}</span>
+                          </ion-col>
+                      </ion-row>
+                  </ul>
+              </div>
+              <div class="horasCitas">
+                  <div style="overflow: hidden;" *ngFor="let itemss of item.availables; let ii = index">
+                      <div *ngIf="itemDoctor === boxID && boxCaID === ii" id="{{ii}}" class="box-hour">
+                          <!-- <p class="p-hour-dispo">Horario disponible Consulta Externa</p> -->
+                          <div class="box-hour-main">
+                              <ion-row>
+                                  <ion-col size="3" *ngFor="let items of itemss.hours; let indexxx = index">
+                                      <span id="{{'span-elegir-doctor-horaydia-'+item.service.idTraking}}">
+                                          <div [ngClass]="{'hourdispo': itemss.hours[indexxx].isAvailable === true, 'desactive': itemss.hours[indexxx].isAvailable === false}"
+                                              (click)="goToFinancer(item,items)">
+                                              {{items.hour | slice:0:5}}
+                                          </div>
+                                      </span>
+                                  </ion-col>
+                              </ion-row>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="!doctorsF">
+      <ion-card class="cardDoctorheight">
+          <div class="ion-padding custom-skeleton">
+              <ion-row>
+                  <ion-col size="4" class="imageDoctor">
+
+                      <ion-skeleton-text animated style="width: 90%; height:100px;"></ion-skeleton-text>
+
+                      <!-- <img src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{doctor.id}}.png" alt=""> -->
+                      <!-- <img src={{doctor.image}} alt=""> -->
+                  </ion-col>
+                  <ion-col size="8" right>
+                      <ion-skeleton-text animated style="height:20px;" text-right></ion-skeleton-text>
+                      <ion-skeleton-text animated text-right style="height:20px;"></ion-skeleton-text>
+                      <ion-skeleton-text animated style="width: 55%"></ion-skeleton-text>
+                      <ion-skeleton-text animated style="width: 55%"></ion-skeleton-text>
+                  </ion-col>
+
+              </ion-row>
+          </div>
+      </ion-card>
+      <ion-card class="cardDoctorheight">
+          <div class="ion-padding custom-skeleton">
+              <ion-row>
+                  <ion-col size="4" class="imageDoctor">
+
+                      <ion-skeleton-text animated style="width: 90%; height:100px;"></ion-skeleton-text>
+
+                      <!-- <img src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{doctor.id}}.png" alt=""> -->
+                      <!-- <img src={{doctor.image}} alt=""> -->
+                  </ion-col>
+                  <ion-col size="8" right>
+                      <ion-skeleton-text animated style="height:20px;" text-right></ion-skeleton-text>
+                      <ion-skeleton-text animated text-right style="height:20px;"></ion-skeleton-text>
+                      <ion-skeleton-text animated style="width: 55%"></ion-skeleton-text>
+                      <ion-skeleton-text animated style="width: 55%"></ion-skeleton-text>
+                  </ion-col>
+
+              </ion-row>
+          </div>
+      </ion-card>
+
+  </div>
+
+</ion-content>

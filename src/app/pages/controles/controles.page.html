@@ -38,18 +38,22 @@
 
   <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'validado'">Aún no tienes controles
     disponibles para mostrar”</p>
-  <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'novalidado'">Para mostrar tus
-    controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión</p>
+  <p class="textoMensaje" *ngIf="message === true && user === 'user' && status === 'novalidado'">Para mostrar tus controles tienes que esta validado, podrás hacerlo desde cualquier ventanilla en admisión<p>
   <p class="textoMensaje" *ngIf="message === true && user === 'nouser'">Inicia sesión para ver tus controles</p>
   <ion-row class="bottom">
-    <p>¿Quieres reservar una consulta?... <br>tienes estas dos opciones</p>
+    <p>¿Quieres reservar una consulta?... <br>tienes estas tres opciones</p>
     <ion-col size="6">
-      <ion-button (click)="createDateTele()" shape="round" expand="block" color="secondary">
+      <ion-button (click)="createDateTele()" shape="round" expand="block" color="secondary" size="small">
         <ion-label>Teleconsulta</ion-label>
       </ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button (click)="createDate()" shape="round" expand="block" color="primary">
+      <ion-button (click)="createDatePediatric()" shape="round" expand="block" color="tertiary" size="small">
+        <ion-label>Consulta pre-natal</ion-label>
+      </ion-button>
+    </ion-col>
+    <ion-col size="12">
+      <ion-button (click)="createDate()" shape="round" expand="block" color="primary" size="small">
         <ion-label>Consulta Externa</ion-label>
       </ion-button>
     </ion-col>

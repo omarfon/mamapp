@@ -53,15 +53,15 @@ export class AppComponent {
           url: "/citas-pendientes",
           icon: "alarm"
         },
-        /*  {
-           title : "Graficas",
-           url   : "/graficas",
-           icon  : "analytics"
-         }, */
+        {
+          title: "Reserva control",
+          url: "/tabs/tab2",
+          icon: "document"
+        },
         {
           title: "Recetas",
           url: "/recetas",
-          icon: "clipboard"
+          icon: "medkit"
         }/* ,
       {
         title : "Cerrar sesión",

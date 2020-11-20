@@ -29,7 +29,7 @@ export class CitasPendientesPage implements OnInit {
     this.appointmetSrv.getAppointmentsPeruser().subscribe(data => {
       this.dates = data;
       console.log('this.dates:', this.dates);
-    })
+    });
   }
 
   goToDetailDate(date) {

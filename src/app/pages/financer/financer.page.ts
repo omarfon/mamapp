@@ -47,10 +47,6 @@ export class FinancerPage implements OnInit {
     public popover: PopoverController) { }
 
   ngOnInit() {
-    /*   const usuario = localStorage.getItem('role')
-      if(usuario == 'public'){
-          this.routes.navigate(['register']);
-      } */
     const data = this.route.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
     this.hora = this.dataArmada.hora;
@@ -58,37 +54,28 @@ export class FinancerPage implements OnInit {
     this.subida = this.dataArmada.hora.listjson;
     this.encuentro = this.dataArmada.encuentro;
     console.log('this.encuentro:', this.encuentro);
-    /* this.available = this.dataArmada. */
-    /*  console.log('dataArmada en financer:', this.dataArmada);
-     console.log('dataArmada en doctor:', this.dataArmada.doctor); */
-
     if (this.dataArmada) {
       this.getPlanesPacienteConPrecio();
     }
   }
 
 
-  getPlanesPacienteConPrecio() {
+  async getPlanesPacienteConPrecio() {
+    const loading = await this.loadingCtrl.create({
+      message: 'cargando financiadores'
+    });
     let centerId = this.dataArmada.centerId;
     let servicio_id = this.dataArmada.servicio_id;
     let prestacion_id = this.dataArmada.prestacion;
     let medico_id = this.dataArmada.medico_id;
     let proposedate = this.dataArmada.proposedate;
-    this.financerSrv.getPlanesPaciente(centerId, servicio_id, prestacion_id, medico_id, proposedate).subscribe(data => {
+    this.financerSrv.getPlanesPaciente(centerId, servicio_id, prestacion_id, medico_id, proposedate).subscribe((data: any) => {
       this.planes = data;
+      loading.dismiss();
       console.log('this.planes:', this.planes);
-      /* if(this.planes){
-        if(this.planes.cuotas[0].countCuotas < 1){
-          this.disabled = true;  
-        }else{
-          this.disabled = false;
-        }
-        console.log(this.disabled)
-      }else{
-        console.log('aun no hay planes');
-      } */
     });
   }
+  
 
   goToPay() {
     console.log(this.dataArmada);
@@ -123,8 +110,6 @@ export class FinancerPage implements OnInit {
       this.paquete = false;
       this.financer = true;
     }
-    this.financer = true;
-    this.paquete = false;
     this.desabilitado = true;
     this.plan = plan;
     this.price = plan.precio[0].total;

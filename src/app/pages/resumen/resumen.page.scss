@@ -2,16 +2,6 @@ ion-content {
     --background-color: #F3F6F6 !important;
 }
 
-.visa {
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.mastercard {
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .parrafoFinanciador {
     color: #062F51;
     text-align: center;
@@ -107,10 +97,12 @@ ion-content {
     margin-top: 0 !important;
 }
 
-.container-gris {
+/* .container-gris {
     background-color: #F3F6F6;
     height: 100%;
-    padding-bottom: 1.5em;
+} */
+ion-content {
+    --background: #F3F6F6;
 }
 
 .precio {
@@ -167,6 +159,8 @@ ion-content {
     font-weight: 600;
     text-align: right;
     margin-right: 20px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }
 
 ion-label {
@@ -176,6 +170,7 @@ ion-label {
 
 img {
     width: 100px;
+    border-radius: 15px;
     margin-left: calc(50% - 50px);
 }
 
@@ -193,6 +188,8 @@ img {
     .izquierda {
         color: #062F51;
         margin-left: 20px;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
     }
 }
 
@@ -242,7 +239,8 @@ img {
     color: #062F51;
     padding: .3em 0;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin-top: 16px;
     margin-bottom: -15px;
 }
 

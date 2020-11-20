@@ -113,6 +113,10 @@ export class ControlesPage implements OnInit {
     /* this.notTeleconsult(); */
   }
 
+  createDatePediatric(){
+      this.routes.navigate(['citas-pediatric'])
+  }
+
   async openModal(ev: any) {
     const popover = await this.popover.create({
       component: DetalleControlComponent,

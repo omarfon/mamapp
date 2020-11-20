@@ -26,7 +26,7 @@
             </div>
             <div class="disponibles">
                 <div class="diasCitas">
-                    <p>Próximos días disponibles</p>
+                    <p class="diasDisponibles">Próximos días disponibles</p>
                     <ul>
                         <ion-row>
                             <ion-col size="2" *ngFor="let items of item.availables; let index = index">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="horasCitas">
                     <div style="overflow: hidden;" *ngFor="let itemss of item.availables; let ii = index">
-                        <div *ngIf="itemDoctor === boxID && boxCaID === ii" id="{{i}}" class="box-hour">
+                        <div *ngIf="itemDoctor === boxID && boxCaID === ii" id="{{ii}}" class="box-hour">
                             <!-- <p class="p-hour-dispo">Horario disponible Consulta Externa</p> -->
                             <div class="box-hour-main">
                                 <ion-row>

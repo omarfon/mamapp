@@ -15,8 +15,8 @@
                 <div>
                     <ion-row class="centrar">
                         <ion-col size="4">
-                            <img id="profile-image"
-                                src="http://dappapache02.eastus.cloudapp.azure.com:4200/img/professionals/{{doctor.id}}.png">
+                            <img id="profile-image" src="{{apiEndpoint}}{{doctor.id}}.png"
+                                (error)="errorHandler($event)" alt="">
                         </ion-col>
                         <ion-col size="8">
                             <h3 class="nombreDoctor" text-center>
@@ -125,7 +125,7 @@
                         </ion-row>
                     </ion-button>
                     <ion-button *ngIf="depe && hora.params.provisionId[0] === 44" color="primary" class="botonAccept"
-                        block (click)="nextDepe()">
+                        block>
                         <ion-row>
                             <ion-col size="12">
                                 <img class="iconosImagenes" src="assets/imgs/cobro/efectivo.png" alt="">
@@ -149,7 +149,7 @@
                             </ion-col>
                         </ion-row>
                     </ion-button>
-                    <ion-button *ngIf="retrying == true" color="secondary" class="botonAccept" block (click)="retry()">
+                    <ion-button *ngIf="retrying == true" color="secondary" class="botonAccept" block>
                         <ion-row>
                             <ion-col size="12" class="botonTarjeta">
                                 <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">
@@ -172,7 +172,7 @@
                             </ion-col>
                         </ion-row>
                     </ion-button>
-                    <ion-button *ngIf="retrying == true" color="secondary" class="botonAccept" block (click)="retry()">
+                    <ion-button *ngIf="retrying == true" color="secondary" class="botonAccept" block>
                         <ion-row>
                             <ion-col size="12" class="botonTarjeta">
                                 <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">

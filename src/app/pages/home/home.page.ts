@@ -15,6 +15,8 @@ import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
 import { RecalcdateComponent } from 'src/app/components/recalcdate/recalcdate.component';
+import { AppointmentService } from 'src/app/service/appointment.service';
+
 
 @Component({
   selector: 'app-home',
@@ -61,6 +63,9 @@ export class HomePage implements OnInit {
   public numberControl = 5;
   public dias = '3';
   public date;
+  dates: any;
+  public horaProgramada: boolean;
+  public horaAlarma;
 
   constructor(public router: Router,
     public notasServ: NotasService,
@@ -73,7 +78,9 @@ export class HomePage implements OnInit {
     public loadinCtrl: LoadingController,
     public localNoti: LocalNotifications,
     public plt: Platform,
+    public appointmenSrv: AppointmentService,
     private activateRoute: ActivatedRoute) {
+
     this.plt.ready().then(() => {
       this.localNoti.on('click').subscribe(res => {
         console.log('click:', res);
@@ -120,13 +127,16 @@ export class HomePage implements OnInit {
   }
 
   repeatDaily() {
+    const horaDiaria = parseInt(localStorage.getItem('horaAlerta'));
     this.localNoti.schedule({
       id: 42,
-      title: "Good mornig",
-      text: 'Notificacion de Omar',
+      title: "Es hora del Ácido fólico",
+      text: 'Recuerda tomar tu ácido fólico',
       data: { mydata: 'Data Oculta' },
-      trigger: { every: ELocalNotificationTriggerUnit.MINUTE },
-      /* foreground: true */
+      trigger: { every: { hour: horaDiaria, minute: 0 } },
+      vibrate: true,
+      foreground: true,
+      icon: 'https://www.aviva.pe/assets/svg/logo.svg',
     });
   }
 
@@ -138,13 +148,13 @@ export class HomePage implements OnInit {
         {
           name: '8:00 am',
           type: 'checkbox',
-          value: '8',
+          value: '08',
           label: '8:00 am'
         },
         {
           name: '9:00 am',
           type: 'checkbox',
-          value: '9',
+          value: '09',
           label: '9:00 am'
         },
         {
@@ -159,12 +169,27 @@ export class HomePage implements OnInit {
           value: '11',
           label: '11:00 am'
         },
+        {
+          name: '12:00 am',
+          type: 'checkbox',
+          value: '12',
+          label: '12:00 m'
+        },
+        {
+          name: '11:00 pm',
+          type: 'checkbox',
+          value: '13',
+          label: '01:00 pm'
+        }
       ],
       buttons: [
         {
           text: 'Programar',
-          handler: () => {
-            console.log('guardar en el localstorage', name)
+          handler: (data) => {
+            console.log('guardar en el localstorage', data);
+            localStorage.setItem('horaAlerta', data[0]);
+            this.horaProgramada = true;
+            this.repeatDaily();
           }
         }
       ]
@@ -182,11 +207,17 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
+    const programada = localStorage.getItem('horaAlerta')
+    if (programada) {
+      this.horaProgramada = true
+    } else {
+      this.horaProgramada = false;
+    }
+    console.log(programada);
+    this.getCitas();
     this.calculoFecha();
     this.name = localStorage.getItem('name');
     this.imagePerfil = localStorage.getItem('imagenPerfil');
-
-
     this.estado.actualMomento().subscribe((data: any) => {
       this.actualMomento = data;
       console.log(data)
@@ -399,6 +430,16 @@ export class HomePage implements OnInit {
 
   ionViewCanLeave() {
     this.name = "";
+  }
+  openPageCitas() {
+    this.router.navigate(['citas-pendientes']);
+  }
+
+  getCitas() {
+    this.appointmenSrv.getAppointmentsPeruser().subscribe(data => {
+      this.dates = data.length;
+      console.log('this.dates:', this.dates.length);
+    });
   }
 
 }

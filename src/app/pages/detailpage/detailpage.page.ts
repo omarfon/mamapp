@@ -3,7 +3,7 @@ import { AlertController, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppointmentService } from '../../service/appointment.service';
 import { PermissionsVideoService } from 'src/app/service/permissions-video.service';
-import { OPENTELE } from 'src/environments/environment';
+import { API_IMAGES, OPENTELE } from 'src/environments/environment';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
@@ -19,6 +19,7 @@ export class DetailpagePage implements OnInit {
   public data;
   public permisionsData: any;
   appointmentid: any;
+  apiEndpoint: string;
 
   constructor(public alertCtrl: AlertController,
     public router: Router,
@@ -29,6 +30,7 @@ export class DetailpagePage implements OnInit {
     public iab: InAppBrowser) { }
 
   ngOnInit() {
+    this.apiEndpoint = API_IMAGES;
     this.data = this.routes.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(this.data);
     /* console.log(this.dataArmada); */
@@ -39,7 +41,7 @@ export class DetailpagePage implements OnInit {
     event.target.src = "https://1.bp.blogspot.com/-p8EFlkXywyE/UDZvWTyr1bI/AAAAAAAAEU0/xL8pmKN1KOY/s1600/facebook.png"
   }
 
-  async desactivateTask(date) {
+  async desactivateTask() {
     /*  console.log('el id a eliminar:',this.date); */
     const confirm = await this.alertCtrl.create({
       header: 'ELMINAR',

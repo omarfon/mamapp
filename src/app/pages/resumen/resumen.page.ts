@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TabsPage } from '../../tabs/tabs.page';
 import { AppointmentService } from '../../service/appointment.service';
 import { CulqiService } from '../../service/culqi.service';
+import { API_IMAGES } from 'src/environments/environment';
 declare var Culqi: any;
 /* import * as Constants from  '../../../app/constants'; */
 
@@ -50,6 +51,7 @@ export class ResumenPage implements OnInit {
   public desactivadoBotonLocal = false;
   public culqiReturn;
   public dataArmada;
+  apiEndpoint: string;
 
 
   constructor(public loadCtrl: LoadingController,
@@ -60,6 +62,7 @@ export class ResumenPage implements OnInit {
     public culqiPrv: CulqiService) { }
 
   ngOnInit() {
+    this.apiEndpoint = API_IMAGES;
     const data = this.routes.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(data);
 
@@ -191,6 +194,9 @@ export class ResumenPage implements OnInit {
            return monthInput.setErrors({ notEquivalent: true })
      }
    } */
+  errorHandler(event) {
+    event.target.src = "https://1.bp.blogspot.com/-p8EFlkXywyE/UDZvWTyr1bI/AAAAAAAAEU0/xL8pmKN1KOY/s1600/facebook.png"
+  }
 
   openCulqi() {
     /* const loadingPago = await this.loadCtrl.create({

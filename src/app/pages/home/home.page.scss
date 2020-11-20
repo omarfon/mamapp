@@ -30,6 +30,23 @@ ion-content {
   font-weight: 200;
 }
 
+.textoPendientes {
+  font-size: 1.1em;
+  font-weight: 400;
+  width: 90%;
+  margin-left: 10%;
+
+  span {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+}
+
+.buttonSeeMore {
+  margin-top: 50px;
+  color: #fff;
+}
+
 #containerDias {
   margin-top: -20px !important;
 }
@@ -758,7 +775,7 @@ ion-slides {
   background: #F7B500 !important;
   color: #fff;
   border-radius: 5px;
-  height: 60px;
+  height: 75px;
   font-size: 1.4em;
 }
 
@@ -766,14 +783,20 @@ ion-slides {
   background: #32C5FF !important;
   color: #fff;
   border-radius: 5px;
-  height: 95px;
+  height: 85px;
 }
 
 .frasePastilla {
   margin-top: 5px;
-  margin-left: 5px;
-  font-size: .9rem;
   font-weight: 500;
+  width: 90%;
+  margin-left: 10%;
+  font-size: .9em;
+}
+
+.iconoPastilla {
+  color: #fff;
+  margin-top: 30px;
 }
 
 .centradoIconoPastilla {

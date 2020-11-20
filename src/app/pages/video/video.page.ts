@@ -28,9 +28,9 @@ export class VideoPage implements OnInit {
   private client: AgoraClient;
   private localStream: Stream;
   private uid: number;
-  private dates;
-  private nombreDoctor;
-  private idDoctor;
+  public dates;
+  public nombreDoctor;
+  public idDoctor;
   public time;
 
   constructor(private webRTC: WebRtcService,
