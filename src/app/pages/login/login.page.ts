@@ -65,22 +65,38 @@ ionViewDidEnter(){
 
   loginFb(){
     this.fb.login(['public_profile', 'email'])
-            .then((res: FacebookLoginResponse) => {
-              if(res){
-                  /* this.user.img = 'https//graph.facebook.com/'+ res.authResponse.userID +'picture?type=square'; */
-                  this.fb.api('me?fields=id,email,first_name,picture.width(720).height(720).as(picture_large))', []).then(profile =>{
-                    this.datosFaceAuth = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large'['data']['url']], username: profile['name']};
+    .then((res: FacebookLoginResponse) => {
+      /* this.user.img = 'https//graph.facebook.com/'+ res.authResponse.userID +'picture?type=square';  */
+      this.fb.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)', []).then(profile =>{
+        this.datos = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']};
+        /* alert(JSON.stringify(this.datosFaceAuth)); */
+      if(this.datos){
+                    this.autho.loginWithFacebook(res.authResponse.accessToken).subscribe(async (data:any) =>{
+                      console.log('data devuelta de middleware',data);
+                      localStorage.setItem('usuario', data.userEmail);
+                      localStorage.setItem('email', data.userEmail);
+                      localStorage.setItem('authorization', data.authorization);
+                      localStorage.setItem('id', data.patientId);
+                      localStorage.setItem('role', data.role);
+                      localStorage.setItem('photoUrl', data.photoUrl);
+                      localStorage.setItem('patientName', data.patientName);
+                      localStorage.setItem('name', data.name);
+                      localStorage.setItem('token', data.firebaseToken);
+                      localStorage.setItem('uid', data.userId);
+                      localStorage.setItem('sigIn', 'completo');
+                      this.goToCalc(localStorage.setItem('name', data.name));
+                  }, err =>{
+                    this.openModalFaceUnconpleash(this.datosFaceAuth);
                   })
-                  /* JSON.stringify(res);
-                  alert(JSON.stringify(res)); */
-                  this.openModalFaceUnconpleash();
+/*                   console.log('lo que esta guardado en this.datosFaceAuth',this.datosFaceAuth);
+                  console.log('lo que viene en res:',res); */
               }else{
-                alert(this.datosFaceAuth);
+                alert(this.datos);
               }
-              console.log('logged into facebook', res)
+              console.log('logged into facebook', res);
             })
         .catch(e => console.log('Error logging into Facebook', e));
-  }
+  })}
 
   doSignIn(email, password){
     /* console.log(email, password) */
@@ -119,7 +135,7 @@ ionViewDidEnter(){
         this.datosSrv.getStartPregnacy().subscribe((data:any) =>{
           if(!data){
             const nombre = localStorage.getItem('nombre');
-           this.goToCalc(nombre)
+           this.goToCalc(nombre);
            return
           }
          /* console.log('lo que devuelve el servicio startPregnancy:', this._startPregnancy); */
@@ -180,7 +196,7 @@ ionViewDidEnter(){
           lastname: this.datosFaceAuth.additionalUserInfo.profile.last_name,
           token: this.datosFaceAuth.credential.accessToken
         }
-        console.log('dataMiddle', dataMiddle);
+        console.log('data para Middle', dataMiddle);
         if(this.datosFaceAuth){
             console.log('enviar datos a middleware');
             this.autho.loginWithFacebook(dataMiddle.token).subscribe(async (data:any) =>{
@@ -198,8 +214,8 @@ ionViewDidEnter(){
               localStorage.setItem('sigIn', 'completo');
               this.goToCalc(dataMiddle.nombre);
             },async err=>{
-              if(err.status === 404){
-                this.openModalFaceUnconpleash();
+              if(err.status === 400 || 404){
+                this.openModalFaceUnconpleash(this.datosFaceAuth);
               }else{
   
               }
@@ -240,7 +256,7 @@ ionViewDidEnter(){
     
     
   }
-  async openModalFaceUnconpleash(){
+  async openModalFaceUnconpleash(data){
     const modal = await this.modalCtrl.create({
       component:FaceRegisterComponent,
       animated:true,
@@ -248,7 +264,7 @@ ionViewDidEnter(){
       backdropDismiss:true,
       cssClass: "wideModal",
       componentProps:{
-        datos: this.datosFaceAuth
+        datos: data
       },
       
     });

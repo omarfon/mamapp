@@ -37,6 +37,7 @@ export class FaceRegisterComponent implements OnInit {
     id: 3,
     name: "MUJER"
   };
+
   public _gender;
 
   public document = {
@@ -68,7 +69,7 @@ export class FaceRegisterComponent implements OnInit {
     console.log('data que viene de login', this.datos);
   
     this.registerForm = this.fb.group({
-      name: ['',  [ Validators.required ]],
+      name: [this.nombreTemplate ,  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
       surname2: ['',  [ Validators.required ]],
       email: ['',  [ Validators.required, Validators.email ]],
