@@ -185,9 +185,17 @@ export class HomePage implements OnInit {
       buttons: [
         {
           text: 'Programar',
-          handler: (data) => {
+          handler: async (data) => {
             console.log('guardar en el localstorage', data);
             localStorage.setItem('horaAlerta', data[0]);
+            const alert = await this.alert.create({
+              header: 'Programación de Alerta',
+              subHeader: `Has programado una alerta para todos los días a las ${data} am.`,
+              buttons:[
+                'OK'
+              ]
+            });
+            await alert.present();
             this.horaProgramada = true;
             this.repeatDaily();
           }
