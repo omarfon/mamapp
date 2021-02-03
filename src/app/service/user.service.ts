@@ -13,7 +13,7 @@ export class UserService {
   private SERVER = API_ENDPOINT;
   /* private SERVER2 = "https://dappapache02.eastus.cloudapp.azure.com/middleware2-copy/api/v2/auth/login-firebase" */
   private apiUrl = `${this.SERVER}`;
-  private apiUrlDatos = `${this.SERVER}auth/login/ebooking/`;
+  private apiUrlDatos = `${this.SERVER}ebooking/`;
 
   constructor( public http: HttpClient) { }
 

@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { ChatService } from '../../service/chat.service';
-import { IonContent, AlertController, ToastController } from '@ionic/angular';
+import { IonContent, AlertController, ToastController, PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { mergeMap, mergeMapTo } from 'rxjs/operators';
 import { NotificationsService } from 'src/app/service/notifications.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 interface Message {
@@ -38,7 +39,9 @@ export class ChatPage implements OnInit {
               public router: Router,
               public toast: ToastController,
               public afm: AngularFireMessaging,
-              public notiSrv: NotificationsService) {
+              public notiSrv: NotificationsService,
+              public popover: PopoverController,
+              public iab: InAppBrowser) {
               }
 
   async ionViewDidEnter() {
@@ -199,4 +202,11 @@ export class ChatPage implements OnInit {
    event.target.complete();
   }
 
+  async isHour(){
+    let dataPatient = JSON.parse(localStorage.getItem('dataPaciente'));
+    const dni = dataPatient.numeroDocumento;
+    const name = localStorage.getItem('patientName');
+  this.iab.create(`https://docs.google.com/forms/d/e/1FAIpQLScs6ZJL99KIovADR0PQ-joYpmapPi3xsceZBgaiVvglUFUv3w/viewform?usp=pp_url&entry.907685758=${name}&entry.280683849=${dni}`, '_self');
+  }
+  //https://docs.google.com/forms/d/e/1FAIpQLScs6ZJL99KIovADR0PQ-joYpmapPi3xsceZBgaiVvglUFUv3w/viewform?entry.28063849=undefined
 }

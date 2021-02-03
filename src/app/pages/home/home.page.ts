@@ -9,13 +9,11 @@ import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
 import { BabyComponent } from 'src/app/components/baby/baby.component';
 import * as _ from 'lodash';
-import { FechaPregnancyComponent } from 'src/app/components/fecha-pregnancy/fecha-pregnancy.component';
-import { CalcComponent } from 'src/app/components/calc/calc.component';
-import { RecalcComponent } from 'src/app/components/recalc/recalc.component';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { NextControlsComponent } from 'src/app/components/next-controls/next-controls.component';
 import { RecalcdateComponent } from 'src/app/components/recalcdate/recalcdate.component';
 import { AppointmentService } from 'src/app/service/appointment.service';
+import { UserService } from 'src/app/service/user.service';
 
 
 @Component({
@@ -78,6 +76,7 @@ export class HomePage implements OnInit {
     public loadinCtrl: LoadingController,
     public localNoti: LocalNotifications,
     public plt: Platform,
+    public userSrv: UserService,
     public appointmenSrv: AppointmentService,
     private activateRoute: ActivatedRoute) {
 
@@ -254,6 +253,7 @@ export class HomePage implements OnInit {
       await popover.present(); */
       this.calculoFecha();
     }
+    this.getDataPaciente();
   }
 
   async estadoActual() {
@@ -449,5 +449,12 @@ export class HomePage implements OnInit {
       console.log('this.dates:', this.dates.length);
     });
   }
+
+  getDataPaciente(){
+    this.userSrv.getDatosPaciente().subscribe(data => {
+      localStorage.setItem('dataPaciente', JSON.stringify(data));
+    })
+  }
+
 
 }

@@ -61,6 +61,7 @@ export class LoginPage implements OnInit {
     }
   }
   ngOnInit() {
+
   }
 
   loginFb() {
@@ -339,5 +340,6 @@ export class LoginPage implements OnInit {
     /* this.router.navigate(['tabs']); */
   }
 
+  
 
 }
