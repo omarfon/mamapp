@@ -86,13 +86,7 @@ export class HomePage implements OnInit {
     private activateRoute: ActivatedRoute) {
 
       const notes = localStorage.getItem('notes');
-      if(!notes){
-        this.notasServ.getNotes().subscribe(data => {
-          this.notas = data;
-          localStorage.setItem('notes', JSON.stringify(this.notas));
-          
-        })
-      }
+      
       
       this.notes = JSON.parse(notes);
       console.log(this.notes);
@@ -329,31 +323,31 @@ export class HomePage implements OnInit {
 
     this.cantidad = this.total;
     this.mostrar = true;
-    if (!this.notasFiltro) {
-      /* this.notasServ.getNotes().subscribe(data => {
+   
+   /*  if (!this.notasFiltro) { */
+    if(!this.notes){
+      this.notasServ.getNotes().subscribe(data => {
         this.notas = data;
-        console.log('todas las notas:', this.notas);
-      }, err => {
-
-      },
-        () => {
-          loading.dismiss();
-        }); */
-        this.notas = this.notes.filter(x => x.semana == this.total);
-        if(this.notas){
-          loading.dismiss();
-        }
-    } else {
-      loading.dismiss();
+        this.loadinCtrl.dismiss();
+        localStorage.setItem('notes', JSON.stringify(this.notas));
+        loading.dismiss();
+      })
+    }else{
+      this.notas = this.notes.filter(x => x.semana == this.total);
+      if(this.notas){
+        loading.dismiss();
+      }
+    }
+    /*  else {
       let elfilter = this.notasFiltro;
       this.notasServ.getNotesFilter(elfilter).subscribe(data => {
-        /* console.log('lo que me llega del filtro:', data); */
         this.notas = data
         console.log(this.notas);
 
-      });
-      this.notasFiltro = this.notas;
-    };
+      }); */
+      /* this.notasFiltro = this.notas;
+    }; */
+    
   }
 
   loadData(event) {
