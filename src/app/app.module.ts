@@ -44,6 +44,7 @@ import { Facebook } from '@ionic-native/facebook/ngx'
 import { NgxAgoraModule } from 'ngx-agora';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 /* import {NgxAgoraModule} from 'ngx-agora'; */
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,7 +70,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     Facebook,
     { provide: LOCALE_ID, useValue: "es" },
     LocalNotifications,
-    InAppBrowser,
+    InAppBrowser,BackgroundMode,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

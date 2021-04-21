@@ -14,6 +14,7 @@ import { NextControlsComponent } from 'src/app/components/next-controls/next-con
 import { RecalcdateComponent } from 'src/app/components/recalcdate/recalcdate.component';
 import { AppointmentService } from 'src/app/service/appointment.service';
 import { UserService } from 'src/app/service/user.service';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 
 @Component({
@@ -80,6 +81,7 @@ export class HomePage implements OnInit {
     public localNoti: LocalNotifications,
     public plt: Platform,
     public userSrv: UserService,
+    private backgroundMode: BackgroundMode,
     public appointmenSrv: AppointmentService,
     private activateRoute: ActivatedRoute) {
 
@@ -91,6 +93,7 @@ export class HomePage implements OnInit {
           
         })
       }
+      
       this.notes = JSON.parse(notes);
       console.log(this.notes);
     this.plt.ready().then(() => {
@@ -145,6 +148,7 @@ export class HomePage implements OnInit {
   }
 
   repeatDaily() {
+    this.backgroundMode.enable();
     const horaDiaria = parseInt(localStorage.getItem('horaAlerta'));
     this.localNoti.schedule({
       id: 42,
