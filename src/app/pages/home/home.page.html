@@ -189,7 +189,7 @@
 
       <!-- cuerpo para la comparativa bebe -->
       <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
-        <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
+        <ion-card class="comparativaBebe" id="comparativaBebe">
           <div padding>
             <ion-row>
               <ion-col size="12" class="containerTexto">
@@ -253,6 +253,11 @@
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                     </mat-panel-title>
+                    <mat-panel-description class="center">
+                      <mat-icon>
+                        expand_more
+                        </mat-icon>
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <p class="textoCompletoNutricion">
                     {{nota.texto}}
@@ -299,6 +304,11 @@
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                     </mat-panel-title>
+                    <mat-panel-description class="center">
+                      <mat-icon>
+                        expand_more
+                        </mat-icon>
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <p class="textoCompletoNutricion">
                     {{nota.texto}}
@@ -339,7 +349,11 @@
               <mat-accordion class="accordionCambiosMama">
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
-
+                    <mat-panel-description class="center">
+                      <mat-icon>
+                        expand_more
+                        </mat-icon>
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <p class="textoCompletoNutricion">
                     {{nota.texto}}
@@ -402,5 +416,10 @@
 
 
 
-
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando otros meses...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

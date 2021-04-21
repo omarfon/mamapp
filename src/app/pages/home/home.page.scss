@@ -621,7 +621,7 @@ ion-col {
 }
 
 .mat-expansion-indicator {
-  color: rgb(208, 208, 208) !important;
+  color: rgb(143, 143, 143) !important;
 }
 
 .textoFechaPosible {
@@ -876,4 +876,12 @@ ion-slides {
   width: 50px;
   border-radius: 50%;
   background: #019FE0;
+}
+.center{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  mat-icon{
+    color:#444D4D;
+  }
 }

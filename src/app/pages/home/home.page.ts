@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotasService } from '../../service/notas.service';
 import moment from 'moment';
 import { DatosControlService } from '../../service/datos-control.service';
-import { PopoverController, AlertController, ModalController, LoadingController, Platform, NavParams } from '@ionic/angular';
+import { PopoverController, AlertController, ModalController, LoadingController, Platform, NavParams, IonInfiniteScroll } from '@ionic/angular';
 import { FiterComponent } from '../../components/fiter/fiter.component';
 import { EstadoService } from 'src/app/service/estado.service';
 import { ChatService } from 'src/app/service/chat.service';
@@ -22,8 +22,8 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
   /* private number = Constants.COACH; */
+  @ViewChild(IonInfiniteScroll, {static:true} ) infiniteScroll: IonInfiniteScroll;
   public cantidad: 0;
   public _cantidad: any;
   public startPregnancy;
@@ -39,6 +39,7 @@ export class HomePage implements OnInit {
   params;
   public notas;
   public _notas;
+  public notes;
   public filtro;
   public notasMuestreo;
   public notasFiltro;
@@ -52,6 +53,8 @@ export class HomePage implements OnInit {
   public actualMomento;
   public name;
   public dataTrans;
+  public chargeMonth;
+  public monthInic;
   public slideOpts = {
     slidesPerView: 1.3
 
@@ -80,6 +83,16 @@ export class HomePage implements OnInit {
     public appointmenSrv: AppointmentService,
     private activateRoute: ActivatedRoute) {
 
+      const notes = localStorage.getItem('notes');
+      if(!notes){
+        this.notasServ.getNotes().subscribe(data => {
+          this.notas = data;
+          localStorage.setItem('notes', JSON.stringify(this.notas));
+          
+        })
+      }
+      this.notes = JSON.parse(notes);
+      console.log(this.notes);
     this.plt.ready().then(() => {
       this.localNoti.on('click').subscribe(res => {
         console.log('click:', res);
@@ -97,6 +110,12 @@ export class HomePage implements OnInit {
       this.date = date;
       console.log(this.date);
     })
+  }
+
+  
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
   scheduleNotification() {
@@ -222,7 +241,7 @@ export class HomePage implements OnInit {
     }
     console.log(programada);
     this.getCitas();
-    this.calculoFecha();
+    /* this.calculoFecha(); */
     this.name = localStorage.getItem('name');
     this.imagePerfil = localStorage.getItem('imagenPerfil');
     this.estado.actualMomento().subscribe((data: any) => {
@@ -246,11 +265,6 @@ export class HomePage implements OnInit {
       })
       this.calculoFecha();
     } else {
-      /* const popover = await this.popover.create({
-        component:FechaPregnancyComponent,
-        backdropDismiss: false
-      });
-      await popover.present(); */
       this.calculoFecha();
     }
     this.getDataPaciente();
@@ -288,7 +302,8 @@ export class HomePage implements OnInit {
     // aqui calcula la cantidad de semanas transcurridas
     const totalDays = this.today.diff(this.fecha, 'days');
     this.total = this.today.diff(this.fecha, 'weeks');
-
+    console.log('semanas transcurridas:',this.total);
+    this.monthInic = this.total - 1;
     /* aqui calculo el dia pendiente */
     this.diasPendientes = totalDays - (this.total * 7);
     this.totaldias = this.total.toString();
@@ -296,7 +311,7 @@ export class HomePage implements OnInit {
     /* cuanto tiempo ha pasado desde la concepcion */
     const start = moment(this.fecha);
     const cuanto = start.fromNow(true);
-    /* console.log('cuanto', cuanto); */
+   /*  console.log('cuanto', cuanto);  */
 
     /*   aqui les sumamos las 40 semanas a la fecha inicial para poder tener el ultimo dia de parto */
     const posible = start.add(41, 'w');
@@ -311,22 +326,21 @@ export class HomePage implements OnInit {
     this.cantidad = this.total;
     this.mostrar = true;
     if (!this.notasFiltro) {
-      this.notasServ.getNotes().subscribe(data => {
+      /* this.notasServ.getNotes().subscribe(data => {
         this.notas = data;
         console.log('todas las notas:', this.notas);
-
-        /* this.notasServ.getNotesTrans().subscribe(data =>{
-          this.dataTrans = data;
-          console.log('dataTrans', this.dataTrans);
-        }); */
-
       }, err => {
 
       },
         () => {
           loading.dismiss();
-        });
+        }); */
+        this.notas = this.notes.filter(x => x.semana == this.total);
+        if(this.notas){
+          loading.dismiss();
+        }
     } else {
+      loading.dismiss();
       let elfilter = this.notasFiltro;
       this.notasServ.getNotesFilter(elfilter).subscribe(data => {
         /* console.log('lo que me llega del filtro:', data); */
@@ -336,9 +350,28 @@ export class HomePage implements OnInit {
       });
       this.notasFiltro = this.notas;
     };
-
   }
 
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      this.chargeMonth = this.monthInic;
+      /* console.log(this.chargeMonth); */
+      const add = this.notes.filter(x => x.semana == this.chargeMonth);
+      console.log(this.notas);
+      if(add){
+        this.notas.push(...add);
+        this.monthInic = this.monthInic - 1
+      }
+     /*  console.log(this.notas); */
+      event.target.complete();
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.notas.length == 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
 
   goToChat() {
     this.router.navigateByUrl('/evolucion');
@@ -382,27 +415,6 @@ export class HomePage implements OnInit {
 
 
   async openCalc() {
-    /* let alert = await this.alert.create({
-        header:'Ingresa la nueva fecha',
-        inputs:[
-          {
-            name: 'fecha',
-            type: 'date',
-            label: 'nueva fecha',
-          }
-        ],
-        buttons:[
-          {
-            text:'Ingresar',
-            handler:(data)=>{
-              console.log(data.fecha);
-              localStorage.setItem('startPregnancy', data.fecha);
-              this.calculoFecha();
-            }
-          }
-        ]
-    });
-    await alert.present(); */
     const popoverCalc = await this.modalCtrl.create({
       component: RecalcdateComponent,
       cssClass: "RecalcModalControl",

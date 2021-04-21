@@ -12,6 +12,7 @@ import { ChatService } from 'src/app/service/chat.service';
 import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
 import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { NotasService } from 'src/app/service/notas.service';
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,7 @@ export class LoginPage implements OnInit {
     public loadinCtrl: LoadingController,
     public modalCtrl: ModalController,
     public fb: Facebook,
+    public notes: NotasService,
     public plt: Platform) { }
 
 
@@ -61,7 +63,13 @@ export class LoginPage implements OnInit {
     }
   }
   ngOnInit() {
+    this.getAllNotes()
+  }
 
+  getAllNotes(){
+    this.notes.getNotes().subscribe(data => {
+      localStorage.setItem('notes', JSON.stringify(data));
+    })
   }
 
   loginFb() {
@@ -310,7 +318,6 @@ export class LoginPage implements OnInit {
   }
 
   goToRegister() {
-
     this.router.navigate(['register']);
   }
 

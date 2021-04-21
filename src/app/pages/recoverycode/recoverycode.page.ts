@@ -98,6 +98,18 @@ export class RecoverycodePage implements OnInit {
             localStorage.clear();
             this.nav.navigateRoot(['login']);
         }
+      }, async err => {
+        console.log(err);
+        const alert = await this.alertCtrl.create({
+          header:"Error en el envío",
+          message: err.error.message,
+          buttons: [
+            {
+              text:'Entiendo'
+            }
+          ]
+        });
+        alert.present();
       });
 }
 

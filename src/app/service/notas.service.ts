@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { Observable, combineLatest } from 'rxjs';
-import { API_NOTAS } from '../../environments/environment';
+import { API_ENDPOINT, API_NOTAS } from '../../environments/environment';
 
 
 @Injectable({
@@ -12,8 +12,9 @@ export class NotasService {
   private SERVER = API_NOTAS;
   private apiUrl = `${this.SERVER}/xnotas`;
   private apiUrlFilter = `${this.SERVER}`;
-  private apiUrlSemana = `${this.SERVER}notas-por-semana?semana=`;
-  private apiUrlContentAviva = `${this.SERVER}/xtrans`
+  private apiUrlSemana = `${this.SERVER}/notas-por-semana?semana=`;
+  private apiUrlContentAviva = `${this.SERVER}/xtrans`;
+  private newUrl = "https://api.aviva.pe/middleware2/api/v2/mama/data";
   categoriasSincronas: any;
   categoriasAtemp: any;
   categoriasTotales: Observable<any>;
@@ -104,4 +105,14 @@ export class NotasService {
                       })
                       )
                     }
+
+  getNewNotesForWeeks(semana){
+     return this.http.get(this.newUrl + `?semana=${semana}`).pipe(
+                  map((resp:any) => {
+                    return resp;
+                  })
+                  )
+  }
+
+
 }

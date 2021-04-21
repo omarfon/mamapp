@@ -190,7 +190,7 @@ export class RegisterPage implements OnInit {
       console.log('data retornada de validateEmail:',this.data);
     }); */
     this.saveData();
-      this.goToCalc(name);
+      /* this.goToCalc(name); */
      /* this.router.navigate(['/tabs']); */
     /* 
       console.log('data correcta:', res); 
