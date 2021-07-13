@@ -1,18 +1,15 @@
 <ion-header>
   <ion-toolbar color="light">
-      <ion-buttons slot="start">
-          <ion-menu-button ></ion-menu-button>
-      </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title size="small">Home</ion-title>
     <ion-buttons slot="secondary">
-      <ion-button slot="end"
-                  clear
-                  >
-                {{name}}
+      <ion-button slot="end" clear>
+        {{name}}
       </ion-button>
-      <ion-button slot="end"
-                  clear>
-            <ion-icon name="video"></ion-icon>
+      <ion-button slot="end" clear>
+        <ion-icon name="video"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,34 +17,34 @@
 
 <ion-content>
   <!-- inicio del calendario  -->
+  <ion-row>
+    <ion-col size="12">
+      <ion-card class="white">
         <ion-row>
-          <ion-col size="12" >
-            <ion-card class="white">
-              <ion-row>
-                <!-- card para las semanas de embarazo -->
-                <ion-col size="6">
-                    <ion-card >
-                        <div class="cuadrado top10">
-                          <div class="marginTop10">
-                          <ion-row *ngIf="totaldias">
-                            <ion-col size="12">
-                              <p class="textoNombre"> {{name}} {{nombre}} hoy tienes:</p>
-                            </ion-col>
-    
-                              <!-- <ion-col size="1" id="containerDias">
+          <!-- card para las semanas de embarazo -->
+          <ion-col size="6">
+            <ion-card>
+              <div class="cuadrado top10">
+                <div class="marginTop10">
+                  <ion-row *ngIf="totaldias">
+                    <ion-col size="12">
+                      <p class="textoNombre"> {{name}} {{nombre}} hoy tienes:</p>
+                    </ion-col>
+
+                    <!-- <ion-col size="1" id="containerDias">
                               </ion-col> -->
-                                <ion-col size="8" id="containerDias">
-                                    <p class="nSemanas">{{ totaldias |slice:0:2 }}</p>
-                                    <p class="pSemanas">Semanas</p>
-                                </ion-col>
-                                <ion-col size="4" >
-                                  <div class="blanco">
-                                    <p  class="nDias">{{ diasPendientes }}</p>
-                                    <p class="pDias">dias</p>
-                                  </div>
-                                </ion-col>
-                                <ion-col size="12" id="containerRecalc">
-                                  <!-- <ion-row>
+                    <ion-col size="8" id="containerDias">
+                      <p class="nSemanas">{{ totaldias |slice:0:2 }}</p>
+                      <p class="pSemanas">Semanas</p>
+                    </ion-col>
+                    <ion-col size="4">
+                      <div class="blanco">
+                        <p class="nDias">{{ diasPendientes }}</p>
+                        <p class="pDias">dias</p>
+                      </div>
+                    </ion-col>
+                    <ion-col size="12" id="containerRecalc">
+                      <!-- <ion-row>
                                     <ion-col size="10" class="fraseRecalcular">
                                       <p>Recalcular fecha</p> 
                                     </ion-col> 
@@ -57,14 +54,14 @@
                                       </ion-button>
                                     </ion-col>
                                   </ion-row>  -->
-                                </ion-col>
-                              </ion-row>
-                            </div>
-                        </div>
-                    </ion-card>
-                </ion-col>
-                <!-- card para el calculo manual de embarazo, sino tienes cuenta , este es el que debería usarse -->
-                <!-- <ion-col size="6" >
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </div>
+            </ion-card>
+          </ion-col>
+          <!-- card para el calculo manual de embarazo, sino tienes cuenta , este es el que debería usarse -->
+          <!-- <ion-col size="6" >
                 <ion-card class="contenedorFechas" >
                   <div class="margenTexto">
                     <ion-row>
@@ -89,47 +86,48 @@
                   </div>
                   </ion-card>
                 </ion-col> -->
-                <ion-col size="6">
-                    <ion-row>
-                      <ion-col size="12">
-                        <ion-card class="getMedicine">
-                          <ion-row>
-                            <ion-col size="10"  style="background-image: url('assets/imgs/slides/pastilla.png'); background-repeat: no-repeat; background-size: initial; height: 100%; margin-left:10px; margin-top:10px;">
-                              <p class="frasePastilla">Tomaste ya, tu ácido fólico?</p>
-                            </ion-col>
-                            <ion-col size="2" class="centradoIconoPastilla">
-                              <ion-button fill="clear"
-                                          (click)="scheduleNotification()">
-                                <ion-icon name="add"></ion-icon>
-                              </ion-button>
-                            </ion-col>
-                          </ion-row>
-                        </ion-card>
-                      </ion-col>
-                      <ion-col size="12" (click)="openModalControls()">
-                        <ion-card class="controlGine">
-                          <ion-row>
-                           <!--  <ion-col size="4" class="containerNumberControl">
-                              <p class="numberControl">{{numberControl}}</p>
-                              <p class="verboNumberControl">to</p>
-                            </ion-col> -->
-                            <ion-col size="1"></ion-col>
-                            <ion-col size="10">
-                              <p class="fraseControl">Tu próximo control es en:</p>
-                              <p class="diasControl">? días.</p>
-                            </ion-col>
-                          </ion-row> 
-                        </ion-card>
-                      </ion-col>
-                    </ion-row> 
-                </ion-col>
-              </ion-row> 
-            </ion-card>
+          <ion-col size="6">
+            <ion-row>
+              <ion-col size="12">
+                <ion-card class="getMedicine">
+                  <ion-row>
+                    <ion-col size="9"
+                      style="background-image: url('assets/imgs/slides/pastilla.png'); background-repeat: no-repeat; background-size: initial; height: 100%; margin-left:10px; margin-top:10px;">
+                      <p class="frasePastilla" *ngIf="horaProgramada === false">Tomaste ya, tu ácido fólico?</p>
+                      <p class="frasePastilla" *ngIf="horaProgramada === true">Tu Alarma ya está programada</p>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-button fill="clear" (click)="defineHourAlert()" class="iconoPastilla">
+                        <ion-icon name="add"></ion-icon>
+                      </ion-button>
+                      <ion-datetime displayFormat="HH:mm"></ion-datetime>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+              </ion-col>
+              <ion-col size="12">
+                <ion-card class="controlGine">
+                  <ion-row>
+                    <ion-col size="9">
+                      <p class="textoPendientes"> {{name}} tienes <span>{{dates}}</span> controles pendientes </p>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-button (click)="openPageCitas()" fill="clear" class="buttonSeeMore">
+                        <ion-icon slot="icon-only" name="add"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+              </ion-col>
+            </ion-row>
           </ion-col>
-    
-        </ion-row >
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
   <!-- fin del calendario -->
-<!--         <ion-slides [options]="slideOpts">
+  <!--         <ion-slides [options]="slideOpts">
             <ion-slide *ngFor="let cardTrans of dataTrans">
               <ion-card class="cardInfoAviva">
                 <ion-row>
@@ -160,138 +158,135 @@
               </ion-card>
             </ion-slide>
         </ion-slides> -->
-          <div *ngFor="let nota of notas">
-            <div *ngIf="nota.semana < cantidad + 1" >
-             <!--  <div> -->
-                <!-- cuerpo para las pastillas -->
-                <div *ngIf="nota.tipo == 'pastilla'" class="animated bounceInLeft">
-                  <ion-card class="pastilla gris" id="pastilla" padding>
-                    <ion-col size="12">
-                      <ion-row>
-                        <ion-col size="2" >
-                          <img src="assets/imgs/icons/pastillas.png" alt="">
-                        </ion-col>
-                        <ion-col size="8">
-                                  <p class="tituloPastilla">Crecimiento para la semana</p>
-                                  <!-- <p class="pastillasemana">18 semanas</p> -->
-                        </ion-col>
-                        <ion-col size="2">
-                            <p
-                            class="numeroSemana">{{nota.semana}}</p>
-                        </ion-col>
-                        <ion-col size="12">
-                          <p class="contenidoPastilla">
-                            <span class="textoPastillaSpan">{{name}} </span> Tu bebé pesa esta semana alrededor de {{nota.peso}} y mide {{nota.talla}}
-                          </p>
-                        </ion-col>
-                      </ion-row>
-                    </ion-col> 
-                    </ion-card>
-                </div>
-    
-                    <!-- cuerpo para la comparativa bebe -->
-                    <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
-                      <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
-                          <div padding>
-                            <ion-row>
-                              <ion-col size="12"
-                                        class="containerTexto">
-                                <ion-row>
-                                  <ion-col size="2" class="containerImagenCompa">
-                                    <img src="assets/imgs/icons/iconComparativa.png" alt="">
-                                  </ion-col>
-                                  <ion-col size="8">
-                                    <p class="tituloComparativa"> <span>{{name}}</span> tu bebé es como...</p>
-                                  </ion-col>
-                                  <ion-col size="2">
-                                    <p class="numeroSemanaComparativa">{{nota.semana}}</p>
-                                  </ion-col>
-                                  <ion-col size="12" class="m-t-0 m-b-0 containerImgComparativa">
-                                    <img src="{{nota.imagenUrl}}" alt="">
-                                  </ion-col>
-                                </ion-row>
-                              </ion-col>
-    
-                              <ion-col size="12">
-                                  <ion-row>
-                                    <ion-col size="12">
-                                        <p class="textoComparativa">{{nota.texto}}</p>
-                                    </ion-col>
-                                    <!-- <ion-col size="3" class="containerImageComparativa">
+  <div *ngFor="let nota of notas">
+    <div *ngIf="nota.semana < cantidad + 1">
+      <!--  <div> -->
+      <!-- cuerpo para las pastillas -->
+      <div *ngIf="nota.tipo == 'pastilla'" class="animated bounceInLeft">
+        <ion-card class="pastilla gris" id="pastilla" padding>
+          <ion-col size="12">
+            <ion-row>
+              <ion-col size="2">
+                <img src="assets/imgs/icons/pastillas.png" alt="">
+              </ion-col>
+              <ion-col size="8">
+                <p class="tituloPastilla">Crecimiento para la semana</p>
+                <!-- <p class="pastillasemana">18 semanas</p> -->
+              </ion-col>
+              <ion-col size="2">
+                <p class="numeroSemana">{{nota.semana}}</p>
+              </ion-col>
+              <ion-col size="12">
+                <p class="contenidoPastilla">
+                  <span class="textoPastillaSpan">{{name}} </span> Tu bebé pesa esta semana alrededor de {{nota.peso}} y
+                  mide {{nota.talla}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-card>
+      </div>
+
+      <!-- cuerpo para la comparativa bebe -->
+      <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
+        <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
+          <div padding>
+            <ion-row>
+              <ion-col size="12" class="containerTexto">
+                <ion-row>
+                  <ion-col size="2" class="containerImagenCompa">
+                    <img src="assets/imgs/icons/iconComparativa.png" alt="">
+                  </ion-col>
+                  <ion-col size="8">
+                    <p class="tituloComparativa"> <span>{{name}}</span> tu bebé es como...</p>
+                  </ion-col>
+                  <ion-col size="2">
+                    <p class="numeroSemanaComparativa">{{nota.semana}}</p>
+                  </ion-col>
+                  <ion-col size="12" class="m-t-0 m-b-0 containerImgComparativa">
+                    <img src="{{nota.imagenUrl}}" alt="">
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col size="12">
+                    <p class="textoComparativa">{{nota.texto}}</p>
+                  </ion-col>
+                  <!-- <ion-col size="3" class="containerImageComparativa">
                                       <img src="{{nota.imagenUrl}}">
                                     </ion-col> -->
-                                  </ion-row>
-                              </ion-col>
-    
-                            </ion-row>
-                          </div>
-                        </ion-card>
-                    </div>
-    
-                    <div *ngIf="nota.tipo == 'nutricion'" class="animated bounceInLeft">
-                      <ion-card class="nutricionTips" id="nutricionTips">
-                       <div padding>
-                         <ion-row>
-                           <ion-col size="12" class="containerimagenNutrition m-b-0">
-                             <img src="{{nota.imagenUrl}}" alt="">
-                             <ion-row>
-                               <ion-col size="2"
-                                         class="containerNutricionIcon">
-                                 <img src="assets/imgs/icons/nutricion.png" alt="">
-                               </ion-col>
-                               <ion-col size="8">
-                                 <p class="tituloNutricion">{{nota.titulo}}</p>
-                               </ion-col>
-                               <ion-col size="2">
-                                <p
-                                class="numeroSemanaNutricion">{{nota.semana}}</p>
-                               </ion-col>
-                             </ion-row>
-                           </ion-col>
-                           <ion-col size="12">
-                             <p class="contenidoNutricion">
-                                 {{nota.resumen}}
-                             </p>
-                           </ion-col>
-                          <mat-accordion class="accordionNutrition">
-                            <mat-expansion-panel >
-                              <mat-expansion-panel-header>
-                                  <mat-panel-title>
-                                  </mat-panel-title>
-                              </mat-expansion-panel-header>
-                              <p class="textoCompletoNutricion">
-                                {{nota.texto}}
-                              </p>
-                            </mat-expansion-panel>
-                          </mat-accordion>
-                         </ion-row>
-                       </div>
-                     </ion-card>
-                    </div>
-                  <div *ngIf="nota.tipo == 'evobebe'" class="animated bounceInRight">
-                    <ion-card class="evoBebe" id="evoBebe" >
-                      <div padding>
-                        <ion-row>
-                          <div size="12" class="containerImagenEvo m-b-0 m-t-0">
-                            <img class="imagenBebe" src="{{nota.imagenUrl}}" alt=""> 
-                          </div>
-                          <ion-col size="2">
-                              <div>
-                                  <img  class="iconoEvoBebe" src="assets/imgs/icons/evobebe.png" alt="">
-                                </div>
-                          </ion-col>
-                          <ion-col size="8">
-                              <p class="tituloEvoBebe">
-                                  {{nota.titulo}}
-                              </p>
-                          </ion-col>
-                          <ion-col size="2">
-                            <p class="numeroSemanaEvoBebe">{{nota.semana}}</p>
-                          </ion-col>
-                          <ion-col size="12">
-                            <p class="contenidoEvoBebe">{{nota.resumen}}</p>
-                          </ion-col>
-                          <!-- <ion-col col-12>
+                </ion-row>
+              </ion-col>
+
+            </ion-row>
+          </div>
+        </ion-card>
+      </div>
+
+      <div *ngIf="nota.tipo == 'nutricion'" class="animated bounceInLeft">
+        <ion-card class="nutricionTips" id="nutricionTips">
+          <div padding>
+            <ion-row>
+              <ion-col size="12" class="containerimagenNutrition m-b-0">
+                <img src="{{nota.imagenUrl}}" alt="">
+                <ion-row>
+                  <ion-col size="2" class="containerNutricionIcon">
+                    <img src="assets/imgs/icons/nutricion.png" alt="">
+                  </ion-col>
+                  <ion-col size="8">
+                    <p class="tituloNutricion">{{nota.titulo}}</p>
+                  </ion-col>
+                  <ion-col size="2">
+                    <p class="numeroSemanaNutricion">{{nota.semana}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12">
+                <p class="contenidoNutricion">
+                  {{nota.resumen}}
+                </p>
+              </ion-col>
+              <mat-accordion class="accordionNutrition">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p class="textoCompletoNutricion">
+                    {{nota.texto}}
+                  </p>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ion-row>
+          </div>
+        </ion-card>
+      </div>
+      <div *ngIf="nota.tipo == 'evobebe'" class="animated bounceInRight">
+        <ion-card class="evoBebe" id="evoBebe">
+          <div padding>
+            <ion-row>
+              <div size="12" class="containerImagenEvo m-b-0 m-t-0">
+                <img class="imagenBebe" src="{{nota.imagenUrl}}" alt="">
+              </div>
+              <ion-col size="2">
+                <div>
+                  <img class="iconoEvoBebe" src="assets/imgs/icons/evobebe.png" alt="">
+                </div>
+              </ion-col>
+              <ion-col size="8">
+                <p class="tituloEvoBebe">
+                  {{nota.titulo}}
+                </p>
+              </ion-col>
+              <ion-col size="2">
+                <p class="numeroSemanaEvoBebe">{{nota.semana}}</p>
+              </ion-col>
+              <ion-col size="12">
+                <p class="contenidoEvoBebe">{{nota.resumen}}</p>
+              </ion-col>
+              <!-- <ion-col col-12>
                               <button ion-button
                                       clear
                                       class="botonvermasbebe"
@@ -299,81 +294,70 @@
                                       <ion-icon name="arrow-round-forward"></ion-icon>
                               </button>
                           </ion-col> -->
-                          <mat-accordion class="accordionEvobebe">
-                              <mat-expansion-panel >
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                    </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <p class="textoCompletoNutricion">
-                                  {{nota.texto}}
-                                </p>
-                              </mat-expansion-panel>
-                            </mat-accordion>
-                        </ion-row>
-                      </div>
-                    </ion-card>
-                  </div>
-    
-                  <div *ngIf="nota.tipo == 'cambios'" class="animated bounceInLeft">
-                    <!-- cuerpo para cambios mama -->
-                 <ion-card class="cambiosMama" id="cambiosMama">
-                     <div padding>
-                       <ion-row>
-                         <ion-col size="12">
-                           <ion-row>
-                             <ion-col size="12" class="noMargin">
-                              <img src="{{nota.imagenUrl}}" alt="">
-                            </ion-col>  
-                             <ion-col size="2"
-                                      class="containerCambiosMamaIcon">
-                              <img src="assets/imgs/icons/cambiosmama.png" alt="">
-                             </ion-col>
-                             <ion-col size="8">
-                               <p class="tituloCambiosMama">{{nota.titulo}}</p>
-                               <!-- <p class="tituloCambiosMama">Cambios Mamá</p> -->
-                               <!-- <p class="textocambiosemanamama">cambios en la semana {{nota.semana}}</p> -->
-                             </ion-col>
-                             <ion-col>
-                                <p class="numeroSemanaCambiosMama">{{nota.semana}}</p>
-                             </ion-col>
-                           </ion-row>
-                         </ion-col>
-                         <ion-col size="12" class="m-b-0">
-                           <p class="contenidoCambiosMama m-t-0">{{nota.resumen}}</p>
-                          </ion-col>
-                          <!-- <ion-col col-12>
-                              <button ion-button
-                                     clear
-                                     class="botonvermascambios"
-                                     (click)="goToDetailCambiosMama(nota)">
-                                     <ion-icon name="arrow-round-forward"></ion-icon>
-                             </button>
-                         </ion-col> -->
-                         <mat-accordion class="accordionCambiosMama">
-                            <mat-expansion-panel >
-                              <mat-expansion-panel-header>
-                                 <!--  <mat-panel-title>
-                                    ver mas
-                                  </mat-panel-title> -->
-                              </mat-expansion-panel-header>
-                              <p class="textoCompletoNutricion">
-                                {{nota.texto}}
-                              </p>
-                              <h3 *ngIf="nota.consejos" class="consejos">Consejos</h3>
-                              <p>{{nota.consejos}}</p>
-                              <h3 *ngIf="nota.alertas" class="alerta">Signos de alerta</h3>
-                              <p class="alerta">{{nota.alertas}}</p>
-                            </mat-expansion-panel>
-                          </mat-accordion>
-                       </ion-row>
-                     </div>
-                 </ion-card>
-                  </div>
-    
-    
-                    <!-- cuerpo para las actividades -->
-                    <!-- <ion-card class="actividades" id="actividades">
+              <mat-accordion class="accordionEvobebe">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p class="textoCompletoNutricion">
+                    {{nota.texto}}
+                  </p>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ion-row>
+          </div>
+        </ion-card>
+      </div>
+
+      <div *ngIf="nota.tipo == 'cambios'" class="animated bounceInLeft">
+        <!-- cuerpo para cambios mama -->
+        <ion-card class="cambiosMama" id="cambiosMama">
+          <div padding>
+            <ion-row>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col size="12" class="noMargin">
+                    <img src="{{nota.imagenUrl}}" alt="">
+                  </ion-col>
+                  <ion-col size="2" class="containerCambiosMamaIcon">
+                    <img src="assets/imgs/icons/cambiosmama.png" alt="">
+                  </ion-col>
+                  <ion-col size="8">
+                    <p class="tituloCambiosMama">{{nota.titulo}}</p>
+                    <!-- <p class="tituloCambiosMama">Cambios Mamá</p> -->
+                    <!-- <p class="textocambiosemanamama">cambios en la semana {{nota.semana}}</p> -->
+                  </ion-col>
+                  <ion-col>
+                    <p class="numeroSemanaCambiosMama">{{nota.semana}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" class="m-b-0">
+                <p class="contenidoCambiosMama m-t-0">{{nota.resumen}}</p>
+              </ion-col>
+              <mat-accordion class="accordionCambiosMama">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+
+                  </mat-expansion-panel-header>
+                  <p class="textoCompletoNutricion">
+                    {{nota.texto}}
+                  </p>
+                  <h3 *ngIf="nota.consejos" class="consejos">Consejos</h3>
+                  <p>{{nota.consejos}}</p>
+                  <h3 *ngIf="nota.alertas" class="alerta">Signos de alerta</h3>
+                  <p class="alerta">{{nota.alertas}}</p>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ion-row>
+          </div>
+        </ion-card>
+      </div>
+
+
+      <!-- cuerpo para las actividades -->
+      <!-- <ion-card class="actividades" id="actividades">
                       <div padding>
                         <ion-row>
                           <ion-col col-9>
@@ -394,8 +378,8 @@
                         <p class="textoActividades">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod </p>
                       </div>
                     </ion-card> -->
-    
-                    <!-- <ion-card class="articulos" id="articulos">
+
+      <!-- <ion-card class="articulos" id="articulos">
                       <div>
                         <img class="imagenArticulo" src="assets/imgs/imagenArticulo.png" alt="">
                         <img class="iconoArticulo" src="assets/imgs/icons/articulo.png" alt="">
@@ -410,13 +394,13 @@
                     </ion-card>
                     -->
 
-                 
-                  </div>
-              </div>
-    
-    
-    
-    
-    
+
+    </div>
+  </div>
+
+
+
+
+
 
 </ion-content>

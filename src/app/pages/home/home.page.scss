@@ -1,832 +1,879 @@
 ion-content {
-    --background: #f4f6f6 !important;
-  }
-  .cuadrado {
-    height: 180px;
-    border-radius:0!important;
-    background: #7A57D1;
-  }
+  --background: #f4f6f6 !important;
+}
 
-  .marginTop10 {
-    padding-top: 60px;
-  }
+.cuadrado {
+  height: 180px;
+  border-radius: 0 !important;
+  background: #7A57D1;
+}
 
-  .nSemanas {
-    font-size: 4rem;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: right;
+.marginTop10 {
+  padding-top: 60px;
+}
+
+.nSemanas {
+  font-size: 4rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: right;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: -1em;
+}
+
+.pSemanas {
+  margin-top: -15px;
+  text-align: right;
+  font-size: 1.2em;
+  color: #fff;
+  font-weight: 200;
+}
+
+.textoPendientes {
+  font-size: 1.1em;
+  font-weight: 400;
+  width: 90%;
+  margin-left: 10%;
+
+  span {
+    font-size: 1.3em;
     font-weight: 600;
+  }
+}
+
+.buttonSeeMore {
+  margin-top: 50px;
+  color: #fff;
+}
+
+#containerDias {
+  margin-top: -20px !important;
+}
+
+#containerRecalc {
+  margin-top: -10px !important;
+  color: #66CBEC;
+  display: flex;
+  justify-items: center;
+}
+
+.nDias {
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  margin-left: 9px;
+}
+
+.pDias {
+  margin-top: -3px;
+  color: #fff;
+  font-weight: 200;
+  font-size: 1.2em;
+  text-align: left;
+  margin-left: 9px;
+}
+
+.blanco {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.dControl {
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+  margin: 0;
+}
+
+.fControl {
+  color: #fff;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.tituloConsejos {
+  color: #FF634C;
+  padding-top: 5px;
+}
+
+.parrafoConsejos,
+.parrafoDesarrollo {
+  font-size: .9em;
+  color: #444D4D;
+}
+
+.tituloDesarrollo {
+  color: #FF634C;
+  font-size: 1.2em;
+}
+
+ion-row {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+ion-col {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.tituloSemanas {
+  text-align: center;
+  color: #444D4D;
+  font-size: 1.2em;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-left: 5%;
+  font-weight: 600;
+}
+
+.contenedorFechas {
+  height: 180px;
+  background: #FFA28C;
+  text-align: left;
+  width: 90%;
+  margin-left: 5%;
+
+  p {
     color: #fff;
-    margin-bottom: -1em;
   }
 
-  .pSemanas {
-    margin-top: -15px;
-    text-align: right;
-    font-size: 1.2em;
-    color: #fff;
-    font-weight: 200;
-  }
-  #containerDias{
-    margin-top:-20px!important;
-  }
-  #containerRecalc{
-    margin-top:-10px!important;
-    color:#66CBEC;
-    display: flex;
-    justify-items: center;
-  }
-  .nDias {
-    margin-top: 5px;
-    margin-bottom:0;
-    font-size: 2rem;
-    color: #fff;
-    text-align: left;
+  .tituloControl {
+    margin-top: 30px;
+    margin-bottom: 20px;
     font-weight: 600;
-    margin-left:9px;
-  }
-
-  .pDias {
-    margin-top: -3px;
-    color: #fff;
-    font-weight: 200;
     font-size: 1.2em;
-    text-align: left;
-    margin-left:9px;
+    line-height: 1.1em !important;
   }
 
-  .blanco {
-    color: rgba(255, 255, 255, 0.3);
+  .margenTexto {
+    width: 90%;
+    margin: 10px;
+    margin-left: 25px;
   }
+}
 
-  .dControl {
-    color: #fff;
-    text-align: center;
-    padding-top: 20px;
-    margin: 0;
-  }
+.inputFecha {
+  width: 90% !important;
+  margin-left: 5%;
+  margin-top: 5px;
+}
 
-  .fControl {
-    color: #fff;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    font-weight: 400;
+.calcularFecha {
+  text-align: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.sinFecha {
+  height: 180px;
+  text-align: center;
+}
+
+.fechaControl {
+  font-size: 1.1em;
+  // width: 90%;
+  // margin-top:5%;
+  text-align: center;
+}
+
+// template de pastillas
+.pastilla {
+  background: #fff;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  border-radius: 0;
+  /* border-left: 10px solid #019FE0; */
+  border-top-right-radius: 25px;
+
+  // margin-left:12px;
+  // margin-right:12px;
+  img {
+    width: 40px;
     margin-top: 10px;
   }
 
-  .tituloConsejos {
-    color: #FF634C;
-    padding-top: 5px;
-  }
-
-  .parrafoConsejos,
-  .parrafoDesarrollo {
-    font-size: .9em;
-    color: #444D4D;
-  }
-
-  .tituloDesarrollo {
-    color: #FF634C;
-    font-size: 1.2em;
-  }
-
-  ion-row {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  ion-col {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: auto !important;
-  }
-
-  .tituloSemanas {
-    text-align: center;
-    color: #444D4D;
-    font-size: 1.2em;
-    margin-top: 10px;
-    flex-wrap: wrap;
-    width: 90%;
-    margin-left: 5%;
+  .numeroSemana {
+    color: #019FE0;
+    font-size: 2.5em;
     font-weight: 600;
+    text-align: right;
+    margin: 0 !important;
   }
 
-  .contenedorFechas {
-    height: 180px;
-    background: #FFA28C;
-    text-align: left;
-    width: 90%;
-    margin-left: 5%;
-
-    p {
-      color: #fff;
-    }
-
-    .tituloControl {
-      margin-top: 30px;
-      margin-bottom: 20px;
-      font-weight: 600;
-      font-size: 1.2em;
-      line-height: 1.1em !important;
-    }
-
-    .margenTexto {
-      width: 90%;
-      margin: 10px;
-      margin-left: 25px;
-    }
-  }
-
-  .inputFecha {
-    width: 90% !important;
-    margin-left: 5%;
-    margin-top: 5px;
-  }
-
-  .calcularFecha {
-    text-align: center;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 5%;
-  }
-
-  .sinFecha {
-    height: 180px;
-    text-align: center;
-  }
-
-  .fechaControl {
-    font-size: 1.1em;
-    // width: 90%;
-    // margin-top:5%;
-    text-align: center;
-  }
-
-  // template de pastillas
-  .pastilla {
-    background: #fff;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    border-radius:0;
-    /* border-left: 10px solid #019FE0; */
-    border-top-right-radius: 25px;
-
-    // margin-left:12px;
-    // margin-right:12px;
-    img {
-      width: 40px;
-      margin-top: 10px;
-    }
-
-    .numeroSemana {
-      color: #019FE0;
-      font-size: 2.5em;
-      font-weight: 600;
-      text-align: right;
-      margin:0!important;
-    }
-
-    .pastillasemana {
-      color: #444D4D;
-      margin-top: -20px;
-    }
-
-    .tituloPastilla {
-      color: #019FE0;
-      text-align: left;
-      font-size: 1.2em;
-      margin-top: 6px;
-    }
-
-    .contenidoPastilla {
-      margin-top: 10px;
-      color: #9B9B9B;
-      margin-left: 10px;
-      font-size: .9em;
-    }
-  }
-
-  .containerIconoPastilla {
-    display: flex;
-    justify-content: center;
-  }
-
-  // estilos evo bebe
-  .evoBebe {
-    border-radius:0;
-    background: #fff;
-
-    .iconoEvoBebe {
-      width: 40px;
-    }
-
-    .tituloEvoBebe {
-      color: #66CBEC;
-      font-size: 1.3em;
-      margin-top:0px; 
-      // margin-left:16px;
-    }
-
-    .contenidoEvoBebe {
-      color: #9B9B9B;
-      margin-top: 10px;
-      font-size: .9em;
-      // margin-left:10px;
-    }
-
-    .imagenBebe {
-      padding-left: 0;
-      margin-right: 0;
-      margin-top: 0;
-      img{
-        width:100%!important;
-      }
-    }
-
-    button {
-      margin-top: 10px;
-      float: right;
-      text-transform: lowercase;
-      padding-bottom: 1.5em;
-      color: #66CBEC;
-    }
-  }
-
-  // estilos de la comparativa bebe
-  .comparativaBebe {
-    background: #fff;
-    // margin-top:10px;
- /*    border-left: 10px solid #00BCD3; */
-    border-radius:0;
-    border-top-right-radius: 25px;
-
-    // margin-left:16px;
-    // margin-right:16px;
-    .containerImagenCompa img {
-      width: 40px;
-    }
-
-    .tituloComparativa {
-      color: #00BCD3;
-      font-size: 1.2em;
-      margin-top:0px;
-      margin-top:5px;
-    /*   line-height: 1em; */
-      text-align: left;
-      span{
-        text-transform: capitalize;
-        font-size:1.3;
-        font-weight: 400;
-      }
-    }
-
-    .textoComparativa {
-      color: #9B9B9B;
-      margin-top: 10px;
-    }
-  }
-
-  .containerImageComparativa img {
-    width: 70px !important;
-    height: auto;
-    margin-left: 10px;
+  .pastillasemana {
+    color: #444D4D;
     margin-top: -20px;
   }
 
-  .numeroSemanaComparativa {
-    color: #F2F0F0;
-    font-size: 2.5em;
-    font-weight: 600;
-    text-align: right;
-    margin-top: -8px;
-    margin-bottom: 10px;
-  }
-
-  .numeroSemanaEvoBebe {
-    color: #F2F0F0;
-    font-size: 2.5em;
-    font-weight: 600;
-    text-align: right;
-    margin-top: -8px;
-    margin-bottom: 10px;
-  }
-
-  // estilos cambios mamá
-  .cambiosMama {
-    background: #fff;
-    margin-top: 10px;
-/*     border-left: 10px solid #FFA28C; */
-    border-radius:0;
-    border-top-right-radius: 25px;
-    // margin-left:16px;
-    // margin-right:16px;
-    .containerCambiosMamaIcon img {
-      width: 40px;
-    }
-
-    .tituloCambiosMama {
-      text-align: left;
-      color: #FF634C;
-      font-size: 1.3em;
-      margin-top: 0px;
-    }
-
-    .contenidoCambiosMama {
-      color: #9B9B9B;
-      margin-top: 10px;
-      font-size: 1em;
-      line-height: 1.3;
-      width:90%;
-      margin-left:5%;
-
-    }
-
-    .textocambiosemanamama {
-      color: grey;
-      font-size: .9em;
-      margin-top: -3px;
-    }
-
-    .botonvermascambios {
-      color: #FFA28C;
-      float: right;
-    }
-
-    .numeroSemanaCambiosMama {
-      color: #F2F0F0;
-      font-size: 2.5em;
-      font-weight: 600;
-      text-align: right;
-      margin-top: -8px;
-      margin-bottom: 10px;
-    }
-  }
-
-  // estilos nutricion
-  .nutricionTips {
-    background: #fff;
-    margin-top: 10px;
-    /* border-left: 10px solid #7A57D1;
-    border-top-right-radius: 25px; */
-    border-radius:0;
-    // margin-left:16px;
-    // margin-right:16px;
-    .containerNutricionIcon img {
-      width: 40px;
-    }
-
-    .tituloNutricion {
-      color: #7A57D1;
-      font-size: 1.2em;
-      line-height: 1.1em;
-      margin-top:0px;
-    }
-
-    .contenidoNutricion {
-      color: #9B9B9B;
-      margin-top: 10px;
-      font-size: .9em;
-    }
-
-    .numeroSemanaNutricion {
-      color: #F2F0F0;
-      font-size: 2.5em;
-      font-weight: 600;
-      text-align: right;
-      margin-top: -8px;
-      margin-bottom: 10px;
-    }
-
-    .botonvermasnutrition {
-      color: #7A57D1;
-      float: right;
-    }
-  }
-
-  // estilos de los articulos
-  .articulos {
-    background: #fff;
-    margin-top: 10px;
-    border-left: 10px solid #57C789;
-    border-top-right-radius: 25px;
-
-    // margin-left:16px;
-    // margin-right:16px;
-    .iconoArticulo {
-      width: 40px;
-      z-index: 1000;
-      position: absolute;
-      margin-top: -150px;
-      margin-left: 16px;
-    }
-
-    .tituloArticulo {
-      color: #57C789;
-      font-size: 1.3em;
-      margin-top: 0;
-    }
-
-    .contenidoArticulo {
-      color: #9B9B9B;
-      margin-top: 10px;
-    }
-
-    button {
-      float: right;
-      margin-top: -10px;
-      text-transform: lowercase;
-      padding-bottom: 1.5em;
-      color: #57C789;
-    }
-  }
-
-  // estilos de los articulos blog
-  .blog {
-    background: #fff;
-    margin-top: 10px;
-    border-left: 10px solid #279558;
-    border-top-right-radius: 25px;
-    // margin-left:16px;
-    // margin-right:16px;
-    .iconoBlog {
-      width: 40px;
-      z-index: 1000;
-      position: absolute;
-      margin-top: -150px;
-      margin-left: 16px;
-    }
-
-    .tituloBlog {
-      color: #279558;
-      font-size: 1.3em;
-      margin-top: 0;
-    }
-
-    .contenidoBlog {
-      color: #9B9B9B;
-      margin-top: 10px;
-    }
-
-    button {
-      float: right;
-      margin-top: -10px;
-      text-transform: lowercase;
-      padding-bottom: 1.5em;
-      color: #279558;
-    }
-  }
-
-  // estilos de las actividades
-  .actividades {
-    background: #fff;
-    margin-top: 10px;
-    border-left: 8px solid #FF634C;
-    border-top-right-radius: 25px;
-    // margin-left:16px;
-    // margin-right:16px;
-    .iconoActividades img {
-      width: 40px;
-      margin-bottom: 10px;
-    }
-
-    .tituloActivides {
-      color: #FF634C;
-      font-size: 1.3em;
-      text-align: left;
-    }
-
-    .textoActividades {
-      color: #9B9B9B;
-      margin-top: 10px;
-    }
-  }
-
-  .textoNombre {
-    color: #fff;
-    margin-top: -30px !important;
-    margin-bottom:50px;
-    margin-left: 10%;
+  .tituloPastilla {
+    color: #019FE0;
     text-align: left;
-    width: 80%;
-    font-size: .95em;
-  }
-
-  .botonvermasbebe {
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  // aqui comienzan los estilos de los acordeones
-  .mat-expansion-panel:not([class*=mat-elevation-z]) {
-    box-shadow: none !important;
-
-    .mat-content {
-      text-align: right;
-    }
-  }
-
-  .mat-expansion-panel-header {
-    height: 20px !important;
-    padding:0!important;
-  }
-
-  .mat-expansion-panel-body {
-    padding-left: 0!important;
-    padding-right:0!important;
-/*     padding-right: 0 !important; */
-  }
-
-  .nutritionTitle {
-    float: right !important;
-    color: #7A57D1;
-    text-align: right !important;
-  }
-
-  .accordionNutrition {
-    width: 100%;
-
-    mat-panel-description p {
-      margin-left: 60% !important;
-      font-size: .7em;
-    }
-  }
-
-  .textoCompletoNutricion {
-    color: #9B9B9B;
-    font-size: 1em;
-    text-align: justify;
-    /* width: 97%; */
-  }
-
-  // estilos de el card llegada bebe
-  .deberia {
-    font-size: .95em;
-  }
-
-  .fechaLlegada {
-    font-size: 1.4em;
-    text-align: center;
-    color: #FF634C !important;
-  }
-
-  .textoFalta {
     font-size: 1.2em;
-    text-align: right;
-    margin-right: 26px;
-    margin-top: 20px;
-
+    margin-top: 6px;
   }
 
-  .semanasFaltantes {
-    font-size: 2.8em;
-    font-weight: 600;
-    text-align: right;
-    color: #7A57D1 !important;
-    // margin-right:16px;
-    margin-top: -10px;
-    margin-bottom:5px;
+  .contenidoPastilla {
+    margin-top: 10px;
+    color: #9B9B9B;
+    margin-left: 10px;
+    font-size: .9em;
+  }
+}
+
+.containerIconoPastilla {
+  display: flex;
+  justify-content: center;
+}
+
+// estilos evo bebe
+.evoBebe {
+  border-radius: 0;
+  background: #fff;
+
+  .iconoEvoBebe {
+    width: 40px;
   }
 
-  .diasFaltantes {
-    font-size: 2.8em;
-    font-weight: 600;
-    text-align: right;
-    margin-right: 26px;
-    color: #7A57D1 !important;
-    margin-top: -10px;
-    margin-bottom:5px;
+  .tituloEvoBebe {
+    color: #66CBEC;
+    font-size: 1.3em;
+    margin-top: 0px;
+    // margin-left:16px;
   }
 
-  .textoSemanasFaltantes {
-    text-align: right;
-    margin-top: -10px;
-    color: #7A57D1 !important;
+  .contenidoEvoBebe {
+    color: #9B9B9B;
+    margin-top: 10px;
+    font-size: .9em;
+    // margin-left:10px;
   }
 
-  .textoDiasFaltantes {
-    text-align: right;
-    margin-right: 26px;
-    margin-top: -10px;
-    color: #7A57D1 !important;
-    font-weight: lighter;
-  }
+  .imagenBebe {
+    padding-left: 0;
+    margin-right: 0;
+    margin-top: 0;
 
-  .mat-expansion-indicator {
-    color: rgb(208, 208, 208) !important;
-  }
-
-  .textoFechaPosible {
-    font-size: .8em;
-    font-weight: 200;
-    text-align: right;
-    margin-right: 20px;
-    margin-top: -5px;
-    margin-bottom:-5px;
-  }
-
-  .posibleDate {
-    font-size: 1.1em;
-    text-align: right;
-    margin-right: 22px;
-    color: #7A57D1 !important;
-  }
-  .noMargin{
-    margin:0!important;
-    padding:0!important;
-    img{
-      margin-bottom:15px;
+    img {
+      width: 100% !important;
     }
   }
-  div.mat-expansion-panel-body{
-    width:100%!important;
-    margin:0!important;
-    padding:0!important;
+
+  button {
+    margin-top: 10px;
+    float: right;
+    text-transform: lowercase;
+    padding-bottom: 1.5em;
+    color: #66CBEC;
   }
-  .m-b-0{
-    margin-bottom:0!important;
+}
+
+// estilos de la comparativa bebe
+.comparativaBebe {
+  background: #fff;
+  border-radius: 0;
+  border-top-right-radius: 25px;
+
+  .containerImagenCompa img {
+    width: 40px;
   }
-  .m-t-0{
-    margin-top:0!important;
-  }
-  .m-t-10{
-    margin-top:10px!important;
-  }
-  .m-b-10{
-    margin-bottom:10px!important;
-  }
-  .consejos{
-    color:#019FE0;
-  }
-  .alerta{
-    color:#FF634C;
-  }
-  .containerimagenNutrition{
-    img{
-      margin-bottom:15px;
+
+  .tituloComparativa {
+    color: #00BCD3;
+    font-size: 1.2em;
+    margin-top: 0px;
+    margin-top: 5px;
+    text-align: left;
+
+    span {
+      text-transform: capitalize;
+      font-size: 1.3;
+      font-weight: 400;
     }
   }
-  .containerImgComparativa{
-    margin-top:10px!important;
-    margin-bottom:10px!important;
+
+  .textoComparativa {
+    color: #9B9B9B;
+    margin-top: 10px;
   }
-  .textoPastillaSpan{
-    text-transform: capitalize;
-    font-size:1.1em;
+}
+
+.containerImageComparativa img {
+  width: 70px !important;
+  height: auto;
+  margin-left: 10px;
+  margin-top: -20px;
+}
+
+.numeroSemanaComparativa {
+  color: #F2F0F0;
+  font-size: 2.5em;
+  font-weight: 600;
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+.numeroSemanaEvoBebe {
+  color: #F2F0F0;
+  font-size: 2.5em;
+  font-weight: 600;
+  text-align: right;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+// estilos cambios mamá
+.cambiosMama {
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 0;
+  border-top-right-radius: 25px;
+
+  .containerCambiosMamaIcon img {
+    width: 40px;
+  }
+
+  .tituloCambiosMama {
+    text-align: left;
+    color: #FF634C;
+    font-size: 1.3em;
+    margin-top: 0px;
+  }
+
+  .contenidoCambiosMama {
+    color: #9B9B9B;
+    margin-top: 10px;
+    font-size: 1em;
+    line-height: 1.3;
+  }
+
+  .textocambiosemanamama {
+    color: grey;
+    font-size: .9em;
+    margin-top: -3px;
+  }
+
+  .botonvermascambios {
+    color: #FFA28C;
+    float: right;
+  }
+
+  .numeroSemanaCambiosMama {
+    color: #F2F0F0;
+    font-size: 2.5em;
     font-weight: 600;
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 10px;
   }
-  .containerImagenEvo{
-    margin-bottom:10px!important;
-    margin-top:15px!important;
+}
+
+// estilos nutricion
+.nutricionTips {
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 0;
+
+  .containerNutricionIcon img {
+    width: 40px;
   }
-  .cardInfoAviva{
-    width:100%;
-    background-color: #fff;
-    border-top-right-radius: 65px;
+
+  .tituloNutricion {
+    color: #7A57D1;
+    font-size: 1.2em;
+    line-height: 1.1em;
+    margin-top: 0px;
   }
-  .contenedorImagenContenidoAviva{
-    img{
-      width:100%;
-    }
+
+  .contenidoNutricion {
+    color: #9B9B9B;
+    margin-top: 10px;
+    font-size: .9em;
   }
-  .containarImgTrans {
-    /* width:80%;
-    margin-top:10px;
-    margin-left:10%; */
+
+  .numeroSemanaNutricion {
+    color: #F2F0F0;
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+
+  .botonvermasnutrition {
+    color: #7A57D1;
+    float: right;
+  }
+}
+
+// estilos de los articulos
+.articulos {
+  background: #fff;
+  margin-top: 10px;
+  border-left: 10px solid #57C789;
+  border-top-right-radius: 25px;
+
+  .iconoArticulo {
+    width: 40px;
+    z-index: 1000;
     position: absolute;
-    top:15px;
-    left:15px;
-    img{
-      width:90px;
-    }
-  }
-  .tituloContenidoAviva{
-    text-align: left;
-    color:#279558;
-    width:90%;
-  }
-  .containerIconTrans{
-    img{
-      width:35px;
-      margin-left:15px;
-      margin-top:10px;
-    }
-  }
-  .textoDetalleTrans{
-    text-align: left;
-    margin-bottom:10px;
-    width:90%;
-    margin-left:5%;
-  }
-  .textoDetalleTrans::after{
-    content: " ...";
-  }
-  .verMas{
-    color:#279558;
-    text-align: right;
-    margin-right:20px;
-  }
-  .temaTrans{
-    color:#9B9B9B;
-    font-size:.8em;
-    text-align: left;
-    margin-top:-10px;
-  }
-  ion-slides{
-    margin-bottom:0!important;
+    margin-top: -150px;
+    margin-left: 16px;
   }
 
-  //clase a contenedor de fechas
-  .white{
-    background:#fff!important;
-    border-radius:15px;
+  .tituloArticulo {
+    color: #57C789;
+    font-size: 1.3em;
+    margin-top: 0;
   }
-  .getMedicine{
-    background: #F7B500!important;
-    color:#fff;
-    border-radius:5px;
-    height: 60px;
-    font-size:1.4em;
+
+  .contenidoArticulo {
+    color: #9B9B9B;
+    margin-top: 10px;
   }
-  .controlGine{
-    background: #32C5FF!important;
-    color:#fff;
-    border-radius:5px;
-    height: 95px;
+
+  button {
+    float: right;
+    margin-top: -10px;
+    text-transform: lowercase;
+    padding-bottom: 1.5em;
+    color: #57C789;
   }
-  .frasePastilla{
-    margin-top:5px;
-    margin-left:5px;
-    font-size:.9rem;
-    font-weight: 500;
+}
+
+// estilos de los articulos blog
+.blog {
+  background: #fff;
+  margin-top: 10px;
+  border-left: 10px solid #279558;
+  border-top-right-radius: 25px;
+
+  .iconoBlog {
+    width: 40px;
+    z-index: 1000;
+    position: absolute;
+    margin-top: -150px;
+    margin-left: 16px;
   }
-  .centradoIconoPastilla{
-    display:flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-right: 10px;
-    ion-icon{
-      margin-bottom:15px;
-      font-size:1.4em;
-      font-weight: 600!important;
-      margin-right: 15px;
-      color:#fff;
-    }
+
+  .tituloBlog {
+    color: #279558;
+    font-size: 1.3em;
+    margin-top: 0;
   }
-  .numberControl{
-    color:#0091FF;
-    font-size:3em;
-    font-weight: 600;
-    margin-top:5px!important;
+
+  .contenidoBlog {
+    color: #9B9B9B;
+    margin-top: 10px;
   }
-  .fraseControl{
-    margin-top:10px;
-    font-size:1rem;
+
+  button {
+    float: right;
+    margin-top: -10px;
+    text-transform: lowercase;
+    padding-bottom: 1.5em;
+    color: #279558;
+  }
+}
+
+// estilos de las actividades
+.actividades {
+  background: #fff;
+  margin-top: 10px;
+  border-left: 8px solid #FF634C;
+  border-top-right-radius: 25px;
+
+  .iconoActividades img {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+
+  .tituloActivides {
+    color: #FF634C;
+    font-size: 1.3em;
     text-align: left;
   }
-  .fraseRecalcular{
+
+  .textoActividades {
+    color: #9B9B9B;
+    margin-top: 10px;
+  }
+}
+
+.textoNombre {
+  color: #fff;
+  margin-top: -30px !important;
+  margin-bottom: 50px;
+  margin-left: 10%;
+  text-align: left;
+  width: 80%;
+  font-size: .95em;
+}
+
+.botonvermasbebe {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+// aqui comienzan los estilos de los acordeones
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: none !important;
+
+  .mat-content {
     text-align: right;
-    p{
-      margin-right:5px;
-      }
-    /* vertical-align: center; */
   }
-  .diasControl{
-    margin-top:-20px!important;
-    text-align: right;
-    margin-right:10px;
-    font-size:1.4rem;
-    font-weight: 400;
-    color:#019FE0;
+}
+
+.mat-expansion-panel-header {
+  height: 20px !important;
+  padding: 0 !important;
+}
+
+.mat-expansion-panel-body {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  /*     padding-right: 0 !important; */
+}
+
+.nutritionTitle {
+  float: right !important;
+  color: #7A57D1;
+  text-align: right !important;
+}
+
+.accordionNutrition {
+  width: 100%;
+
+  mat-panel-description p {
+    margin-left: 60% !important;
+    font-size: .7em;
   }
-  .verboNumberControl{
-    color:#66CBEC;
-    font-size:1.1em;
-    font-weight: 400;
+}
+
+.textoCompletoNutricion {
+  color: #9B9B9B;
+  font-size: 1em;
+  text-align: justify;
+  /* width: 97%; */
+}
+
+// estilos de el card llegada bebe
+.deberia {
+  font-size: .95em;
+}
+
+.fechaLlegada {
+  font-size: 1.4em;
+  text-align: center;
+  color: #FF634C !important;
+}
+
+.textoFalta {
+  font-size: 1.2em;
+  text-align: right;
+  margin-right: 26px;
+  margin-top: 20px;
+
+}
+
+.semanasFaltantes {
+  font-size: 2.8em;
+  font-weight: 600;
+  text-align: right;
+  color: #7A57D1 !important;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+.diasFaltantes {
+  font-size: 2.8em;
+  font-weight: 600;
+  text-align: right;
+  margin-right: 26px;
+  color: #7A57D1 !important;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+.textoSemanasFaltantes {
+  text-align: right;
+  margin-top: -10px;
+  color: #7A57D1 !important;
+}
+
+.textoDiasFaltantes {
+  text-align: right;
+  margin-right: 26px;
+  margin-top: -10px;
+  color: #7A57D1 !important;
+  font-weight: lighter;
+}
+
+.mat-expansion-indicator {
+  color: rgb(208, 208, 208) !important;
+}
+
+.textoFechaPosible {
+  font-size: .8em;
+  font-weight: 200;
+  text-align: right;
+  margin-right: 20px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.posibleDate {
+  font-size: 1.1em;
+  text-align: right;
+  margin-right: 22px;
+  color: #7A57D1 !important;
+}
+
+.noMargin {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  img {
+    margin-bottom: 15px;
   }
-  .containerButtonCalc{
-    vertical-align: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#66CBEC;
-      ion-icon{
-        font-size:1.5em;
-        color:#66CBEC;
-        margin-right:5px;
-      }
+}
+
+div.mat-expansion-panel-body {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
+}
+
+.m-t-0 {
+  margin-top: 0 !important;
+}
+
+.m-t-10 {
+  margin-top: 10px !important;
+}
+
+.m-b-10 {
+  margin-bottom: 10px !important;
+}
+
+.consejos {
+  color: #019FE0;
+}
+
+.alerta {
+  color: #FF634C;
+}
+
+.containerimagenNutrition {
+  img {
+    margin-bottom: 15px;
   }
-  .containerNumberControl{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.containerImgComparativa {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.textoPastillaSpan {
+  text-transform: capitalize;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.containerImagenEvo {
+  margin-bottom: 10px !important;
+  margin-top: 15px !important;
+}
+
+.cardInfoAviva {
+  width: 100%;
+  background-color: #fff;
+  border-top-right-radius: 65px;
+}
+
+.contenedorImagenContenidoAviva {
+  img {
+    width: 100%;
   }
-  .circle{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background:#019FE0;
+}
+
+.containarImgTrans {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  img {
+    width: 90px;
   }
+}
+
+.tituloContenidoAviva {
+  text-align: left;
+  color: #279558;
+  width: 90%;
+}
+
+.containerIconTrans {
+  img {
+    width: 35px;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+}
+
+.textoDetalleTrans {
+  text-align: left;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.textoDetalleTrans::after {
+  content: " ...";
+}
+
+.verMas {
+  color: #279558;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.temaTrans {
+  color: #9B9B9B;
+  font-size: .8em;
+  text-align: left;
+  margin-top: -10px;
+}
+
+ion-slides {
+  margin-bottom: 0 !important;
+}
+
+//clase a contenedor de fechas
+.white {
+  background: #fff !important;
+  border-radius: 15px;
+}
+
+.getMedicine {
+  background: #F7B500 !important;
+  color: #fff;
+  border-radius: 5px;
+  height: 75px;
+  font-size: 1.4em;
+}
+
+.controlGine {
+  background: #32C5FF !important;
+  color: #fff;
+  border-radius: 5px;
+  height: 85px;
+}
+
+.frasePastilla {
+  margin-top: 5px;
+  font-weight: 500;
+  width: 90%;
+  margin-left: 10%;
+  font-size: .9em;
+}
+
+.iconoPastilla {
+  color: #fff;
+  margin-top: 30px;
+}
+
+.centradoIconoPastilla {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 10px;
+
+  ion-icon {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600 !important;
+    margin-right: 15px;
+    color: #fff;
+  }
+}
+
+.numberControl {
+  color: #0091FF;
+  font-size: 3em;
+  font-weight: 600;
+  margin-top: 5px !important;
+}
+
+.fraseControl {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.fraseRecalcular {
+  text-align: right;
+
+  p {
+    margin-right: 5px;
+  }
+
+}
+
+.diasControl {
+  margin-top: -20px !important;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #019FE0;
+}
+
+.verboNumberControl {
+  color: #66CBEC;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+.containerButtonCalc {
+  vertical-align: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #66CBEC;
+
+  ion-icon {
+    font-size: 1.5em;
+    color: #66CBEC;
+    margin-right: 5px;
+  }
+}
+
+.containerNumberControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: #019FE0;
+}

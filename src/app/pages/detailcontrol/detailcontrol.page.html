@@ -1,146 +1,145 @@
 <ion-header>
   <ion-toolbar color="light">
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-    </ion-buttons> 
-    <ion-title>Detalle de Control</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title size="small">Detalle de Control</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <div>
-            <ion-segment [(ngModel)]="control">
-                <ion-segment-button
-                            value="parametros">Parametros</ion-segment-button>
-                <ion-segment-button
-                            value="receta">receta</ion-segment-button>
-            </ion-segment>
-          </div>
-            <div [ngSwitch]="control">
-              <div *ngSwitchCase="'parametros'">
-                  <h2  class="titulo">Parametros Clínicos</h2>
-                  <ion-row>
-                    <ion-grid>
-                      <ion-row *ngFor="let parametro of parametros; let i = index">
-                        <ion-col col-2 class="imagen"><img src="./assets/imgs/{{i}}.png" ></ion-col>
-                        <ion-col col-5 class="descripcion">{{ parametro.descripcion}}</ion-col>
-                        <ion-col col-5 class="valor">{{ parametro.valor }}   <span> {{ parametro.unidad}} </span></ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-row>
-      
-                  <ion-card class="cardRecomendaciones">
-                    <ion-card-header>
-                      <p class="tituloRecomendaciones">Recomendaciones del Doctor</p>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <p class="textoRecomendaciones">
-                       {{notas}}
-                      </p>
-                    </ion-card-content>
-                  </ion-card>
-              </div>
-      
-              <div *ngSwitchCase="'receta'"
-                   (click)="goToDetailRecipe()">
-                <div padding *ngIf="recetas">
-                  <div *ngFor="let recipe of recetas">
-                    <ion-row>
-                      <ion-col col-3>
-                          <img src="./assets/imgs/recipes/{{recipe.formasfar_pk}}.png" alt="">
-                      </ion-col>
-                      <ion-col col-9>
-                          <p class="nombrePastilla">{{recipe.nombre_generico}}</p>
-                      </ion-col>
-                    </ion-row>
-                       <!-- inicio de los datos de la pastilla -->
-                    <p class="cantidadDeDias">Tratamiento de {{recipe.dias_duracion_prescripcion}} dias - {{recipe.nombre_via |lowercase }}</p>
-                    <p class="inicio">primera {{recipe.formasfar_nom}} - {{recipe.inicio_prescripcion | date: "dd MMMM yyyy"}}</p>
-                     <!-- fin de los datos de la pastilla -->
-      
-                   <!-- inicio de los cuadros para las toma de pastilla -->
-                    <div *ngIf="recipes && recipe.cada_x_horas == 8">
-                      <h4 class="tituloDeLasTomas"> tomas de 3 veces por día</h4>
-                      <ion-row padding>
-                        <ion-col class="cuadrados">
-                          <p> 6am - 9am</p>
-                          <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                          </ion-col>
-                        <ion-col class="cuadrados">
-                          <p> 2pm - 4pm</p>
-                          <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
-                        </ion-col>
-                        <ion-col class="cuadrados">
-                          <p>10pm - 12m</p>
-                          <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
-                        </ion-col>
-                      </ion-row>
-                  </div>
-      
-                  <div *ngIf="recipes && recipe.cada_x_horas == 12">
-                    <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
-                    <ion-row padding>
-                      <ion-col class="cuadrados">
-                        <p> 6am-9am</p>
-                        <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                      </ion-col>
-                      <ion-col class="cuadrados">
-                        <p>6pm-9m</p>
-                        <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
-                      </ion-col>
-                    </ion-row>
-                  </div>
+  <ion-card>
+    <div>
+      <ion-segment [(ngModel)]="control">
+        <ion-segment-button value="parametros">Parametros</ion-segment-button>
+        <ion-segment-button value="receta">receta</ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="control">
+      <div *ngSwitchCase="'parametros'">
+        <h2 class="titulo">Parametros Clínicos</h2>
+        <ion-row>
+          <ion-grid>
+            <ion-row *ngFor="let parametro of parametros; let i = index">
+              <ion-col col-2 class="imagen"><img src="./assets/imgs/{{i}}.png"></ion-col>
+              <ion-col col-5 class="descripcion">{{ parametro.descripcion}}</ion-col>
+              <ion-col col-5 class="valor">{{ parametro.valor }} <span> {{ parametro.unidad}} </span></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-row>
 
-                  <div *ngIf="recipes && recipe.cada_x_horas == 13">
-                    <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
-                    <ion-row padding>
-                      <ion-col class="cuadrados">
-                        <p> 6am-9am</p>
-                        <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                      </ion-col>
-                      <ion-col class="cuadrados">
-                        <p>6pm-9m</p>
-                        <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
-                      </ion-col>
-                    </ion-row>
-                  </div>
-      
-                  <div *ngIf="recipes && recipe.cada_x_horas == 6">
-                      <p class="tituloDeLasTomas"> tomas de 4 veces por día</p>
-                      <ion-row padding>
-                        <ion-col class="cuadrados">
-                          <p> 6am-8am</p>
-                          <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                        </ion-col>
-                        <ion-col class="cuadrados">
-                            <p> 12m-2pm</p>
-                            <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                          </ion-col>
-                          <ion-col class="cuadrados">
-                              <p> 6pm-8pm</p>
-                              <p class="cantidad">{{recipe.cantidad_dosis}}</p>
-                            </ion-col>
-                        <ion-col class="cuadrados">
-                          <p>12m-2am</p>
-                          <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
-                        </ion-col>
-                      </ion-row>
-                    </div>
-      
-                </div>
-              </div>
-              <div *ngIf="!recetas">
-                <p class="noRecipes">No hay recetas para este control.</p>
-              </div>
-      
-                 <!-- fin de los cuadros para las toma de la pastilla -->
-                 <!-- inicio de los datos del doctor -->
-      
-                 <!-- fin de los datos del doctor -->
-              </div>
+        <ion-card class="cardRecomendaciones">
+          <ion-card-header>
+            <p class="tituloRecomendaciones">Recomendaciones del Doctor</p>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="textoRecomendaciones">
+              {{notas}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div *ngSwitchCase="'receta'" (click)="goToDetailRecipe()">
+        <div padding *ngIf="recetas">
+          <div *ngFor="let recipe of recetas">
+            <ion-row>
+              <ion-col col-3>
+                <img src="./assets/imgs/recipes/{{recipe.formasfar_pk}}.png" alt="">
+              </ion-col>
+              <ion-col col-9>
+                <p class="nombrePastilla">{{recipe.nombre_generico}}</p>
+              </ion-col>
+            </ion-row>
+            <!-- inicio de los datos de la pastilla -->
+            <p class="cantidadDeDias">Tratamiento de {{recipe.dias_duracion_prescripcion}} dias -
+              {{recipe.nombre_via |lowercase }}</p>
+            <p class="inicio">primera {{recipe.formasfar_nom}} - {{recipe.inicio_prescripcion | date: "dd MMMM yyyy"}}
+            </p>
+            <!-- fin de los datos de la pastilla -->
+
+            <!-- inicio de los cuadros para las toma de pastilla -->
+            <div *ngIf="recipes && recipe.cada_x_horas == 8">
+              <h4 class="tituloDeLasTomas"> tomas de 3 veces por día</h4>
+              <ion-row padding>
+                <ion-col class="cuadrados">
+                  <p> 6am - 9am</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p> 2pm - 4pm</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p>10pm - 12m</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+              </ion-row>
             </div>
-          </ion-card>
-            <!-- receta si la hubiera -->
+
+            <div *ngIf="recipes && recipe.cada_x_horas == 12">
+              <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
+              <ion-row padding>
+                <ion-col class="cuadrados">
+                  <p> 6am-9am</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p>6pm-9m</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <div *ngIf="recipes && recipe.cada_x_horas == 13">
+              <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
+              <ion-row padding>
+                <ion-col class="cuadrados">
+                  <p> 6am-9am</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p>6pm-9m</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <div *ngIf="recipes && recipe.cada_x_horas == 6">
+              <p class="tituloDeLasTomas"> tomas de 4 veces por día</p>
+              <ion-row padding>
+                <ion-col class="cuadrados">
+                  <p> 6am-8am</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p> 12m-2pm</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p> 6pm-8pm</p>
+                  <p class="cantidad">{{recipe.cantidad_dosis}}</p>
+                </ion-col>
+                <ion-col class="cuadrados">
+                  <p>12m-2am</p>
+                  <p class="cantidad"> {{recipe.cantidad_dosis}} </p>
+                </ion-col>
+              </ion-row>
+            </div>
+
+          </div>
+        </div>
+        <div *ngIf="!recetas">
+          <p class="noRecipes">No hay recetas para este control.</p>
+        </div>
+
+        <!-- fin de los cuadros para las toma de la pastilla -->
+        <!-- inicio de los datos del doctor -->
+
+        <!-- fin de los datos del doctor -->
+      </div>
+    </div>
+  </ion-card>
+  <!-- receta si la hubiera -->
 
 </ion-content>

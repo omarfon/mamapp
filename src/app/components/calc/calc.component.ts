@@ -1,7 +1,7 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import * as moment from 'moment';
+import moment from 'moment';
 
 
 @Component({
@@ -11,7 +11,7 @@ import * as moment from 'moment';
 })
 export class CalcComponent implements OnInit {
 
-  @Input ('name')  name; 
+  @Input('name') name;
   public fechaMax;
   public fechaMin;
   public deshabilitado = false;
@@ -19,25 +19,25 @@ export class CalcComponent implements OnInit {
   constructor(public router: Router, public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
-    console.log('nombre',this.name);
+    console.log('nombre', this.name);
     this.fechaMin = moment().subtract(9, 'months').format('YYYY-MM-DD');
     this.fechaMax = moment().format('YYYY-MM-DD');
     console.log(this.fechaMax);
   }
 
-  saveDate(fechaManual){
-    if(this.name){
+  saveDate(fechaManual) {
+    if (this.name) {
       localStorage.setItem('name', this.name);
-    }else{
+    } else {
     }
     localStorage.setItem('startPregnancy', fechaManual.value);
     this.popoverCtrl.dismiss()
     this.router.navigate(['tabs']);
-    
-    console.log( 'fechaManual', fechaManual.value);
+
+    console.log('fechaManual', fechaManual.value);
   }
-  
-  infoLista(event){
+
+  infoLista(event) {
     console.log(event);
     this.deshabilitado = true;
   }

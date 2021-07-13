@@ -1,0 +1,26 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 600;
+    text-align: left;
+    color: #00a8cc;
+    margin-left: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    font-weight: 400;
+    text-align: left;
+    color: #00a8cc;
+    margin-left: 20px;
+}
+
+.iconoback {
+    margin-left: 20px !important;
+    font-size: 1.4em;
+}

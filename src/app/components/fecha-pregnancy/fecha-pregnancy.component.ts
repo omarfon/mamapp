@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-fecha-pregnancy',
@@ -12,7 +12,7 @@ export class FechaPregnancyComponent implements OnInit {
   fechaMin: string;
   fechaMax: string;
   public deshabilitado = false;
-  
+
   constructor(public router: Router, public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
@@ -22,13 +22,13 @@ export class FechaPregnancyComponent implements OnInit {
     console.log(this.fechaMax);
   }
 
-  saveDate(nombre, fechaManual){
+  saveDate(nombre, fechaManual) {
     localStorage.setItem('name', nombre.value);
     localStorage.setItem('startPregnancy', fechaManual.value);
     this.popoverCtrl.dismiss()
     this.router.navigate(['/tabs']);
-    
-    console.log( fechaManual, fechaManual.value);
+
+    console.log(fechaManual, fechaManual.value);
   }
 
   /* validate(){
@@ -40,11 +40,11 @@ export class FechaPregnancyComponent implements OnInit {
 
   } */
 
-  infoLista(event, nombre){
+  infoLista(event, nombre) {
     console.log(event);
-    if(!nombre && event){
+    if (!nombre && event) {
       this.deshabilitado = false;
-    }else{
+    } else {
       this.deshabilitado = true;
     }
   }
