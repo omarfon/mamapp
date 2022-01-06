@@ -13,6 +13,7 @@ import { DniService } from 'src/app/service/dni.service';
 import { ChatService } from 'src/app/service/chat.service';
 import { DatosControlService } from 'src/app/service/datos-control.service';
 import { CalcComponent } from 'src/app/components/calc/calc.component';
+import { UserService } from '../../service/user.service';
 
 
 @Component({  
@@ -38,31 +39,39 @@ export class RegisterPage implements OnInit {
 
   private resolve;
   private actual;
+  public name;
+  public email;
+  public password;
+  public phone;
+  public surname1;
+  public surname2;
   public genders;
   public documents;
-
+  public documentDigit;
+  public documentNumber;
+  public dataReniec;
+  public registerFormu:boolean = false;
+  public dniInvalid = false;
+  public sexo;
+  public birthdate;
   cambio: boolean = false;
   aprobed: boolean = false; 
-  
-  
+public document;
+public _documenType;
+public _gender;
+  createOk: any;
+  digitoVa: boolean;
+  hideBox: boolean;
+  activateDocumentNumber: boolean;
+  documentId: any;
+  public datos;
+  public idgender;
+  public namegender;
+  public gender;
 
-  public gender = {
-    id: 0,
-    name: ""
-  };
-  public _gender;
-
-  public document = {
-    id: 0,
-    name: ""
-  };
-
-  public _documenType;
   @Input ('dataArmada') dataArmada;
   public dataFacebook;
-  createOk: any;
   message: string;
-  datos: any;
   startPregnancy: string;
   
   
@@ -82,8 +91,8 @@ export class RegisterPage implements OnInit {
     public events: Events,
     public chatSrv: ChatService,
     public datosSrv: DatosControlService,
-    public popover: PopoverController
-
+    public popover: PopoverController,
+    public userSrv: UserService
   ) {}
 
   ionViewDidEnter(){
@@ -116,15 +125,15 @@ export class RegisterPage implements OnInit {
       name: ['',  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
       surname2: ['',  [ Validators.required ]],
-      /* gender: ['',  [ Validators.required ]], */
+      gender: ['',  [ Validators.required ]], 
       birthdate: ['',  [ Validators.required ]],
       documentType: ['',  [ Validators.required ]],
       documentNumber: ['',  [ Validators.required]],
       phone: ['',  [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]],
       email: ['',  [ Validators.required, Validators.email ]],
       password: ['',  [ Validators.required, Validators.minLength(8) ]],
-      password_confirmation: ['',  [ Validators.required, Validators.minLength(8)]],
-      aprobed: ['', [ Validators.required]]
+      aprobed: ['', [ Validators.required]],
+      documentDigit: ['']
     });
 
 
@@ -139,6 +148,34 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  async reniecValidateDatos(){
+    const loading = await this.loadinCtrl.create({
+      message:'estamos buscando los datos...'
+    });
+    await loading.present();
+    console.log(this.documentNumber, this.documentDigit , this.document);
+    this.userSrv.getPublicKey(this.documentNumber).subscribe((data:any) => {
+      this.dataReniec = data.data;
+      console.log('this.dataReniec:',this.dataReniec);
+      this.name = this.dataReniec.nombres;
+      this.surname1 = this.dataReniec.apellido_paterno;
+      this.surname2 = this.dataReniec.apellido_materno;
+      this.sexo = this.dataReniec.sexo;
+      this.birthdate = moment(this.dataReniec.fecha_nacimiento).format('DD/MM/yyyy');
+      this.registerFormu = true;
+        if(this.documentNumber == this.dataReniec.numero  && this.documentDigit == this.dataReniec.codigo_verificacion){
+          this.registerFormu = true;
+        loading.dismiss();  
+        }else{
+          this.dniInvalid = true;
+          this.registerFormu = false;
+        }
+  }, err => {
+    this.dniInvalid = true;
+    this.registerFormu = true;
+    console.log(err)
+  })
+  }
 
   async noData(){
     const alert = await this.alertCtrl.create({

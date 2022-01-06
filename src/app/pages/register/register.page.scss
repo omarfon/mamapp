@@ -19,7 +19,7 @@
   ion-item {
     --background:rgba(255,255,255,0.8)!important;
     /* --background: transparent!important; */
-    border-radius:10px;
+ /*    border-radius:10px; */
   }
   .item-md{
      --background: transparent!important;
@@ -34,13 +34,13 @@
     /* --background:rgba(255,255,255,0.7); */
     --background: transparent!important;
     height: 50px;
-    border-radius:10px;
+/*     border-radius:10px; */
     border-bottom:none!important; 
   }
  .contenedorTextoInicial{
     background: rgba(255, 162, 140, 0.8);
-    width: 80%;
-    height: 100px;
+    width: 90%;
+    height: 80px;
     border-bottom-right-radius: 45px;
     margin-top:0;
     display: flex;
@@ -50,8 +50,7 @@
   .inicioText{
     text-align: left;
     font-weight: 400;
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
     color:#fff;
     margin-top:20px;
     margin-bottom:30px;
@@ -60,7 +59,7 @@
     font-size:.8em;
   }
   .formulario{
-    margin-top:-10px!important;
+    margin-top:10px!important;
   }
   .alto50{
     height: 50px;
@@ -151,4 +150,12 @@
         .select-placeholder{
           color:#a0a5a5!important;
         }
+    }
+    ion-footer{
+      background-color: #7A57D1;
+    }
+    .buttonSearchData{
+      height: 45px;
+      --background: #44D7B6!important;
+      color:#000;
     }

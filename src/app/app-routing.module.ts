@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'register/:data', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'register/:datosObj', loadChildren: './pages/register/register.module#RegisterPageModule' },
-  { path: 'recoverycode/:dataObj', loadChildren: './pages/recoverycode/recoverycode.module#RecoverycodePageModule' },
+  { path: 'recoverycode', loadChildren: './pages/recoverycode/recoverycode.module#RecoverycodePageModule' },
   { path: 'resumen', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'resumen/:datosObj', loadChildren: './pages/resumen/resumen.module#ResumenPageModule' },
   { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' },

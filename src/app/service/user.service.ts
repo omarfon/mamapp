@@ -12,14 +12,18 @@ export class UserService {
 
   private SERVER = API_ENDPOINT;
   /* private SERVER2 = "https://dappapache02.eastus.cloudapp.azure.com/middleware2-copy/api/v2/auth/login-firebase" */
-  private apiUrl = `${this.SERVER}`;
+  private apiUrl = this.SERVER;
   private apiUrlDatos = `${this.SERVER}auth/login/ebooking/`;
+  private newLogin = this.SERVER + 'users/newLogin';
+  private reniec = 'https://apiperu.dev/api/dni/';
+  public recoveryData;
+  public dataSend;
 
   constructor( public http: HttpClient) { }
 
   doSignIn(email, password){
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({'Authorization': authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
 
     let params = {email: email, password: password, app:"mama"}
       return this.http.post(`${this.SERVER}auth/login` , params, {headers}).pipe( 
@@ -27,6 +31,19 @@ export class UserService {
               return data
         })
       )
+  }
+
+  newLoginWithDni(documentType:string, documentNumber: string, password: string){
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    const app = "mama"
+    let params = {documentType, documentNumber, password, app};
+     return this.http.post(this.newLogin, params, {headers}).pipe(
+       map(resp => {
+         return resp
+       }), err => {
+        return err
+    })
   }
 
   doSignInforNewRegister(email, password){
@@ -38,6 +55,7 @@ export class UserService {
                   })
     )
   }
+
   doSignUp(params){
     return this.http.post(`${this.apiUrl}users/register`, params).pipe(
                   map( data =>{
@@ -46,26 +64,49 @@ export class UserService {
     )
   }
 
-  sendValidation(email){
+  getPublicKey(dni:string){
+    const auth_token = '30dcd655149906b1469ac3913125f30862b0ab1b4bc0425f8256166d98a82d02';
+    const cabecera = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.get(this.reniec + dni, {headers: cabecera})
+    }
+
+
+/*   sendValidation(email){
     let params = {email: email};
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
     console.log('params:', params);
     return this.http.post(this.SERVER + 'users/validate-email/recovery', params, {headers}).pipe(
                     map(data =>{
                       return data
-                    })/* .catch(e => {
-                      return Observable.of(e)
-                    }); */
-
+                    })
     )
-  }
+  } */
+
+  sendValidation(email, documentNumber, documentId, selectDocument){
+    /*     let params = {email: email, documentType:{id:documentId,name:selectDocument},documentNumber:documentNumber}; */
+        const authorization = JSON.parse(localStorage.getItem('authorization'));
+        let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    /*     console.log('params:', params); */
+        return this.http.post(this.apiUrl + 'validateemail/register', 
+                                            {"email": email, 
+                                              "documentType":{"id":documentId.toString(),"name":selectDocument},"documentNumber":documentNumber.toString()}, 
+                                              {headers}).pipe(
+                        map(data =>{
+                          return data
+                        })
+        )
+      }
 
   recoveryLogin(datos){
-    let params = {code: datos.code, email: datos.email, id: datos.id, password: datos.password, app: 'ebooking'};
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
-    return this.http.post(`${this.apiUrl}users/login-recovery`, params, {headers}).pipe(
+    /* let params = {code: datos.code, email: datos.email, id: datos.id, password: datos.password, app: 'mama'}; */
+    let params = datos;
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    return this.http.post(`${this.apiUrl}users/validate-email/recovery`, params, {headers}).pipe(
                     map(data => {
                       return data
                     })/* .catch(e =>{
@@ -74,11 +115,24 @@ export class UserService {
     )
   }
 
+  loginRecovery(datos){
+    //CORREGIR LLAMADA DE RECUPERAción
+  /*   let params = {code: datos.code, email: datos.email, id: datos.id, password: datos.password, app: 'ebooking'}; */
+  let params = datos;  
+  const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    return this.http.post(this.apiUrl + 'users/login-recovery', params, {headers}).pipe(
+                    map(data => {
+                      return data
+                    })
+    )
+  }
+
   changePassword(password, passwordNew){
     let params = {password: password, passwordNew: passwordNew };
     // console.log('los paramasque cambian la contraseña:', params);
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
     return this.http.put(`${this.apiUrl}users/update-password`, params, {headers}).pipe(
                     map(data => {
                       return data

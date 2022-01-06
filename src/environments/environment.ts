@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  /* firebase : {
+  firebase : {
     apiKey: "AIzaSyBMopx6KZ79wFANi2Yb6ysxvAIdRso96VY",
     authDomain: "aviva-mamapp-dev.firebaseapp.com",
     databaseURL: "https://aviva-mamapp-dev.firebaseio.com",
@@ -13,12 +13,11 @@ export const environment = {
     messagingSenderId: "519988913097",
     appId: "1:519988913097:web:dca29f129d59cc0b",
     vapidKey: "BBwWAlKhU8eHfS-ntn7Mc4XD0HEMmQv8wmA-niDLj4eP28bi4CFjmp-gGwH3bQXAqi4OFU3lg95czzAx_akXDyo",
-  } */
-  /*    ,
+  },
     agora:{
       appId: "b75a830a11a84a0bbb812fc81aa60860"
-    } */
-  firebase: {
+    }
+/*   firebase: {
     apiKey: "AIzaSyC79bO4W3NAW6tjRGe8Y-cx9bK2Nb5t760",
     authDomain: "aviva-mamapp-prod.firebaseapp.com",
     databaseURL: "https://aviva-mamapp-prod.firebaseio.com",
@@ -30,21 +29,22 @@ export const environment = {
   },
   agora: {
     appId: 'b75a830a11a84a0bbb812fc81aa60860'
-  }
+  } */
 };
 
 /* ENDPOINTS DESARROLLO */
-/* export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/";
+export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/";
+export const API_ENDPOINTIMG = "https://dappapache02.eastus.cloudapp.azure.com/middleware2"; 
 export const API_NOTAS = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/mama";
 export const API_IMAGES = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/img/professionals/";
-export const OPENTELE = "https://dev.aviva.pe"; */
+export const OPENTELE = "https://dev.aviva.pe";
 
 /* ENDPOINTS PRODUCCION */
 
-export const API_IMAGES = "https://api.aviva.pe/middleware2/img/professionals/";
+/* export const API_IMAGES = "https://api.aviva.pe/middleware2/img/professionals/";
 export const API_ENDPOINT = "https://api.aviva.pe/middleware2/api/v2/";
 export const API_NOTAS = "https://api.aviva.pe/middleware2/api/v2/mama";
-export const OPENTELE = "https://aviva.pe";
+export const OPENTELE = "https://aviva.pe"; */
 
 /* export const firebaseConfig ={
   apiKey: "AIzaSyC79bO4W3NAW6tjRGe8Y-cx9bK2Nb5t760",

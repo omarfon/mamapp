@@ -163,7 +163,7 @@
       <!--  <div> -->
       <!-- cuerpo para las pastillas -->
       <div *ngIf="nota.tipo == 'pastilla'" class="animated bounceInLeft">
-        <ion-card class="pastilla gris" id="pastilla" padding>
+        <ion-card class="pastilla gris ion-padding" id="pastilla" >
           <ion-col size="12">
             <ion-row>
               <ion-col size="2">
@@ -190,7 +190,7 @@
       <!-- cuerpo para la comparativa bebe -->
       <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
         <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
-          <div padding>
+          <div class="ion-padding">
             <ion-row>
               <ion-col size="12" class="containerTexto">
                 <ion-row>
@@ -227,7 +227,7 @@
 
       <div *ngIf="nota.tipo == 'nutricion'" class="animated bounceInLeft">
         <ion-card class="nutricionTips" id="nutricionTips">
-          <div padding>
+          <div class="ion-padding">
             <ion-row>
               <ion-col size="12" class="containerimagenNutrition m-b-0">
                 <img src="{{nota.imagenUrl}}" alt="">
@@ -265,7 +265,7 @@
       </div>
       <div *ngIf="nota.tipo == 'evobebe'" class="animated bounceInRight">
         <ion-card class="evoBebe" id="evoBebe">
-          <div padding>
+          <div class="ion-padding">
             <ion-row>
               <div size="12" class="containerImagenEvo m-b-0 m-t-0">
                 <img class="imagenBebe" src="{{nota.imagenUrl}}" alt="">
@@ -313,7 +313,7 @@
       <div *ngIf="nota.tipo == 'cambios'" class="animated bounceInLeft">
         <!-- cuerpo para cambios mama -->
         <ion-card class="cambiosMama" id="cambiosMama">
-          <div padding>
+          <div class="ion-padding">
             <ion-row>
               <ion-col size="12">
                 <ion-row>

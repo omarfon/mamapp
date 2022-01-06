@@ -8,23 +8,36 @@
 
           <ion-list>
             <p class="parrafoRegitro">Si estas registrada ya en el app de booking, puedes utilizar el mismo correo y contraseña</p>
-              <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input type="email"
-                              #email></ion-input>
-              </ion-item>
-
-              <ion-item>
-                  <ion-label position="floating">Contraseña</ion-label>
-                  <ion-input type="password"
-                             #password></ion-input>
-              </ion-item>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="floating">Tipo documento</ion-label>
+                    <ion-select placeholder="Selecciona una opción" (ionChange)="selectDocument($event)">
+                      <ion-select-option *ngFor="let d of documents" [value]="d">{{d.name}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                    <ion-label position="floating">Nº documento</ion-label>
+                    <ion-input type="document"
+                                #document></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12">
+                <ion-item>
+                    <ion-label position="floating">Contraseña</ion-label>
+                    <ion-input type="password"
+                               #password></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
               <div class="contenedorBotonIngresar">
                 <ion-button
                         size="full"
                         class="buttonIngresar"
                         submit
-                        (click)="doSignIn(email.value , password.value)">
+                        (click)="doSignIn(document.value , password.value)">
                               Ingresar
                 </ion-button>
               </div>

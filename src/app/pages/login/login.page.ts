@@ -12,6 +12,8 @@ import { ChatService } from 'src/app/service/chat.service';
 import { FacebookRegisterPage } from '../facebook-register/facebook-register.page';
 import { FaceRegisterComponent } from 'src/app/components/face-register/face-register.component';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { DataService } from '../../service/data.service';
+
 
 @Component({
   selector: 'app-login',
@@ -34,6 +36,9 @@ export class LoginPage implements OnInit {
   user: any = {};
   userData = null;
   datosFaceAuth: any;
+  public documents;
+  public tipeDocument: any;
+  public document;
   /* @ViewChild('email', {static:true}) Loemail;
   @ViewChild('password', {static:true}) Lopassword; */
 
@@ -48,19 +53,28 @@ export class LoginPage implements OnInit {
     public loadinCtrl: LoadingController,
     public modalCtrl: ModalController,
     public fb: Facebook,
-    public plt: Platform) { }
+    public dataSrv: DataService,
+    public plt: Platform) { 
+      const authorization = localStorage.getItem('authorization');
+      if (!authorization) {
+        this.autho.getKey().subscribe((data: any) => {
+          const autho = localStorage.setItem('authorization', JSON.stringify(data));
+        })
+      }
+
+    }
 
 
   ionViewDidEnter() {
-    const authorization = localStorage.getItem('authorization');
-    if (!authorization) {
-      this.autho.getKey().subscribe((data: any) => {
-        localStorage.setItem('authorization', data.authorization);
-        localStorage.setItem('role', data.role);
-      })
-    }
+   
   }
   ngOnInit() {
+
+      this.dataSrv.getDocuments().subscribe(data => {
+          this.documents = data;
+          console.log(this.documents);
+      })
+    
   }
 
   loginFb() {
@@ -99,9 +113,9 @@ export class LoginPage implements OnInit {
       })
   }
 
-  doSignIn(email, password) {
-    /* console.log(email, password) */
-    this.userSrv.doSignIn(email, password).subscribe(async response => {
+  doSignIn(document, password) {
+    console.log(this.tipeDocument,document, password) 
+    this.userSrv.newLoginWithDni(this.tipeDocument, document, password).subscribe(async response => {
       this.data = response;
       console.log('lo que me trae el login:', this.data);
       if (this.data.sex == 'HOMBRE') {
@@ -273,8 +287,7 @@ export class LoginPage implements OnInit {
     await modal.present();
   }
 
-  async goToRecovery() {
-    /* this.router.navigate(['register']); */
+/*   async goToRecovery() {
     const alert = await this.alertCtrl.create({
       header: 'Olvidaste la Contraseña?',
       subHeader: 'Ingresa tu email para recuperar la contraseña',
@@ -305,9 +318,53 @@ export class LoginPage implements OnInit {
       ]
     })
     await alert.present();
+  } */
 
+  async goToRecovery(){
+    const alert = await this.alertCtrl.create({
+      header:"Olvidaste tu contraseña...?",
+      message:'Ingresa tu N° de documento para recuperar',
+      inputs :[
+        {
+          name:'documento',
+          placeholder:'Ingresa tu n° de documento',
+          type: 'text'
+        }
+      ],
+      buttons :[
+          {
+            text:'Enviar',
+            handler: data => {
+              console.log('enviando correo electronico');
+              let document = data.documento;
+              console.log('lo que se almacena en correo:', document);
+              const dataSend = {
+                documentNumber:  data.documento,
+                documentType: {
+                  id:"1",
+                  name:"D.N.I"
+                },
+                app: 'ebooking'
+              }
+              this.userSrv.recoveryLogin(dataSend).subscribe(data =>{
+                  this.datos = data;
+                  console.log('this.datos:', this.datos);
+                  if(this.datos.result == 'ok'){
+                    this.userSrv.recoveryData = this.datos;
+                    this.userSrv.dataSend = dataSend;
+                    this.router.navigate(['recoverycode']);
+                  }else{
+
+                  console.log('correo no valido levantar un alert o pintar un mensaje')
+                  }
+              })
+            }
+          }
+      ]
+    });
+   await alert.present(); 
   }
-
+  
   goToRegister() {
 
     this.router.navigate(['register']);
@@ -339,5 +396,10 @@ export class LoginPage implements OnInit {
     /* this.router.navigate(['tabs']); */
   }
 
+  selectDocument(d){
+    const document = d.target.value;
+    this.tipeDocument = document.id.toString();
+    console.log(this.tipeDocument);
+  }
 
 }

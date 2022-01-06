@@ -5,81 +5,9 @@
   
     <form [formGroup]="registerForm" (ngSubmit)="openPopover()" novalidate padding class="formulario" >
       <ion-row>
-        <ion-col size="12">
-          <ion-item no-lines >
-            <ion-input type="text" formControlName="name" name="name" placeholder="Nombres" ></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.get('name').errors && registerForm.get('name').dirty || registerForm.get('name').touched" no-lines>
-              <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
-          </div>
-          <!-- <div *ngIf="registerForm.get('name').errors && registerForm.get('name').touched" no-lines>
-              <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
-          </div> -->
-        </ion-col>
-  
-        <ion-col size="12">
-          <ion-item no-lines >
-            <ion-input type="text" formControlName="surname1" name="surname1" placeholder="Apellido Paterno" ></ion-input> 
-          </ion-item>
-          <div *ngIf="registerForm.get('surname1').errors && registerForm.get('surname1').dirty || registerForm.get('surname1').touched" no-lines>
-                  <p *ngIf="registerForm.get('surname1').hasError('required')" class="error">Apellido Paterno requerido</p>
-          </div>
-        </ion-col>
-  
-        <ion-col size="12">
-          <ion-item no-lines>
-            <ion-input type="text" formControlName="surname2" name="surname1" placeholder="Apellido Materno" ></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.get('surname2').errors && registerForm.get('surname2').dirty || registerForm.get('surname2').touched" no-lines>
-                  <p *ngIf="registerForm.get('surname2').hasError('required')" class="error">Apellido Materno  requerido</p>
-          </div>
-        </ion-col>
-        <ion-col size="12">
-            <ion-item no-lines>
-              <ion-input type="email" formControlName="email" name="email" placeholder="Email:" ></ion-input>
-            </ion-item>
-            <div *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty || registerForm.get('email').touched" no-lines>
-                <p *ngIf="registerForm.get('email').hasError('required')" class="error">Email requerido</p>
-                <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo no puede tener puntos o comas</p> 
-                <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo electronico no es valido</p> 
-            </div>
-          </ion-col>
-  
-          <ion-col size="6">
-              <ion-item class="outpadding" no-lines>
-                <!-- <ion-label floating>Fecha de nacimiento:</ion-label> -->
-                <ion-datetime displayFormat="DD/MM/YYYY" formControlName="birthdate" name="birthdate" placeholder="Fecha de nacimiento" ></ion-datetime>
-                <!-- <ion-input type="date" formControlName="birthdate" name="date_of_birth" placeholder="Fecha de nacimiento"></ion-input> -->
-              </ion-item>
-              <div *ngIf="registerForm.get('birthdate').errors && registerForm.get('birthdate').dirty || registerForm.get('birthdate').touched" no-lines>
-                    <p *ngIf="registerForm.get('birthdate').hasError('required')" class="error">Fecha de Nacimiento requerido</p>
-              </div>
-            </ion-col>
-  
-        <!-- <ion-col size="12">
-          <ion-item no-lines>
-            <ion-select formControlName="gender" name="gender" placeholder="Sexo" [(ngModel)]="gender" (ionChange)="cambiogenero($event)">
-              <ion-select-option *ngFor="let gender of genders" [value]="gender" >{{gender.name}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-              <div *ngIf="registerForm.get('gender').errors && registerForm.get('gender').dirty || registerForm.get('gender').touched" no-lines>
-                <p *ngIf="registerForm.get('gender').hasError('required')" class="error">Genero requerido</p>
-              </div>
-        </ion-col> -->
-  
-        <ion-col size="6">
-            <ion-item no-lines>
-              <ion-input type="tel" formControlName="phone" name="phone" placeholder="Telefono" ></ion-input>
-            </ion-item>
-            <div *ngIf="registerForm.get('phone').errors && registerForm.get('phone').dirty || registerForm.get('phone').touched" no-lines>
-                <p *ngIf="registerForm.get('phone').hasError('required')" class="error">Teléfono requerido</p>
-                <p *ngIf="registerForm.get('phone').hasError('minLength')" class="error">Mínimo 9 caracteres</p>
-            </div>
-          </ion-col>
-      
         <ion-col size="6">
           <ion-item no-lines>
-            <ion-select  formControlName="documentType" name="documentType"  (ionChange)="cambioDocumento($event)"  placeholder="Tipo de documento" >
+            <ion-select  formControlName="documentType" name="documentType" placeholder="Tipo de documento" [(ngModel)]="document" (ionChange)="cambioDocumento($event)"  placeholder="Tipo de documento">
               <ion-select-option *ngFor="let document of documents" [value]="document" >{{document.name}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -87,67 +15,152 @@
               <p  *ngIf="registerForm.get('documentType').hasError('required')" class="error">Tipo de documento requerido</p>
           </div>
         </ion-col>
+        <ion-col size="6">
+          <ion-item no-lines>
+            <ion-input *ngIf="!_documenType" placeholder="Nº de documento"></ion-input> 
+            <ion-input *ngIf="_documenType && _documenType.id == 3" placeholder="Nº de Carne" type="tel"   formControlName="documentNumber" name="documentNumber" [(ngModel)]="documentNumber"
+            minlength=12 maxlength=12 stacked></ion-input>
+            <ion-input *ngIf="_documenType && _documenType.id == '1'" placeholder="Nº de Dni" type="number" formControlName="documentNumber" name="documentNumber" [(ngModel)]="documentNumber"
+              minlength=8 maxlength=8  stacked></ion-input>
+            <ion-input *ngIf="_documenType &&_documenType.id == 2" placeholder="Nº de Pasaporte" type="number" formControlName="documentNumber" name="documentNumber" [(ngModel)]="documentNumber"
+              minlength=12 maxlength=12 stacked></ion-input>
+            <!-- <p color="danger" ion-text *ngIf="registerForm.get('dni').hasError('required')">DNI requerido</p> -->
+          </ion-item>
+          <div *ngIf="registerForm.get('documentNumber').errors && registerForm.get('documentNumber').dirty || registerForm.get('documentNumber').touched" placeholder="Nº de documento" no-lines>
+              <p  *ngIf="registerForm.get('documentNumber').hasError('required')" class="error">El tipo de documento es requerido</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" *ngIf="registerFormu == false">
+          <ion-item no-lines>
+            <ion-input  formControlName="documentType" name="documentDigit" [(ngModel)]="documentDigit"  placeholder="código validador">
+              </ion-input>
+          </ion-item>
+          <div *ngIf="registerForm.get('documentDigit').errors && registerForm.get('documentDigit').dirty || registerForm.get('documentDigit').touched" no-lines>
+              <p  *ngIf="registerForm.get('documentDigit').hasError('required')" class="error">Tipo de documento requerido</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" *ngIf="!dataReniec">
+          <ion-button class="buttonSearchData" *ngIf="documentNumber && documentDigit && document" color="secondary" (click)="reniecValidateDatos()" fill="full">
+            Buscar datos
+          </ion-button>
+        </ion-col>
+        </ion-row>
+        <ion-row *ngIf="registerFormu == true">
+
+          <ion-col size="12">
+            <ion-item no-lines >
+              <ion-input type="text" formControlName="name" name="name" placeholder="Nombres" [(ngModel)]="name"></ion-input>
+            </ion-item>
+            <div *ngIf="registerForm.get('name').errors && registerForm.get('name').dirty || registerForm.get('name').touched" no-lines>
+                <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
+            </div>
+            <!-- <div *ngIf="registerForm.get('name').errors && registerForm.get('name').touched" no-lines>
+                <p *ngIf="registerForm.get('name').hasError('required')" class="error">el nombre es requerido</p>
+            </div> -->
+          </ion-col>
+    
+          <ion-col size="6">
+            <ion-item no-lines >
+              <ion-input type="text" formControlName="surname1" name="surname1" placeholder="Apellido Paterno" [(ngModel)]="surname1"></ion-input> 
+            </ion-item>
+            <div *ngIf="registerForm.get('surname1').errors && registerForm.get('surname1').dirty || registerForm.get('surname1').touched" no-lines>
+                    <p *ngIf="registerForm.get('surname1').hasError('required')" class="error">Apellido Paterno requerido</p>
+            </div>
+          </ion-col>
+    
+          <ion-col size="6">
+            <ion-item no-lines>
+              <ion-input type="text" formControlName="surname2" name="surname1" placeholder="Apellido Materno" [(ngModel)]="surname2"></ion-input>
+            </ion-item>
+            <div *ngIf="registerForm.get('surname2').errors && registerForm.get('surname2').dirty || registerForm.get('surname2').touched" no-lines>
+                    <p *ngIf="registerForm.get('surname2').hasError('required')" class="error">Apellido Materno  requerido</p>
+            </div>
+          </ion-col>
+   
+    
+            <ion-col size="6">
+                <ion-item class="outpadding" no-lines>
+                  <!-- <ion-label floating>Fecha de nacimiento:</ion-label> -->
+                  <ion-datetime displayFormat="DD/MM/YYYY" formControlName="birthdate" name="birthdate" placeholder="Fecha de nacimiento" [(ngModel)]="birthdate"></ion-datetime>
+                  <!-- <ion-input type="date" formControlName="birthdate" name="date_of_birth" placeholder="Fecha de nacimiento"></ion-input> -->
+                </ion-item>
+                <div *ngIf="registerForm.get('birthdate').errors && registerForm.get('birthdate').dirty || registerForm.get('birthdate').touched" no-lines>
+                      <p *ngIf="registerForm.get('birthdate').hasError('required')" class="error">Fecha de Nacimiento requerido</p>
+                </div>
+              </ion-col>
+              <ion-col size="6" *ngIf="dataReniec">
+                <ion-item no-lines>
+                  <ion-input type="text" formControlName="gender" name="gender">{{sexo}}</ion-input>
+                </ion-item>
+                <div *ngIf="registerForm.get('gender').errors && registerForm.get('gender').dirty || registerForm.get('gender').touched" no-lines>
+                    <p *ngIf="registerForm.get('gender').hasError('required')" class="error">gender requerido</p>
+                    <p *ngIf="registerForm.get('gender').hasError('gender')" class="error">El correo electronico no es valido</p> 
+                </div>
+              </ion-col>
+            <ion-col size="6" *ngIf="!dataReniec">
+              <ion-item no-lines>
+                <ion-select formControlName="gender" name="gender" placeholder="Sexo" [(ngModel)]="sexo" (ionChange)="cambiogenero($event)">
+                  <ion-select-option *ngFor="let gender of genders" [value]="gender.id" >{{gender.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div *ngIf="registerForm.get('gender').errors && registerForm.get('gender').dirty || registerForm.get('gender').touched" no-lines>
+                <p *ngIf="registerForm.get('gender').hasError('required')" class="error">El género requerido</p>
+              </div>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item no-lines>
+                <ion-input type="email" formControlName="email" name="email" placeholder="Email:" ></ion-input>
+              </ion-item>
+              <div *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty || registerForm.get('email').touched" no-lines>
+                  <p *ngIf="registerForm.get('email').hasError('required')" class="error">Email requerido</p>
+                  <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo no puede tener puntos o comas</p> 
+                  <p *ngIf="registerForm.get('email').hasError('email')" class="error">El correo electronico no es valido</p> 
+              </div>
+            </ion-col>
+        <ion-col size="12">
+          <ion-item no-lines>
+            <ion-input type="password" required name="password" formControlName="password" placeholder="Contraseña"></ion-input>
+          </ion-item >
+          <div *ngIf="registerForm.get('password').errors && registerForm.get('password').dirty || registerForm.get('password').touched" no-lines>
+              <p *ngIf="registerForm.get('password').hasError('required')" class="error">Contraseña requerida</p>
+              <p *ngIf="registerForm.get('password').hasError('minLength')" class="error">Minimo 8 caracteres</p>
+            </div> 
+        </ion-col>
   
         <ion-col size="6">
           <ion-item no-lines>
-            <ion-input  type="tel" formControlName="documentNumber" name="documentNumber" ></ion-input > 
-            <ion-input *ngIf="_documenType && _documenType.id == 3" placeholder="Nº de Carne" type="tel"   formControlName="documentNumber" name="documentNumber"
-            minlength=12 maxlength=12 stacked></ion-input>
-            <ion-input *ngIf="_documenType && _documenType.id == '1'" placeholder="Nº de Dni" type="number" formControlName="documentNumber" name="documentNumber"
-              minlength=8 maxlength=8  stacked></ion-input>
-            <ion-input *ngIf="_documenType &&_documenType.id == 2" placeholder="Nº de Pasaporte" type="number" formControlName="documentNumber" name="documentNumber"
-              minlength=12 maxlength=12 stacked></ion-input>
-           <!--  <p color="danger" ion-text *ngIf="registerForm.get('dni').hasError('required')">DNI requerido</p> -->
+            <ion-input type="tel" formControlName="phone" name="phone" placeholder="Telefono" ></ion-input>
           </ion-item>
-          <div *ngIf="registerForm.get('documentNumber').errors && registerForm.get('documentNumber').dirty || registerForm.get('documentNumber').touched" no-lines>
-              <p  *ngIf="registerForm.get('documentNumber').hasError('required')" class="error">Tipo de documento requerido</p>
+          <div *ngIf="registerForm.get('phone').errors && registerForm.get('phone').dirty || registerForm.get('phone').touched" no-lines>
+              <p *ngIf="registerForm.get('phone').hasError('required')" class="error">Teléfono requerido</p>
+              <p *ngIf="registerForm.get('phone').hasError('minLength')" class="error">Mínimo 9 caracteres</p>
           </div>
         </ion-col>
-  
-        
-      <ion-col size="12">
-        <ion-item no-lines>
-          <ion-input type="password" required name="password" formControlName="password" placeholder="Contraseña"></ion-input>
-        </ion-item >
-        <div *ngIf="registerForm.get('password').errors && registerForm.get('password').dirty || registerForm.get('password').touched" no-lines>
-            <p *ngIf="registerForm.get('password').hasError('required')" class="error">Contraseña requerida</p>
-            <p *ngIf="registerForm.get('password').hasError('minLength')" class="error">Minimo 8 caracteres</p>
-          </div> 
-      </ion-col>
-  
-  
-      <ion-col size="12">
-        <ion-item no-lines>
-          <ion-input type="password" formControlName="password_confirmation" name="password_confirmation" placeholder="repetir contraseña">
-            <div *ngIf="registerForm.get('password_confirmation').errors && registerForm.get('password_confirmation').dirty || registerForm.get('password_confirmation').touched">
-                <p *ngIf="registerForm.get('password_confirmation').hasError('required')" class="error">Contraseña requerida</p>
-            </div>
-          </ion-input>
-        </ion-item>
-      </ion-col>
-  
-      <ion-col size="12">
-        <ion-item no-lines>
-          <ion-label class="terminosyCondiciones">Acepto los términos y condiciones</ion-label>
-          <ion-checkbox formControlName="aprobed" name="aprobed" [(ngModel)]="aprobed" (ionChange)="aceptaCondiciones(aprobed)"></ion-checkbox>
-        </ion-item>
-      </ion-col> 
-   
-    </ion-row>
-  
-      <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full"  class="alto50">Registro</ion-button>
+    
+        <ion-col size="6">
+          <ion-item no-lines>
+            <ion-label class="terminosyCondiciones">Acepto los términos y condiciones</ion-label>
+            <ion-checkbox formControlName="aprobed" name="aprobed" [(ngModel)]="aprobed" (ionChange)="aceptaCondiciones(aprobed)"></ion-checkbox>
+          </ion-item>
+        </ion-col> 
+     
+      </ion-row>
+
+      <div *ngIf="registerFormu == true">
+        <ion-button type="submit" [disabled]="!registerForm.valid || !validacion()" size="full"  class="alto50">Registro</ion-button>
+      </div>
       <!-- <ion-button type="submit" size="full" color="rosado" class="alto50">Registro</ion-button> -->
     </form>
-  
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" class="izquierda">
-            <ion-button fill="clear" shape="round" class="bajas" (click)="seeConditions()">terminos y condiciones</ion-button>
-          </ion-col>
-          <ion-col size="6" class="derecha ">
-            <ion-button fill="clear" shape="round" class="bajas derecha"  (click)="goToLogin() ">Tengo una cuenta</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-</ion-content>
+  </ion-content>
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="izquierda">
+          <ion-button fill="clear" shape="round" class="bajas" (click)="seeConditions()">terminos y condiciones</ion-button>
+        </ion-col>
+        <ion-col size="6" class="derecha ">
+          <ion-button fill="clear" shape="round" class="bajas derecha"  (click)="goToLogin() ">Tengo una cuenta</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
