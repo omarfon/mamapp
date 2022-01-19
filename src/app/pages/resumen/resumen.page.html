@@ -113,7 +113,7 @@
                             </ion-button>
                 </ion-col> -->
                 <ion-col size="6">
-                    <ion-button *ngIf="!depe && hora.params.provisionId[0] === 44" color="primary" class="botonAccept"
+                    <ion-button *ngIf="!depe" color="primary" class="botonAccept"
                         block (click)="next()">
                         <ion-row>
                             <ion-col size="12" class="botonEfectivo">
@@ -124,7 +124,7 @@
                             </ion-col>
                         </ion-row>
                     </ion-button>
-                    <ion-button *ngIf="depe && hora.params.provisionId[0] === 44" color="primary" class="botonAccept"
+                    <ion-button *ngIf="depe" color="primary" class="botonAccept"
                         block>
                         <ion-row>
                             <ion-col size="12">
@@ -137,7 +137,7 @@
                     </ion-button>
 
                 </ion-col>
-                <ion-col size="6" *ngIf="hora.params.provisionId[0] === 44">
+                <ion-col size="6">
                     <ion-button *ngIf="payCulqiCharges == true " color="secondary" class="botonAccept" block
                         (click)="payCulqi()">
                         <ion-row>
@@ -160,29 +160,7 @@
                         </ion-row>
                     </ion-button>
                 </ion-col>
-                <ion-col size="12" *ngIf="hora.params.provisionId[0] == 845337">
-                    <ion-button *ngIf="payCulqiCharges == true" color="secondary" class="botonAccept" block
-                        (click)="payCulqi()">
-                        <ion-row>
-                            <ion-col size="12" class="botonTarjeta">
-                                <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>Pago con tarjeta</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-button>
-                    <ion-button *ngIf="retrying == true" color="secondary" class="botonAccept" block>
-                        <ion-row>
-                            <ion-col size="12" class="botonTarjeta">
-                                <img class="iconosImagenes" src="assets/imgs/cobro/tarjeta.png" alt="">
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>Reintentar Pago</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-button>
-                </ion-col>
+
             </ion-row>
         </div>
     </div>

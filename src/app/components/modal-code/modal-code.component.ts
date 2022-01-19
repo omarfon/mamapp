@@ -114,13 +114,13 @@ export class ModalCodeComponent implements OnInit {
     });
   }
 
-  sendCode(){
+/*   sendCode(){
     let email = {email:this.datos.email}
       this.crudSrv.validateEmail(email).subscribe(data=>{
           this.code = data;
           console.log('lo que me llega del vaildate:', this.code)
       });
-  }
+  } */
 
 
 }

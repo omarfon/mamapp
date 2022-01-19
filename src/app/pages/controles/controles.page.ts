@@ -100,17 +100,7 @@ export class ControlesPage implements OnInit {
     }
     const data = JSON.stringify(datos);
     /* console.log('mandar a la pagina citas', c); */
-    this.routes.navigate(['/citas', data])
-  }
-
-  createDateTele() {
-    const datos = {
-      fechaIni: this.fechaIni,
-      escogido: 845337
-    }
-    const data = JSON.stringify(datos);
-    this.routes.navigate(['/citas', data])
-    /* this.notTeleconsult(); */
+    this.routes.navigate(['/citas'])
   }
 
   createDatePediatric(){

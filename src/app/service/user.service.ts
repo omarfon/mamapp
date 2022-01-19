@@ -11,7 +11,6 @@ import { environment, API_ENDPOINT } from '../../environments/environment';
 export class UserService {
 
   private SERVER = API_ENDPOINT;
-  /* private SERVER2 = "https://dappapache02.eastus.cloudapp.azure.com/middleware2-copy/api/v2/auth/login-firebase" */
   private apiUrl = this.SERVER;
   private apiUrlDatos = `${this.SERVER}auth/login/ebooking/`;
   private newLogin = this.SERVER + 'users/newLogin';
@@ -88,8 +87,8 @@ export class UserService {
 
   sendValidation(email, documentNumber, documentId, selectDocument){
     /*     let params = {email: email, documentType:{id:documentId,name:selectDocument},documentNumber:documentNumber}; */
-        const authorization = JSON.parse(localStorage.getItem('authorization'));
-        let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
     /*     console.log('params:', params); */
         return this.http.post(this.apiUrl + 'validateemail/register', 
                                             {"email": email, 
@@ -102,7 +101,6 @@ export class UserService {
       }
 
   recoveryLogin(datos){
-    /* let params = {code: datos.code, email: datos.email, id: datos.id, password: datos.password, app: 'mama'}; */
     let params = datos;
     const authorization = JSON.parse(localStorage.getItem('authorization'));
     let headers = new HttpHeaders({"Authorization": authorization.authorization});
@@ -117,7 +115,6 @@ export class UserService {
 
   loginRecovery(datos){
     //CORREGIR LLAMADA DE RECUPERAción
-  /*   let params = {code: datos.code, email: datos.email, id: datos.id, password: datos.password, app: 'ebooking'}; */
   let params = datos;  
   const authorization = JSON.parse(localStorage.getItem('authorization'));
     let headers = new HttpHeaders({"Authorization": authorization.authorization});

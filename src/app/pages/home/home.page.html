@@ -44,16 +44,6 @@
                       </div>
                     </ion-col>
                     <ion-col size="12" id="containerRecalc">
-                      <!-- <ion-row>
-                                    <ion-col size="10" class="fraseRecalcular">
-                                      <p>Recalcular fecha</p> 
-                                    </ion-col> 
-                                    <ion-col size="2" class="containerButtonCalc">
-                                      <ion-button fill="clear" (click)="openCalc()">
-                                        <ion-icon name="calendar"></ion-icon>
-                                      </ion-button>
-                                    </ion-col>
-                                  </ion-row>  -->
                     </ion-col>
                   </ion-row>
                 </div>
@@ -189,7 +179,7 @@
 
       <!-- cuerpo para la comparativa bebe -->
       <div *ngIf="nota.tipo == 'comparativa'" class="animated bounceInRight">
-        <ion-card class="comparativaBebe" id="comparativaBebe" (click)="openModalDetailBaby(nota)">
+        <ion-card class="comparativaBebe" id="comparativaBebe">
           <div class="ion-padding">
             <ion-row>
               <ion-col size="12" class="containerTexto">

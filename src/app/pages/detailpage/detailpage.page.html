@@ -13,12 +13,12 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="padding">
     <ion-list>
 
-        <img id="profile-image" src="{{apiEndpoint}}{{dataArmada.id}}.png" (error)="errorHandler($event)" alt="">
-        <h3 class="nombreDoctor" text-center>{{ dataArmada.professionalName }} {{ dataArmada.professionalLastName1 }}
-            {{ dataArmada.professionalLastName2 }}</h3>
+        <img id="profile-image" src="{{apiEndpoint}}{{dataArmada.professionalId}}.png" (error)="errorHandler($event)" alt="">
+        <h3 class="nombreDoctor text-center" >{{ dataArmada.professionalLastName1 }}
+            {{ dataArmada.professionalLastName2 }} {{ dataArmada.professionalName }} </h3>
 
         <ion-item>
             <ion-icon item-start><i class="fa fa-hospital-o" aria-hidden="true"></i></ion-icon>
@@ -47,7 +47,7 @@
         </ion-item> -->
     </ion-list>
 
-    <ion-row padding *ngIf="dataArmada.pagado === 'no'">
+    <ion-row class="padding" *ngIf="dataArmada.pagado === 'no'">
         <ion-col size="6">
             <ion-button expand="full" color="warning" (click)='desactivateTask()'>ELIMINAR</ion-button>
         </ion-col>
@@ -57,7 +57,7 @@
             </ion-button>
         </ion-col>
     </ion-row>
-    <ion-row padding *ngIf="dataArmada.pagado === 'yes'">
+    <ion-row class="padding" *ngIf="dataArmada.pagado === 'yes'">
         <ion-col size="8">
             <ion-button expand="full" color="warning">CITA NO CANCELABLE</ion-button>
         </ion-col>

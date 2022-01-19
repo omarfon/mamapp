@@ -19,8 +19,8 @@ export class DatosControlService {
 
   getStartPregnacy(){
  
-    const authorization = localStorage.getItem('authorization');
-      let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
   
     return this.http.get(this.apiUrlStart , {headers}).pipe(
                 map(data =>{
@@ -33,8 +33,8 @@ export class DatosControlService {
   }
   
   getParams( fromDate , toDate){
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     console.log(headers);
     console.log('las fechas:', fromDate, toDate);
     return this.http.get(this.apiUrl + `?fechaIni=${fromDate}&fechaFin=${toDate}` , {headers}).pipe(  

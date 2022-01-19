@@ -26,19 +26,7 @@ export class RegisterPage implements OnInit {
   @Input ('data')  data; 
   public msg: string;
   public registerForm: FormGroup;
-
-  private pageFrom;
-  private headquarterId;
-  private specialty;
-  private date;
-
-  private hora;
-  private available;
-  private doctor;
-  private texto;
-
-  private resolve;
-  private actual;
+  public actual;
   public name;
   public email;
   public password;
@@ -49,7 +37,7 @@ export class RegisterPage implements OnInit {
   public documents;
   public documentDigit;
   public documentNumber;
-  public dataReniec;
+  public dataReniec :any = [];
   public registerFormu:boolean = false;
   public dniInvalid = false;
   public sexo;
@@ -60,20 +48,23 @@ public document;
 public _documenType;
 public _gender;
   createOk: any;
-  digitoVa: boolean;
+  digitoVa: boolean = true;
   hideBox: boolean;
   activateDocumentNumber: boolean;
   documentId: any;
   public datos;
-  public idgender;
-  public namegender;
-  public gender;
+  public idgender = 3;
+  public namegender = "MUJER";
+  public gender = {
+    id: 0,
+    name: ""
+  };
 
   @Input ('dataArmada') dataArmada;
   public dataFacebook;
   message: string;
   startPregnancy: string;
-  
+  public birthdateMostrar;
   
 
   constructor(
@@ -95,24 +86,13 @@ public _gender;
     public userSrv: UserService
   ) {}
 
-  ionViewDidEnter(){
-    /* this.chargeDatosFacebook(); */
-  }
-
   ngOnInit() {
-
-    this.data = this.route.snapshot.paramMap.get('data');
-    const dataFacebook = JSON.parse(this.data);
-    console.log('dataFacebook',dataFacebook);
-
-    const data = this.route.snapshot.paramMap.get('datosObj');
-    this.dataArmada = JSON.parse(data);
 
     this.actual = moment().format("YYYY-MM-DD");
 
     this.dataSvr.getGenders().subscribe(datagenders => {
       this.genders = datagenders;
-      /* console.log("this.genders:", this.genders); */
+      console.log("this.genders:", this.genders);
     });
 
     this.dataSvr.getDocuments().subscribe(documents => {
@@ -125,7 +105,7 @@ public _gender;
       name: ['',  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
       surname2: ['',  [ Validators.required ]],
-      gender: ['',  [ Validators.required ]], 
+      gender: ['',  [ Validators.required ]],
       birthdate: ['',  [ Validators.required ]],
       documentType: ['',  [ Validators.required ]],
       documentNumber: ['',  [ Validators.required]],
@@ -140,8 +120,7 @@ public _gender;
   }
 
   validacion(){
-    const valid = this.registerForm.value;
-    if(valid.password == valid.password_confirmation && valid.aprobed == true){
+    if(this.password && this.aprobed == true && this.name && this.surname1 && this.surname2 && this.email && this.phone ){
       return true;
     }else{
       return false;
@@ -161,18 +140,22 @@ public _gender;
       this.surname1 = this.dataReniec.apellido_paterno;
       this.surname2 = this.dataReniec.apellido_materno;
       this.sexo = this.dataReniec.sexo;
-      this.birthdate = moment(this.dataReniec.fecha_nacimiento).format('DD/MM/yyyy');
+      this.birthdate = this.dataReniec.fecha_nacimiento;
+      this.birthdateMostrar = moment(this.dataReniec.fecha_nacimiento).format('DD/MM/YYYY');
+      console.log(this.birthdate);
       this.registerFormu = true;
         if(this.documentNumber == this.dataReniec.numero  && this.documentDigit == this.dataReniec.codigo_verificacion){
           this.registerFormu = true;
-        loading.dismiss();  
+        this.loadinCtrl.dismiss();  
         }else{
+          this.loadinCtrl.dismiss();
           this.dniInvalid = true;
           this.registerFormu = false;
         }
   }, err => {
+    this.loadinCtrl.dismiss();  
     this.dniInvalid = true;
-    this.registerFormu = true;
+    this.registerFormu = false;
     console.log(err)
   })
   }
@@ -191,15 +174,63 @@ public _gender;
   cambiogenero($event){
     this._gender = this.gender;
       /* console.log('this.gender:', this._gender); */
-     
-  }
-  cambioDocumento($event){
-   this._documenType = this.document;
-  /*  console.log('this.document', this._documenType); */
   }
 
+  cambioDocumento($event){
+    this._documenType = this.document;
+    console.log('this.document', this._documenType);
+    const documentType = $event.target.value;
+    if (documentType === 'No Tiene') {
+      this.hideBox = true;
+    } else if(this.document.name === 'D.N.I'){
+      this.registerFormu = false;
+      this.dataReniec = null;
+      this.digitoVa = true;
+        this.hideBox = false;
+        this.documentNumber = '';
+        this.selectDocument = $event.target.value;
+        this.activateDocumentNumber = false;
+        this.documentId = 1;
+        console.log(this.documentId);
+    }else if(this.document.name === 'C.E.'){
+      this.dataReniec = null;
+      this.registerFormu = true;
+      this.digitoVa = false;
+      this.hideBox = false;
+      this.documentNumber = '';
+      this.selectDocument = $event.target.value;
+      this.activateDocumentNumber = false;
+      this.documentId = 3;
+      console.log(this.documentId);
+    }else if(this.document.name === 'Pasaporte.'){
+     this.dataReniec = null;
+      this.registerFormu = true;
+      this.digitoVa = false;
+      this.hideBox = false;
+      this.documentNumber = '';
+      this.selectDocument = $event.target.value;
+      this.activateDocumentNumber = false;
+      this.documentId = 2;
+      console.log(this.documentId);
+    }else{
+     this.dataReniec = null;
+      this.registerFormu = true;
+      this.digitoVa = false;
+      this.hideBox = false;
+      this.documentNumber = '';
+      this.selectDocument = $event.target.value;
+      this.activateDocumentNumber = false;
+      this.documentId = $event.target.value;
+    }
+   }
+
+   selectDocument(event) {
+  }
+
+
   aceptaCondiciones(aprobed){
-    /* console.log('aprobed', aprobed); */
+    console.log('aprobed', aprobed);
+    this.aprobed = true;
   }
 
   async seeConditions(){
@@ -222,42 +253,10 @@ public _gender;
     this.data.id = 'sendmamapp';
     console.log('data en el modal:', this.data);
     const email = this.data.email
-    /* this.crudSrv.validateEmail(email).subscribe(async (res) =>{
-      this.data = res;
-      console.log('data retornada de validateEmail:',this.data);
-    }); */
     this.saveData();
-      this.goToCalc(name);
-     /* this.router.navigate(['/tabs']); */
-    /* 
-      console.log('data correcta:', res); 
-        const popover = await this.popoverCtrl.create({
-          component: ModalCodeComponent,
-          componentProps: {
-            data : data,
-            res: res
-          }
-        });
-        await popover.present();
-    },async err =>{
-      const alert = await this.alertCtrl.create({
-        header : "Error",
-        subHeader: "Posiblemente el correo ya ha sido registrado",
-        buttons:[
-          {
-            text: 'Intentar en login',
-              handler:() =>{
-                this.routes.navigate(['/login']);
-              }
-            }
-        ]
-       });
-       await alert.present();
-   }) */
-   
   }
 
-  saveData(){
+/*   saveData(){
     this.data.code = 1234;
     this.data.id = "sendmamapp" ;
     this.data.gender = {
@@ -271,8 +270,6 @@ public _gender;
     this.crudSrv.createNewUser(this.data).subscribe(async (data:any) =>{
       this.createOk = data;
       console.log('la vuelta de this.createOK:', this.createOk);
-        
-        /* this.createOk = data; */
            console.log('datos que vienen del logueo: por registro:', this.createOk);
              localStorage.setItem('idTokenUser', this.createOk.patientId);
              localStorage.setItem('emailUser', this.createOk.userEmail);
@@ -293,32 +290,6 @@ public _gender;
               const token = localStorage.getItem('token');
               this.chatSrv.registerCustom(token);
             }
-              /* this.goToCalc(name); */
-              /* this.router.navigate(['/tabs']); */
-
-         /*    this.datosSrv.getStartPregnacy().subscribe((data:any) =>{
-              if(!data){
-                const nombre = localStorage.getItem('nombre');
-               this.goToCalc(nombre)
-               return
-              }
-             console.log('lo que devuelve el servicio startPregnancy:', data, this.startPregnancy);
-             if(this.startPregnancy){
-               localStorage.setItem('startPregnancy',this.startPregnancy); 
-               this.router.navigate(['/tabs']);
-             }else{
-              const name = localStorage.getItem('name');
-               this.goToCalc(name);
-               this.router.navigateByUrl('/tabs');
-             }
-             this.events.publish('change:foto');
-           },err =>{
-            const name = localStorage.getItem('name');
-            this.goToCalc(name);
-            return
-           }); */
-            
-        /* await loading.dismiss(); */
         
       }, async err=>{
         console.log('err',err);
@@ -333,12 +304,135 @@ public _gender;
       await alert.present();
     });
   }
+ */
+  saveData(){
+    console.log(this.email);
+    this.crudSrv.validateEmail(this.email, this.documentNumber, this.document.id, this.document.name).subscribe((resp:any)=>{
+      if(resp.result == 'ok'){
+        if(this.dataReniec){
+          if(this.sexo === 'MASCULINO'){
+            this.idgender = 2;
+            this.namegender = 'HOMBRE';
+          }else if(this.sexo === 'FEMENINO'){
+            this.idgender = 3;
+            this.namegender = 'MUJER';
+          }else{
+            this.idgender= 1;
+            this.namegender = 'INDISTINTO';
+          }
+        }else{
+          this.datos.gender.id = this._gender.id;
+          this.datos.gender.name = this._gender.name;
+        }
+        this.datos ={
+          email          : this.email,
+          password       : this.password,
+          name           : this.name,
+          surname1       : this.surname1,
+          surname2       : this.surname2,
+          birthdate      : this.birthdate,
+          gender         :{
+              id         : this.idgender,
+              name       : this.namegender
+          },
+          documentType   :{
+              id         : this.document.id,
+              name       : this.document.name
+          },
+          documentNumber : this.documentNumber.toString(),
+          phone          : this.phone
+        }
+         this.datos.code = 1234;
+         this.datos.id = resp.id ;
+        this.datos.birthdate = this.birthdate;
+        console.log('this.data: ',this.birthdate);
+        console.log('this.data: ',this.datos);
+        this.crudSrv.registerNewUser(this.datos).subscribe(data =>{
+          this.createOk = data;
+          localStorage.setItem('authorization', JSON.stringify(data));
+        localStorage.setItem('token', this.data.firebaseToken);
+        localStorage.setItem('name', this.data.name);
+        localStorage.setItem('role', this.data.role);
+        localStorage.setItem('sigIn', 'completo');
+         /*  localStorage.setItem('usuario', this.data.userEmail);
+          localStorage.setItem('email', this.data.userEmail);
+          localStorage.setItem('authorization', this.data.authorization);
+          localStorage.setItem('id', this.data.patientId);
+          localStorage.setItem('photoUrl', this.data.photoUrl);
+          localStorage.setItem('patientName', this.data.patientName);
+          localStorage.setItem('token', this.data.firebaseToken);
+          localStorage.setItem('uid', this.data.userId); */
+          console.log('la vuelta de this.createOK:', this.createOk);
+               console.log('datos que vienen del logueo: por registro:', this.createOk);
+                 localStorage.setItem('authorization', JSON.stringify(this.createOk));
+                 this.router.navigate(['/login']);
+                 console.log("pasó!!!");
+                 console.log('pasó logeado', this.createOk);
+                 
+                  this.datosSrv.getStartPregnacy().subscribe((data: any) => {
+                    if (!data) {
+                      const nombre = localStorage.getItem('name');
+                      this.goToCalc(nombre);
+                        return
+                     }       
+                    if (this.startPregnancy) {
+                      localStorage.setItem('startPregnancy', this.startPregnancy);
+                      this.router.navigateByUrl('/tabs');
+                    } else {
+                      this.goToCalc(localStorage.getItem('name'));
+                      /* this.router.navigateByUrl('/tabs'); */
+                    }
+         
+        }, err => {
+          const name = localStorage.getItem('name');
+          this.goToCalc(name);
+          return
+          });
+        })
+      }
+    }, async err=>{
+        console.log('err',err);
+        if(err.error.result === 'error'){
+          if(err.error.message == 'Ya tienes historia y usuario web'){
+            const alert = await this.alertCtrl.create({
+              header:'Error de login',
+              subHeader:'Ya tienes una cuenta',
+              backdropDismiss:false,
+              buttons:[
+                {
+                  text:'Recuperar o loguear',
+                  handler:() =>{
+                    this.router.navigate(['login']);
+                  }
+                }
+              ]
+            });
+            await alert.present();
+          }else{
+            const alert = await this.alertCtrl.create({
+              header:'Error de login',
+              subHeader:'Ya tienes una cuenta',
+              backdropDismiss:false,
+              buttons:[
+                {
+                  text:'Recuperar o loguear',
+                  handler:() =>{
+                    this.router.navigate(['login']);
+                  }
+                }
+              ]
+            });
+            await alert.present();
+          }
+        }
+    });
+  }
     
     goToLogin(){
       this.router.navigate(['/login']);
     }
 
-    async goToCalc(name){
+     async goToCalc(name){
       const popover = await this.popover.create({
         component:CalcComponent,
         componentProps:{
@@ -348,6 +442,21 @@ public _gender;
         cssClass: 'popoverStyle'
       })
       await popover.present();
-      /* this.router.navigate(['tabs']); */
+    } 
+
+    async mailExisting(){
+      const alert = await this.alertCtrl.create({
+        header:"Correo Utilizado",
+        message:"el correo que ha ingresado ya existe, talvez lo ingresó mal o pruebe con otro",
+        buttons: [
+          {
+          text:'Intentar de nuevo',
+          role: 'cancel'
+          }
+        ]
+      });
+      await alert.present();
     }
+
+   
 }

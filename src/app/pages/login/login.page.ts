@@ -55,27 +55,29 @@ export class LoginPage implements OnInit {
     public fb: Facebook,
     public dataSrv: DataService,
     public plt: Platform) { 
-      const authorization = localStorage.getItem('authorization');
-      if (!authorization) {
-        this.autho.getKey().subscribe((data: any) => {
-          const autho = localStorage.setItem('authorization', JSON.stringify(data));
-        })
-      }
-
+      
     }
 
-
-  ionViewDidEnter() {
-   
-  }
   ngOnInit() {
-
-      this.dataSrv.getDocuments().subscribe(data => {
-          this.documents = data;
-          console.log(this.documents);
-      })
+    const authorization = localStorage.getItem('authorization');
+      if(!authorization) {
+        this.autho.getKey().subscribe((data: any) => {
+          localStorage.setItem('authorization', JSON.stringify(data));
+        })
+      }else{
+        this.getDocuments();
+      }
+      console.log('constructor');
+   
     
   }
+
+  getDocuments(){
+    this.dataSrv.getDocuments().subscribe(data => {
+      this.documents = data;
+      console.log(this.documents);
+  });
+}
 
   loginFb() {
     this.fb.login(['public_profile', 'email'])
@@ -131,17 +133,18 @@ export class LoginPage implements OnInit {
         })
         await alert.present();
       } else {
-        localStorage.setItem('usuario', this.data.userEmail);
+        localStorage.setItem('authorization', JSON.stringify(response));
+        localStorage.setItem('token', this.data.firebaseToken);
+        localStorage.setItem('role', this.data.role);
+        localStorage.setItem('name', this.data.name);
+        localStorage.setItem('sigIn', 'completo');
+   /*      localStorage.setItem('usuario', this.data.userEmail);
         localStorage.setItem('email', this.data.userEmail);
         localStorage.setItem('authorization', this.data.authorization);
         localStorage.setItem('id', this.data.patientId);
-        localStorage.setItem('role', this.data.role);
         localStorage.setItem('photoUrl', this.data.photoUrl);
         localStorage.setItem('patientName', this.data.patientName);
-        localStorage.setItem('name', this.data.name);
-        localStorage.setItem('token', this.data.firebaseToken);
         localStorage.setItem('uid', this.data.userId);
-        localStorage.setItem('sigIn', 'completo');
         /* localStorage.setItem('uid', this.data.userId); */
         if (localStorage.getItem('token')) {
           const token = localStorage.getItem('token');
@@ -150,7 +153,7 @@ export class LoginPage implements OnInit {
 
         this.datosSrv.getStartPregnacy().subscribe((data: any) => {
           if (!data) {
-            const nombre = localStorage.getItem('nombre');
+            const nombre = localStorage.getItem('name');
             this.goToCalc(nombre);
             return
           }
@@ -159,7 +162,7 @@ export class LoginPage implements OnInit {
           /* console.log('this.startPregnancy de login:', this.startPregnancy); */
           if (this.startPregnancy) {
             localStorage.setItem('startPregnancy', this.startPregnancy);
-            this.router.navigateByUrl('/tabs');
+            this.router.navigate(['/tabs']);
           } else {
             this.goToCalc(localStorage.getItem('name'));
             /* this.router.navigateByUrl('/tabs'); */
@@ -170,6 +173,7 @@ export class LoginPage implements OnInit {
           const name = localStorage.getItem('name');
           this.goToCalc(name);
           return
+          
         });
       }
     }, async error => {

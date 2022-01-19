@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content #mycontent fullscreen>
-    <h4 *ngIf="escogido === 845337" class="center">Ginecólogos disponibles Teleconsulta</h4>
-    <h4 *ngIf="escogido !== 845337" class="center">Ginecólogos disponibles <br>Consulta Externa</h4>
+
+    <h4 class="center">Ginecólogos disponibles <br>Consulta Externa</h4>
     <div *ngFor="let item of doctorsF; let itemDoctor = index">
-        <div class="box-main-content" [ngStyle]="{'display': item.isAvailable ? 'block' : 'none'}">
+        <div class="box-main-content">
             <div class="datosDoctor">
                 <ion-row>
                     <ion-col size="4" class="imageDoctor">

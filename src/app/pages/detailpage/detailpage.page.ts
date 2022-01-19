@@ -33,7 +33,7 @@ export class DetailpagePage implements OnInit {
     this.apiEndpoint = API_IMAGES;
     this.data = this.routes.snapshot.paramMap.get('datosObj');
     this.dataArmada = JSON.parse(this.data);
-    /* console.log(this.dataArmada); */
+    console.log(this.dataArmada);
     this.date = this.dataArmada.appointmentId;
   }
 

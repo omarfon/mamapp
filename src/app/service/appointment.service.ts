@@ -14,8 +14,8 @@ export class AppointmentService {
   constructor(public http: HttpClient) { }
 
   getAppointmentsPeruser() {
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({ "Authorization": authorization });
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
 
     return this.http.get(this.apiUrl + 'citas-paciente?minutos=120', { headers }).pipe(
       map((resp: any) => {
@@ -28,8 +28,8 @@ export class AppointmentService {
   }
 
   createAppointment(subida, provisionId) {
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({ "Authorization": authorization });
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     let params = JSON.parse(subida);
     //params.email = localStorage.getItem('emailUser'); params.password = localStorage.getItem('passUser');
     // WARM: REFACTOR! Always provision_id will be 44. All json is passed. This will put in backend.
@@ -45,10 +45,10 @@ export class AppointmentService {
 
     )
   }
-
+5
   destroyAppointment(appointment) {
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({ "Authorization": authorization });
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     // appointment.email = localStorage.getItem('emailUser'); appointment.password = localStorage.getItem('passUser');
 
     return this.http.delete(this.apiUrl + `appointments/${appointment}`, { headers }).pipe(

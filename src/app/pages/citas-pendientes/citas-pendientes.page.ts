@@ -3,7 +3,7 @@ import { AppointmentService } from '../../service/appointment.service';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { PermissionsVideoService } from 'src/app/service/permissions-video.service';
-
+import { API_IMAGES} from 'src/environments/environment';
 
 
 @Component({
@@ -16,8 +16,9 @@ export class CitasPendientesPage implements OnInit {
   public dates = [];
   public _dates = [];
   public sinCitas: boolean = false;
-
+  public apiEndpoint: string;
   constructor(public appointmetSrv: AppointmentService,
+    
     public router: Router,
     public nav: NavController,
     public alertCtrl: AlertController,
@@ -26,6 +27,7 @@ export class CitasPendientesPage implements OnInit {
 
   ngOnInit() {
     /* console.log('citas-pendientes page'); */
+    this.apiEndpoint = API_IMAGES;
     this.appointmetSrv.getAppointmentsPeruser().subscribe(data => {
       this.dates = data;
       console.log('this.dates:', this.dates);

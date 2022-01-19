@@ -47,8 +47,8 @@ export class AuthoService {
 
   registerWithFacebook(data){
     let params = data;
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({'Authorization': authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
       return this.http.post(this.apiRegisterFacebook, params, {headers}).pipe(
         map(res =>{
           return res

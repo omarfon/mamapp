@@ -13,7 +13,7 @@
                 <ion-item>
                   <ion-label position="floating">Tipo documento</ion-label>
                     <ion-select placeholder="Selecciona una opción" (ionChange)="selectDocument($event)">
-                      <ion-select-option *ngFor="let d of documents" [value]="d">{{d.name}}</ion-select-option>
+                      <ion-select-option *ngFor="let d of documents | slice:0:3" [value]="d">{{d.name}}</ion-select-option>
                     </ion-select>
                 </ion-item>
               </ion-col>
@@ -71,14 +71,5 @@
                       Olvidé la contraseña
                 </ion-button>
             </ion-col>
-                 <ion-col size="12">
-                    <ion-button
-                            block
-                            (click)="goTohome()"
-                            small
-                            class="invitado">
-                            Ingresar como Invitado
-                    </ion-button>
-                </ion-col>
             </ion-row>
 </ion-content>

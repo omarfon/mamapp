@@ -18,9 +18,9 @@ export class CitasPage implements OnInit {
   disponibles: boolean;
   doctors: any;
   doctorsF: any;
-  id: any;
-  fromDate: any;
-  toDate: any;
+  public id: number = 38;
+  public fromDate: string = moment().format('YYYY-MM-DD');
+  public toDate: string = moment(this.fromDate).add(5, 'days').format('YYYY-MM-DD');
   horas: any;
   dia: any;
   dias: any;
@@ -41,6 +41,8 @@ export class CitasPage implements OnInit {
   public panelOpenState: boolean;
   public boxID: any;
   public boxCaID: any;
+  public manyBoxes;
+  public datesCalendar: any;
 
   constructor(public routes: Router,
     public route: ActivatedRoute,
@@ -56,15 +58,11 @@ export class CitasPage implements OnInit {
 
 
     this.apiEndpoint = API_IMAGES;
-    const data = this.route.snapshot.paramMap.get('data');
+  /*   const data = this.route.snapshot.paramMap.get('data');
     this.c = JSON.parse(data)
     console.log('c:', this.c);
     this.escogido = this.c.escogido;
-    console.log(this.escogido);
-    this.id = 38;
-    this.fromDate = moment().format('YYYY-MM-DD');
-    this.toDate = moment(this.fromDate).add(5, 'days').format('YYYY-MM-DD');
-
+    console.log(this.escogido); */
     this.getDoctors();
   }
 
@@ -72,16 +70,11 @@ export class CitasPage implements OnInit {
     this.getDoctors();
   }
 
-  async getDoctors() {
+  /* async getDoctors() {
     const loading = await this.loadingCtrl.create({
       message: 'Cargando doctores...'
     });
     await loading.present();
-    /*  this.citasSrv.getServicios().subscribe( servicios =>{
-     this.servicios = servicios;
-   });
-    */
-
     this.citasSrv.getDoctorsPerId(this.id).subscribe(doctors => {
       this.disponibles = false;
       if (doctors.length == 0) {
@@ -103,18 +96,35 @@ export class CitasPage implements OnInit {
       console.log(this.doctorsF);
       loading.dismiss();
       console.log('cerrando el loading')
-      /*     if(this.doctors = doctors.length){
-          } */
-      /* console.log('this.doctors:', this.doctors); */
     }, err => {
       console.log('err', err)
     },
       () => {
         console.log('llamada finalizada')
       });
+  } */
 
-
-  }
+  async getDoctors(){
+    this.doctorsF = [];
+    const loading = await this.loadingCtrl.create({
+      message:"buscando especialistas"
+    });
+    await loading.present();
+    console.log(this.id, this.toDate, this.fromDate);
+    this.citasSrv.getDoctorsSpecialty(this.id,this.fromDate, this.toDate).subscribe((doctors:any) => {
+      const docts = doctors.centers[0].services[0].professionals.filter((element) => {
+        return element.availables.length > 0;
+      })
+      this.manyBoxes = docts.length;
+      docts.forEach(element => {
+        const fech = element.availables;
+        this.datesCalendar = fech;
+      });
+      this.doctorsF = docts;
+      loading.dismiss();
+    })
+    console.log(this.doctorsF);
+  } 
 
   expandedItem(doctor, available) {
     if (!this.hora) {
@@ -127,16 +137,8 @@ export class CitasPage implements OnInit {
       this.citasSrv.getAvailablesPerDoctor(id, this.escogido, serviceId, fromDate, toDate).subscribe(hoy => {
         console.log('hoy', hoy);
         const dates = hoy[0].hours;
-        if (this.escogido === 44) {
-          this.consultaExterna = dates.filter(x => x.params.provisionId[0] === 44);
           this.dias = this.consultaExterna
           console.log('this.consultaExterna:', this.consultaExterna);
-        } else {
-          this.teleconsulta = dates.filter(x => x.params.provisionId[0] === 845337);
-          this.dias = this.teleconsulta
-          console.log('this.teleconsulta:', this.teleconsulta);
-        }
-        // console.log('this.dias:',this.dias);
         this.doctors.map((listDoctor) => {
           if (doctor == listDoctor) {
             listDoctor.expanded = true;
@@ -146,9 +148,7 @@ export class CitasPage implements OnInit {
           return listDoctor
         });
         this.horas = this.dias;
-        /* console.log('las horas:', this.horas); */
         this.dia = available.date;
-        // console.log('dias', this.dias);
       })
     } else {
       console.log('doctor:', doctor, available);
@@ -158,9 +158,7 @@ export class CitasPage implements OnInit {
       let fromDate = this.selectedDay.date;
       let toDate = this.selectedDay.date;
       this.citasSrv.getAvailablesPerDoctor(id, this.escogido, serviceId, fromDate, toDate).subscribe(hoy => {
-        /* console.log('hoy' , hoy); */
         this.dias = hoy[0].hours;
-        // console.log('this.dias:',this.dias);
         this.doctors.map((listDoctor) => {
           if (doctor == listDoctor) {
             listDoctor.expanded = true;
@@ -170,9 +168,7 @@ export class CitasPage implements OnInit {
           return listDoctor
         });
         this.horas = this.dias;
-        // console.log('las horas:', this.horas);
         this.dia = available.date;
-        // console.log('dias', this.dias);
       })
     }
   }
@@ -206,14 +202,11 @@ export class CitasPage implements OnInit {
         cmp: doctor.cmp
       }
     }
+    this.citasSrv.datosCita = datos;
     const user = localStorage.getItem('role')
     const datosObj = JSON.stringify(datos);
     /* console.log('data armada', datosObj); */
-    if (user === 'public') {
-      this.routes.navigate(['/register', datosObj])
-    } else {
-      this.routes.navigate(['financer', datosObj]);
-    }
+      this.routes.navigate(['financer']);
   }
 
 

@@ -7,6 +7,8 @@ import { CulqiService } from '../../service/culqi.service';
 import { API_IMAGES } from 'src/environments/environment';
 declare var Culqi: any;
 /* import * as Constants from  '../../../app/constants'; */
+import { CitasService } from '../../service/citas.service';
+import { throwIfEmpty } from 'rxjs/operators';
 
 
 
@@ -52,35 +54,38 @@ export class ResumenPage implements OnInit {
   public culqiReturn;
   public dataArmada;
   apiEndpoint: string;
-
+  public data;
 
   constructor(public loadCtrl: LoadingController,
     public router: Router,
     public routes: ActivatedRoute,
     public appointmentProvider: AppointmentService,
     public alertCtrl: AlertController,
+    public citaSrv: CitasService,
     public culqiPrv: CulqiService) { }
 
   ngOnInit() {
     this.apiEndpoint = API_IMAGES;
-    const data = this.routes.snapshot.paramMap.get('datosObj');
-    this.dataArmada = JSON.parse(data);
+    if(this.citaSrv.datosCita){
+      this.data = this.citaSrv.datosCita
+    }else{
+      this.router.navigate(['citas']);
+    }
 
     this.pago = 'enLocal';
     window['culqi'] = this.culqi.bind(this);
     /* console.log('culqi en resumen:', window['culqi']); */
     this.culqiData = JSON.parse(localStorage.getItem('culqiData'));
 
-    window['Culqi'].publicKey = /* 'pk_live_CyArY9ygzb0d7oZb';  */
-      window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z';
+    window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; 
+      /* window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z'; */
 
-    console.log('dataArmada en resumen:', this.dataArmada);
-    this.hora = this.dataArmada.hora;
-    this.doctor = this.dataArmada.doctor;
-    this.price = this.dataArmada.plan.precio[0].total;
-    this.subida = this.dataArmada.hora.listjson;
-    this.plan = this.dataArmada.plan;
-    this.available = this.dataArmada.available;
+    this.hora = this.data.hora;
+    this.doctor = this.data.doctor;
+    this.price = this.data.plan.precio[0].total;
+    this.subida = this.data.hora.listjson;
+    this.plan = this.data.plan;
+    this.available = this.data.available;
   }
 
   async culqi() {

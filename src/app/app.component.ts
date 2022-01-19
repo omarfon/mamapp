@@ -84,10 +84,10 @@ export class AppComponent {
     localStorage.removeItem('patientName');
     localStorage.removeItem('token');
     localStorage.removeItem('uid'); */
-    this.autho.getKey().subscribe((data: any) => {
+/*     this.autho.getKey().subscribe((data: any) => {
       localStorage.setItem('authorization', data.authorization);
       localStorage.setItem('role', data.role);
-    })
+    }) */
     this.routes.navigate(['/login']);
     this.menu.close('start');
     console.log('cerrar sesión');

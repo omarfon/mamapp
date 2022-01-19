@@ -19,9 +19,9 @@ export class NotificationsService {
 
   registerToken(tokenFcm){
       console.log('registrando token', tokenFcm);
-    const authorization  = localStorage.getItem('authorization')
-    let params = {token:tokenFcm}
-    let headers = new HttpHeaders({"Authorization": authorization})
+      let params = {token:tokenFcm}
+      const authorization = JSON.parse(localStorage.getItem('authorization'));
+      let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     console.log(params, headers, authorization);
     return this.http.post(this.apiRegister, params, {headers}).pipe(
             map(resp =>{
@@ -31,8 +31,8 @@ export class NotificationsService {
   }
   
   sendNotification(id, texto){
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     const params = {text: texto};
       return this.http.post(`${this.apiNoti}${id}`, params, {headers}).pipe(
         map(resp =>{
@@ -43,8 +43,8 @@ export class NotificationsService {
 
   sendNotificationCoach(text){
     console.log('texto notificacion coach:', text);
-    const authorization = localStorage.getItem('authorization');
-    let headers = new HttpHeaders({"Authorization": authorization});
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({ "Authorization": authorization.authorization });
     const params = {text: text};
       return this.http.post(this.apiCoach, params, {headers}).pipe(
         map(resp =>{

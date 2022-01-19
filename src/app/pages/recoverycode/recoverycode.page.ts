@@ -21,6 +21,7 @@ export class RecoverycodePage implements OnInit {
   public segundo;
   public tercero;
   public cuarto;
+  public emailHash;
   constructor(public usrSrv: UserService,
               public form: FormBuilder,
               public alertCtrl: AlertController,
@@ -44,6 +45,7 @@ export class RecoverycodePage implements OnInit {
   });
 
   this.recoveryData = this.usrSrv.recoveryData;
+  this.emailHash = this.recoveryData.emailHash;
     this.dataSend = this.usrSrv.dataSend;
     console.log(this.recoveryData, this.dataSend);
   }
@@ -77,7 +79,7 @@ export class RecoverycodePage implements OnInit {
     // this.datos.id = this.code.id;
     // console.log('data armada:', this.datos);
     console.log(datos);
-    this.usrSrv.loginRecovery(this.datos).subscribe(async data => {
+    this.usrSrv.loginRecovery(datos).subscribe(async data => {
         this.logeo = data;
         if(data){
           console.log('this.logeo:', this.logeo);
@@ -121,5 +123,33 @@ goToLogin(){
 
   sendCode(){
     console.log('enviar codigo');
+    const dataSend = {
+      documentNumber:  this.dataSend.documentNumber,
+      documentType: {
+        id:"1",
+        name:"D.N.I"
+      },
+      app: 'ebooking'
+    }
+    this.usrSrv.recoveryLogin(dataSend).subscribe(async data =>{
+      const alert = await this.alertCtrl.create({
+        header:'Código de recuperación',
+        message:'Hemos enviado nuevamente el código de verificación a tu correo electrónico.',
+        buttons:[
+          {
+            text:"Ok"
+          }
+        ]
+      });
+      await alert.present();
+        this.datos = data;
+        console.log('this.datos:', this.datos);
+        if(this.datos.result == 'ok'){
+          this.usrSrv.recoveryData = this.datos;
+          this.usrSrv.dataSend = dataSend;
+        }else{
+        console.log('correo no valido levantar un alert o pintar un mensaje')
+        }
+    })
   }
 }
