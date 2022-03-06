@@ -11,15 +11,15 @@
     <div class="container-gris">
         <h3 class="titleCardPago">Lo que has escogido hasta el momento</h3>
         <div class="containerResumen">
-            <ion-card class="CardDatosServicio">
+            <ion-card class="CardDatosServicio" *ngIf="data">
                 <div>
                     <ion-row class="centrar">
                         <ion-col size="4">
-                            <img id="profile-image" src="{{apiEndpoint}}{{doctor.id}}.png"
+                            <img id="profile-image" src="{{apiEndpoint}}{{data.doctor.id}}.png"
                                 (error)="errorHandler($event)" alt="">
                         </ion-col>
                         <ion-col size="8">
-                            <h3 class="nombreDoctor" text-center>
+                            <h3 class="nombreDoctor" class="ion-text-center">
                                 {{ doctor.fullname }}
                             </h3>
                             <div class="sedeContainer">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="centrar">
                     <p class="izquierda">Especialidad:</p>
-                    <p item-end class="blue" disabled="true"> {{ doctor.service.description }}</p>
+                   <<p item-end class="blue" disabled="true"> {{ dataCompleta.service.basicService.description }}</p> 
                 </div>
                 <div class="centrar">
                     <p class="izquierda">Fecha:</p>
@@ -47,7 +47,7 @@
                 <div class="centrar">
                     <p class="izquierda">Hora:</p>
                     <p class="blue" type="text" disabled="true">
-                        {{ hora.hour | slice:0:5}}
+                        {{ data.available | date:'h:mm'}}
                     </p>
                 </div>
                 <div class="centrar">

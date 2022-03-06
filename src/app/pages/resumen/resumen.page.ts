@@ -55,6 +55,7 @@ export class ResumenPage implements OnInit {
   public dataArmada;
   apiEndpoint: string;
   public data;
+  dataCompleta: any;
 
   constructor(public loadCtrl: LoadingController,
     public router: Router,
@@ -66,26 +67,25 @@ export class ResumenPage implements OnInit {
 
   ngOnInit() {
     this.apiEndpoint = API_IMAGES;
-    if(this.citaSrv.datosCita){
-      this.data = this.citaSrv.datosCita
-    }else{
-      this.router.navigate(['citas']);
-    }
+ 
+      this.data = this.citaSrv.datosCita;
 
     this.pago = 'enLocal';
     window['culqi'] = this.culqi.bind(this);
     /* console.log('culqi en resumen:', window['culqi']); */
     this.culqiData = JSON.parse(localStorage.getItem('culqiData'));
 
-    window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; 
-      /* window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z'; */
+    /* window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb';  */
+      window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z';
 
-    this.hora = this.data.hora;
+    this.hora = this.data.available;
     this.doctor = this.data.doctor;
     this.price = this.data.plan.precio[0].total;
-    this.subida = this.data.hora.listjson;
+    this.subida = this.data.listjson;
     this.plan = this.data.plan;
     this.available = this.data.available;
+    this.dataCompleta = JSON.parse(this.data.listjson);
+    console.log(this.dataCompleta);
   }
 
   async culqi() {
@@ -188,26 +188,12 @@ export class ResumenPage implements OnInit {
     }
   }
 
-  /*  dateValid(month: string, year: string) {
-     return (group: FormGroup) => {
-       let date = new Date();
-       let monthInput = group.controls[month];
-       let yearInput = group.controls[year];
- 
-       if (yearInput.value == date.getFullYear())
-         if (monthInput.value < ("0" + (date.getMonth() + 1)).slice(-2))
-           return monthInput.setErrors({ notEquivalent: true })
-     }
-   } */
+
   errorHandler(event) {
     event.target.src = "https://1.bp.blogspot.com/-p8EFlkXywyE/UDZvWTyr1bI/AAAAAAAAEU0/xL8pmKN1KOY/s1600/facebook.png"
   }
 
   openCulqi() {
-    /* const loadingPago = await this.loadCtrl.create({
-      message: "Haciendo el cobro...",
-    });
-    await loadingPago.present(); */
     let appointment = this.currentAppointment;
 
     if (this.currentAppointment) {
@@ -294,7 +280,7 @@ export class ResumenPage implements OnInit {
       return
     }
 
-    let provisionId = this.hora.params.provisionId;
+    let provisionId = this.data.hora.params.provisionId[0];
     this.appointmentProvider.createAppointment(this.subida, provisionId)
       .subscribe((data: any) => {
         this.currentAppointment = data;
@@ -356,7 +342,7 @@ export class ResumenPage implements OnInit {
 
 
   next() {
-    let provisionId = this.hora.params.provisionId;
+    let provisionId = this.data.hora.params.provisionId[0];
     this.desactivadoBotonLocal = false;
     this.appointmentProvider.createAppointment(this.subida, provisionId).subscribe(async (data: any) => {
       /* console.log('data devuelta:', data); */
@@ -406,7 +392,7 @@ export class ResumenPage implements OnInit {
 
   async gotosave() {
     this.desactivadoBotonLocal = false;
-    const providerId = this.hora.params.provisionId;
+    const providerId = this.data.hora.params.provisionId[0];
     /* console.log('this.providerId:', providerId); */
     this.appointmentProvider.createAppointment(this.subida, providerId).subscribe(async (data: any) => {
       // console.log('data de masterDetail:', data);
@@ -434,49 +420,10 @@ export class ResumenPage implements OnInit {
         console.log('error de masterDetail:', err);
         const code = err.error.data.errorCode;
         let alert;
-        /* switch (code) {
-          case 15006:
-            // case 15035:
-            const alert = this.alertCtrl.create({
-              header: 'Aviso al Cliente',
-              subHeader: 'Ya tienes una cita en una hora cercana a esta.',
-              buttons: [
-                {
-                  text: 'Buscar otra hora',
-                  handler: data => {
-                    this.router.navigate(['citas-pendientes']);
-                  }
-                }
-              ]
-            });
-            const alert.present();
-            break;
 
-          case 15009:
-            const alert = await this.alertCtrl.create({
-              header: 'Aviso al Cliente',
-              subHeader: 'El horario escogido ya fue tomado .',
-              buttons: [
-                {
-                  text: 'Buscar otra hora',
-                  handler: data => {
-                    this.router.navigate(['citas-pendientes']);
-                  }
-                }
-              ]
-            });
-            alert.present();
-            break;
-
-          default:
-            break;
-        } */
       }
     );
   }
-
-
-
 
 
   goBack() {

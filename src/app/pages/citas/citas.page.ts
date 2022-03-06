@@ -27,6 +27,9 @@ export class CitasPage implements OnInit {
   selectedDay: any;
   hora: any;
 
+  public color: any = 'warn';
+  public mode: any = 'indeterminate';
+
   public available;
   public complete: boolean = false;
 
@@ -44,6 +47,9 @@ export class CitasPage implements OnInit {
   public manyBoxes;
   public datesCalendar: any;
 
+  public hours;
+  public chargeHours = false;
+
   constructor(public routes: Router,
     public route: ActivatedRoute,
     public citasSrv: CitasService,
@@ -58,51 +64,27 @@ export class CitasPage implements OnInit {
 
 
     this.apiEndpoint = API_IMAGES;
-  /*   const data = this.route.snapshot.paramMap.get('data');
-    this.c = JSON.parse(data)
-    console.log('c:', this.c);
-    this.escogido = this.c.escogido;
-    console.log(this.escogido); */
-    this.getDoctors();
+    this.getDoctorWDates();
   }
 
-  ionViewWillEnter() {
-    this.getDoctors();
-  }
+ /*  ionViewWillEnter() {
+    this.getDoctorWDates();
+  } */
 
-  /* async getDoctors() {
+  async getDoctorWDates(){
+    this.doctorsF = [];
     const loading = await this.loadingCtrl.create({
-      message: 'Cargando doctores...'
+      message:"buscando especialistas"
     });
     await loading.present();
-    this.citasSrv.getDoctorsPerId(this.id).subscribe(doctors => {
-      this.disponibles = false;
-      if (doctors.length == 0) {
-        this.disponibles = true;
-        return null;
-      }
-      console.log(doctors);
-      this.doctors = doctors;
-      for (let doctor of doctors) {
-        this.citasSrv.getAvailablesPerDoctor(doctor.id, this.escogido, doctor.service.id, this.fromDate, this.toDate).subscribe((availables: any) => {
-          if (availables && availables.length > 0) {
-            doctor.availables = availables;
-            doctor.isAvailable = true;
-            doctor.expanded = false;
-          }
-        })
-      }
-      this.doctorsF = this.doctors;
-      console.log(this.doctorsF);
+    this.citasSrv.getDoctorsSpecialtyBD(this.id).subscribe((data:any) => {
+      console.log('data recibida de nuevo endpoint:',data);
+      this.doctorsF = data;
       loading.dismiss();
-      console.log('cerrando el loading')
-    }, err => {
-      console.log('err', err)
-    },
-      () => {
-        console.log('llamada finalizada')
-      });
-  } */
+      console.log('todos los especialistas:',this.doctorsF);
+
+    }); 
+  }
 
   async getDoctors(){
     this.doctorsF = [];
@@ -175,9 +157,29 @@ export class CitasPage implements OnInit {
 
   stateShow(item: any, index, items) {
     console.log(item, index, items);
+    this.hora = items;
+    this.hours = [];
+    this.chargeHours = true;
     this.boxID = item;
     this.boxCaID = index;
     this.selectedDay = items;
+    const dataDate = items;
+    console.log('llamado de horas para el dia', item, index, items);
+    let data = {
+      fromDateString: items.fecha + 'T00:00:00.000',
+      toDateString: items.fecha + 'T00:00:00.000',
+      centerId: items.cod_centro,
+      basicServiceId: items.serv_bas_pk,
+      professionalId: items.codigo_personal,
+      provisions : [
+        items.prest_item_pk
+      ]
+    } 
+    this.citasSrv.getDoctorsSlotsPerDay(data).subscribe((resp:any) => {
+      this.hours = resp[0].appointmentDateTimes;
+        console.log('horas solicitadas:',resp, this.hours);
+      this.chargeHours = false;
+    })
   }
 
   errorHandler(event) {
@@ -185,14 +187,14 @@ export class CitasPage implements OnInit {
   }
 
   goToFinancer(doctor, hora) {
-    /* console.log('hora y doctor', hora, doctor); */
+    console.log(doctor, hora, this.hora)
     const datos = {
       centerId: hora.params.centerId,
       servicio_id: hora.params.serviceId,
       prestacion: hora.params.provisionId,
       medico_id: doctor.id,
       proposedate: this.selectedDay.date,
-      hora: hora,
+      hora: this.hora,
       encuentro: this.escogido,
       doctor: {
         id: doctor.id,
@@ -202,10 +204,9 @@ export class CitasPage implements OnInit {
         cmp: doctor.cmp
       }
     }
-    this.citasSrv.datosCita = datos;
+    this.citasSrv.datosCita = hora;
     const user = localStorage.getItem('role')
     const datosObj = JSON.stringify(datos);
-    /* console.log('data armada', datosObj); */
       this.routes.navigate(['financer']);
   }
 

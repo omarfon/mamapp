@@ -36,6 +36,8 @@ export class FinancerPage implements OnInit {
   public disabled: boolean = false;
   public encuentro;
   public data;
+  public dataEscogida;
+  doctorSubida: any;
   constructor(public routes: Router,
     public route: ActivatedRoute,
     public appointmentSrv: AppointmentService,
@@ -49,18 +51,18 @@ export class FinancerPage implements OnInit {
     public popover: PopoverController) { }
 
   ngOnInit() {
-    if(this.citasSrv.datosCita){
-      this.data = this.citasSrv.datosCita
-    }else{
-      this.routes.navigate(['citas']);
-    }
-    this.dataArmada = this.data;
-    this.hora = this.dataArmada.hora;
-    this.doctor = this.dataArmada.doctor;
-    this.subida = this.dataArmada.hora.listjson;
-    this.encuentro = this.dataArmada.encuentro;
+    
+    this.dataEscogida = this.citasSrv.datosCita;
+    const datosListJson = JSON.parse(this.dataEscogida.listjson);
+    console.log(this.dataEscogida, datosListJson);
+    this.dataArmada = this.dataEscogida.params;
+    this.hora = this.dataEscogida.hora;
+    this.doctor = datosListJson.professional.id;
+    this.doctorSubida = datosListJson.professional;
+    this.subida = this.dataEscogida.listjson;
+    this.encuentro =  datosListJson.appointmentDateTime; ;
     console.log('this.encuentro:', this.encuentro);
-    if (this.dataArmada) {
+    if (this.dataEscogida) {
       this.getPlanesPacienteConPrecio();
     }
   }
@@ -70,11 +72,11 @@ export class FinancerPage implements OnInit {
     const loading = await this.loadingCtrl.create({
       message: 'cargando financiadores'
     });
-    let centerId = this.dataArmada.centerId;
-    let servicio_id = this.dataArmada.servicio_id;
-    let prestacion_id = this.dataArmada.prestacion;
-    let medico_id = this.dataArmada.medico_id;
-    let proposedate = this.dataArmada.proposedate;
+    let centerId = this.dataEscogida.params.centerId;
+    let servicio_id = this.dataEscogida.params.serviceId;
+    let prestacion_id = this.dataEscogida.params.provisionId[0];
+    let medico_id = this.doctor;
+    let proposedate = this.encuentro;
     this.financerSrv.getPlanesPaciente(centerId, servicio_id, prestacion_id, medico_id, proposedate).subscribe((data: any) => {
       this.planes = data;
       loading.dismiss();
@@ -86,10 +88,11 @@ export class FinancerPage implements OnInit {
   goToPay() {
     console.log(this.dataArmada);
     const datos = {
-      available: this.dataArmada.proposedate,
-      hora: this.hora,
-      doctor: this.doctor,
+      available: this.encuentro,
+      hora: this.dataEscogida,
+      doctor: this.doctorSubida,
       plan: this.plan,
+      listjson: this.subida
     }
     this.citasSrv.datosCita = datos;
     console.log('me envia a pagos', datos);

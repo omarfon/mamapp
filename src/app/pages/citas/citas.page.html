@@ -19,7 +19,7 @@
                     </ion-col>
                     <ion-col size="8" right>
                         <p class="doctor">{{ item.fullName | lowercase}}</p>
-                        <p class="especialidad">{{item.service.description | lowercase}}</p>
+                        <p class="especialidad">{{item.serv_bas_desc | lowercase}}</p>
                         <p class="centro">Centro: Mendiola</p>
                     </ion-col>
                 </ion-row>
@@ -29,28 +29,34 @@
                     <p class="diasDisponibles">Próximos días disponibles</p>
                     <ul>
                         <ion-row>
-                            <ion-col size="2" *ngFor="let items of item.availables; let index = index">
+                            <ion-col size="2" *ngFor="let items of item.availabel_days; let index = index">
                                 <li (click)="stateShow(itemDoctor, index, items)"
                                     [ngClass]="{'active': boxCaID == index && itemDoctor === boxID}">
                                     <div class="box-day" id="{{index}}">
-                                        {{items.date | date:'fullDate' :'es' | slice:0:3}}</div>
+                                        {{items.fecha | date:'fullDate' :'es' | slice:0:3}}</div>
                                 </li>
-                                <span class="day">{{items.date | date:'dd':'es'}}</span>
+                                <span class="day">{{items.fecha | date:'dd':'es'}}</span>
                             </ion-col>
                         </ion-row>
                     </ul>
                 </div>
                 <div class="horasCitas">
-                    <div style="overflow: hidden;" *ngFor="let itemss of item.availables; let ii = index">
+                    <div style="overflow: hidden;" *ngFor="let itemss of item.availabel_days; let ii = index">
                         <div *ngIf="itemDoctor === boxID && boxCaID === ii" id="{{ii}}" class="box-hour">
-                            <!-- <p class="p-hour-dispo">Horario disponible Consulta Externa</p> -->
+                            <p class="p-hour-dispo" *ngIf="hours.length > 0">Selecciona una hora</p>
                             <div class="box-hour-main">
                                 <ion-row>
-                                    <ion-col size="3" *ngFor="let items of itemss.hours; let indexxx = index">
-                                        <span id="{{'span-elegir-doctor-horaydia-'+item.service.idTraking}}">
-                                            <div [ngClass]="{'hourdispo': itemss.hours[indexxx].isAvailable === true, 'desactive': itemss.hours[indexxx].isAvailable === false}"
+                                  <div class="preloader" *ngIf="chargeHours === true" >
+                                    <mat-progress-spinner [color]="color" [mode]="mode" [diameter]="25">
+                                    </mat-progress-spinner>
+                                    <br>
+                                    <p class="text-small">Estamos cargando las horas disponibles</p>
+                                  </div>
+                                    <ion-col size="3" *ngFor="let items of hours; let indexxx = index">
+                                        <span>
+                                            <div class="hourdispo"
                                                 (click)="goToFinancer(item,items)">
-                                                {{items.hour | slice:0:5}}
+                                                {{items.datetime | date:'h:mm'}}
                                             </div>
                                         </span>
                                     </ion-col>

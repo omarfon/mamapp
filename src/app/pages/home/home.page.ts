@@ -98,6 +98,7 @@ export class HomePage implements OnInit {
       this.date = date;
       console.log(this.date);
     })
+    this.updateSession();
   }
 
   scheduleNotification() {
@@ -265,6 +266,20 @@ export class HomePage implements OnInit {
       });
       await alert.present();
     }
+  }
+
+  updateSession(){
+    const datosUser = JSON.parse(localStorage.getItem('authorization'));
+    let data = {
+      userId: datosUser.patientId,
+      app:'mamapp',
+      date: new Date(),
+      role: datosUser.role,
+      session: datosUser.sessionId
+    }
+    this.notasServ.upSession(data).subscribe(resp => {
+      console.log('devuelta guardada.',resp);
+    })
   }
 
   async calculoFecha() {

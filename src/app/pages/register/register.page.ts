@@ -90,17 +90,6 @@ public _gender;
 
     this.actual = moment().format("YYYY-MM-DD");
 
-    this.dataSvr.getGenders().subscribe(datagenders => {
-      this.genders = datagenders;
-      console.log("this.genders:", this.genders);
-    });
-
-    this.dataSvr.getDocuments().subscribe(documents => {
-      this.documents = documents;
-      /* console.log("this.documents:", this.documents); */
-    });
-
-    
     this.registerForm = this.fb.group({
       name: ['',  [ Validators.required ]],
       surname1: ['',  [ Validators.required ]],
@@ -115,8 +104,18 @@ public _gender;
       aprobed: ['', [ Validators.required]],
       documentDigit: ['']
     });
+  }
 
+  ionViewWillEnter(){
+    this.dataSvr.getGenders().subscribe(datagenders => {
+      this.genders = datagenders;
+      console.log("this.genders:", this.genders);
+    });
 
+    this.dataSvr.getDocuments().subscribe(documents => {
+      this.documents = documents;
+      /* console.log("this.documents:", this.documents); */
+    });
   }
 
   validacion(){
@@ -340,7 +339,8 @@ public _gender;
               name       : this.document.name
           },
           documentNumber : this.documentNumber.toString(),
-          phone          : this.phone
+          phone          : this.phone,
+          origin         : 'mamapp'
         }
          this.datos.code = 1234;
          this.datos.id = resp.id ;

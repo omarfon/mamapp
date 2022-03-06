@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { Observable, combineLatest } from 'rxjs';
-import { API_NOTAS } from '../../environments/environment';
-
+import { API_NOTAS, API_ENDPOINT } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,8 @@ export class NotasService {
   private apiUrl = `${this.SERVER}/xnotas`;
   private apiUrlFilter = `${this.SERVER}`;
   private apiUrlSemana = `${this.SERVER}notas-por-semana?semana=`;
-  private apiUrlContentAviva = `${this.SERVER}/xtrans`
+  private apiUrlContentAviva = `${this.SERVER}/xtrans`;
+  private url = API_ENDPOINT;
   categoriasSincronas: any;
   categoriasAtemp: any;
   categoriasTotales: Observable<any>;
@@ -104,4 +104,17 @@ export class NotasService {
                       })
                       )
                     }
+
+    upSession(data){
+    let origin = 'session'
+    let params = data;
+    return this.http.post(this.url + `ebooking/log/${origin}`, params).pipe(
+      map(data => {
+        return data
+      }, err => {
+        return err
+      })
+    )
+  }
+
 }

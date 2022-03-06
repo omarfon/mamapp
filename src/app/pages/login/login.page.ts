@@ -59,22 +59,30 @@ export class LoginPage implements OnInit {
     }
 
   ngOnInit() {
-    const authorization = localStorage.getItem('authorization');
+   
+  }
+
+  ionViewWillEnter(){
+    const authorization:any = localStorage.getItem('authorization');
       if(!authorization) {
         this.autho.getKey().subscribe((data: any) => {
           localStorage.setItem('authorization', JSON.stringify(data));
+          this.getDocuments();
         })
       }else{
         this.getDocuments();
       }
       console.log('constructor');
-   
-    
   }
 
-  getDocuments(){
+  async getDocuments(){
+    const loading = await this.loadinCtrl.create({
+      message : "Espere un segundo"
+    })
+    await loading.present();
     this.dataSrv.getDocuments().subscribe(data => {
       this.documents = data;
+      loading.dismiss();
       console.log(this.documents);
   });
 }
@@ -115,12 +123,17 @@ export class LoginPage implements OnInit {
       })
   }
 
-  doSignIn(document, password) {
+  async doSignIn(document, password) {
+    const loading = await this.loadinCtrl.create({
+        message:"Estamos autenticando"
+    });
+    await loading.present();
     console.log(this.tipeDocument,document, password) 
     this.userSrv.newLoginWithDni(this.tipeDocument, document, password).subscribe(async response => {
       this.data = response;
       console.log('lo que me trae el login:', this.data);
       if (this.data.sex == 'HOMBRE') {
+        loading.dismiss();
         const alert = await this.alertCtrl.create({
           header: "LO SENTIMOS",
           subHeader: "Esta aplicación es de uso exclusivo para pacientes de sexo femenino",
@@ -152,6 +165,7 @@ export class LoginPage implements OnInit {
         }
 
         this.datosSrv.getStartPregnacy().subscribe((data: any) => {
+          loading.dismiss();
           if (!data) {
             const nombre = localStorage.getItem('name');
             this.goToCalc(nombre);
@@ -162,6 +176,7 @@ export class LoginPage implements OnInit {
           /* console.log('this.startPregnancy de login:', this.startPregnancy); */
           if (this.startPregnancy) {
             localStorage.setItem('startPregnancy', this.startPregnancy);
+            loading.dismiss();
             this.router.navigate(['/tabs']);
           } else {
             this.goToCalc(localStorage.getItem('name'));
@@ -177,6 +192,7 @@ export class LoginPage implements OnInit {
         });
       }
     }, async error => {
+      loading.dismiss();
       const alert = await this.alertCtrl.create({
         header: '',
         message: "Email o Password incorrecto",
@@ -189,11 +205,8 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
       // this.msgError = error.message;
-
     }
-
-    );
-
+  );
   }
 
   async goToRegisterFacebook() {

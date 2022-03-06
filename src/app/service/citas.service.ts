@@ -48,6 +48,21 @@ export class CitasService {
     )
   }
 
+  getDoctorsSpecialtyBD(params: any) {
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    return this.http
+      .get(this.apiUrl + 'ebooking/fmt-centers/1/basicservices/' + params + '/professionals/1/info-for-availables', {headers});
+  }
+
+  getDoctorsSlotsPerDay(data: any) {
+    const authorization = JSON.parse(localStorage.getItem('authorization'));
+    let headers = new HttpHeaders({"Authorization": authorization.authorization});
+    let params = data;
+    return this.http
+      .post(this.apiUrl + 'ebooking/slots/availables-extra', params, {headers});
+  }
+
   getDoctorsSpecialty(id, date1: any, date2: any) {
     const authorization = JSON.parse(localStorage.getItem('authorization'));
     let headers = new HttpHeaders({ "Authorization": authorization.authorization });
