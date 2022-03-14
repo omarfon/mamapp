@@ -9,7 +9,8 @@ import { API_NOTAS, API_ENDPOINT } from '../../environments/environment';
 })
 export class NotasService {
   private SERVER = API_NOTAS;
-  private apiUrl = `${this.SERVER}/xnotas`;
+  /* private apiUrl = `${this.SERVER}/xnotas`; */
+  private apiUrl = `${this.SERVER}/data`;
   private apiUrlFilter = `${this.SERVER}`;
   private apiUrlSemana = `${this.SERVER}notas-por-semana?semana=`;
   private apiUrlContentAviva = `${this.SERVER}/xtrans`;
@@ -22,7 +23,7 @@ export class NotasService {
   constructor(public http: HttpClient) { }
 
   getNotes(){
-    let params = {
+   /*  let params = {
       "baseUrl": "https://docs.google.com/spreadsheets/d/1phyPDjBmOh5T8PxUUrgNp3T-ilZP6cpUrDQVNZeWy3g",
       "sheets": [
           {
@@ -46,9 +47,9 @@ export class NotasService {
               "name": "nutricion"
           }
       ]
-  }
+  } */
 
-    return this.http.post(this.apiUrl , params).pipe(
+    return this.http.get(this.apiUrl).pipe(
       map((resp:any)=>{
         return resp
         /* this.categoriasSincronas = resp; */
@@ -77,14 +78,9 @@ export class NotasService {
        /* this.categoriasAtemp = resp;  */
       })
     )
+    
   }
 
- /*  getNotasTotales(){
-    return this.categoriasTotales = combineLatest(
-      (this.categoriasSincronas, this.categoriasAtemp)
-      );
-     
-  } */
   
   getNotesFilter(elfiltro){
     console.log('el filtro en home:', elfiltro);
