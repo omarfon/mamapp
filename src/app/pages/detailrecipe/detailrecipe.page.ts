@@ -21,7 +21,7 @@ export class DetailrecipePage implements OnInit {
     this.datosObj = JSON.parse(this.data);
     this.recetas = this.datosObj.prescripciones;
     this.date = this.datosObj.prescripciones[0]
-    /* console.log(this.datosObj); */
+    console.log(this.datosObj);
   }
 
 }

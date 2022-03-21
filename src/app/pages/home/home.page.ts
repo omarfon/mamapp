@@ -298,21 +298,17 @@ export class HomePage implements OnInit {
       //la idea es poder seguin con la siguiente acción para poner manualmente mis datos,
       /* this.fecha = moment().diff(20, 'w'); */
     }
-    /* this.fecha = moment(localStorage.getItem('startPregnancy')).clone(); */
-
+    this.fecha = moment(localStorage.getItem('startPregnancy')).clone();
     // aqui calcula la cantidad de semanas transcurridas
     const totalDays = this.today.diff(this.fecha, 'days');
     this.total = this.today.diff(this.fecha, 'weeks');
-
+    console.log('this.total ==',this.total)
     /* aqui calculo el dia pendiente */
     this.diasPendientes = totalDays - (this.total * 7);
     this.totaldias = this.total.toString();
-
     /* cuanto tiempo ha pasado desde la concepcion */
     const start = moment(this.fecha);
     const cuanto = start.fromNow(true);
-    /* console.log('cuanto', cuanto); */
-
     /*   aqui les sumamos las 40 semanas a la fecha inicial para poder tener el ultimo dia de parto */
     const posible = start.add(41, 'w');
     this.posible = posible;
@@ -324,17 +320,16 @@ export class HomePage implements OnInit {
     /* console.log('diasFaltantes:', diasFaltantes); */
 
     this.cantidad = this.total;
+    console.log(this.cantidad);
     this.mostrar = true;
     if (!this.notasFiltro) {
       this.notasServ.getNotes().subscribe(data => {
+        data.forEach(element => {
+          element.semana = Number(element.semana);
+        });
+        data.sort((a,b) => b.semana - a.semana);
         this.notas = data;
         console.log('todas las notas:', this.notas);
-
-        /* this.notasServ.getNotesTrans().subscribe(data =>{
-          this.dataTrans = data;
-          console.log('dataTrans', this.dataTrans);
-        }); */
-
       }, err => {
 
       },
@@ -343,13 +338,15 @@ export class HomePage implements OnInit {
         });
     } else {
       let elfilter = this.notasFiltro;
+      console.log(elfilter);
       this.notasServ.getNotesFilter(elfilter).subscribe(data => {
-        /* console.log('lo que me llega del filtro:', data); */
+        console.log('lo que me llega del filtro:', data); 
         this.notas = data
         console.log(this.notas);
 
       });
-      this.notasFiltro = this.notas;
+      const notas = this.notas.filter(x => x.semana.toNumber())
+      this.notasFiltro = notas;
     };
 
   }

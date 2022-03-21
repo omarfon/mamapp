@@ -73,21 +73,6 @@ export class AppComponent {
 
   closeSession() {
     localStorage.clear();
-    /* localStorage.removeItem('role');
-    localStorage.removeItem('authorization');
-    localStorage.removeItem('id');
-    localStorage.removeItem('photoUrl');
-    localStorage.removeItem('name');
-    localStorage.removeItem('startPregnancy');
-    localStorage.removeItem('email');
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('patientName');
-    localStorage.removeItem('token');
-    localStorage.removeItem('uid'); */
-/*     this.autho.getKey().subscribe((data: any) => {
-      localStorage.setItem('authorization', data.authorization);
-      localStorage.setItem('role', data.role);
-    }) */
     this.routes.navigate(['/login']);
     this.menu.close('start');
     console.log('cerrar sesión');

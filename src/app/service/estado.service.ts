@@ -9,7 +9,7 @@ import { API_ENDPOINT } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EstadoService {
-  private apiUrl = API_ENDPOINT+ '/status';
+  private apiUrl = API_ENDPOINT+ 'status';
 
   constructor(public http:HttpClient) { }
 

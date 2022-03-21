@@ -30,7 +30,7 @@
         <div *ngIf="recetas">
             <div *ngFor="let recipe of recetas">
               <ion-card>
-                <ion-card-header text-wrap>
+                <ion-card-header class="ion-text-wrap">
                     <ion-row>
                         <ion-col size="3"
                               class="containerIconAndDays">
@@ -61,7 +61,7 @@
                     <div *ngIf="recetas && recipe.cada_x_horas == 8"
                     class="down">
                 <h4 class="tituloDeLasTomas"> tomas de 3 veces por día</h4>
-                <ion-row padding>
+                <ion-row class="ion-padding">
                   <ion-col class="cuadrados">
                     <p> 6-9 am</p>
                     <p class="cantidad">{{recipe.cantidad_dosis}}</p>
@@ -80,7 +80,7 @@
             <div *ngIf="recetas && recipe.cada_x_horas == 12 || recetas && recipe.cada_x_horas == 13"
                   class="down">
               <p class="tituloDeLasTomas"> tomas de 2 veces por día</p>
-              <ion-row padding>
+              <ion-row class="ion-padding">
                 <ion-col class="cuadrados">
                   <p> 6-9 am</p>
                   <p class="cantidad">{{recipe.cantidad_dosis}}</p>
@@ -95,7 +95,7 @@
             <div *ngIf="recetas && recipe.cada_x_horas == 6"
             class="down">
                 <p class="tituloDeLasTomas"> tomas de 4 veces por día</p>
-                <ion-row padding>
+                <ion-row class="ion-padding">
                   <ion-col class="cuadrados">
                     <p> 6-8 am</p>
                     <p class="cantidad">{{recipe.cantidad_dosis}}</p>
@@ -118,7 +118,7 @@
               <div *ngIf="recetas && recipe.cada_x_horas == 24"
               class="down">
                   <p class="tituloDeLasTomas"> toma de 1 vez por día</p>
-                  <ion-row padding>
+                  <ion-row class="ion-padding">
                     <ion-col class="cuadrados">
                       <p> 6-8 am</p>
                       <p class="cantidad">{{recipe.cantidad_dosis}}</p>

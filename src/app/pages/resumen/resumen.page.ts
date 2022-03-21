@@ -75,8 +75,8 @@ export class ResumenPage implements OnInit {
     /* console.log('culqi en resumen:', window['culqi']); */
     this.culqiData = JSON.parse(localStorage.getItem('culqiData'));
 
-    /* window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb';  */
-      window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z';
+    window['Culqi'].publicKey = 'pk_live_CyArY9ygzb0d7oZb'; 
+     /*  window['Culqi'].publicKey = 'pk_test_e85SD7RVrWlW0u7z'; */
 
     this.hora = this.data.available;
     this.doctor = this.data.doctor;

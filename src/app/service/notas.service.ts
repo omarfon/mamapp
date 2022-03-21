@@ -78,7 +78,6 @@ export class NotasService {
        /* this.categoriasAtemp = resp;  */
       })
     )
-    
   }
 
   
