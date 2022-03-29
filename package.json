@@ -36,6 +36,7 @@
     "agora-rtc-sdk": "3.0.2",
     "angular-agora-rtc": "^0.1.0",
     "cordova-android": "8.1.0",
+    "cordova-ios": "5.1.1",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-facebook4": "^6.3.0",
@@ -106,7 +107,8 @@
       "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
