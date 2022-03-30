@@ -151,8 +151,8 @@ export class LoginPage implements OnInit {
         localStorage.setItem('role', this.data.role);
         localStorage.setItem('name', this.data.name);
         localStorage.setItem('sigIn', 'completo');
-   /*      localStorage.setItem('usuario', this.data.userEmail);
-        localStorage.setItem('email', this.data.userEmail);
+        localStorage.setItem('dni', document);
+        /*   localStorage.setItem('email', this.data.userEmail);
         localStorage.setItem('authorization', this.data.authorization);
         localStorage.setItem('id', this.data.patientId);
         localStorage.setItem('photoUrl', this.data.photoUrl);

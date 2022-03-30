@@ -18,7 +18,7 @@
                         <img src="{{apiEndpoint}}{{item.id}}.png" (error)="errorHandler($event)" alt="">
                     </ion-col>
                     <ion-col size="8" right>
-                        <p class="doctor">{{ item.fullName | lowercase}}</p>
+                        <p class="doctor">{{ item.apellido1 | lowercase}} {{ item.apellido2 | lowercase}} {{ item.nombre | lowercase}}</p>
                         <p class="especialidad">{{item.serv_bas_desc | lowercase}}</p>
                         <p class="centro">Centro: Mendiola</p>
                     </ion-col>

@@ -4,6 +4,12 @@
           <ion-menu-button ></ion-menu-button>
       </ion-buttons>
     <ion-title>chat</ion-title>
+    <ion-buttons slot='end'>
+      <ion-button (click)="isHour()" >
+        <!-- href="https://docs.google.com/forms/d/e/1FAIpQLScs6ZJL99KIovADR0PQ-joYpmapPi3xsceZBgaiVvglUFUv3w/viewform" target="_blank" rel="noopener noreferrer" -->
+        <ion-icon slot="icon-only" color='danger' name="warning"></ion-icon>
+      </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +21,7 @@
           <ion-col size="8"  *ngIf="currentUser === mensaje.user" class="message other-message">
             <b class="nombreCoach">{{mensaje.user}}</b> <br>
             <span>{{mensaje.content}}</span>
-            <div class="time" text-right>
+            <div class="time" class="ion-text-right">
               {{mensaje.date.toDate() | date:'short'}}
             </div> 
           </ion-col>  
@@ -23,7 +29,7 @@
           <ion-col offset="4" size="8"   *ngIf="mensaje.user !== currentUser " class="message my-message">
             <b class="nombreUsuario">Tú</b> <br>
             <span>{{mensaje.content}}</span>
-            <div class="time" text-right>
+            <div class="time" class="ion-text-right">
               {{mensaje.date.toDate() | date:'short'}}
             </div> 
           </ion-col>  
@@ -56,7 +62,7 @@
 
 </ion-content>
 
-<ion-footer padding>
+<ion-footer class="ion-padding">
   <ion-item>
     <ion-textarea [(ngModel)]="msg" autosize class="message-input" value="ingresa tu mensaje">
     </ion-textarea>
