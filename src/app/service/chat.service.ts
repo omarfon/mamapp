@@ -28,7 +28,6 @@ export class ChatService {
     public ad: AngularFireAuth) { }
 
     getChatRoom(uid){
-        console.log(uid);
         return this.db.collection('chatsRooms').doc(uid).valueChanges();
      }
 

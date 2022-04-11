@@ -19,9 +19,6 @@ export const environment = {
     messagingSenderId: "123950719277",
     appId: "1:123950719277:web:331d4e07590df134be73a4",
     vapidKey: "BBwWAlKhU8eHfS-ntn7Mc4XD0HEMmQv8wmA-niDLj4eP28bi4CFjmp-gGwH3bQXAqi4OFU3lg95czzAx_akXDyo",
-  },
-  agora: {
-    appId: 'b75a830a11a84a0bbb812fc81aa60860'
   }
 };
 

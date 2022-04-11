@@ -41,9 +41,7 @@ registerLocaleData(localeEs, 'es');
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx'
 
-import { NgxAgoraModule } from 'ngx-agora';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-/* import {NgxAgoraModule} from 'ngx-agora'; */
 
 @NgModule({
   declarations: [AppComponent],
@@ -55,7 +53,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     ReactiveFormsModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    NgxAgoraModule.forRoot({ AppID: environment.agora.appId }),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireMessagingModule,

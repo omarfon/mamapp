@@ -73,7 +73,8 @@ export class ChatPage implements OnInit {
 
   async ngOnInit() {
     this.badge = 0;
-   if(localStorage.getItem('token') ){
+    const token = localStorage.getItem('token');
+   if(localStorage.getItem(token) ){
       this.chatSrv.registerDb();
       this.obtenerConversacion(); 
     }else{
@@ -161,7 +162,8 @@ export class ChatPage implements OnInit {
 
   obtenerConversacion(){
     console.log(this.conversacion);
-    const uid = localStorage.getItem('uid');
+    const autho = JSON.parse(localStorage.getItem('authorization'));
+    const uid = autho.userId;
     this.chatSrv.getChatRoom(uid).subscribe((room:any) =>{
       this.conversacion = room;
       this.mensajes = room;
@@ -181,7 +183,8 @@ export class ChatPage implements OnInit {
       date: new Date(),
       user: localStorage.getItem('name'),
     }
-    const uid = localStorage.getItem('uid');
+    const autho = JSON.parse(localStorage.getItem('authorization'));
+    const uid = autho.userId;
     this.chatSrv.sendMessageToFirebase(mensaje, uid );
     const text = mensaje.content;
     console.log('text', text);
@@ -204,7 +207,7 @@ export class ChatPage implements OnInit {
 
   async isHour(){
     const dni = JSON.parse(localStorage.getItem('dni'));
-    const name = localStorage.getItem('patientName');
+    const name = localStorage.getItem('name');
   this.iab.create(`https://docs.google.com/forms/d/e/1FAIpQLScs6ZJL99KIovADR0PQ-joYpmapPi3xsceZBgaiVvglUFUv3w/viewform?usp=pp_url&entry.907685758=${name}&entry.280683849=${dni}`, '_self');
   }
 
