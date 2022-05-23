@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DetailpagePage } from './detailpage.page';
+import { QRCodeModule } from 'angular2-qrcode';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    QRCodeModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DetailpagePage]

@@ -47,7 +47,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
-    /*      NgxAgoraModule.forRoot({AppID: environment.agora.appId}), */
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,

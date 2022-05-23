@@ -6,7 +6,9 @@
         <ion-title size="small">Programa tu Cita</ion-title>
     </ion-toolbar>
 </ion-header>
-
+<!-- 
+    PAGINA PARA NOSTRAR LAS CITAS PENDIENTES
+ -->
 <ion-content #mycontent fullscreen>
 
     <h4 class="center">Ginecólogos disponibles <br>Consulta Externa</h4>
@@ -44,13 +46,19 @@
                     <div style="overflow: hidden;" *ngFor="let itemss of item.availabel_days; let ii = index">
                         <div *ngIf="itemDoctor === boxID && boxCaID === ii" id="{{ii}}" class="box-hour">
                             <p class="p-hour-dispo" *ngIf="hours.length > 0">Selecciona una hora</p>
-                            <div class="box-hour-main">
-                                <ion-row>
+                            <div ion-class="center">
+                                <ion-row >
                                   <div class="preloader" *ngIf="chargeHours === true" >
-                                    <mat-progress-spinner [color]="color" [mode]="mode" [diameter]="25">
-                                    </mat-progress-spinner>
+                                      <div class="row">
+                                          <ion-col size="12">
+                                              <mat-progress-spinner color="#287195" [mode]="mode" [diameter]="25" style="margin-left: 120px;">
+                                              </mat-progress-spinner>
+                                          </ion-col>
+                                          <ion-col size="12">
+                                              <p class="text-small">Estamos cargando las horas disponibles</p>
+                                          </ion-col>
+                                      </div>
                                     <br>
-                                    <p class="text-small">Estamos cargando las horas disponibles</p>
                                   </div>
                                     <ion-col size="3" *ngFor="let items of hours; let indexxx = index">
                                         <span>

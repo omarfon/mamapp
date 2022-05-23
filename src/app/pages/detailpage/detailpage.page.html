@@ -46,7 +46,9 @@
             <ion-label class="blue"> {{ dataArmada.planDescription | lowercase }}</ion-label>
         </ion-item> -->
     </ion-list>
-
+    <div class="centerQr" *ngIf="dataArmada.pagado !== 'no'">
+        <qr-code value="{{dataArmada.appointmentId}}" [size]="300"></qr-code> 
+    </div>
     <ion-row class="padding" *ngIf="dataArmada.pagado === 'no'">
         <ion-col size="6">
             <ion-button expand="full" color="warning" (click)='desactivateTask()'>ELIMINAR</ion-button>
@@ -67,11 +69,7 @@
             </ion-button>
         </ion-col>
     </ion-row>
-    <ion-col *ngIf="dataArmada.pagado === 'no'">
-        <p class="teleconsultaText">
-            Recuerda llegar 30 minutos antes para que puedas hacer tu preconsulta y tener una consulta puntual.
-        </p>
-    </ion-col>
+
     <ion-col *ngIf="dataArmada.pagado === 'yes'">
         <p class="teleconsultaText">
             Recuerda conectarte unos minutos antes de tu consulta, dandole click a la cámara , luego entraras a espera

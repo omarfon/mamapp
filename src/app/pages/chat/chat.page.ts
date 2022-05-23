@@ -43,7 +43,8 @@ export class ChatPage implements OnInit {
               public popover: PopoverController,
               public iab: InAppBrowser) {
               }
-
+/* 
+ENTRADA Y CARGA DE DATOS DEL USUARIO REAL */
   async ionViewDidEnter() {
     const sigIn = localStorage.getItem('sigIn');
     if (sigIn !== 'completo') {
@@ -96,7 +97,8 @@ export class ChatPage implements OnInit {
     });
     toast.present();
   }
-
+/* 
+LECTURA DE MENSAJES RECIBIDOS */
   async mensajeRecibido(){
     const toast = await this.toast.create({
       message:"Tu coach te esta escribiendo",
@@ -107,6 +109,8 @@ export class ChatPage implements OnInit {
     toast.present();
   }
 
+  /* 
+  PERMISOS PARA NOTIFICIACIONES  */
   requestPushNotificationsPermission() {
     const uid = localStorage.getItem('uid');
     this.afm.requestToken
@@ -149,6 +153,8 @@ export class ChatPage implements OnInit {
         )
   }
 
+  /* 
+  ESCUCHAND SIEMPRE LA LLEGADA DE MENSAJES */
   listen() {
     console.log('escuchando');
     this.afm.messages
@@ -160,6 +166,8 @@ export class ChatPage implements OnInit {
     });
   }
 
+  /* 
+  JALAR TODA LA CONVERSACIÓN */
   obtenerConversacion(){
     console.log(this.conversacion);
     const autho = JSON.parse(localStorage.getItem('authorization'));
@@ -175,7 +183,8 @@ export class ChatPage implements OnInit {
     },300) 
  } 
   
-
+/* 
+ENVIO DE MENSAJES */
   sendMessage(){
     const mensaje : Message ={
       content: this.msg,
@@ -205,6 +214,8 @@ export class ChatPage implements OnInit {
    event.target.complete();
   }
 
+  /* 
+  ENVIO A FORMULARIO ES HORA */
   async isHour(){
     const dni = JSON.parse(localStorage.getItem('dni'));
     const name = localStorage.getItem('name');
